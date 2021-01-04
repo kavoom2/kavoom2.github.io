@@ -1,0 +1,92 @@
+I"i<h1 id="arguments--rest-parameter">arguments &amp; Rest parameter</h1>
+
+<h2 id="1-arguments">1. arguments</h2>
+<p>arguments는 함수에 전달한 인자들을 참조하는 객체입니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function foo(a, b, c) {
+  console.log(arguments[0]); // 1
+  console.log(arguments[1]); // 2
+  console.log(arguments[2]); // 3
+};
+foo(1, 2, 3);;
+</code></pre></div></div>
+
+<p>arguments은 유사배열입니다. 배열처럼 인덱스는 0에서부터 시작하며, 각 인수를 설정하거나 재할당할 수 있습니다.</p>
+
+<blockquote>
+  <p>arguments[0]; // arguments의 0번째 인덱스  <br />
+arguments[1]; // arguments의 1번째 인덱스  <br />
+arguments[2] = ‘new value’; // arguments의 2번째 인덱스 값을 ‘new value’로 설정 또는 재할당</p>
+</blockquote>
+
+<p>arguments 객체는 Array가 아닙니다. 배열에서 사용할 수 있는 pop(), shift() 등 프로퍼티를 가지고 있지 않습니다. 대신, 다음과 같은 방법으로 arguments를 배열로 변환할 수 있습니다.</p>
+
+<blockquote>
+  <p>let arg = Array.prototype.slice.call(arguments);  <br />
+let args = Array.from(arguments);  <br />
+let args = […arguments];</p>
+</blockquote>
+
+<h2 id="11-예제">1.1. 예제</h2>
+<p>arguments 객체는 다음과 같이 전달인자를 변수에 할당하기 힘든 상황에서 유용합니다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let memoize = function (func) {
+  let cache = {};
+  let result;
+
+  return function() {
+    let args = Array.prototype.slice.call(arguments);
+    if ( args in cache ) {
+    return cache[args];
+    }
+    else {
+    cache[args] = func.apply.(null, args);
+    };
+  };
+};
+
+const add = memoize(function(a,b) {
+  return a + b;
+});
+
+add(2, 3); // 5
+add(5, 8); // 13
+</code></pre></div></div>
+
+<p>함수 memoize는 어떤 함수에 이전에 전달받은 인자들을 다시 받으면, 즉시 함수 내에 저장한 결과값을 출력합니다. 어떤 인자를 입력했을 때, 그 인자가 한 번 이상 입력받았는지 확인해야 합니다. 즉, 현재 받은 인자가 캐시 안에 있는지 여부를 판단해야 합니다.</p>
+
+<p>변수 add는 memoize가 반환한 함수 function() {…..}이 할당되어 있습니다. add(2, 3)을 입력하면, arguments 객체는 전달인자 2, 3을 참조합니다.</p>
+
+<h2 id="2-rest-parameter">2. Rest parameter</h2>
+<p>Rest parameter는 정해지지 않은 수의 인자를 배열로 나타냅니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function foo(a, b, ...args) {
+  console.log('a', a);
+  console.log('b', b);
+  console.log('args', args);
+};
+
+foo('one', 'two', 'three', 'four', 'five', 'six');
+
+// a, one
+// b, two
+// args, [three, four, five, six]
+</code></pre></div></div>
+
+<p>함수의 마지막 매개변수에 <strong>…</strong>을 붙여 모든 나머지 인자들을 배열로 대체합니다. 위 예제는 a, b를 제외한 나머지 인자들을 args 배열로 대체합니다.</p>
+
+<p>arguments 객체와 달리 Rest parameter는 실제 배열이며, 배열의 모든 속성에 접근할 수 있습니다. Array의 인스턴스이므로 sort, map, forEach, pop 등 메소드를 바로 적용할 수 있습니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 위 예제와 동일한 함수를 사용
+
+foo('one', 'two');
+// a, one
+// b, two
+// args, []
+</code></pre></div></div>
+
+<p>한편, Rest parameter에 인자를 넣지 않으면 args은 빈배열이 됩니다.</p>
+
+<h1 id="reference">Reference</h1>
+<p>*https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/rest_parameters
+*https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/arguments</p>
+:ET

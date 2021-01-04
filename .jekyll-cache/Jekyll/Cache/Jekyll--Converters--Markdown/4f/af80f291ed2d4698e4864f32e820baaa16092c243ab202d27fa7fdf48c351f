@@ -1,0 +1,4 @@
+I"�<h1 id="closure">Closure</h1>
+<h2 id="1-클로저closure란">1. 클로저(Closure)란</h2>
+<p>클로저(closure)는 함수와 그 함수가 선언되었을 때 렉시컬 환경(lexical environment)과의 조합입니다.</p>
+:ET
