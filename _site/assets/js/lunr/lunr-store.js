@@ -24,7 +24,7 @@ var store = [{
         "teaser": null
       },{
         "title": "This",
-        "excerpt":"1. this란 this는 모든 함수 스코프(scope) 내에서 자동으로 설정되는 식별자입니다. 실행 컨텍스트(Execution Context)의 구성요소로 함수가 실행되는 동안 이용할 수 있습니다. 어느 지점에서 this를 호출하였는지에 따라 컨텍스트가 달라집니다. 2. 바인딩 규칙 규칙은 다음과 같이 5가지로 구분할 수 있다. 구분 호출방식 this 기본 바인딩 global window(전역객체) 기본 바인딩 function 호출 window(전역객체) 암시적...","categories": ["Javascript101"],
+        "excerpt":"1. this란 this는 모든 함수 스코프(scope) 내에서 자동으로 설정되는 식별자입니다. 실행 컨텍스트(Execution Context)의 구성요소로 함수가 실행되는 동안 이용할 수 있습니다. 어느 지점에서 this를 호출하였는지에 따라 컨텍스트가 달라집니다. 2. 바인딩 규칙 규칙은 다음과 같이 5가지로 구분할 수 있습니다. 바인딩 우선순위는 명시적 바인딩 - 암시적 바인딩 - 기본 바인딩 순입니다. 구분 호출방식...","categories": ["Javascript101"],
         "tags": [],
         "url": "https://kavoom2.github.io/javascript101/this/",
         "teaser": null
