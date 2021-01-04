@@ -1,5 +1,6 @@
 ---
 title: "Arguments와 Rest parameter"
+excerpt: "전달인자 참조 객체의 종류와 활용"
 classes: wide
 
 categories:

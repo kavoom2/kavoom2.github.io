@@ -1,6 +1,10 @@
 # main links
 main:
-  - title: "Posts"
-    url: https://kavoom2.github.io/
-  # - title: "ReadMe"
-  #   url: /readme/
+  - title: "ReadMe"
+    url: /readme/
+
+  - title: "Categories"
+    url: /categories
+    
+  - title: "Javascript101"
+    url: /categories/Javascript101

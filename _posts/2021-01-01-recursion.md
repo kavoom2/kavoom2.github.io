@@ -1,5 +1,6 @@
 ---
 title: "재귀(Recursion)"
+excerpt: "재귀함수의 구성요소와 작동방식"
 classes: wide
 
 categories:

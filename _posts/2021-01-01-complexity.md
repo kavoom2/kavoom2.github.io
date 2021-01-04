@@ -1,5 +1,6 @@
 ---
 title: "복잡도(Complexity)"
+excerpt: "공간복잡도와 시간복잡도 그리고 정렬 알고리즘"
 classes: wide
 
 categories:
