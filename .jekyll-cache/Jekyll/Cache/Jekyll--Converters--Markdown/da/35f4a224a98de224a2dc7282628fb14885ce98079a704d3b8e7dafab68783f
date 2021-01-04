@@ -1,4 +1,6 @@
-I"�-<h2 id="1-복잡도">1. 복잡도</h2>
+I"\+<p>(수정 중인 TIL.)</p>
+
+<h2 id="1-복잡도">1. 복잡도</h2>
 <p>처리해야 할 데이터의 양이 방대해지면서, 알고리즘의 효율성 차이가 커질 수 밖에 없습니다. 가령, 데이터를 정렬하더라도 정렬 알고리즘마다 정렬에 걸리는 시간은 천차만별입니다. 방대한 데이터를 더 빨리 처리할 수 있는 방법을 선택해야겠습니다.</p>
 
 <p>서로 다른 알고리즘을 비교할 때, 하드웨어와 소프트웨어 환경이 천차만별이라면 결과를 신뢰하기 힘들겁니다. 계산복잡도는 이러한 환경을 배제하고 알고리즘이 얼마나 효율적인지 알 수 있습니다.</p>
@@ -39,10 +41,12 @@ $O(n!)$과 같은 팩토리얼 형태</p>
 </blockquote>
 
 <h3 id="1-2-공간복잡도space-complexity">1. 2. 공간복잡도(Space complexity)</h3>
-<p>공간복잡도는 어떤 프로그램을 실행시킨 후 완료하기까지 필요로 하는 자원공간의 양입니다. 메모리 공간을 얼마나 효율적으로 사용하는지 나타내는 개념인 것이죠. 총요구공간 $S(P)$은 고정요구공간 $c$와 가변요구공간 $S_p(n)$의 합으로 나타낼 수 있습니다.
-\(S(P) = c + S_p(n)\)</p>
+<p>공간복잡도는 어떤 프로그램을 실행시킨 후 완료하기까지 필요로 하는 자원공간의 양입니다. 메모리 공간을 얼마나 효율적으로 사용하는지 나타내는 개념인 것이죠. 총요구공간 $S(P)$은 고정요구공간 $c$와 가변요구공간 $S_p(n)$의 합으로 나타낼 수 있습니다.</p>
 
-<p>고정공간은 입출력의 횟수와 크기에 관계없는 요구공간을 말합니다. 코드 저장공간, 단순변수, 고정크기의 구조변수, 상수가 해당된다고 합니다.</p>
+<center> $S(P) = c + S_p(n)$</center>
+
+<p><br />&lt;/br&gt;
+고정공간은 입출력의 횟수와 크기에 관계없는 요구공간을 말합니다. 코드 저장공간, 단순변수, 고정크기의 구조변수, 상수가 해당된다고 합니다.</p>
 
 <p>가변공간은 해결하려는 문제의 특정 인스턴스에 따라 가변적인 크기를 가진 구조화 변수들을 필요로 하는 공간, 함수가 순환호출을 할 경우 요구되는 추가공간을 말합니다.</p>
 
@@ -82,8 +86,7 @@ function factorialByLoop(n) {
 <h2 id="2-1-시간반복도-on2-정렬">2. 1. 시간반복도 $O(n^2)$ 정렬</h2>
 
 <h3 id="2-1-1-버블-정렬bubble-sort">2. 1. 1. 버블 정렬(Bubble Sort)</h3>
-<p><img src="https://ww.namu.la/s/ee412a864c3bdcb6cf7077f8ef87e01d4353cf53e66d2a5f6b7def49d257d569a46c810b1b36b9924a495a697c60777bb82d25459c2cbb65e4a700c25351af9b38bf810b4dd522b16e407012a0d6bdd015cfe1fe64d18f19ace0ad6345e41652" alt="external/upload...." />
-1번째와 2번째 원소를 비교하여 정렬하고, 2번째와 3번째, …, n-1번째와 n번째를 확인하여 정렬한 뒤 다시 처음으로 돌아가 n-2번째와 n-1번째까지, …를 반복하는 정렬입니다. 매 순회마다 마지막 하나가 정렬되어 원소들이 거품처럼 올라오는 것처럼 보입니다.</p>
+<p>1번째와 2번째 원소를 비교하여 정렬하고, 2번째와 3번째, …, n-1번째와 n번째를 확인하여 정렬한 뒤 다시 처음으로 돌아가 n-2번째와 n-1번째까지, …를 반복하는 정렬입니다. 매 순회마다 마지막 하나가 정렬되어 원소들이 거품처럼 올라오는 것처럼 보입니다.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function bubbleSort(arr) {
   let length = arr.length - 1;
@@ -102,8 +105,7 @@ function factorialByLoop(n) {
 </code></pre></div></div>
 
 <h3 id="2-1-2-칵테일-정렬cocktail-shaker-sort">2. 1. 2. 칵테일 정렬(Cocktail shaker sort)</h3>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif" alt="Visualization of shaker sort" />
-홀수 번째 요소는 앞에서부터 확인하고, 짝수 번째 요소는 뒤에서부터 확인합니다. 버블 정렬이 마지막에서 처음으로 정렬했다면, 칵테일 정렬은 처음과 마지막을 번갈아가면서 정렬합니다.</p>
+<p>홀수 번째 요소는 앞에서부터 확인하고, 짝수 번째 요소는 뒤에서부터 확인합니다. 버블 정렬이 마지막에서 처음으로 정렬했다면, 칵테일 정렬은 처음과 마지막을 번갈아가면서 정렬합니다.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function shakerSort(arr) {
   const length = arr.length - 1;
@@ -139,8 +141,7 @@ function factorialByLoop(n) {
 </code></pre></div></div>
 
 <h3 id="2-1-3-선택-정렬selection-sort">2. 1. 3. 선택 정렬(Selection sort)</h3>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Selection_sort_animation.gif" alt="선택 정렬 - 위키백과, 우리 모두의 백과사전" />
-버블정렬이 매번 두 요소를 비교하여 위치를 바꾼다면, 선택 정렬은 처음부터 마지막까지 한 번 훑어 정렬하고, 그 다음은 2번째에서 마지막까지 순환하는 방식으로 정렬합니다. 정렬이 일관성있게 $n(n-1)/2$에 비례하는 시간이 걸립니다.</p>
+<p>버블정렬이 매번 두 요소를 비교하여 위치를 바꾼다면, 선택 정렬은 처음부터 마지막까지 한 번 훑어 정렬하고, 그 다음은 2번째에서 마지막까지 순환하는 방식으로 정렬합니다. 정렬이 일관성있게 $n(n-1)/2$에 비례하는 시간이 걸립니다.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function selectionSort(arr) {
   for ( let i = 0; i &lt; arr.length - 1; i++ ) {
@@ -161,8 +162,7 @@ function factorialByLoop(n) {
 </code></pre></div></div>
 
 <h3 id="2-1-4-삽입-정렬insertion-sort">2. 1. 4. 삽입 정렬(Insertion sort)</h3>
-<p><img src="https://thumbs.gfycat.com/CornyThickGordonsetter-size_restricted.gif" alt="Insertion Sort GIF | Gfycat" />
-$n$번째 원소를 첫 번째에서 $n-1$번째까지 비교하여 적절한 위치에 놓고, 그 뒤의 자료들을 한 칸씩 밀어내는 정렬방식입니다.  $O(n^2)$ 중 빠른 편이지만, 오름차순 정렬일 때 작은 요소들이 뒤 쪽에 몰려있으면 많은 시간이 걸립니다.</p>
+<p>$n$번째 원소를 첫 번째에서 $n-1$번째까지 비교하여 적절한 위치에 놓고, 그 뒤의 자료들을 한 칸씩 밀어내는 정렬방식입니다.  $O(n^2)$ 중 빠른 편이지만, 오름차순 정렬일 때 작은 요소들이 뒤 쪽에 몰려있으면 많은 시간이 걸립니다.</p>
 
 <p>다만, 자료구조가 이미 정렬되어있거나 규모가 작다면 굉장히 효과적인 알고리즘입니다. 고성능 알고리즘 중에서는 배열 규모가 클 때 $O(nlogn)$ 알고리즘을 사용하다가, 정렬해야 할 부분이 작으면 삽입정렬로 전환하기도 합니다.</p>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-04T18:42:20+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">Arguments와 Rest parameter</title><link href="https://kavoom2.github.io/javascript101/arguments/" rel="alternate" type="text/html" title="Arguments와 Rest parameter" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-01T00:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/arguments</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/arguments/">&lt;h2 id=&quot;1-arguments&quot;&gt;1. arguments&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-04T20:24:06+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">Arguments와 Rest parameter</title><link href="https://kavoom2.github.io/javascript101/arguments/" rel="alternate" type="text/html" title="Arguments와 Rest parameter" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-01T00:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/arguments</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/arguments/">&lt;h2 id=&quot;1-arguments&quot;&gt;1. arguments&lt;/h2&gt;
 &lt;p&gt;arguments는 함수에 전달한 인자들을 참조하는 객체입니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function foo(a, b, c) {
@@ -164,7 +164,9 @@ mutiply(1, 1, 1) // 8
 
 &lt;h2 id=&quot;3-reference&quot;&gt;3. Reference&lt;/h2&gt;
 &lt;p&gt;*https://poiemaweb.com/js-closure  &lt;br /&gt;
-*https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Closures&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Javascript101" /><summary type="html">클로져의 정의와 활용</summary></entry><entry><title type="html">복잡도(Complexity)</title><link href="https://kavoom2.github.io/javascript101/complexity/" rel="alternate" type="text/html" title="복잡도(Complexity)" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-01T00:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/complexity</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/complexity/">&lt;h2 id=&quot;1-복잡도&quot;&gt;1. 복잡도&lt;/h2&gt;
+*https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Closures&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Javascript101" /><summary type="html">클로져의 정의와 활용</summary></entry><entry><title type="html">복잡도(Complexity)</title><link href="https://kavoom2.github.io/javascript101/complexity/" rel="alternate" type="text/html" title="복잡도(Complexity)" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-01T00:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/complexity</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/complexity/">&lt;p&gt;(수정 중인 TIL.)&lt;/p&gt;
+
+&lt;h2 id=&quot;1-복잡도&quot;&gt;1. 복잡도&lt;/h2&gt;
 &lt;p&gt;처리해야 할 데이터의 양이 방대해지면서, 알고리즘의 효율성 차이가 커질 수 밖에 없습니다. 가령, 데이터를 정렬하더라도 정렬 알고리즘마다 정렬에 걸리는 시간은 천차만별입니다. 방대한 데이터를 더 빨리 처리할 수 있는 방법을 선택해야겠습니다.&lt;/p&gt;
 
 &lt;p&gt;서로 다른 알고리즘을 비교할 때, 하드웨어와 소프트웨어 환경이 천차만별이라면 결과를 신뢰하기 힘들겁니다. 계산복잡도는 이러한 환경을 배제하고 알고리즘이 얼마나 효율적인지 알 수 있습니다.&lt;/p&gt;
@@ -205,10 +207,12 @@ $O(n!)$과 같은 팩토리얼 형태&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h3 id=&quot;1-2-공간복잡도space-complexity&quot;&gt;1. 2. 공간복잡도(Space complexity)&lt;/h3&gt;
-&lt;p&gt;공간복잡도는 어떤 프로그램을 실행시킨 후 완료하기까지 필요로 하는 자원공간의 양입니다. 메모리 공간을 얼마나 효율적으로 사용하는지 나타내는 개념인 것이죠. 총요구공간 $S(P)$은 고정요구공간 $c$와 가변요구공간 $S_p(n)$의 합으로 나타낼 수 있습니다.
-\(S(P) = c + S_p(n)\)&lt;/p&gt;
+&lt;p&gt;공간복잡도는 어떤 프로그램을 실행시킨 후 완료하기까지 필요로 하는 자원공간의 양입니다. 메모리 공간을 얼마나 효율적으로 사용하는지 나타내는 개념인 것이죠. 총요구공간 $S(P)$은 고정요구공간 $c$와 가변요구공간 $S_p(n)$의 합으로 나타낼 수 있습니다.&lt;/p&gt;
 
-&lt;p&gt;고정공간은 입출력의 횟수와 크기에 관계없는 요구공간을 말합니다. 코드 저장공간, 단순변수, 고정크기의 구조변수, 상수가 해당된다고 합니다.&lt;/p&gt;
+&lt;center&gt; $S(P) = c + S_p(n)$&lt;/center&gt;
+
+&lt;p&gt;&lt;br /&gt;&amp;lt;/br&amp;gt;
+고정공간은 입출력의 횟수와 크기에 관계없는 요구공간을 말합니다. 코드 저장공간, 단순변수, 고정크기의 구조변수, 상수가 해당된다고 합니다.&lt;/p&gt;
 
 &lt;p&gt;가변공간은 해결하려는 문제의 특정 인스턴스에 따라 가변적인 크기를 가진 구조화 변수들을 필요로 하는 공간, 함수가 순환호출을 할 경우 요구되는 추가공간을 말합니다.&lt;/p&gt;
 
@@ -248,8 +252,7 @@ function factorialByLoop(n) {
 &lt;h2 id=&quot;2-1-시간반복도-on2-정렬&quot;&gt;2. 1. 시간반복도 $O(n^2)$ 정렬&lt;/h2&gt;
 
 &lt;h3 id=&quot;2-1-1-버블-정렬bubble-sort&quot;&gt;2. 1. 1. 버블 정렬(Bubble Sort)&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://ww.namu.la/s/ee412a864c3bdcb6cf7077f8ef87e01d4353cf53e66d2a5f6b7def49d257d569a46c810b1b36b9924a495a697c60777bb82d25459c2cbb65e4a700c25351af9b38bf810b4dd522b16e407012a0d6bdd015cfe1fe64d18f19ace0ad6345e41652&quot; alt=&quot;external/upload....&quot; /&gt;
-1번째와 2번째 원소를 비교하여 정렬하고, 2번째와 3번째, …, n-1번째와 n번째를 확인하여 정렬한 뒤 다시 처음으로 돌아가 n-2번째와 n-1번째까지, …를 반복하는 정렬입니다. 매 순회마다 마지막 하나가 정렬되어 원소들이 거품처럼 올라오는 것처럼 보입니다.&lt;/p&gt;
+&lt;p&gt;1번째와 2번째 원소를 비교하여 정렬하고, 2번째와 3번째, …, n-1번째와 n번째를 확인하여 정렬한 뒤 다시 처음으로 돌아가 n-2번째와 n-1번째까지, …를 반복하는 정렬입니다. 매 순회마다 마지막 하나가 정렬되어 원소들이 거품처럼 올라오는 것처럼 보입니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function bubbleSort(arr) {
   let length = arr.length - 1;
@@ -268,8 +271,7 @@ function factorialByLoop(n) {
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;2-1-2-칵테일-정렬cocktail-shaker-sort&quot;&gt;2. 1. 2. 칵테일 정렬(Cocktail shaker sort)&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/e/ef/Sorting_shaker_sort_anim.gif&quot; alt=&quot;Visualization of shaker sort&quot; /&gt;
-홀수 번째 요소는 앞에서부터 확인하고, 짝수 번째 요소는 뒤에서부터 확인합니다. 버블 정렬이 마지막에서 처음으로 정렬했다면, 칵테일 정렬은 처음과 마지막을 번갈아가면서 정렬합니다.&lt;/p&gt;
+&lt;p&gt;홀수 번째 요소는 앞에서부터 확인하고, 짝수 번째 요소는 뒤에서부터 확인합니다. 버블 정렬이 마지막에서 처음으로 정렬했다면, 칵테일 정렬은 처음과 마지막을 번갈아가면서 정렬합니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function shakerSort(arr) {
   const length = arr.length - 1;
@@ -305,8 +307,7 @@ function factorialByLoop(n) {
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;2-1-3-선택-정렬selection-sort&quot;&gt;2. 1. 3. 선택 정렬(Selection sort)&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/b/b0/Selection_sort_animation.gif&quot; alt=&quot;선택 정렬 - 위키백과, 우리 모두의 백과사전&quot; /&gt;
-버블정렬이 매번 두 요소를 비교하여 위치를 바꾼다면, 선택 정렬은 처음부터 마지막까지 한 번 훑어 정렬하고, 그 다음은 2번째에서 마지막까지 순환하는 방식으로 정렬합니다. 정렬이 일관성있게 $n(n-1)/2$에 비례하는 시간이 걸립니다.&lt;/p&gt;
+&lt;p&gt;버블정렬이 매번 두 요소를 비교하여 위치를 바꾼다면, 선택 정렬은 처음부터 마지막까지 한 번 훑어 정렬하고, 그 다음은 2번째에서 마지막까지 순환하는 방식으로 정렬합니다. 정렬이 일관성있게 $n(n-1)/2$에 비례하는 시간이 걸립니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function selectionSort(arr) {
   for ( let i = 0; i &amp;lt; arr.length - 1; i++ ) {
@@ -327,8 +328,7 @@ function factorialByLoop(n) {
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;2-1-4-삽입-정렬insertion-sort&quot;&gt;2. 1. 4. 삽입 정렬(Insertion sort)&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;https://thumbs.gfycat.com/CornyThickGordonsetter-size_restricted.gif&quot; alt=&quot;Insertion Sort GIF | Gfycat&quot; /&gt;
-$n$번째 원소를 첫 번째에서 $n-1$번째까지 비교하여 적절한 위치에 놓고, 그 뒤의 자료들을 한 칸씩 밀어내는 정렬방식입니다.  $O(n^2)$ 중 빠른 편이지만, 오름차순 정렬일 때 작은 요소들이 뒤 쪽에 몰려있으면 많은 시간이 걸립니다.&lt;/p&gt;
+&lt;p&gt;$n$번째 원소를 첫 번째에서 $n-1$번째까지 비교하여 적절한 위치에 놓고, 그 뒤의 자료들을 한 칸씩 밀어내는 정렬방식입니다.  $O(n^2)$ 중 빠른 편이지만, 오름차순 정렬일 때 작은 요소들이 뒤 쪽에 몰려있으면 많은 시간이 걸립니다.&lt;/p&gt;
 
 &lt;p&gt;다만, 자료구조가 이미 정렬되어있거나 규모가 작다면 굉장히 효과적인 알고리즘입니다. 고성능 알고리즘 중에서는 배열 규모가 클 때 $O(nlogn)$ 알고리즘을 사용하다가, 정렬해야 할 부분이 작으면 삽입정렬로 전환하기도 합니다.&lt;/p&gt;
 
@@ -374,12 +374,13 @@ x를 n 제곱하는 함수 pow(x, n)을 예시로 재귀함수의 구성과 작�
 
 &lt;p&gt;이 함수는 다음 단계로 나누어져 실행됩니다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph LR
+&lt;div class=&quot;mermaid&quot;&gt;
+graph LR
 A[&quot;pow(x, n)&quot;] --&amp;gt; B{&quot;n === 1?&quot;}
 B -- &quot;No&quot; --&amp;gt; C(&quot;x * pow(x, n-1)&quot;)
 C -- &quot;recursive call until n === 1&quot; --&amp;gt; A
 B -- &quot;Yes&quot; --&amp;gt; D(&quot;return x&quot;)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Base case( n=== 1 ): 즉시 x에 해당하는 값을 반환합니다.&lt;/p&gt;
 
@@ -400,7 +401,8 @@ stage 4: pow(2, 1) = 2&lt;/p&gt;
 
 &lt;p&gt;pow(2, 4)를 실행하면 순차적으로 pow(2, 3)에서 pow(2, 1)까지 생성됩니다. 실행 중인 함수의 정보는 함수의 실행 컨텍스트(Execution Context)에 저장됩니다. 함수 호출 1회마다 하나의 실행 컨텍스트가 실행됩니다. 예제에서는 총 4개의 컨텍스트가 생성됩니다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph TB
+&lt;div class=&quot;mermaid&quot;&gt;
+graph TB
 subgraph step 4
 G[&quot;context: {x: 2, n: 1}&quot;] --- H[&quot;context {x: 2, n: 2}&quot;]
 H --- I[&quot;context: {x: 2, n: 3}&quot;]
@@ -419,18 +421,19 @@ end
 subgraph step 1
 A[&quot;context: {x: 2, n: 4}&quot;]
 end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;첫 호출 pow(2, 4)를 계산하려면 새로운 서브 호출(subcall) pow(2, 3)을 만들어야 합니다. 새로 만들어진 실행 컨텍스트는 스택 최상단에 위치하게 됩니다. 이전 실행 컨텍스트인 pow(2, 4)는 중지된 상태로 남게됩니다. 동일한 과정을 pow(2, 1)까지 반복합니다.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph TB
+&lt;center&gt;&lt;div class=&quot;mermaid&quot;&gt;
+graph TB
 subgraph step 5-8
 A[&quot;context: {x: 2, n: 1}&quot;] --&quot;return 2, destroy current context&quot;--&amp;gt; B[&quot;context {x: 2, n: 2}&quot;]
 B --&quot;return 4, destroy current context&quot;--&amp;gt; C[&quot;context: {x: 2, n: 3}&quot;]
 C --&quot;return 8, destroy current context&quot;--&amp;gt; D[&quot;context: {x: 2, n: 4}&quot;]
 D --&quot;return 16&quot;, destroy current context--&amp;gt; E(&quot;result = 16&quot;)
 end
-&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;&lt;/center&gt;
 &lt;p&gt;pow(2, 1)이 실행되면 상황이 달라집니다. base case(n === 1)을 만족하여 2가 반환됩니다. 서브호출 없이 함수가 종료되었죠. 함수가 종료되면 상응하는 실행컨텍스트는 메모리에서 폐기됩니다. 최상단 컨텍스트가 삭제되면, 바로 아래에 있는 컨텍스트가 최상단 컨텍스트가 되어 반환값을 받아 다시 실행됩니다. 이 과정을 실행 컨텍스트가 스택에 쌓일 때의 역순으로 반복하게 됩니다.&lt;/p&gt;
 
 &lt;p&gt;실행 컨텍스트는 그 함수가 종료되어 폐기되기 전까지 메모리를 차지하게 됩니다. 따라서, 재귀함수를 사용할 땐 메모리 요구사항을 유의해야 합니다. 보통 위와 같은 단편적인 문제는 반복문 기반의 알고리즘을 사용하는 것이 효과적입니다.&lt;/p&gt;

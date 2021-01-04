@@ -291,3 +291,8 @@ defaults:
       comments: false
       share: true
       related: false
+      
+      
+# Mermaid
+mermaid:
+  src: '/js/mermaid.js'

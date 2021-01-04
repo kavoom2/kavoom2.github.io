@@ -3,6 +3,7 @@ title: "재귀(Recursion)"
 excerpt: "재귀함수의 구성요소와 작동방식"
 classes: wide
 
+use_mermaid: true
 categories:
   - Javascript101
 ---
@@ -26,13 +27,13 @@ function pow(x, n) {
 
 이 함수는 다음 단계로 나누어져 실행됩니다.
 
-```mermaid
+<div class = "mermaid">
 graph LR
 A["pow(x, n)"] --> B{"n === 1?"}
 B -- "No" --> C("x * pow(x, n-1)")
 C -- "recursive call until n === 1" --> A
 B -- "Yes" --> D("return x")
-```
+</div>
 > Base case( n=== 1 ): 즉시 x에 해당하는 값을 반환합니다.
 > 
 > Recursive case( n !== 1): pow(x, n) 은 x * pow(x, n-1)으로 표현할 수 있습니다. 즉, pow(x, n)은 pow(x, n-1)을 참조해야 하며, Base case에 도달할 때까지 서브함수를 참조하는 재귀단계를 반복합니다.
@@ -49,7 +50,7 @@ B -- "Yes" --> D("return x")
 
 pow(2, 4)를 실행하면 순차적으로 pow(2, 3)에서 pow(2, 1)까지 생성됩니다. 실행 중인 함수의 정보는 함수의 실행 컨텍스트(Execution Context)에 저장됩니다. 함수 호출 1회마다 하나의 실행 컨텍스트가 실행됩니다. 예제에서는 총 4개의 컨텍스트가 생성됩니다.
 
-```mermaid
+<div class = "mermaid">
 graph TB
 subgraph step 4
 G["context: {x: 2, n: 1}"] --- H["context {x: 2, n: 2}"]
@@ -69,11 +70,11 @@ end
 subgraph step 1
 A["context: {x: 2, n: 4}"]
 end
-```
+</div>
 
 첫 호출 pow(2, 4)를 계산하려면 새로운 서브 호출(subcall) pow(2, 3)을 만들어야 합니다. 새로 만들어진 실행 컨텍스트는 스택 최상단에 위치하게 됩니다. 이전 실행 컨텍스트인 pow(2, 4)는 중지된 상태로 남게됩니다. 동일한 과정을 pow(2, 1)까지 반복합니다.
 
-```mermaid
+<center><div class = "mermaid">
 graph TB
 subgraph step 5-8
 A["context: {x: 2, n: 1}"] --"return 2, destroy current context"--> B["context {x: 2, n: 2}"]
@@ -81,7 +82,7 @@ B --"return 4, destroy current context"--> C["context: {x: 2, n: 3}"]
 C --"return 8, destroy current context"--> D["context: {x: 2, n: 4}"]
 D --"return 16", destroy current context--> E("result = 16")
 end
-```
+</div></center>
 pow(2, 1)이 실행되면 상황이 달라집니다. base case(n === 1)을 만족하여 2가 반환됩니다. 서브호출 없이 함수가 종료되었죠. 함수가 종료되면 상응하는 실행컨텍스트는 메모리에서 폐기됩니다. 최상단 컨텍스트가 삭제되면, 바로 아래에 있는 컨텍스트가 최상단 컨텍스트가 되어 반환값을 받아 다시 실행됩니다. 이 과정을 실행 컨텍스트가 스택에 쌓일 때의 역순으로 반복하게 됩니다.
 
 실행 컨텍스트는 그 함수가 종료되어 폐기되기 전까지 메모리를 차지하게 됩니다. 따라서, 재귀함수를 사용할 땐 메모리 요구사항을 유의해야 합니다. 보통 위와 같은 단편적인 문제는 반복문 기반의 알고리즘을 사용하는 것이 효과적입니다.
