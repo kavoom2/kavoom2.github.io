@@ -3,6 +3,7 @@ title: "Arguments와 Rest parameter"
 excerpt: "전달인자 참조 객체의 종류와 활용"
 classes: wide
 
+last_modified_at: 2021-01-04T21:00:00
 categories:
   - Javascript101
 ---
