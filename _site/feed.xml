@@ -1,4 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-05T12:50:10+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">Arguments와 Rest parameter</title><link href="https://kavoom2.github.io/javascript101/arguments/" rel="alternate" type="text/html" title="Arguments와 Rest parameter" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-05T06:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/arguments</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/arguments/">&lt;h2 id=&quot;1-arguments&quot;&gt;1. arguments&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-06T00:25:12+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우</title><link href="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/" rel="alternate" type="text/html" title="Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T10:20:00+09:00</updated><id>https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem</id><content type="html" xml:base="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/">&lt;h2 id=&quot;1-해결방법&quot;&gt;1. 해결방법&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;원문:&lt;/strong&gt; https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/&lt;/p&gt;
+
+&lt;p&gt;위 주소에서 도움을 받아 해결할 수 있었다. 마지막 방법인 패키지 재설치를 시도해보자.  &lt;br /&gt;
+유의할 점은 설정파일도 제거할 수 있도록 반드시 &lt;strong&gt;purge&lt;/strong&gt;를 실행해야 한다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;다음 명령어를 실행하고 재부팅하면 해결된다.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt remove --purge alsa-base    
+$ sudo apt remove --purge pulseaudio    
+     
+$ sudo apt install alsa-base    
+$ sudo apt install pulseaudio    
+     
+$ sudo alsa force-reload    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;2-alsa와-pulseaudio&quot;&gt;2. ALSA와 Pulseaudio&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;원문:&lt;/strong&gt; https://makersweb.net/linux/19723  &lt;br /&gt;
+&lt;strong&gt;이하 내용은 관련 지식을 알아둘 목적으로만 적어둔 것입니다. 제가 작성한 내용이 아닙니다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;alsa&quot;&gt;ALSA&lt;/h3&gt;
+&lt;p&gt;ALSA(Advanced Linux Sound Architecture)는 응용 프로그램이 시스템의 실제 하드웨어와 상호작용할 수 있는 가장 낮은 수준의 인터페이스이다. ALSA는 한 번에 하나의 채널만 하드웨어로 전송하게 되고, 이로 인해 단일 응용프로그램만 ALSA에 한 번에 소리를 보낼 수 있다. 미디어 플레이어의 음악과 메신저의 알림음을 동시에 받을 수 없다.&lt;/p&gt;
+
+&lt;p&gt;이것을 개선하기 위해 Mixer를 구현하고, 여러 가상 오디오 채널을 단일 채널로 결합할 수 있게 한 것이 alsalib이다. 하지만, 라이브러리 수준의 믹싱 방식은 데스크톱 환경에서는 단일 응용 프로그램만 오디오를 출력할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;pulseaudio&quot;&gt;Pulseaudio&lt;/h3&gt;
+&lt;p&gt;Pulseaudio는 Linux 배포판의 표준 사운드 서버이다.&lt;/p&gt;
+
+&lt;p&gt;데스크톱 환경에서는 여러 응용 프로그램의 사운드를 병렬로 출력할 수 있어야 했다. 이를 구현하고자 사운드 서버가 등장했다. 사운드 서버는 데몬(daemon, 컴퓨터의 백그라운드에서 지속적으로 실행되는 서비스)이다.&lt;/p&gt;
+
+&lt;p&gt;사운드 서버는 소리를 출력해야 하는 모든 애플리케이션에 믹서슬롯을 제공한다. 사운드 서버는 들어오는 모든 오디오 슬롯을 하나로 믹싱하여 ALSA에 전달한다. 이 방법으로 여러 응용프로그램의 소리를 병렬로 출력할 수 있었으며, 개별 볼륨제어 등 다른기능도 구현할 수 있게 되었다.&lt;/p&gt;
+
+&lt;center&gt;&lt;div class=&quot;mermaid&quot;&gt;
+graph TB
+A[&quot;application&quot;] --&amp;gt; E[&quot;Sound server: Pulseaudio&quot;]
+B[&quot;application&quot;] --&amp;gt; E
+C[&quot;application&quot;] --&amp;gt; E
+D[&quot;application&quot;] --&amp;gt; E
+
+E --&amp;gt; F[&quot;Linux kernel: ALSA&quot;]
+F --&amp;gt; G[&quot;Hardware: Soundcard&quot;]
+&lt;/div&gt;&lt;/center&gt;</content><author><name>liondoge</name></author><category term="기타" /><category term="Ubuntu" /><category term="alsa" /><category term="pulseaudio" /><category term="가짜출력" /><summary type="html">우분투에서 가짜출력이 나오거나, 스피커 GUI는 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법</summary></entry><entry><title type="html">Arguments와 Rest parameter</title><link href="https://kavoom2.github.io/javascript101/arguments/" rel="alternate" type="text/html" title="Arguments와 Rest parameter" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-05T06:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/arguments</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/arguments/">&lt;h2 id=&quot;1-arguments&quot;&gt;1. arguments&lt;/h2&gt;
 &lt;p&gt;arguments는 함수에 전달한 인자들을 참조하는 객체입니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function foo(a, b, c) {
