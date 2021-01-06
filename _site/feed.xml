@@ -1,4 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-06T00:25:12+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우</title><link href="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/" rel="alternate" type="text/html" title="Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T10:20:00+09:00</updated><id>https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem</id><content type="html" xml:base="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/">&lt;h2 id=&quot;1-해결방법&quot;&gt;1. 해결방법&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-06T14:42:36+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">하노이의 탑</title><link href="https://kavoom2.github.io/algorithm/hanoi/" rel="alternate" type="text/html" title="하노이의 탑" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T22:00:00+09:00</updated><id>https://kavoom2.github.io/algorithm/hanoi</id><content type="html" xml:base="https://kavoom2.github.io/algorithm/hanoi/">&lt;p&gt;세 개의 기둥과 크기가 서로 다른 원판이 있다. 처음에는 아래 그림처럼 기둥 A에 원판이 작은 것이 위로 오도록 쌓여 있다. 게임의 목적은 처음에 꽂혀 있던 순서대로 기둥 C에 옮겨서 쌓는 것이다. 다음 규칙들을 만족하면서 움직여야한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;원판은 한 번에 한 개만 이동할 수 있다.&lt;/li&gt;
+  &lt;li&gt;큰 원판은 작은 원판 위에 있을 수 없다.&lt;/li&gt;
+  &lt;li&gt;최소한의 횟수로 원판을 이동해야 한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1TteQdy041mcPxIXklqOEbWnGQ4e8E0pJ&quot; width=&quot;500px&quot; /&gt;&lt;/center&gt;
+
+&lt;p&gt;하노이의 탑은 재귀 호출의 대표적인 문제이다. 총 원판 갯수를 n이라 할 때, n = 1, 2, 4인 경우를 예시로 살펴보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-n--1&quot;&gt;1. n = 1&lt;/h2&gt;
+&lt;p&gt;기둥 A에서 기둥 C로 옮기면 문제가 해결된다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;1번 원판을 A에서 C로 이동한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;2-n--2&quot;&gt;2. n = 2&lt;/h2&gt;
+&lt;p&gt;큰 원판은 항상 작은 원판보다 아래에 있어야 한다는걸 생각하자. 큰 원판을 C로 옮기려면 먼저 작은 원판을 B로 먼저 옮겨야 한다. 그 뒤에 큰 원판을 C로 옮기고, 작은 원판을 C로 옮기면 마무리된다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;1번 원판을  A에서 B로 이동한다.  &lt;br /&gt;
+2번 원판을 A에서 C로 이동한다.  &lt;br /&gt;
+1번 원판을 B에서 C로 이동한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;3-n--4&quot;&gt;3. n = 4&lt;/h2&gt;
+&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1nEBr69D7L-Z78fynAC1B0d9qJHf0Edp5&quot; width=&quot;700px&quot; /&gt;&lt;/center&gt;
+
+&lt;p&gt;위 그림은 n=4일 때, 가장 큰 원판을 A에서 C로 옮기는 과정이다. 유심히 봐야할 부분은 8번이다. 1~8번 과정을 거치면서 가장 큰 원판을 제외하고 나머지 원판을 순서대로 B에 쌓아놓았다. 그리고 9번으로 넘어가서 A에 있는 4번 원판을 C로 옮겨보자. 그러면, n=3인 하노이의 문제를 풀어야하는 상황이 나온다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;3개의 원판을 A에서 B로 이동한다.  &lt;br /&gt;
+4번 원판을 A에서 C로 이동한다.  &lt;br /&gt;
+3개의 원판을 B에서 C로 이동한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;하노이의 문제를 해결하는 함수를 hanoi(n, from, via, to)라고 하자. n은 원판의 총 갯수, from은 출발지, via는 경유지, to는 목적지라고 하면, n = 4인 경우는 다음과 같이 나타낼 수 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;hanoi(4, A, B, C) = hanoi(3, A, C, B) + hanoi(1, A, B, C) + hanoi(3, B, A, C)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;hanoi(1, from, via, to)는 1이므로, n일 때 함수를 다음과 같이 정리할 수 있다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;hanoi(n, from, via, to) = hanoi(n-1, from, to, via) + 1 + hanoi(n-1, via, from, to)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;4-함수구현&quot;&gt;4. 함수구현&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;문제 주소:&lt;/strong&gt; https://programmers.co.kr/learn/courses/30/lessons/12946?language=javascript#&lt;/p&gt;
+
+&lt;p&gt;다음은 프로그래머스에 나온 알고리즘 문제를 일부 변형한 해답이다. 문제에서는 이동경로만 배열로 제시하도록 했는데, 어떤 원반이 이동했는지 알 수 있도록 수정했다.&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function solution(n) {
+const result = [];
+  function hanoi(n, from, via, to) {
+    if ( n === 1) {
+      result.push([n, from, to]); // base case: 1번 원반이 from에서 to로 이동
+    }
+    else {
+      hanoi(n-1, from, to, via);
+      result.push([n, from, to]); // recursion: n번 원반이 from에서 to로 이동
+      hanoi(n-1, via, from, to);
+    };
+};
+hanoi(n, &quot;A&quot;, &quot;B&quot;, &quot;C&quot;); 
+return result;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>liondoge</name></author><category term="algorithm" /><category term="hanoi" /><category term="recursion" /><summary type="html">재귀 호출의 대표적인 예시 하노이의 탑</summary></entry><entry><title type="html">Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우</title><link href="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/" rel="alternate" type="text/html" title="Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T10:20:00+09:00</updated><id>https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem</id><content type="html" xml:base="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/">&lt;h2 id=&quot;1-해결방법&quot;&gt;1. 해결방법&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;원문:&lt;/strong&gt; https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/&lt;/p&gt;
 
 &lt;p&gt;위 주소에서 도움을 받아 해결할 수 있었다. 마지막 방법인 패키지 재설치를 시도해보자.  &lt;br /&gt;
@@ -39,7 +107,7 @@ D[&quot;application&quot;] --&amp;gt; E
 
 E --&amp;gt; F[&quot;Linux kernel: ALSA&quot;]
 F --&amp;gt; G[&quot;Hardware: Soundcard&quot;]
-&lt;/div&gt;&lt;/center&gt;</content><author><name>liondoge</name></author><category term="기타" /><category term="Ubuntu" /><category term="alsa" /><category term="pulseaudio" /><category term="가짜출력" /><summary type="html">우분투에서 가짜출력이 나오거나, 스피커 GUI는 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법</summary></entry><entry><title type="html">Arguments와 Rest parameter</title><link href="https://kavoom2.github.io/javascript101/arguments/" rel="alternate" type="text/html" title="Arguments와 Rest parameter" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-05T06:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/arguments</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/arguments/">&lt;h2 id=&quot;1-arguments&quot;&gt;1. arguments&lt;/h2&gt;
+&lt;/div&gt;&lt;/center&gt;</content><author><name>liondoge</name></author><category term="기타" /><category term="Ubuntu" /><category term="alsa" /><category term="pulseaudio" /><category term="가짜출력" /><summary type="html">우분투에서 가짜출력이 나오거나, 스피커 상호작용은 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법</summary></entry><entry><title type="html">Arguments와 Rest parameter</title><link href="https://kavoom2.github.io/javascript101/arguments/" rel="alternate" type="text/html" title="Arguments와 Rest parameter" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-05T06:00:00+09:00</updated><id>https://kavoom2.github.io/javascript101/arguments</id><content type="html" xml:base="https://kavoom2.github.io/javascript101/arguments/">&lt;h2 id=&quot;1-arguments&quot;&gt;1. arguments&lt;/h2&gt;
 &lt;p&gt;arguments는 함수에 전달한 인자들을 참조하는 객체입니다.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;function foo(a, b, c) {

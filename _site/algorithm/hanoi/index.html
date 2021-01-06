@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>This - 건축공학도의 개발자 성장기</title>
-<meta name="description" content="내부 식별자 This의 맥락에 따른 바인딩 규칙">
+<!-- begin _includes/seo.html --><title>하노이의 탑 - 건축공학도의 개발자 성장기</title>
+<meta name="description" content="재귀 호출의 대표적인 예시 하노이의 탑">
 
 
   <meta name="author" content="liondoge">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="건축공학도의 개발자 성장기">
-<meta property="og:title" content="This">
-<meta property="og:url" content="https://kavoom2.github.io/javascript101/this/">
+<meta property="og:title" content="하노이의 탑">
+<meta property="og:url" content="https://kavoom2.github.io/algorithm/hanoi/">
 
 
-  <meta property="og:description" content="내부 식별자 This의 맥락에 따른 바인딩 규칙">
+  <meta property="og:description" content="재귀 호출의 대표적인 예시 하노이의 탑">
 
 
 
@@ -36,11 +36,11 @@
 
 
 
-  <meta property="article:published_time" content="2021-01-01T00:00:00+09:00">
+  <meta property="article:published_time" content="2021-01-06T00:00:00+09:00">
 
 
 
-  <meta property="article:modified_time" content="2021-01-05T06:10:00+09:00">
+  <meta property="article:modified_time" content="2021-01-06T22:00:00+09:00">
 
 
 
@@ -49,7 +49,7 @@
   
 
 
-<link rel="canonical" href="https://kavoom2.github.io/javascript101/this/">
+<link rel="canonical" href="https://kavoom2.github.io/algorithm/hanoi/">
 
 
 
@@ -286,15 +286,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="This">
-    <meta itemprop="description" content="내부 식별자 This의 맥락에 따른 바인딩 규칙">
-    <meta itemprop="datePublished" content="2021-01-01T00:00:00+09:00">
-    <meta itemprop="dateModified" content="2021-01-05T06:10:00+09:00">
+    <meta itemprop="headline" content="하노이의 탑">
+    <meta itemprop="description" content="재귀 호출의 대표적인 예시 하노이의 탑">
+    <meta itemprop="datePublished" content="2021-01-06T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2021-01-06T22:00:00+09:00">
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">This
+          <h1 id="page-title" class="page__title" itemprop="headline">하노이의 탑
 </h1>
           
 
@@ -303,7 +303,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-01T00:00:00+09:00">January 1, 2021</time>
+        <time datetime="2021-01-06T00:00:00+09:00">January 6, 2021</time>
       </span>
     
 
@@ -316,7 +316,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 minute read
+          1 minute read
         
       </span>
     
@@ -328,136 +328,76 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="1-this란">1. this란</h2>
-<p>this는 모든 함수 스코프(scope) 내에서 자동으로 설정되는 식별자입니다. 실행 컨텍스트(Execution Context)의 구성요소로 함수가 실행되는 동안 이용할 수 있습니다. <strong>어느 지점에서 this를 호출하였는지에 따라 컨텍스트가 달라집니다.</strong></p>
-
-<h2 id="2-바인딩-규칙">2. 바인딩 규칙</h2>
-<p>규칙은 다음과 같이 5가지로 구분할 수 있습니다. 바인딩 우선순위는 명시적 바인딩 - 암시적 바인딩 - 기본 바인딩 순입니다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>구분</th>
-      <th>호출방식</th>
-      <th>this</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>기본 바인딩</td>
-      <td>global</td>
-      <td>window(전역객체)</td>
-    </tr>
-    <tr>
-      <td>기본 바인딩</td>
-      <td>function 호출</td>
-      <td>window(전역객체)</td>
-    </tr>
-    <tr>
-      <td>암시적 바인딩</td>
-      <td>method 호출</td>
-      <td>object(직계부모)</td>
-    </tr>
-    <tr>
-      <td>Constructior</td>
-      <td>method 호출</td>
-      <td>새로 생성한 object</td>
-    </tr>
-    <tr>
-      <td>명시적 바인딩</td>
-      <td>apply(), call(), bind()</td>
-      <td>첫 번째 인자로 명시한 객체</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="2-1-기본-바인딩global-function">2. 1. 기본 바인딩(global, function)</h3>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function foo() {
-  console.log(this.hello);
-};
-
-function bar() {
-  'use strict'
-  console.log(this.hello);
-};
-
-var hello = 'world'; // var로 정의한 변수만 window에 속한다.
-foo(); // 'world'
-bar(); // SyntaxError: Cannot read property 'hello' of undefined at bar
-</code></pre></div></div>
-<p>foo() 함수를 실행하면 this는 전역객체(window)에 바인딩 됩니다. 자바스크립트에서 global, function 호출은 전역객체에 바인딩하는 것이 기본규칙입니다. 엄격모드(‘use strict’)를 사용하면 this는 전역객체가 아닌 undefined가 됩니다.</p>
-
-<h3 id="2-2-암시적-바인딩implicit-binding">2. 2. 암시적 바인딩(implicit binding)</h3>
-<p>암시적 바인딩은 함수 호출 시 객체의 프로퍼티에 접근하는 방식입니다. this는 호출한 method의 직계부모 object로 바인딩됩니다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let obj = {
-  fn: function(a, b) {
-    return this;
-  }
-};
-
-let obj2 = {
-  method: obj.fn
-};
-
-let objFn = obj.fn;
-
-console.log(obj2.method()); // obj2
-console.log(obj.fn()); // obj
-objFn() // window
-</code></pre></div></div>
-
-<p>예제에서 객체 obj에 속성 fn의 값으로 함수를 할당했습니다. 그리고 이 객체를 통해서 fn()을 호출하였죠. 함수를 개체 프로퍼티를 통하여 접근하여 실행하면, 이 객체를 this에 바인딩하게 됩니다. 이를 암시적 바인딩이라고 합니다.</p>
-
-<p>한편, 객체 obj2의 속성에 함수 obj.fn을 할당하였습니다. obj2.method()의 값은 obj.fn()을 실행한 것이니 obj라고 생각할 수 있습니다. 하지만, <strong>암시적 바인딩은 어느 지점에서 함수를 호출하였는지에 따라 this의 context가 달라집니다.</strong>  obj2.method = obj.fn이지만, obj2.method의 직계부모는 obj2입니다. 규칙에 따라 this는 obj2로 바인딩됩니다.</p>
-
-<p>마지막으로 objFn은 객체 속성으로 함수를 호출한 것이 아닙니다. 변수 objFn에 함수를 할당하여 실행했으므로 window객체가 바인딩됩니다.</p>
-
-<h3 id="2-3-명시적-바인딩explicit-binding">2. 3. 명시적 바인딩(Explicit binding)</h3>
-<p>암시적 바인딩은 위 예제에 알 수 있듯이, 어떤 객체에 바인딩 될지 직관적이지 않습니다. 자바스크립트의 call(), apply(), bind() 함수는 어떤 객체를 컨텍스트로 정할 것인지 명시할 수 있는 내장함수입니다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function foo() {
-  console.log(this.hello);
-};
-
-var obj = {
-  hello: 'world',
-};
-
-var hello = 'this is a global context'
-
-foo.call(obj) // 'world'
-
-setTimeout(obj.hello.bind(obj), 1000) // 1000ms 뒤에 world 출력
-</code></pre></div></div>
-
-<p>call(), apply(), bind() 함수에 this 컨텍스트와 바인딩할 객체를 명시할 수 있습니다. 위 예제에서는 foo() 함수가 실행되면 this는 window 객체가 아닌 obj 객체가 됩니다.</p>
-
-<p>한편, setTimeout에 넘겨준 콜백함수에서 발생한 문제도 명시적 바인딩으로 해결할 수 있습니다. setTimeout에 콜백함수를 obj.hello로 넘기면, 글로벌 컨텍스트가 바인딩됩니다. obj.hello.bind(obj)는 hello()함수를 실행했을 때 obj를 this 컨텍스트로 바인딩하게 됩니다. 명시적 바인딩의 우선순위가 가장 높으니, 정상적으로 world가 출력됩니다.</p>
-
-<h3 id="2-4-constructor">2. 4. Constructor</h3>
-<p>자바스크립트 함수 앞에 new를 붙여 실행하면 다음과 같은 일이 일어납니다.</p>
+        <p>세 개의 기둥과 크기가 서로 다른 원판이 있다. 처음에는 아래 그림처럼 기둥 A에 원판이 작은 것이 위로 오도록 쌓여 있다. 게임의 목적은 처음에 꽂혀 있던 순서대로 기둥 C에 옮겨서 쌓는 것이다. 다음 규칙들을 만족하면서 움직여야한다.</p>
 
 <ol>
-  <li>새로운 객체를 반환합니다.</li>
-  <li>새로운 객체는 객체의 메소드 호출 시 this로 바인딩됩니다.</li>
+  <li>원판은 한 번에 한 개만 이동할 수 있다.</li>
+  <li>큰 원판은 작은 원판 위에 있을 수 없다.</li>
+  <li>최소한의 횟수로 원판을 이동해야 한다.</li>
 </ol>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function Person(name) {
-  this.name = name;
-};
+<center><img src="https://drive.google.com/uc?export=view&amp;id=1TteQdy041mcPxIXklqOEbWnGQ4e8E0pJ" width="500px" /></center>
 
-Person.prototype.hello() {
-  console.log(this.name);
-};
+<p>하노이의 탑은 재귀 호출의 대표적인 문제이다. 총 원판 갯수를 n이라 할 때, n = 1, 2, 4인 경우를 예시로 살펴보자.</p>
 
-var obj = new Person('chris');
-obj.hello(); // 'chris'
+<h2 id="1-n--1">1. n = 1</h2>
+<p>기둥 A에서 기둥 C로 옮기면 문제가 해결된다.</p>
+<blockquote>
+  <p>1번 원판을 A에서 C로 이동한다.</p>
+</blockquote>
+
+<h2 id="2-n--2">2. n = 2</h2>
+<p>큰 원판은 항상 작은 원판보다 아래에 있어야 한다는걸 생각하자. 큰 원판을 C로 옮기려면 먼저 작은 원판을 B로 먼저 옮겨야 한다. 그 뒤에 큰 원판을 C로 옮기고, 작은 원판을 C로 옮기면 마무리된다.</p>
+<blockquote>
+  <p>1번 원판을  A에서 B로 이동한다.  <br />
+2번 원판을 A에서 C로 이동한다.  <br />
+1번 원판을 B에서 C로 이동한다.</p>
+</blockquote>
+
+<h2 id="3-n--4">3. n = 4</h2>
+<center><img src="https://drive.google.com/uc?export=view&amp;id=1nEBr69D7L-Z78fynAC1B0d9qJHf0Edp5" width="700px" /></center>
+
+<p>위 그림은 n=4일 때, 가장 큰 원판을 A에서 C로 옮기는 과정이다. 유심히 봐야할 부분은 8번이다. 1~8번 과정을 거치면서 가장 큰 원판을 제외하고 나머지 원판을 순서대로 B에 쌓아놓았다. 그리고 9번으로 넘어가서 A에 있는 4번 원판을 C로 옮겨보자. 그러면, n=3인 하노이의 문제를 풀어야하는 상황이 나온다.</p>
+
+<blockquote>
+  <p>3개의 원판을 A에서 B로 이동한다.  <br />
+4번 원판을 A에서 C로 이동한다.  <br />
+3개의 원판을 B에서 C로 이동한다.</p>
+</blockquote>
+
+<p>하노이의 문제를 해결하는 함수를 hanoi(n, from, via, to)라고 하자. n은 원판의 총 갯수, from은 출발지, via는 경유지, to는 목적지라고 하면, n = 4인 경우는 다음과 같이 나타낼 수 있다.</p>
+
+<blockquote>
+  <p>hanoi(4, A, B, C) = hanoi(3, A, C, B) + hanoi(1, A, B, C) + hanoi(3, B, A, C)</p>
+</blockquote>
+
+<p>hanoi(1, from, via, to)는 1이므로, n일 때 함수를 다음과 같이 정리할 수 있다.</p>
+
+<blockquote>
+  <p>hanoi(n, from, via, to) = hanoi(n-1, from, to, via) + 1 + hanoi(n-1, via, from, to)</p>
+</blockquote>
+
+<h2 id="4-함수구현">4. 함수구현</h2>
+<p><strong>문제 주소:</strong> https://programmers.co.kr/learn/courses/30/lessons/12946?language=javascript#</p>
+
+<p>다음은 프로그래머스에 나온 알고리즘 문제를 일부 변형한 해답이다. 문제에서는 이동경로만 배열로 제시하도록 했는데, 어떤 원반이 이동했는지 알 수 있도록 수정했다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function solution(n) {
+const result = [];
+  function hanoi(n, from, via, to) {
+    if ( n === 1) {
+      result.push([n, from, to]); // base case: 1번 원반이 from에서 to로 이동
+    }
+    else {
+      hanoi(n-1, from, to, via);
+      result.push([n, from, to]); // recursion: n번 원반이 from에서 to로 이동
+      hanoi(n-1, via, from, to);
+    };
+};
+hanoi(n, "A", "B", "C"); 
+return result;
+};
 </code></pre></div></div>
 
-<h2 id="3-reference">3. Reference</h2>
-<p>*https://velog.io/@litien/Javascript-This-Binding  <br />
-*https://developer.mozilla.org - this / call() / apply() / bind()</p>
 
         
       </section>
@@ -465,6 +405,29 @@ obj.hello(); // 'chris'
       <footer class="page__meta">
         
         
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#hanoi" class="page__taxonomy-item" rel="tag">hanoi</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#recursion" class="page__taxonomy-item" rel="tag">recursion</a>
+    
+    </span>
+  </p>
+
+
 
 
   
@@ -480,14 +443,14 @@ obj.hello(); // 'chris'
     
       
       
-      <a href="/categories/#javascript101" class="page__taxonomy-item" rel="tag">Javascript101</a>
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">algorithm</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-04">January 4, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-06">January 6, 2021</time></p>
 
 
       </footer>
@@ -497,22 +460,22 @@ obj.hello(); // 'chris'
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=This%20https%3A%2F%2Fkavoom2.github.io%2Fjavascript101%2Fthis%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%ED%95%98%EB%85%B8%EC%9D%B4%EC%9D%98+%ED%83%91%20https%3A%2F%2Fkavoom2.github.io%2Falgorithm%2Fhanoi%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fjavascript101%2Fthis%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Falgorithm%2Fhanoi%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fjavascript101%2Fthis%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Falgorithm%2Fhanoi%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/javascript101/recursion/" class="pagination--pager" title="재귀(Recursion)
+      <a href="/javascript101/this/" class="pagination--pager" title="This
 ">Previous</a>
     
     
-      <a href="/algorithm/hanoi/" class="pagination--pager" title="하노이의 탑
+      <a href="/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/" class="pagination--pager" title="Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우
 ">Next</a>
     
   </nav>
@@ -583,7 +546,7 @@ obj.hello(); // 'chris'
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/algorithm/hanoi/" rel="permalink">하노이의 탑
+        <a href="/javascript101/this/" rel="permalink">This
 </a>
       
     </h2>
@@ -594,7 +557,7 @@ obj.hello(); // 'chris'
       
       <span class="page__meta-date">
         <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-06T00:00:00+09:00">January 6, 2021</time>
+        <time datetime="2021-01-01T00:00:00+09:00">January 1, 2021</time>
       </span>
     
 
@@ -607,14 +570,14 @@ obj.hello(); // 'chris'
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          1 minute read
+          2 minute read
         
       </span>
     
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">재귀 호출의 대표적인 예시 하노이의 탑
+    <p class="archive__item-excerpt" itemprop="description">내부 식별자 This의 맥락에 따른 바인딩 규칙
 </p>
   </article>
 </div>
@@ -770,8 +733,8 @@ obj.hello(); // 'chris'
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://kavoom2.github.io/javascript101/this/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/javascript101/this"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://kavoom2.github.io/algorithm/hanoi/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/algorithm/hanoi"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');
