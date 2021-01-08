@@ -40,4 +40,10 @@ var store = [{
         "tags": ["Ubuntu","alsa","pulseaudio","가짜출력"],
         "url": "https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/",
         "teaser": null
+      },{
+        "title": "테트리스 구현",
+        "excerpt":"작성 중인 TIL 다음 글은 테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)를 직접 구현해보고 정리한 내용이다. 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다. 1. 블록의 기본요소 테트리스 게임의 핵심은 블록의 움직임과 물리적 충돌을 어떻게 구현할 것인가이다. 게임 시작, 종료, 점수 매기기 등 기능들은 우선 배제하고 블록의 움직임만...","categories": ["Javascript101"],
+        "tags": ["tetris"],
+        "url": "https://kavoom2.github.io/javascript101/toy-clone-tetris01/",
+        "teaser": null
       }]
