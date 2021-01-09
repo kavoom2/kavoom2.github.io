@@ -30,20 +30,20 @@ var store = [{
         "teaser": null
       },{
         "title": "하노이의 탑",
-        "excerpt":"세 개의 기둥과 크기가 서로 다른 원판이 있다. 처음에는 아래 그림처럼 기둥 A에 원판이 작은 것이 위로 오도록 쌓여 있다. 게임의 목적은 처음에 꽂혀 있던 순서대로 기둥 C에 옮겨서 쌓는 것이다. 다음 규칙들을 만족하면서 움직여야한다. 원판은 한 번에 한 개만 이동할 수 있다. 큰 원판은 작은 원판 위에 있을 수...","categories": ["algorithm"],
+        "excerpt":"세 개의 기둥과 크기가 서로 다른 원판이 있다. 처음에는 아래 그림처럼 기둥 A에 원판이 작은 것이 위로 오도록 쌓여 있다. 게임의 목적은 처음에 꽂혀 있던 순서대로 기둥 C에 옮겨서 쌓는 것이다. 다음 규칙들을 만족하면서 움직여야한다. 원판은 한 번에 한 개만 이동할 수 있다. 큰 원판은 작은 원판 위에 있을 수...","categories": ["Algorithm"],
         "tags": ["hanoi","recursion"],
         "url": "https://kavoom2.github.io/algorithm/hanoi/",
         "teaser": null
       },{
         "title": "Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우",
         "excerpt":"1. 해결방법 원문: https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/ 위 주소에서 도움을 받아 해결할 수 있었다. 마지막 방법인 패키지 재설치를 시도해보자. 유의할 점은 설정파일도 제거할 수 있도록 반드시 purge를 실행해야 한다는 것이다. 다음 명령어를 실행하고 재부팅하면 해결된다. $ sudo apt remove --purge alsa-base $ sudo apt remove --purge pulseaudio $ sudo apt install alsa-base $...","categories": ["기타"],
-        "tags": ["Ubuntu","alsa","pulseaudio","가짜출력"],
+        "tags": ["Ubuntu","alsa","pulseaudio","dummy output"],
         "url": "https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/",
         "teaser": null
       },{
         "title": "테트리스 구현",
-        "excerpt":"작성 중인 TIL 다음 글은 테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)를 직접 구현해보고 정리한 내용이다. 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다. 1. 블록의 기본요소 테트리스 게임의 핵심은 블록의 움직임과 물리적 충돌을 어떻게 구현할 것인가이다. 게임 시작, 종료, 점수 매기기 등 기능들은 우선 배제하고 블록의 움직임만...","categories": ["Javascript101"],
-        "tags": ["tetris"],
-        "url": "https://kavoom2.github.io/javascript101/toy-clone-tetris01/",
+        "excerpt":"작성 중인 TIL 다음 글은 테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)를 직접 구현해보고 정리한 내용이다. 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다. 1. 블록의 기본요소 테트리스 게임의 핵심은 블록의 움직임과 물리적 충돌을 어떻게 구현할 것인가이다. 게임 시작, 종료, 점수 매기기 등 기능들은 우선 배제하고 블록의 움직임만...","categories": ["Toy"],
+        "tags": ["clone","tetris"],
+        "url": "https://kavoom2.github.io/toy/toy-clone-tetris01/",
         "teaser": null
       }]
