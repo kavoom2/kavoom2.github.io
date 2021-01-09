@@ -17,7 +17,7 @@ tags:
 - Ubuntu
 - alsa
 - pulseaudio
-- 가짜출력
+- dummy output
 ---
 ## 1. 해결방법
 **원문:** https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/    

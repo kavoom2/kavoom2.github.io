@@ -13,8 +13,9 @@ use_mermaid: true
 use_math: true
 
 categories:
-- Javascript101
+- Toy
 tags:
+- clone
 - tetris
 ---
 
@@ -26,7 +27,7 @@ tags:
 ## 1. 블록의 기본요소
 테트리스 게임의 핵심은 블록의 움직임과 물리적 충돌을 어떻게 구현할 것인가이다. 게임 시작, 종료, 점수 매기기 등 기능들은 우선 배제하고 블록의 움직임만 생각해보자.
 
-### 1.1. 블록의 움직임
+### 1.1. 블록 자동하강
 다음은 게임이 시작하여 종료될 때까지 블록 움직임의 알고리즘을 간단히 적어본 것이다.
 
 <center><div class = "mermaid">
@@ -51,7 +52,7 @@ D --> |"예"| E["게임종료"]
 > 2. 블록이 다음 위치로 이동이 가능한지 여부 확인
 > 3. 일정시간마다 블록이 한 칸씩 아래로 이동
 
-### 1.2. 블록의 조작
+### 1.2. 블록 조작
 테트리스 게임에서 블록 조작법은 다음과 같다.
 > 1. 블록이동: 왼쪽, 오른쪽, 아래 방향키를 입력하여 원하는 방향으로 이동할 수 있다.
 > 2. 블록회전: 위쪽 방향키와 Q버튼을 입력하여 블록을 시계방향이나 반시계 방향으로 90도씩 회전할 수 있다.
@@ -64,7 +65,7 @@ D --> |"예"| E["게임종료"]
 
 방향키 조작이나 회전을 할 경우 블록이 화면 좌측 또는 우측 경계선을 벗어날 수 있다. 따라서, 키 입력을 받고, 블록을 주어진 명령에 따라 이동이나 회전하고 나서 정상적으로 출력되는지 여부도 판단해야 한다. 자세한 내용은 뒤에서 이야기하고, 본격적으로 테트리스를 구현하자.
 
-## 2. 게임보드
+## 2. 게임보드와 블록구현
 게임보드와 블록은 클래스(Class)로 규정하였다. 예제에서는 싱글게임이지만 경쟁하는 게임을 구현한다고 생각해보자. 클래스로 원하는 함수와 변수를 담은 객체를 손쉽게 만들어내는게 훨씬 쉽고 직관적이다.    
 
 게임보드를 구현하는 함수 board.js의 구성은 크게 다음과 같다.    
@@ -129,7 +130,7 @@ class Board {
 ### 2.2. 클래스 내장함수
 클래스 속성으로 필요할 때 호출할 수 있는 내장함수들이다. board.js 내장함수는 보드초기화, 블록하강, 블록회전 함수가 있다. 각 함수의 구성과 역할을 알아보자.
 
-#### 2.2.1. 보드초기화 함수
+#### 2.2.1. 게임보드와 블록 생성 및 초기화
 초기화 함수 reset()은 새로운 게임을 시작하면 실행된다. 이 함수는 getEmptyBoard()라는 함수를 실행하는데, 이 함수는 새로운 게임보드를 2차원 행렬 형태로 반환한다. 이차원행렬은 배열 속에 배열이 있는 이중배열로 구현할 수 있다.
 
 ````
@@ -162,3 +163,181 @@ Array.from()은 유사배열 객체나 순회가능한 객체를 매개인자로
 <center><img src = "https://drive.google.com/uc?export=view&id=1Ws4cKuoJNK09jItFT4LKahXMldkI6be9" width = "600px"></center>    
     
 생성한 배열 Array.from({length: rows}, (y) => Array(cols).fill(0))은 x축 크기가 cols이고 y축 크기가 rows인 2차원 행렬열 만드는 것이다. 이차원행렬을 좌표계로 보고, 어떤 점 위에 블록이 있다면 0 없으면 1로 표기할 수 있다. 참고로, 캔버스 2D 컨텍스트에서 원점은 좌측 상단이다.
+
+보드의 다른 내장함수를 살펴보기 전에 **블록 클래스를 확인해보자.** 
+
+````
+// main.js
+function play() {
+    let piece = new Piece(ctx);
+    piece.draw();
+    board.piece = piece;
+}
+
+// constatns.js
+const tetroShapes = [
+    [
+        [1, 0, 0],
+        [1, 1, 0],
+        [1, 0, 0]
+    ], ....
+]
+
+// piece.js
+class Piece {
+    constructor(ctx) {
+        this.x = Math.floor(cols/2 - 2);
+        this.y = 0;
+        this.ctx = ctx;
+        this.spawn();
+        }
+    }
+
+    randomizeTetrominoType(num) {
+        return Math.floor(Math.random() * num);
+    }
+
+    spawn() {
+        this.colorIdx = this.randomizeTetromino(tetroColors.length - 2 ) + 1;
+        this.shapeIdx = this.randomizeTetromino(tetroShapes.length - 1);
+        this.color = tetroColors[this.colorIdx];
+        this.shape = JSON.parse(JSON.stringify(tetroShapes[this.shapeIdx]));
+        this.shape.forEach( (rows, y) => {
+            rows.forEach( (value, x) =>{
+                if ( value > 0 ) {
+                    rows[x] = this.colorIdx;
+                }
+            })
+        })
+    }
+
+    draw() {
+        this.ctx.fillStyle = this.color;
+        this.shape.forEach( (row, y) => { 
+            row.forEach( (value, x) => {
+                if ( value > 0 ) {
+                    this.ctx.fillRect(this.x + x, this.y + y, 1, 1);
+                }
+            })
+        })
+    }
+
+    move(p) {
+        this.x = p.x;
+        this.y = p.y;
+        this.shape = p.shape;
+    }
+}
+````
+게임이 시작되면 새로운 블록 인스턴스를 생성하고, 보드의 속성으로 할당한다. 블록은 게임보드와 마찬가지로 2차원 행렬구조이다. 블록 내에 this.x 와 this.y는 블록의 위치를 나타내는 기준점으로, 블록의 좌측상단 좌표의 (x, y)값이다. 캔버스 2D 컨텍스트에서 (0, 0)이 좌측상단임을 생각하자. 
+
+매 이동마다 블록의 기준점이 어디인지 알 수 있으니, 블록의 충돌과 회전을 구현할 수 있다. 보드판과 블록의 좌표는 board.grid[y][x], board.piece[y][x]로 불러올 수 있다. 블록은 매 프레임마다 현재 좌표를 확인하고, 이를 저장한 뒤 보드를 초기화하고 칠하는 과정을 반복한다.
+
+#### 2.2.2. 블록하강과 이동
+블록은 아래로 한 칸 이동하기 전에 이동가능한지 확인해야 한다. 블록의 현재 좌표와 모양, 크기를 알고 있음을 이용하면 된다. 2차원 배열에서 한 칸 아래로 이동한 지점의 값이 0보다 크면, 블록이 있으므로 이동해서는 안된다. 이를 board.js에서 다음과 같이 구현했다.
+````
+//board.js
+class Board {
+    valid(p) {
+        return p.shape.every( (row, dy) => {
+            return row.every( (value, dx) => {
+                let x = p.x + dx;
+                let y = p.y + dy;
+                return (
+                    value === 0 || (this.isInsideWalls(x,y) && this.isNotOccupied(x, y));
+                )
+            })
+        })
+    }
+
+    isInsideWalls(x, y) {
+        return x >= 0 && x < cols && y <= rows;
+    }
+
+    isNotOccupied(x, y) {
+        return this.grid[y] && this.grid[y][x] === 0;
+    }
+
+    freeze() {
+        this.piece.shpae.forEach( (row, y) => {
+            row.forEach( (value, x) => {
+                if ( value > 0 ) {
+                    this.grid[y + this.piece.y][x + this.piece.x] = value;
+                }
+            })
+        })
+    }
+
+    drop() {
+        let p = moves[key.down](this.piece);
+        if ( this.valid(p) ) {
+            this.piece.move(p);
+        }
+        else {
+            this.freeze();
+            this.clearLines();
+            if ( this.piece.y === 0 ) {
+                return false;
+            }
+            this.piece = this.next;
+            this.piece.ctx = this.ctx;
+            this.getNetPiece();
+        }
+    }
+}
+
+
+// main.js
+const moves = {
+    // 블록 인스턴스의 속성 중, ...p, 이후에 해당하는 값만 변경합니다.
+    [key.left]: p => ({...p, x: p.x - 1}),
+    [key.right]:p => ({...p, x: p.x + 1}),
+    [key.down]: p => ({...p, y: p.y + 1}),
+    [key.space]: p => ({...p, y: p.y + 1}),
+}
+
+function play() {
+    resetGame();
+    let piece = new Piece(ctx);
+    piece.draw();
+    board.piece = piece;
+    animate();
+}
+
+function resetGame() {
+    board.reset();
+    time = {start: performance.now(), elapsed: 0, level: level[account.level]};
+}
+
+function animate(now = 0) {
+    time.elapsed = now - time.start;
+    if ( time.elapsed > time.level ) {
+        time.start = now;
+        if ( !board.drop() ) {
+            gameOver();
+            return;
+        }
+        board.drop();
+    }
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    board.draw();
+    requestID = requestAnimationFrame(animate);
+}
+````
+
+main.js의 moves 변수는 블록 인스턴스를 입력받으면, 속성 값중 x 또는 y를 수정한다. 다른 블록과 충돌하는지 확인하고 이동할 수 있다. board.js의 drop()함수는 다음과 같이 구성된다.
+<div class = "mermaid">
+graph LR
+A["drop()"] --- B["valid(p)"]
+B --- C["isInsideWalls(x, y)"]
+B --- D["isNotOccupied(x, y)"]
+A --- E["freeze()"]
+A --- F["clearLines()"]
+</div>
+valid()는 블록이 다음 위치로 이동할 수 있는지 확인한다. 양옆 벽, 바닥, 다른 블록에 닿았는지 확인하여 이동할 수 있는지 여부를 반환한다. 이후 블록은 다음 위치로 이동하거나 그 자리에서 멈추게 된다. 더 이상 이동할 수 없다면, 현재 생성된 블록을 보드에 병합시키고, 새로운 블록이 떨어지도록 해야한다. freeze() 함수는 이동할 수 없는 블록의 위치좌표, 색상 값을 가져와서 보드에 붙여넣는다.
+     
+블록이 떨어지는 과정을 연속적으로 보여주려면 requestAnimationFrame()를 사용하면 된다. 이 함수는 한 프레임을 페인트할 때 호출하는 함수이다. 함수가 한 번 실행될 때마다 1프레임 씩 재생된다.
+
+따라서, 블록을 움직이려면 아래와 같이 함수를 재귀호출해야 한다. 이때, 프레임 단위로 움직이므로 모니터 주사율이 다르면 실제로 움직이는 속도도 달라지게 된다. 60프레임을 보여주면, 모니터 주사율이 60fps인 모니터에서는 1초 동안 출력되지만 주사율이 120fps라면 0.5초 동안 출력된다. 따라서, 경과한 시간을 받아, 일정시간마다 재생할 수 있도록 변수를 설정해주어야한다. 예제에서는 객체 time에 start, elapsed, level(레벨마다 블록이 떨어지는 시간간격)으로 조정하였다.
+    
+방향키로 블록을 이동하거나 회전하는 등 조작 이벤트는 위 내용과 기본적인 흐름은 유사하다. 회전은 변환행렬 곱을 이용하여 배열을 만들고, 함수실행은 특정 키가 눌렸을 때로 바꾸어주면 된다. 이벤트 사용법과 행렬변환으로 회전하는 방법을 자세히 알고 싶다면 최상단 링크의 관련내용을 살펴보자.    
