@@ -91,7 +91,7 @@ C --- G["rotate()"]
 
 constants.js에서 변수 cols, row, blocksize로 미리 값을 설정하였다. 게임보드를 가로가 cols x blocksize, 세로가 rows x blocksize인 사각형으로 설정하자. 그러면, 게임보드는 격자간격이 blocksize인 바둑판이 된다. 
 
-````
+```js
 // constants.js
 const cols = 10;
 const rows = 20;
@@ -133,7 +133,7 @@ class Board {
 #### 2.2.1. 게임보드와 블록 생성 및 초기화
 초기화 함수 reset()은 새로운 게임을 시작하면 실행된다. 이 함수는 getEmptyBoard()라는 함수를 실행하는데, 이 함수는 새로운 게임보드를 2차원 행렬 형태로 반환한다. 이차원행렬은 배열 속에 배열이 있는 이중배열로 구현할 수 있다.
 
-````
+```js
 // main.js
 let board = new Board(canvas, canvasNext);
 
@@ -166,7 +166,7 @@ Array.from()은 유사배열 객체나 순회가능한 객체를 매개인자로
 
 보드의 다른 내장함수를 살펴보기 전에 **블록 클래스를 확인해보자.** 
 
-````
+```js
 // main.js
 function play() {
     let piece = new Piece(ctx);
@@ -235,7 +235,7 @@ class Piece {
 
 #### 2.2.2. 블록하강과 이동
 블록은 아래로 한 칸 이동하기 전에 이동가능한지 확인해야 한다. 블록의 현재 좌표와 모양, 크기를 알고 있음을 이용하면 된다. 2차원 배열에서 한 칸 아래로 이동한 지점의 값이 0보다 크면, 블록이 있으므로 이동해서는 안된다. 이를 board.js에서 다음과 같이 구현했다.
-````
+```js
 //board.js
 class Board {
     valid(p) {

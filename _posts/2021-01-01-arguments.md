@@ -12,7 +12,7 @@ categories:
 ## 1. arguments 
 arguments는 함수에 전달한 인자들을 참조하는 객체입니다. 
 
-````
+```js
 function foo(a, b, c) {
   console.log(arguments[0]); // 1
   console.log(arguments[1]); // 2
@@ -35,7 +35,7 @@ arguments 객체는 Array가 아닙니다. 배열에서 사용할 수 있는 pop
 
 ## 1.1. 예제
 arguments 객체는 다음과 같이 전달인자를 변수에 할당하기 힘든 상황에서 유용합니다.
-````
+```js
 let memoize = function (func) {
   let cache = {};
   let result;
@@ -67,7 +67,7 @@ add(5, 8); // 13
 ## 2. Rest parameter
 Rest parameter는 정해지지 않은 수의 인자를 배열로 나타냅니다. 
 
-````
+```js
 function foo(a, b, ...args) {
   console.log('a', a);
   console.log('b', b);
@@ -83,7 +83,7 @@ foo('one', 'two', 'three', 'four', 'five', 'six');
 
 함수의 마지막 매개변수에 **...**을 붙여 모든 나머지 인자들을 배열로 대체합니다. 위 예제는 a, b를 제외한 나머지 인자들을 args 배열로 대체합니다. arguments 객체와 달리 Rest parameter는 실제 배열이며, 배열의 모든 속성에 접근할 수 있습니다. Array의 인스턴스이므로 sort, map, forEach, pop 등 메소드를 바로 적용할 수 있습니다.
 
-````
+```js
 // 위 예제와 동일한 함수를 사용
 
 foo('one', 'two');

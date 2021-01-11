@@ -1,0 +1,88 @@
+I"�#<h2 id="1-arguments">1. arguments</h2>
+<p>arguments는 함수에 전달한 인자들을 참조하는 객체입니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// 1</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span> <span class="c1">// 2</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span> <span class="c1">// 3</span>
+<span class="p">};</span>
+<span class="nx">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);;</span>
+</code></pre></div></div>
+
+<p>arguments은 유사배열입니다. 배열처럼 인덱스는 0에서부터 시작하며, 각 인수를 설정하거나 재할당할 수 있습니다.</p>
+
+<blockquote>
+  <p>arguments[0]; // arguments의 0번째 인덱스  <br />
+arguments[1]; // arguments의 1번째 인덱스  <br />
+arguments[2] = ‘new value’; // arguments의 2번째 인덱스 값을 ‘new value’로 설정 또는 재할당</p>
+</blockquote>
+
+<p>arguments 객체는 Array가 아닙니다. 배열에서 사용할 수 있는 pop(), shift() 등 프로퍼티를 가지고 있지 않습니다. 대신, 다음과 같은 방법으로 arguments를 배열로 변환할 수 있습니다.</p>
+
+<blockquote>
+  <p>let arg = Array.prototype.slice.call(arguments);  <br />
+let args = Array.from(arguments);  <br />
+let args = […arguments];</p>
+</blockquote>
+
+<h2 id="11-예제">1.1. 예제</h2>
+<p>arguments 객체는 다음과 같이 전달인자를 변수에 할당하기 힘든 상황에서 유용합니다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">memoize</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">func</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">cache</span> <span class="o">=</span> <span class="p">{};</span>
+  <span class="kd">let</span> <span class="nx">result</span><span class="p">;</span>
+
+  <span class="k">return</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">args</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">args</span> <span class="k">in</span> <span class="nx">cache</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">cache</span><span class="p">[</span><span class="nx">args</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+    <span class="nx">cache</span><span class="p">[</span><span class="nx">args</span><span class="p">]</span> <span class="o">=</span> <span class="nx">func</span><span class="p">.</span><span class="nx">apply</span><span class="p">.(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+    <span class="p">};</span>
+  <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="kd">const</span> <span class="nx">add</span> <span class="o">=</span> <span class="nx">memoize</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="nx">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span> <span class="c1">// 5</span>
+<span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span> <span class="c1">// 13</span>
+</code></pre></div></div>
+
+<p>함수 memoize는 어떤 함수에 이전에 전달받은 인자들을 다시 받으면, 즉시 함수 내에 저장한 결과값을 출력합니다. 어떤 인자를 입력했을 때, 그 인자가 한 번 이상 입력받았는지 확인해야 합니다. 즉, 현재 받은 인자가 캐시 안에 있는지 여부를 판단해야 합니다.</p>
+
+<p>변수 add는 memoize가 반환한 함수 function() {…..}이 할당되어 있습니다. add(2, 3)을 입력하면, arguments 객체는 전달인자 2, 3을 참조합니다.</p>
+
+<h2 id="2-rest-parameter">2. Rest parameter</h2>
+<p>Rest parameter는 정해지지 않은 수의 인자를 배열로 나타냅니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">,</span> <span class="p">...</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">a</span><span class="dl">'</span><span class="p">,</span> <span class="nx">a</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">b</span><span class="dl">'</span><span class="p">,</span> <span class="nx">b</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">args</span><span class="dl">'</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">foo</span><span class="p">(</span><span class="dl">'</span><span class="s1">one</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">two</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">three</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">four</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">five</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">six</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// a, one</span>
+<span class="c1">// b, two</span>
+<span class="c1">// args, [three, four, five, six]</span>
+</code></pre></div></div>
+
+<p>함수의 마지막 매개변수에 <strong>…</strong>을 붙여 모든 나머지 인자들을 배열로 대체합니다. 위 예제는 a, b를 제외한 나머지 인자들을 args 배열로 대체합니다. arguments 객체와 달리 Rest parameter는 실제 배열이며, 배열의 모든 속성에 접근할 수 있습니다. Array의 인스턴스이므로 sort, map, forEach, pop 등 메소드를 바로 적용할 수 있습니다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 위 예제와 동일한 함수를 사용</span>
+
+<span class="nx">foo</span><span class="p">(</span><span class="dl">'</span><span class="s1">one</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">two</span><span class="dl">'</span><span class="p">);</span>
+<span class="c1">// a, one</span>
+<span class="c1">// b, two</span>
+<span class="c1">// args, []</span>
+</code></pre></div></div>
+
+<p>한편, Rest parameter에 인자를 넣지 않으면 args은 빈배열이 됩니다.</p>
+
+<h1 id="reference">Reference</h1>
+<p>*https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/rest_parameters
+*https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/arguments</p>
+:ET

@@ -53,7 +53,7 @@ $3n +10$의 복잡도를 가진다고 하지 않는 이유는 정확한 단계 �
 고정공간은 입출력의 횟수와 크기에 관계없는 요구공간을 말합니다. 코드 저장공간, 단순변수, 고정크기의 구조변수, 상수가 해당된다고 합니다. 가변공간은 해결하려는 문제의 특정 인스턴스에 따라 가변적인 크기를 가진 구조화 변수들을 필요로 하는 공간, 함수가 순환호출을 할 경우 요구되는 추가공간을 말합니다.
 
 $n!$을 계산하는 함수를 반복문과 재귀함수로 작성하여 비교해봅시다.
-````
+```js
 // 재귀함수
 function factorialByRecursion(n) {
   if ( n === 1 ) {
@@ -91,7 +91,7 @@ function factorialByLoop(n) {
 1번째와 2번째 원소를 비교하여 정렬하고, 2번째와 3번째, ..., n-1번째와 n번째를 확인하여 정렬한 뒤 다시 처음으로 돌아가 n-2번째와 n-1번째까지, ...를 반복하는 정렬입니다. 매 순회마다 마지막 하나가 정렬되어 원소들이 거품처럼 올라오는 것처럼 보입니다. 
 
 
-````
+```js
 function bubbleSort(arr) {
   let length = arr.length - 1;
   let temp;
@@ -111,7 +111,7 @@ function bubbleSort(arr) {
 ### 2. 1. 2. 칵테일 정렬(Cocktail shaker sort)
 홀수 번째 요소는 앞에서부터 확인하고, 짝수 번째 요소는 뒤에서부터 확인합니다. 버블 정렬이 마지막에서 처음으로 정렬했다면, 칵테일 정렬은 처음과 마지막을 번갈아가면서 정렬합니다. 
 
-````
+```js
 function shakerSort(arr) {
   const length = arr.length - 1;
   let isSorted = false;
@@ -148,7 +148,7 @@ function shakerSort(arr) {
 ### 2. 1. 3. 선택 정렬(Selection sort)
 버블정렬이 매번 두 요소를 비교하여 위치를 바꾼다면, 선택 정렬은 처음부터 마지막까지 한 번 훑어 정렬하고, 그 다음은 2번째에서 마지막까지 순환하는 방식으로 정렬합니다. 정렬이 일관성있게 $n(n-1)/2$에 비례하는 시간이 걸립니다.
 
-````
+```js
 function selectionSort(arr) {
   for ( let i = 0; i < arr.length - 1; i++ ) {
     let minimumNumIdx = i;
@@ -172,7 +172,7 @@ $n$번째 원소를 첫 번째에서 $n-1$번째까지 비교하여 적절한 �
 
 다만, 자료구조가 이미 정렬되어있거나 규모가 작다면 굉장히 효과적인 알고리즘입니다. 고성능 알고리즘 중에서는 배열 규모가 클 때 $O(nlogn)$ 알고리즘을 사용하다가, 정렬해야 할 부분이 작으면 삽입정렬로 전환하기도 합니다.
 
-````
+```js
 function insertionSort(arr) {
   for ( let i = 1; i < arr.length; i++ ) {
     let currentEl = arr[i];

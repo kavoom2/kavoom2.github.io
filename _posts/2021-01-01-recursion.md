@@ -17,7 +17,7 @@ categories:
 ### 1. 1. 재귀함수의 구성요소
 재귀함수는 베이스(base case)와 재귀단계(recursive case)로 구성됩니다.
 x를 n 제곱하는 함수 pow(x, n)을 예시로 재귀함수의 구성과 작동원리를 이해해봅시다.
-````
+```js
 function pow(x, n) {
   if (n === 1) {
     return x; // Base case
@@ -93,7 +93,7 @@ pow(2, 1)이 실행되면 상황이 달라집니다. base case(n === 1)을 만�
 ### 1. 3. 꼬리 재귀(Tail recursion)
 꼬리재귀는 재귀함수의 단점인 지나친 메모리 점유율을 해결하기 위한 호출방식 중 하나입니다. 재귀함수의 실행결과가 연산에 사용되지 않고 바로 반환되도록 하여 이전 함수의 상태를 유지할 필요가 없도록 함수를 작성하는 것입니다. 꼬리 재귀가 정상적으로 동작하려면 플랫폼에서 TGO(Tail Call Optimization)을 지원해야 합니다.
 
-````
+```js
 // 일반 재귀함수
 function factorial(n) {
   if (n === 1) {
