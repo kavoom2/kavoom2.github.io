@@ -142,7 +142,7 @@
   
   </head>
 
-  <body class="layout--single">
+  <body class="layout--single wide">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -409,7 +409,7 @@ $ git checkout -b release/0.1
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
 $ git merge release/0.1 
 </code></pre></div></div>
-<p>Release 보조브랜치가 문제가 없으면 메인 브랜치로 이동하여 다시 한 번 병합한다. 이 때 동일 내용이 포함되는 브랜치를 병합하므로 fast forward가 자동으로 적용된다. <strong>fast forwarding 로 병합하면, 작업 히스토리가 남지 않는다.</strong> 따라서 <strong>–no-ff</strong> 명령어로 히스토리를 커밋 메시지를 강제로 생성한다.</p>
+<p>Release 보조브랜치가 문제가 없으면 메인 브랜치로 이동하여 다시 한 번 병합한다. 이 때 동일 내용이 포함되는 브랜치를 병합하므로 fast forward가 자동으로 적용된다. <strong>fast forwarding 로 병합하면 작업 히스토리가 남지 않는다.</strong> 따라서 <strong>–no-ff</strong> 명령어로 히스토리를 커밋 메시지를 강제로 생성한다.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout main
 $ git merge --no-ff release/0.1
 </code></pre></div></div>
@@ -456,25 +456,6 @@ $ git branch -d release/1.0
       <footer class="page__meta">
         
         
-  
-
-
-  
-  
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
-    <span itemprop="keywords">
-    
-      
-      
-      <a href="/tags/#git" class="page__taxonomy-item" rel="tag">git</a>
-    
-    </span>
-  </p>
-
-
 
 
   
@@ -490,7 +471,7 @@ $ git branch -d release/1.0
     
       
       
-      <a href="/categories/#git" class="page__taxonomy-item" rel="tag">git</a>
+      <a href="/categories/#git" class="page__taxonomy-item" rel="tag">Git</a>
     
     </span>
   </p>

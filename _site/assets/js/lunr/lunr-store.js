@@ -48,8 +48,8 @@ var store = [{
         "teaser": null
       },{
         "title": "Git의 사용법과 Workflow 이해",
-        "excerpt":"GitHub 원격저장소 연결 원격 저장소를 사용하고 관리할 줄 알아야 공동작업 중 생기는 문제들을 줄일 수 있을 것이다. 다른 사용자와 원격저장소를 연결하는 방법을 배워보자. 다른 사람의 리모트저장소를 추가하는 방법은 다음과 같다. name에는 저장할 별칭을 적어주면 된다. $ git remote add &lt;name&gt; &lt;repro url for other user fork&gt; 현재 연결되어있는 원격저장소를 확인할...","categories": ["git"],
-        "tags": ["git"],
+        "excerpt":"GitHub 원격저장소 연결 원격 저장소를 사용하고 관리할 줄 알아야 공동작업 중 생기는 문제들을 줄일 수 있을 것이다. 다른 사용자와 원격저장소를 연결하는 방법을 배워보자. 다른 사람의 리모트저장소를 추가하는 방법은 다음과 같다. name에는 저장할 별칭을 적어주면 된다. $ git remote add &lt;name&gt; &lt;repro url for other user fork&gt; 현재 연결되어있는 원격저장소를 확인할...","categories": ["Git"],
+        "tags": [],
         "url": "https://kavoom2.github.io/git/git-basic/",
         "teaser": null
       }]
