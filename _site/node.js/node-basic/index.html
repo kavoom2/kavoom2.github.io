@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우 - 건축공학도의 개발자 성장기</title>
-<meta name="description" content="우분투에서 가짜출력이 나오거나, 스피커 상호작용은 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법">
+<!-- begin _includes/seo.html --><title>Node.js와 관련 툴 - 건축공학도의 개발자 성장기</title>
+<meta name="description" content="Node.js 사용에 필요한 툴과 package.json의 역할 이해">
 
 
   <meta name="author" content="liondoge">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="건축공학도의 개발자 성장기">
-<meta property="og:title" content="Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우">
-<meta property="og:url" content="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/">
+<meta property="og:title" content="Node.js와 관련 툴">
+<meta property="og:url" content="https://kavoom2.github.io/node.js/node-basic/">
 
 
-  <meta property="og:description" content="우분투에서 가짜출력이 나오거나, 스피커 상호작용은 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법">
+  <meta property="og:description" content="Node.js 사용에 필요한 툴과 package.json의 역할 이해">
 
 
 
@@ -36,11 +36,11 @@
 
 
 
-  <meta property="article:published_time" content="2021-01-06T00:00:00+09:00">
+  <meta property="article:published_time" content="2021-01-11T00:00:00+09:00">
 
 
 
-  <meta property="article:modified_time" content="2021-01-06T10:20:00+09:00">
+  <meta property="article:modified_time" content="2021-01-12T07:00:00+09:00">
 
 
 
@@ -49,7 +49,7 @@
   
 
 
-<link rel="canonical" href="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/">
+<link rel="canonical" href="https://kavoom2.github.io/node.js/node-basic/">
 
 
 
@@ -111,6 +111,31 @@
 
 <!-- end custom head snippets -->
 
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
     
     
     <script src="/js/mermaid.js"></script>
@@ -290,15 +315,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우">
-    <meta itemprop="description" content="우분투에서 가짜출력이 나오거나, 스피커 상호작용은 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법">
-    <meta itemprop="datePublished" content="2021-01-06T00:00:00+09:00">
-    <meta itemprop="dateModified" content="2021-01-06T10:20:00+09:00">
+    <meta itemprop="headline" content="Node.js와 관련 툴">
+    <meta itemprop="description" content="Node.js 사용에 필요한 툴과 package.json의 역할 이해">
+    <meta itemprop="datePublished" content="2021-01-11T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2021-01-12T07:00:00+09:00">
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우
+          <h1 id="page-title" class="page__title" itemprop="headline">Node.js와 관련 툴
 </h1>
           
 
@@ -307,7 +332,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-06T00:00:00+09:00">January 6, 2021</time>
+        <time datetime="2021-01-11T00:00:00+09:00">January 11, 2021</time>
       </span>
     
 
@@ -332,48 +357,65 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="1-해결방법">1. 해결방법</h2>
-<p><strong>원문:</strong> https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/</p>
+        <p>Node.js는 Javascript가 동작할 수 있는 환경 또는 프로그램인 런타임(Runtime) 중 하나이다. Javascript 코드를 브라우저에서 실행할 수도 있고, Node.js에서도 실행할 수 있는 것. 다음 예제에서는 터미널에서 Node.js로 스크립트를 실행한 결과를 출력한다.</p>
 
-<p>위 주소에서 도움을 받아 해결할 수 있었다. 마지막 방법인 패키지 재설치를 시도해보자.  <br />
-유의할 점은 설정파일도 제거할 수 있도록 반드시 <strong>purge</strong>를 실행해야 한다는 것이다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// runnode.js</span>
+<span class="kd">function</span> <span class="nx">testFunction</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Arg is </span><span class="dl">"</span><span class="p">,</span> <span class="nx">arg</span><span class="p">);</span>
+<span class="p">}</span>
 
-<p>다음 명령어를 실행하고 재부팅하면 해결된다.</p>
-<div class="language-console highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>apt remove <span class="nt">--purge</span> alsa-base    
-<span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>apt remove <span class="nt">--purge</span> pulseaudio    
-<span class="go">     
-</span><span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>apt <span class="nb">install </span>alsa-base    
-<span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>apt <span class="nb">install </span>pulseaudio    
-<span class="go">     
-</span><span class="gp">$</span><span class="w"> </span><span class="nb">sudo </span>alsa force-reload    
+<span class="nx">testFunction</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span>
+
+<span class="c1">// terminal</span>
+<span class="nx">$</span> <span class="nx">Node</span> <span class="nx">runnode</span><span class="p">.</span><span class="nx">js</span> <span class="c1">// "Arg is 20"</span>
 </code></pre></div></div>
 
-<h2 id="2-alsa와-pulseaudio">2. ALSA와 Pulseaudio</h2>
-<p><strong>원문:</strong> https://makersweb.net/linux/19723  <br />
-<strong>이하 내용은 관련 지식을 알아둘 목적으로만 적어둔 것입니다. 제가 작성한 내용이 아닙니다.</strong></p>
+<h2 id="nvm">NVM</h2>
+<p>Node.js를 사용하려면 관련 프로그램들이 필요하다. 먼저 Node.js를 설치, 관리하는 NVM(Node.js Version Manager)을 살펴보자. NVM이 설치되었다면, 다음 명령어를 실행하여 현재 버전을 확인할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">nvm</span> <span class="o">--</span><span class="nx">version</span>
+</code></pre></div></div>
+<p>설치할 수 있는 Node.js의 버전은 다음 명령어로 확인할 수 있다. 원하는 버전을 설치하자. 설치할 때에는 호환성 문제가 발생기지 않도록 LTS(Long Term Supported) 버전을 설치하자.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">nvm</span> <span class="nx">ls</span><span class="o">-</span><span class="nx">remote</span> <span class="o">--</span><span class="nx">lts</span> <span class="c1">// 설치가능한 버전 확인</span>
+<span class="nx">nvm</span> <span class="nx">isntall</span> <span class="mf">14.15</span><span class="p">.</span><span class="mi">4</span>
+</code></pre></div></div>
+<p>제대로 설치되었는지 확인해보려면 버전을 출력해보자.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span> <span class="nx">Node</span> <span class="o">-</span><span class="nx">v</span>
+</code></pre></div></div>
+<p>여러 버전을 설치하여 사용한다면 다음 명령어로 버전을 변경하면서 사용할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">nvm</span> <span class="nx">use</span> <span class="mf">14.15</span><span class="p">.</span><span class="mi">4</span>
+<span class="nx">nvm</span> <span class="nx">use</span> <span class="mf">12.16</span><span class="p">.</span><span class="mi">1</span>
+</code></pre></div></div>
+<h2 id="npm">NPM</h2>
+<p>NPM(Node Package Manager)은 프로그램에 필요한 모듈을 받을 수 있는 앱스토어의 일종이다.</p>
 
-<h3 id="alsa">ALSA</h3>
-<p>ALSA(Advanced Linux Sound Architecture)는 응용 프로그램이 시스템의 실제 하드웨어와 상호작용할 수 있는 가장 낮은 수준의 인터페이스이다. ALSA는 한 번에 하나의 채널만 하드웨어로 전송하게 되고, 이로 인해 단일 응용프로그램만 ALSA에 한 번에 소리를 보낼 수 있다. 미디어 플레이어의 음악과 메신저의 알림음을 동시에 받을 수 없다.</p>
+<h2 id="packagejson">package.json</h2>
+<p>프로젝트는 필연적으로 다른 사람들과 함께 개발하고 사용하게 된다. 프로그램에 필요한 모듈이 무엇이고 어떻게 실행하는지를 알아야한다. package.json이 이러한 내용들을 알려주는 설명서다.</p>
 
-<p>이것을 개선하기 위해 Mixer를 구현하고, 여러 가상 오디오 채널을 단일 채널로 결합할 수 있게 한 것이 alsalib이다. 하지만, 라이브러리 수준의 믹싱 방식은 데스크톱 환경에서는 단일 응용 프로그램만 오디오를 출력할 수 있다.</p>
+<p>참고로, 프로젝트에 필요한 모듈 파일들은 node_modules에 설치되어 있다.</p>
 
-<h3 id="pulseaudio">Pulseaudio</h3>
-<p>Pulseaudio는 Linux 배포판의 표준 사운드 서버이다.</p>
+<p>package.json에서 scripts는 npm으로 실행할 수 있는 명령어를 정의한다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package.json</span>
+<span class="dl">"</span><span class="s2">scripts</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">start</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Node app.js</span><span class="dl">"</span>
+    <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Node test.js</span><span class="dl">"</span>
+<span class="p">}</span>
 
-<p>데스크톱 환경에서는 여러 응용 프로그램의 사운드를 병렬로 출력할 수 있어야 했다. 이를 구현하고자 사운드 서버가 등장했다. 사운드 서버는 데몬(daemon, 컴퓨터의 백그라운드에서 지속적으로 실행되는 서비스)이다.</p>
+<span class="c1">// terminal</span>
+<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">test</span> <span class="c1">// test.js를 실행</span>
+<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">start</span> <span class="c1">// app.js을 실행</span>
+</code></pre></div></div>
 
-<p>사운드 서버는 소리를 출력해야 하는 모든 애플리케이션에 믹서슬롯을 제공한다. 사운드 서버는 들어오는 모든 오디오 슬롯을 하나로 믹싱하여 ALSA에 전달한다. 이 방법으로 여러 응용프로그램의 소리를 병렬로 출력할 수 있었으며, 개별 볼륨제어 등 다른기능도 구현할 수 있게 되었다.</p>
+<h2 id="dev-dependencies-vs-dependencies">dev Dependencies vs dependencies</h2>
+<p>package.json에는 devDependencies와 dependencies가 있다. 전자는 로컬 개발 및 테스트 과정에서만 필요한 패키지이다. 실제 배포에는 포함되지 않는다. 후자는 프로그램의 실제 기술스펙으로 사용되는 패키지이다.</p>
 
-<center><div class="mermaid">
-graph TB
-A["application"] --&gt; E["Sound server: Pulseaudio"]
-B["application"] --&gt; E
-C["application"] --&gt; E
-D["application"] --&gt; E
+<p>패키지를 설치할 때 다음 명령어로 각각 구분하여 설치한다. –save 명령어는 패키지 간 충돌을 잡아준다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="o">-</span><span class="nx">dev</span> <span class="c1">// devDependencies 패키지 설치</span>
+<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="c1">// Dependencies 패키지 설치</span>
+</code></pre></div></div>
 
-E --&gt; F["Linux kernel: ALSA"]
-F --&gt; G["Hardware: Soundcard"]
-</div></center>
+<p>스프린트 과제 패키지 설치 중 오류가 발생하면 다음 명령어를 입력해보자.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sh</span><span class="p">.</span> <span class="nx">registry</span><span class="p">.</span><span class="nx">sh</span>
+</code></pre></div></div>
 
         
       </section>
@@ -394,19 +436,15 @@ F --&gt; G["Hardware: Soundcard"]
     
       
       
-      <a href="/tags/#alsa" class="page__taxonomy-item" rel="tag">alsa</a><span class="sep">, </span>
+      <a href="/tags/#npm" class="page__taxonomy-item" rel="tag">npm</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#dummy-output" class="page__taxonomy-item" rel="tag">dummy output</a><span class="sep">, </span>
+      <a href="/tags/#nvm" class="page__taxonomy-item" rel="tag">nvm</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#pulseaudio" class="page__taxonomy-item" rel="tag">pulseaudio</a><span class="sep">, </span>
-    
-      
-      
-      <a href="/tags/#ubuntu" class="page__taxonomy-item" rel="tag">Ubuntu</a>
+      <a href="/tags/#package-json" class="page__taxonomy-item" rel="tag">package.json</a>
     
     </span>
   </p>
@@ -427,14 +465,14 @@ F --&gt; G["Hardware: Soundcard"]
     
       
       
-      <a href="/categories/#%EA%B8%B0%ED%83%80" class="page__taxonomy-item" rel="tag">기타</a>
+      <a href="/categories/#node-js" class="page__taxonomy-item" rel="tag">Node.js</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-06">January 6, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-11">January 11, 2021</time></p>
 
 
       </footer>
@@ -444,23 +482,22 @@ F --&gt; G["Hardware: Soundcard"]
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Ubuntu+20.04%EC%97%90%EC%84%9C+%EC%86%8C%EB%A6%AC%EA%B0%80+%EC%A0%95%EC%83%81%EC%A0%81%EC%9C%BC%EB%A1%9C+%EC%B6%9C%EB%A0%A5%EB%90%98%EC%A7%80+%EC%95%8A%EB%8A%94+%EA%B2%BD%EC%9A%B0%20https%3A%2F%2Fkavoom2.github.io%2F%25EA%25B8%25B0%25ED%2583%2580%2Fubuntu_sound_mixing_problem%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Node.js%EC%99%80+%EA%B4%80%EB%A0%A8+%ED%88%B4%20https%3A%2F%2Fkavoom2.github.io%2Fnode.js%2Fnode-basic%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2F%25EA%25B8%25B0%25ED%2583%2580%2Fubuntu_sound_mixing_problem%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fnode.js%2Fnode-basic%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2F%25EA%25B8%25B0%25ED%2583%2580%2Fubuntu_sound_mixing_problem%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fnode.js%2Fnode-basic%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/algorithm/hanoi/" class="pagination--pager" title="하노이의 탑
+      <a href="/git/git-basic/" class="pagination--pager" title="Git의 사용법과 Workflow 이해
 ">Previous</a>
     
     
-      <a href="/toy/toy-clone-tetris01/" class="pagination--pager" title="테트리스 구현
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -474,52 +511,6 @@ F --&gt; G["Hardware: Soundcard"]
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/node.js/node-basic/" rel="permalink">Node.js와 관련 툴
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-11T00:00:00+09:00">January 11, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">Node.js 사용에 필요한 툴과 package.json의 역할 이해
-</p>
-  </article>
-</div>
-
         
           
 
@@ -608,6 +599,52 @@ F --&gt; G["Hardware: Soundcard"]
 
 
     <p class="archive__item-excerpt" itemprop="description">자바스크립트 기반 테트리스 게임 구현
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/" rel="permalink">Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-06T00:00:00+09:00">January 6, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">우분투에서 가짜출력이 나오거나, 스피커 상호작용은 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법
 </p>
   </article>
 </div>
@@ -717,8 +754,8 @@ F --&gt; G["Hardware: Soundcard"]
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://kavoom2.github.io/node.js/node-basic/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/node.js/node-basic"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');

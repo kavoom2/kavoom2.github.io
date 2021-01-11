@@ -52,4 +52,10 @@ var store = [{
         "tags": [],
         "url": "https://kavoom2.github.io/git/git-basic/",
         "teaser": null
+      },{
+        "title": "Node.js와 관련 툴",
+        "excerpt":"Node.js는 Javascript가 동작할 수 있는 환경 또는 프로그램인 런타임(Runtime) 중 하나이다. Javascript 코드를 브라우저에서 실행할 수도 있고, Node.js에서도 실행할 수 있는 것. 다음 예제에서는 터미널에서 Node.js로 스크립트를 실행한 결과를 출력한다. // runnode.js function testFunction(arg) { console.log(\"Arg is \", arg); } testFunction(arg) // terminal $ Node runnode.js // \"Arg is 20\"...","categories": ["Node.js"],
+        "tags": ["package.json","nvm","npm"],
+        "url": "https://kavoom2.github.io/node.js/node-basic/",
+        "teaser": null
       }]
