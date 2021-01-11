@@ -1,0 +1,31 @@
+I"�
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          건축공학도의 개발자 성장기
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/readme/">ReadMe</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kavoom2.github.io/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+:ET

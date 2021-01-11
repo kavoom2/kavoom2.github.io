@@ -170,9 +170,11 @@
         <ul class="visible-links"><li class="masthead__menu-item">
               <a href="/readme/">ReadMe</a>
             </li><li class="masthead__menu-item">
+              <a href="https://kavoom2.github.io/">Posts</a>
+            </li><li class="masthead__menu-item">
               <a href="/categories">Categories</a>
             </li><li class="masthead__menu-item">
-              <a href="/categories/Javascript101">Javascript101</a>
+              <a href="/tags">Tags</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -355,9 +357,7 @@
 
       <section class="page__content" itemprop="text">
         
-        <p><strong>작성 중인 TIL</strong></p>
-
-<p>다음 글은 <strong>테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)</strong>를 직접 구현해보고 정리한 내용이다.  <br />
+        <p>다음 글은 <strong>테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)</strong>를 직접 구현해보고 정리한 내용이다.  <br />
 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다.</p>
 
 <h2 id="1-블록의-기본요소">1. 블록의 기본요소</h2>
@@ -443,34 +443,34 @@ C --- G["rotate()"]
 
 <p>constants.js에서 변수 cols, row, blocksize로 미리 값을 설정하였다. 게임보드를 가로가 cols x blocksize, 세로가 rows x blocksize인 사각형으로 설정하자. 그러면, 게임보드는 격자간격이 blocksize인 바둑판이 된다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// constants.js
-const cols = 10;
-const rows = 20;
-const blocksize = 30;
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// constants.js</span>
+<span class="kd">const</span> <span class="nx">cols</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">rows</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
+<span class="kd">const</span> <span class="nx">blocksize</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
 
 
-// board.js
-class Board {
-    constructor(canvas, canvasNext) {
-        this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
-        this.canvasNext = canvasNext;
-        this.ctxNext = canvasNext.getContext("2d");
+<span class="c1">// board.js</span>
+<span class="kd">class</span> <span class="nx">Board</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">canvasNext</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">"</span><span class="s2">2d</span><span class="dl">"</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvasNext</span> <span class="o">=</span> <span class="nx">canvasNext</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctxNext</span> <span class="o">=</span> <span class="nx">canvasNext</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="dl">"</span><span class="s2">2d</span><span class="dl">"</span><span class="p">);</span>
 
-        this.init();
-        this.initNext();
-    }
-    init() {
-        this.canvas.width = cols * blocksize;
-        this.canvas.height = rows * blocksize;
-        this.ctx.scale(blocksize, blocksize);
-    }
-    initNext() {
-        this.canvasNext.width = cols * blocksize;
-        this.canvasNext.height = rows * blocksize;
-        this.ctxNext.scale(blocksize, blocksize);
-    }
-}
+        <span class="k">this</span><span class="p">.</span><span class="nx">init</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">initNext</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">cols</span> <span class="o">*</span> <span class="nx">blocksize</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">rows</span> <span class="o">*</span> <span class="nx">blocksize</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">blocksize</span><span class="p">,</span> <span class="nx">blocksize</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">initNext</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvasNext</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">cols</span> <span class="o">*</span> <span class="nx">blocksize</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">canvasNext</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">rows</span> <span class="o">*</span> <span class="nx">blocksize</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctxNext</span><span class="p">.</span><span class="nx">scale</span><span class="p">(</span><span class="nx">blocksize</span><span class="p">,</span> <span class="nx">blocksize</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>생성자의 매개인자인 canvas, canvasNext는 main.js에서 querySelector로 캔버스 엘리먼트(<code class="language-plaintext highlighter-rouge">&lt;canvas&gt;...&lt;/canvas&gt;</code>)를 입력받는다. 여기서 canvas는 게임을 진행할 게임보드이고, canvasNext는 다음 블록을 표시하는 보드이다.</p>
@@ -483,27 +483,27 @@ class Board {
 <h4 id="221-게임보드와-블록-생성-및-초기화">2.2.1. 게임보드와 블록 생성 및 초기화</h4>
 <p>초기화 함수 reset()은 새로운 게임을 시작하면 실행된다. 이 함수는 getEmptyBoard()라는 함수를 실행하는데, 이 함수는 새로운 게임보드를 2차원 행렬 형태로 반환한다. 이차원행렬은 배열 속에 배열이 있는 이중배열로 구현할 수 있다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// main.js
-let board = new Board(canvas, canvasNext);
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// main.js</span>
+<span class="kd">let</span> <span class="nx">board</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Board</span><span class="p">(</span><span class="nx">canvas</span><span class="p">,</span> <span class="nx">canvasNext</span><span class="p">);</span>
 
-function play() {
-    resetGame();
-}
+<span class="kd">function</span> <span class="nx">play</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">resetGame</span><span class="p">();</span>
+<span class="p">}</span>
 
-function resetGame() {
-    board.reset();
-}
+<span class="kd">function</span> <span class="nx">resetGame</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">board</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+<span class="p">}</span>
 
 
-// board.js
-class Board {
-    reset() {
-        this.grid = this.getEmptyBoard();
-    }
-    getEmptyBoard() {
-        return Array.from({length: rows}, (y) =&gt; Array(cols).fill(0));
-    }
-}
+<span class="c1">// board.js</span>
+<span class="kd">class</span> <span class="nx">Board</span> <span class="p">{</span>
+    <span class="nx">reset</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">grid</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getEmptyBoard</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="nx">getEmptyBoard</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Array</span><span class="p">.</span><span class="k">from</span><span class="p">({</span><span class="na">length</span><span class="p">:</span> <span class="nx">rows</span><span class="p">},</span> <span class="p">(</span><span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">cols</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 <p>Array.from()은 유사배열 객체나 순회가능한 객체를 매개인자로 받아 얕은복사를 한 새로운 배열을 만든다. 두 번째 인자로는 배열의 모든 요소에 매핑할 함수를 넣는다. 가령, x =&gt; { 2 * x } 를 넣는다면, 기존배열의 요소들에 각각 2를 곱한 값을 요소로 하는 새로운 새로운 배열을 복사한다.</p>
 
@@ -515,67 +515,67 @@ class Board {
 
 <p>보드의 다른 내장함수를 살펴보기 전에 <strong>블록 클래스를 확인해보자.</strong></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// main.js
-function play() {
-    let piece = new Piece(ctx);
-    piece.draw();
-    board.piece = piece;
-}
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// main.js</span>
+<span class="kd">function</span> <span class="nx">play</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">piece</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Piece</span><span class="p">(</span><span class="nx">ctx</span><span class="p">);</span>
+    <span class="nx">piece</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+    <span class="nx">board</span><span class="p">.</span><span class="nx">piece</span> <span class="o">=</span> <span class="nx">piece</span><span class="p">;</span>
+<span class="p">}</span>
 
-// constatns.js
-const tetroShapes = [
-    [
-        [1, 0, 0],
-        [1, 1, 0],
-        [1, 0, 0]
-    ], ....
-]
+<span class="c1">// constatns.js</span>
+<span class="kd">const</span> <span class="nx">tetroShapes</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">],</span> <span class="p">....</span>
+<span class="p">]</span>
 
-// piece.js
-class Piece {
-    constructor(ctx) {
-        this.x = Math.floor(cols/2 - 2);
-        this.y = 0;
-        this.ctx = ctx;
-        this.spawn();
-        }
-    }
+<span class="c1">// piece.js</span>
+<span class="kd">class</span> <span class="nx">Piece</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">ctx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">cols</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span> <span class="o">=</span> <span class="nx">ctx</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">spawn</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    randomizeTetrominoType(num) {
-        return Math.floor(Math.random() * num);
-    }
+    <span class="nx">randomizeTetrominoType</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">num</span><span class="p">);</span>
+    <span class="p">}</span>
 
-    spawn() {
-        this.colorIdx = this.randomizeTetromino(tetroColors.length - 2 ) + 1;
-        this.shapeIdx = this.randomizeTetromino(tetroShapes.length - 1);
-        this.color = tetroColors[this.colorIdx];
-        this.shape = JSON.parse(JSON.stringify(tetroShapes[this.shapeIdx]));
-        this.shape.forEach( (rows, y) =&gt; {
-            rows.forEach( (value, x) =&gt;{
-                if ( value &gt; 0 ) {
-                    rows[x] = this.colorIdx;
-                }
-            })
-        })
-    }
+    <span class="nx">spawn</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">colorIdx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">randomizeTetromino</span><span class="p">(</span><span class="nx">tetroColors</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span> <span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">shapeIdx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">randomizeTetromino</span><span class="p">(</span><span class="nx">tetroShapes</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">tetroColors</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">colorIdx</span><span class="p">];</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">shape</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">tetroShapes</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">shapeIdx</span><span class="p">]));</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">shape</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">rows</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">rows</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span><span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">rows</span><span class="p">[</span><span class="nx">x</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">colorIdx</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">})</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
 
-    draw() {
-        this.ctx.fillStyle = this.color;
-        this.shape.forEach( (row, y) =&gt; { 
-            row.forEach( (value, x) =&gt; {
-                if ( value &gt; 0 ) {
-                    this.ctx.fillRect(this.x + x, this.y + y, 1, 1);
-                }
-            })
-        })
-    }
+    <span class="nx">draw</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">shape</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span> 
+            <span class="nx">row</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">x</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">})</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
 
-    move(p) {
-        this.x = p.x;
-        this.y = p.y;
-        this.shape = p.shape;
-    }
-}
+    <span class="nx">move</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">shape</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">shape</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div></div>
 <p>게임이 시작되면 새로운 블록 인스턴스를 생성하고, 보드의 속성으로 할당한다. 블록은 게임보드와 마찬가지로 2차원 행렬구조이다. 블록 내에 this.x 와 this.y는 블록의 위치를 나타내는 기준점으로, 블록의 좌측상단 좌표의 (x, y)값이다. 캔버스 2D 컨텍스트에서 (0, 0)이 좌측상단임을 생각하자.</p>
 
@@ -583,93 +583,93 @@ class Piece {
 
 <h4 id="222-블록하강과-이동">2.2.2. 블록하강과 이동</h4>
 <p>블록은 아래로 한 칸 이동하기 전에 이동가능한지 확인해야 한다. 블록의 현재 좌표와 모양, 크기를 알고 있음을 이용하면 된다. 2차원 배열에서 한 칸 아래로 이동한 지점의 값이 0보다 크면, 블록이 있으므로 이동해서는 안된다. 이를 board.js에서 다음과 같이 구현했다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>//board.js
-class Board {
-    valid(p) {
-        return p.shape.every( (row, dy) =&gt; {
-            return row.every( (value, dx) =&gt; {
-                let x = p.x + dx;
-                let y = p.y + dy;
-                return (
-                    value === 0 || (this.isInsideWalls(x,y) &amp;&amp; this.isNotOccupied(x, y));
-                )
-            })
-        })
-    }
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//board.js</span>
+<span class="kd">class</span> <span class="nx">Board</span> <span class="p">{</span>
+    <span class="nx">valid</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">p</span><span class="p">.</span><span class="nx">shape</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span> <span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">dy</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">row</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span> <span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">dx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="kd">let</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="nx">dx</span><span class="p">;</span>
+                <span class="kd">let</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="nx">dy</span><span class="p">;</span>
+                <span class="k">return</span> <span class="p">(</span>
+                    <span class="nx">value</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isInsideWalls</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">isNotOccupied</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">));</span>
+                <span class="p">)</span>
+            <span class="p">})</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
 
-    isInsideWalls(x, y) {
-        return x &gt;= 0 &amp;&amp; x &lt; cols &amp;&amp; y &lt;= rows;
-    }
+    <span class="nx">isInsideWalls</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="nx">x</span> <span class="o">&lt;</span> <span class="nx">cols</span> <span class="o">&amp;&amp;</span> <span class="nx">y</span> <span class="o">&lt;=</span> <span class="nx">rows</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    isNotOccupied(x, y) {
-        return this.grid[y] &amp;&amp; this.grid[y][x] === 0;
-    }
+    <span class="nx">isNotOccupied</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">grid</span><span class="p">[</span><span class="nx">y</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">grid</span><span class="p">[</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span><span class="p">]</span> <span class="o">===</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
 
-    freeze() {
-        this.piece.shpae.forEach( (row, y) =&gt; {
-            row.forEach( (value, x) =&gt; {
-                if ( value &gt; 0 ) {
-                    this.grid[y + this.piece.y][x + this.piece.x] = value;
-                }
-            })
-        })
-    }
+    <span class="nx">freeze</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">piece</span><span class="p">.</span><span class="nx">shpae</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">y</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">row</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="nx">value</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="k">this</span><span class="p">.</span><span class="nx">grid</span><span class="p">[</span><span class="nx">y</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">piece</span><span class="p">.</span><span class="nx">y</span><span class="p">][</span><span class="nx">x</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">piece</span><span class="p">.</span><span class="nx">x</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">})</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
 
-    drop() {
-        let p = moves[key.down](this.piece);
-        if ( this.valid(p) ) {
-            this.piece.move(p);
-        }
-        else {
-            this.freeze();
-            this.clearLines();
-            if ( this.piece.y === 0 ) {
-                return false;
-            }
-            this.piece = this.next;
-            this.piece.ctx = this.ctx;
-            this.getNetPiece();
-        }
-    }
-}
+    <span class="nx">drop</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">moves</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">down</span><span class="p">](</span><span class="k">this</span><span class="p">.</span><span class="nx">piece</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">valid</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">piece</span><span class="p">.</span><span class="nx">move</span><span class="p">(</span><span class="nx">p</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">freeze</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">clearLines</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">piece</span><span class="p">.</span><span class="nx">y</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">piece</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">next</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">piece</span><span class="p">.</span><span class="nx">ctx</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">ctx</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">getNetPiece</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
 
-// main.js
-const moves = {
-    // 블록 인스턴스의 속성 중, ...p, 이후에 해당하는 값만 변경합니다.
-    [key.left]: p =&gt; ({...p, x: p.x - 1}),
-    [key.right]:p =&gt; ({...p, x: p.x + 1}),
-    [key.down]: p =&gt; ({...p, y: p.y + 1}),
-    [key.space]: p =&gt; ({...p, y: p.y + 1}),
-}
+<span class="c1">// main.js</span>
+<span class="kd">const</span> <span class="nx">moves</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// 블록 인스턴스의 속성 중, ...p, 이후에 해당하는 값만 변경합니다.</span>
+    <span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">left</span><span class="p">]:</span> <span class="nx">p</span> <span class="o">=&gt;</span> <span class="p">({...</span><span class="nx">p</span><span class="p">,</span> <span class="na">x</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">}),</span>
+    <span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">right</span><span class="p">]:</span><span class="nx">p</span> <span class="o">=&gt;</span> <span class="p">({...</span><span class="nx">p</span><span class="p">,</span> <span class="na">x</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}),</span>
+    <span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">down</span><span class="p">]:</span> <span class="nx">p</span> <span class="o">=&gt;</span> <span class="p">({...</span><span class="nx">p</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}),</span>
+    <span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">space</span><span class="p">]:</span> <span class="nx">p</span> <span class="o">=&gt;</span> <span class="p">({...</span><span class="nx">p</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="nx">p</span><span class="p">.</span><span class="nx">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">}),</span>
+<span class="p">}</span>
 
-function play() {
-    resetGame();
-    let piece = new Piece(ctx);
-    piece.draw();
-    board.piece = piece;
-    animate();
-}
+<span class="kd">function</span> <span class="nx">play</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">resetGame</span><span class="p">();</span>
+    <span class="kd">let</span> <span class="nx">piece</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Piece</span><span class="p">(</span><span class="nx">ctx</span><span class="p">);</span>
+    <span class="nx">piece</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+    <span class="nx">board</span><span class="p">.</span><span class="nx">piece</span> <span class="o">=</span> <span class="nx">piece</span><span class="p">;</span>
+    <span class="nx">animate</span><span class="p">();</span>
+<span class="p">}</span>
 
-function resetGame() {
-    board.reset();
-    time = {start: performance.now(), elapsed: 0, level: level[account.level]};
-}
+<span class="kd">function</span> <span class="nx">resetGame</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">board</span><span class="p">.</span><span class="nx">reset</span><span class="p">();</span>
+    <span class="nx">time</span> <span class="o">=</span> <span class="p">{</span><span class="na">start</span><span class="p">:</span> <span class="nx">performance</span><span class="p">.</span><span class="nx">now</span><span class="p">(),</span> <span class="na">elapsed</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">level</span><span class="p">:</span> <span class="nx">level</span><span class="p">[</span><span class="nx">account</span><span class="p">.</span><span class="nx">level</span><span class="p">]};</span>
+<span class="p">}</span>
 
-function animate(now = 0) {
-    time.elapsed = now - time.start;
-    if ( time.elapsed &gt; time.level ) {
-        time.start = now;
-        if ( !board.drop() ) {
-            gameOver();
-            return;
-        }
-        board.drop();
-    }
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    board.draw();
-    requestID = requestAnimationFrame(animate);
-}
+<span class="kd">function</span> <span class="nx">animate</span><span class="p">(</span><span class="nx">now</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">time</span><span class="p">.</span><span class="nx">elapsed</span> <span class="o">=</span> <span class="nx">now</span> <span class="o">-</span> <span class="nx">time</span><span class="p">.</span><span class="nx">start</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">time</span><span class="p">.</span><span class="nx">elapsed</span> <span class="o">&gt;</span> <span class="nx">time</span><span class="p">.</span><span class="nx">level</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">time</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="nx">now</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">board</span><span class="p">.</span><span class="nx">drop</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">gameOver</span><span class="p">();</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">board</span><span class="p">.</span><span class="nx">drop</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="nx">ctx</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+    <span class="nx">board</span><span class="p">.</span><span class="nx">draw</span><span class="p">();</span>
+    <span class="nx">requestID</span> <span class="o">=</span> <span class="nx">requestAnimationFrame</span><span class="p">(</span><span class="nx">animate</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre></div></div>
 
 <p>main.js의 moves 변수는 블록 인스턴스를 입력받으면, 속성 값중 x 또는 y를 수정한다. 다른 블록과 충돌하는지 확인하고 이동할 수 있다. board.js의 drop()함수는 다음과 같이 구성된다.</p>
@@ -765,7 +765,8 @@ A --- F["clearLines()"]
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/git/git-basic/" class="pagination--pager" title="Git의 사용법과 Workflow 이해
+">Next</a>
     
   </nav>
 
@@ -779,6 +780,52 @@ A --- F["clearLines()"]
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git/git-basic/" rel="permalink">Git의 사용법과 Workflow 이해
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-11T00:00:00+09:00">January 11, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Git의 사용법과 프로젝트에서 git 기반의 Workflow 이해
+</p>
+  </article>
+</div>
+
         
           
 
@@ -881,7 +928,7 @@ A --- F["clearLines()"]
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/javascript101/this/" rel="permalink">This
+        <a href="/javascript/this/" rel="permalink">This
 </a>
       
     </h2>
@@ -913,52 +960,6 @@ A --- F["clearLines()"]
 
 
     <p class="archive__item-excerpt" itemprop="description">내부 식별자 This의 맥락에 따른 바인딩 규칙
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/javascript101/recursion/" rel="permalink">재귀(Recursion)
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-01T00:00:00+09:00">January 1, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          3 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">재귀함수의 구성요소와 작동방식
 </p>
   </article>
 </div>

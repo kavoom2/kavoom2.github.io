@@ -26,7 +26,7 @@ tags:
 유의할 점은 설정파일도 제거할 수 있도록 반드시 **purge**를 실행해야 한다는 것이다.   
 
 다음 명령어를 실행하고 재부팅하면 해결된다.
-````
+```console
 $ sudo apt remove --purge alsa-base    
 $ sudo apt remove --purge pulseaudio    
      

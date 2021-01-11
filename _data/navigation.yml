@@ -3,8 +3,11 @@ main:
   - title: "ReadMe"
     url: /readme/
 
+  - title: "Posts"
+    url: https://kavoom2.github.io/
+
   - title: "Categories"
     url: /categories
     
-  - title: "Javascript101"
-    url: /categories/Javascript101
+  - title: "Tags"
+    url: /tags

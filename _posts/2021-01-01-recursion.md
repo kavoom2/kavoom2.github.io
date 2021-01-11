@@ -6,7 +6,7 @@ classes: wide
 last_modified_at: 2021-01-04T21:15:00
 use_mermaid: true
 categories:
-  - Javascript101
+  - Javascript
 ---
 
 ## 1. 재귀란?

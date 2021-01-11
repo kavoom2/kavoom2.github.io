@@ -5,7 +5,7 @@ classes: wide
 
 last_modified_at: 2021-01-04T21:00:00
 categories:
-  - Javascript101
+  - Javascript
 ---
 
 

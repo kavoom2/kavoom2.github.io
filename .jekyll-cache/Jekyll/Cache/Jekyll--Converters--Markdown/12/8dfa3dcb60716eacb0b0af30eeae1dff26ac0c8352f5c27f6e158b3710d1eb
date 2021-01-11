@@ -1,0 +1,93 @@
+I"�<h2 id="github-원격저장소-연결">GitHub 원격저장소 연결</h2>
+<p>원격 저장소를 사용하고 관리할 줄 알아야 공동작업 중 생기는 문제들을 줄일 수 있을 것이다. 다른 사용자와 원격저장소를 연결하는 방법을 배워보자.</p>
+
+<p>다른 사람의 리모트저장소를 추가하는 방법은 다음과 같다. name에는 저장할 별칭을 적어주면 된다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add &lt;name&gt; &lt;repro url for other user fork&gt;
+</code></pre></div></div>
+<p>현재 연결되어있는 원격저장소를 확인할 수 있다. 아래 예제에서는 페어의 별칭과 깃허브 리포지토리도 출력되는 것을 볼 수 있다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote -v
+
+// 해당명령어 입력 시 출력예시
+origin	https://github.com/kavoom2/simple-git-workflow.git (fetch)
+origin	https://github.com/kavoom2/simple-git-workflow.git (push)
+pair	https://github.com/Pangho297/simple-git-workflow (fetch)
+pair	https://github.com/Pangho297/simple-git-workflow (push)
+</code></pre></div></div>
+<p>상대방의 원격저장소에서 데이터를 가져오려면 다음과 같은 명령어를 실행한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git pull &lt;name&gt; &lt;branch name&gt; // ex) git pull pair master
+</code></pre></div></div>
+
+<h2 id="git-기반-workflow-관리">Git 기반 Workflow 관리</h2>
+<p><strong>영상 https://www.youtube.com/watch?v=EzcF6RX8RrQ</strong>를 바탕으로 정리한 내용이다. 자세한 내용이 알고 싶다면 직접 해보자.</p>
+
+<p>git 기반 Workflow에는 5가지 종류의 브랜치가 있다. 항상 유지되는 메인 브랜치와 일정기간 동안만 유지되는 보조 브랜치이다. main와 develop을 메인 브랜치, 그 외의 브랜치를 보조 브랜치라고 한다.</p>
+
+<ul>
+  <li>main: 제품으로 출시할 수 있는 브랜치</li>
+  <li>develop: 다음 출시버전을 개발하는 브랜치</li>
+  <li>feature: 신규기능을 개발하는 브랜치</li>
+  <li>release: 이번 출시버전을 준비하는 브랜치</li>
+  <li>hotfix: 이번 출시버전에서 발생한 문제를 수정하는 브랜치</li>
+</ul>
+
+<p>우선 메인 브랜치 만들어야 한다. 브랜치 생성과 이동 명령어는 다음과 같다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch &lt;branch name&gt; // 브랜치 생성
+$ git checkout &lt;branch name&gt; // 브랜치 이동
+$ git checkout -b &lt;branch name&gt; // 브랜치 생성 후 이동
+</code></pre></div></div>
+
+<p>브랜치 생성은 현재 브랜치를 기준으로 한다는 것을 잊지말자.  <br />
+개발을 하는 메인 브렌치 develop를 만든다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -b develop
+</code></pre></div></div>
+<p>기능추가 등 개발작업은 develop에서 수행한다. 개발을 완료하면 출시를 위한 준비를 해야한다. 수정한 코드는 보조브랜치 Relase에 커밋한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
+$ git checkout -b release/0.1
+// 이후 relase/0.1에서 git add 와 commmit를 한다.
+</code></pre></div></div>
+
+<p>다음과 같이 devlop으로 이동하여 보조브랜치를 병합한다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
+$ git merge release/0.1 
+</code></pre></div></div>
+<p>Release 보조브랜치가 문제가 없으면 메인 브랜치로 이동하여 다시 한 번 병합한다. 이 때 <strong>병합을 fast forwarding으로 하면, 작업 히스토리가 남지 않는다.</strong> 따라서 <strong>–no-ff</strong> 명령어를 사용하여 의도적으로 히스토리를 커밋 메시지로 남긴다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout main
+$ git merge --no-ff release/0.1
+</code></pre></div></div>
+<p>합병했다는 기록이 남았으니 보조브랜치는 삭제하고, 메인 브랜치에 현재 버전을 태그로 남긴다. 불가피하게 이전버전으로 돌아가야 할 경우 유용할 것이다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch -d release/0.1
+$ git tag 0.1
+</code></pre></div></div>
+
+<p>복습할 겸 short과 long라는 신규기능을 만들어보자. develop으로 이동하여 다음과 같이 브랜치를 만들자. 신규기능을 구현한 코드를 커밋하려면 해당 보조브랜치로 이동한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
+$ git checkout -b feature/short
+$ git checkout -b feature/long
+</code></pre></div></div>
+
+<p>신규로 구현한 기능들은 develop에서 병합한다. 병합할 때는 ff를 사용하지 않도록 해야한다. 그리고, 출시버전을 확인할 수 있도록 release 보조 브랜치를 만들자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 신규기능들을 develop에 병합
+$ git checkout develop
+$ git merge --no-ff feature/short
+$ git merge --no-ff feature/long
+
+// 불필요한 브랜치 제거
+$ git branch -r feature/short
+$ git branch -r feature/long
+
+// 버전 히스토리를 표시할 보조브랜치 생성.
+//도중에 수정해야할 코드는 이 보조브랜치에 커밋한다.
+$ git checkout -b release/1.0
+$ git checkout develop
+$ git merge --no-ff release/1.0
+</code></pre></div></div>
+<p>긴급하게 수정해야할 문제(hot-fix)가 없다면, main 브랜치에서 최종적으로 병합을 하고 불필요한 브랜치를 정리한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout master
+$ git merge --no-ff release/1.0
+$ git tag 1.0
+$ git branch -d release/1.0
+</code></pre></div></div>
+:ET

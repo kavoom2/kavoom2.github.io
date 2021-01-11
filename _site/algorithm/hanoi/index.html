@@ -143,9 +143,11 @@
         <ul class="visible-links"><li class="masthead__menu-item">
               <a href="/readme/">ReadMe</a>
             </li><li class="masthead__menu-item">
+              <a href="https://kavoom2.github.io/">Posts</a>
+            </li><li class="masthead__menu-item">
               <a href="/categories">Categories</a>
             </li><li class="masthead__menu-item">
-              <a href="/categories/Javascript101">Javascript101</a>
+              <a href="/tags">Tags</a>
             </li></ul>
         
         <button class="greedy-nav__toggle hidden" type="button">
@@ -381,21 +383,21 @@
 <p><strong>문제 주소:</strong> https://programmers.co.kr/learn/courses/30/lessons/12946?language=javascript#</p>
 
 <p>다음은 프로그래머스에 나온 알고리즘 문제를 일부 변형한 해답이다. 문제에서는 이동경로만 배열로 제시하도록 했는데, 어떤 원반이 이동했는지 알 수 있도록 수정했다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>function solution(n) {
-const result = [];
-  function hanoi(n, from, via, to) {
-    if ( n === 1) {
-      result.push([n, from, to]); // base case: 1번 원반이 from에서 to로 이동
-    }
-    else {
-      hanoi(n-1, from, to, via);
-      result.push([n, from, to]); // recursion: n번 원반이 from에서 to로 이동
-      hanoi(n-1, via, from, to);
-    };
-};
-hanoi(n, "A", "B", "C"); 
-return result;
-};
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">function</span> <span class="nx">hanoi</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="nx">via</span><span class="p">,</span> <span class="nx">to</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="nx">n</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">n</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">]);</span> <span class="c1">// base case: 1번 원반이 from에서 to로 이동</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="nx">hanoi</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">,</span> <span class="nx">via</span><span class="p">);</span>
+      <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">([</span><span class="nx">n</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">]);</span> <span class="c1">// recursion: n번 원반이 from에서 to로 이동</span>
+      <span class="nx">hanoi</span><span class="p">(</span><span class="nx">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="nx">via</span><span class="p">,</span> <span class="k">from</span><span class="p">,</span> <span class="nx">to</span><span class="p">);</span>
+    <span class="p">};</span>
+<span class="p">};</span>
+<span class="nx">hanoi</span><span class="p">(</span><span class="nx">n</span><span class="p">,</span> <span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">);</span> 
+<span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre></div></div>
 
 
@@ -471,7 +473,7 @@ return result;
       
   <nav class="pagination">
     
-      <a href="/javascript101/this/" class="pagination--pager" title="This
+      <a href="/javascript/this/" class="pagination--pager" title="This
 ">Previous</a>
     
     
@@ -490,6 +492,52 @@ return result;
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/git/git-basic/" rel="permalink">Git의 사용법과 Workflow 이해
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-11T00:00:00+09:00">January 11, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Git의 사용법과 프로젝트에서 git 기반의 Workflow 이해
+</p>
+  </article>
+</div>
+
         
           
 
@@ -592,7 +640,7 @@ return result;
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/javascript101/this/" rel="permalink">This
+        <a href="/javascript/this/" rel="permalink">This
 </a>
       
     </h2>
@@ -624,52 +672,6 @@ return result;
 
 
     <p class="archive__item-excerpt" itemprop="description">내부 식별자 This의 맥락에 따른 바인딩 규칙
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/javascript101/recursion/" rel="permalink">재귀(Recursion)
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-01T00:00:00+09:00">January 1, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          3 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">재귀함수의 구성요소와 작동방식
 </p>
   </article>
 </div>
