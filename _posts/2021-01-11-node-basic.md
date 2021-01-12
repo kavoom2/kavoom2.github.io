@@ -69,8 +69,8 @@ package.json에서 scripts는 npm으로 실행할 수 있는 명령어를 정의
 }
 
 // terminal
-$ npm test // test.js를 실행
-$ npm start // app.js을 실행
+$ npm run test // test.js를 실행
+$ npm run start // app.js을 실행
 ````
 
 ## dev Dependencies vs dependencies
