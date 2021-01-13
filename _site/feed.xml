@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-13T16:52:29+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">ESLint 설치와 사용법</title><link href="https://kavoom2.github.io/node.js/Eslint/" rel="alternate" type="text/html" title="ESLint 설치와 사용법" /><published>2021-01-13T00:00:00+09:00</published><updated>2021-01-14T03:00:00+09:00</updated><id>https://kavoom2.github.io/node.js/Eslint</id><content type="html" xml:base="https://kavoom2.github.io/node.js/Eslint/">&lt;p&gt;개발자는 일상의 불편하고 비효율적인 문제들을 개선하는 사람이다. 하지만 그런 개발자라도 장문의 코드를 직접 작성해야한다. 더욱이 프로젝트에서는 여러 사람과 공동으로 작업한다. 합쳐진 결과물이 뒤죽박죽이면 숨이 턱 막힐 것이다. ESlint는 이러한 문제를 해결할 수 있도록 도와주는 도구이다. 어떻게 코드를 작성할지 규범을 정해놓으면, 그 패턴을 기반으로 문법오류 등을 표시하거나 교정한다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-13T22:08:31+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">ESLint 설치와 사용법</title><link href="https://kavoom2.github.io/node.js/Eslint/" rel="alternate" type="text/html" title="ESLint 설치와 사용법" /><published>2021-01-13T00:00:00+09:00</published><updated>2021-01-14T03:00:00+09:00</updated><id>https://kavoom2.github.io/node.js/Eslint</id><content type="html" xml:base="https://kavoom2.github.io/node.js/Eslint/">&lt;p&gt;개발자는 일상의 불편하고 비효율적인 문제들을 개선하는 사람이다. 하지만 그런 개발자라도 장문의 코드를 직접 작성해야한다. 더욱이 프로젝트에서는 여러 사람과 공동으로 작업한다. 합쳐진 결과물이 뒤죽박죽이면 숨이 턱 막힐 것이다. ESlint는 이러한 문제를 해결할 수 있도록 도와주는 도구이다. 어떻게 코드를 작성할지 규범을 정해놓으면, 그 패턴을 기반으로 문법오류 등을 표시하거나 교정한다.&lt;/p&gt;
 
 &lt;h2 id=&quot;eslint-설치&quot;&gt;ESLint 설치&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://eslint.org/docs/user-guide/getting-started&quot;&gt;&lt;strong&gt;공식문서&lt;/strong&gt;&lt;/a&gt;를 보고 ESlint를 설치하고 사용해보자.  &lt;br /&gt;
@@ -85,7 +85,7 @@ Node.js를 설치한 상태에서 진행한다. ESlint를 사용하려는 프로
 
 &lt;p&gt;VS Code에서 ESLint 확장프로그램을 설치하면 저장할 때마다 자동으로 검사와 교정을 할 수 있다. 자세한 내용은 &lt;a href=&quot;https://feynubrick.github.io/2019/05/20/eslint-prettier.html&quot;&gt;&lt;strong&gt;링크&lt;/strong&gt;&lt;/a&gt;를 참고하자.&lt;/p&gt;
 
-&lt;h2 id=&quot;reference&quot;&gt;Reference&lt;/h2&gt;
+&lt;h2 id=&quot;관련-포스팅&quot;&gt;관련 포스팅&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://www.daleseo.com/js-eslint/&quot;&gt;ESLint로 소스코드의 문제찾기&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;https://feynubrick.github.io/2019/05/20/eslint-prettier.html&quot;&gt;VS Code에서 ESlint와 Prettier 함께 사용하기&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;https://tech.kakao.com/2019/12/05/make-better-use-of-eslint/&quot;&gt;ESLint 조금 더 잘 활용하기&lt;/a&gt;&lt;/p&gt;
@@ -93,7 +93,84 @@ Node.js를 설치한 상태에서 진행한다. ESlint를 사용하려는 프로
 &lt;h2 id=&quot;eslint-프리셋&quot;&gt;ESLint 프리셋&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://github.com/prettier/eslint-config-prettier&quot;&gt;Prettier&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;https://github.com/airbnb/javascript&quot;&gt;Airbnb Style Guide&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://github.com/google/eslint-config-google&quot;&gt;Google Style Guide&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Node.js" /><category term="ESLint" /><summary type="html">ESLint기반의 코드 규범화</summary></entry><entry><title type="html">Git의 사용법과 Workflow 이해</title><link href="https://kavoom2.github.io/git/git-basic/" rel="alternate" type="text/html" title="Git의 사용법과 Workflow 이해" /><published>2021-01-11T00:00:00+09:00</published><updated>2021-01-12T04:00:00+09:00</updated><id>https://kavoom2.github.io/git/git-basic</id><content type="html" xml:base="https://kavoom2.github.io/git/git-basic/">&lt;p&gt;upstream은 fork를 한 원격저장소의 원본이 있는 원격저장소이다.
+&lt;a href=&quot;https://github.com/google/eslint-config-google&quot;&gt;Google Style Guide&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Node.js" /><category term="ESLint" /><summary type="html">ESLint기반의 코드 규범화</summary></entry><entry><title type="html">TIL - call, apply, bind 유용한 예제</title><link href="https://kavoom2.github.io/javascript/apply-call-bind-practice/" rel="alternate" type="text/html" title="TIL - call, apply, bind 유용한 예제" /><published>2021-01-13T00:00:00+09:00</published><updated>2021-01-14T07:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/apply-call-bind-practice</id><content type="html" xml:base="https://kavoom2.github.io/javascript/apply-call-bind-practice/">&lt;h2 id=&quot;call-apply-활용&quot;&gt;call, apply 활용&lt;/h2&gt;
+&lt;p&gt;call, apply 함수를 사용하면 유사객체도 객체의 메소드를 사용할 수 있다.
+querySelector 리턴값 NodeList는 대표적인 유사객체이다. 배열 내부에 길이 속성이 있어 length 메소드를 사용할 수 있지만, 배열의 고유 메소드인 map, forEach 등은 직접 사용할 수 없다. 하지만 아래 예제에서 볼 수 있듯이 apply, call, bind로 메소드를 빌려서 사용할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;allDivs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelectorAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// nodeList는 유사배열이다.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;allDivs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 유사배열이지만 길이 속성이 있으므로 nodeList 길이를 출력한다&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;Arrray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prototype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;allDivs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;className&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;bind-활용&quot;&gt;bind 활용&lt;/h2&gt;
+&lt;h3 id=&quot;1-이벤트-핸들러event-handler&quot;&gt;1. 이벤트 핸들러(Event Handler)&lt;/h3&gt;
+&lt;p&gt;bind는 this에 바인딩한 새로운 함수를 리턴한다. 즉시 실행하는 apply, call과의 차이점이다.
+아래 예제에서 이벤트 핸들러에서 this는 HTML element인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;button&amp;gt;...&amp;lt;/button&amp;gt;&lt;/code&gt;을 가리킨다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#btn&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;handleClick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;handleClick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// &amp;lt;button&amp;gt;...&amp;lt;/button&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;이는 this를 사전에 바인딩 해놓으면 해결할 수 있다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;btn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;onclick&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;handleClick&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// console.log(this)는 obj를 출력함&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Hire Assessment 4번 문제를 풀 때, 이전에는 이벤트핸들러를 익명함수 내부에서 실행시켰다. 위 내용을 바탕으로 bind를 사용하여 수정하였다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;// TODO: 여기에 코드를 작성합니다.&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ulElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;querySelector&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;#container&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;liElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;aElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;divElement&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;createElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;div&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;aElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;classList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;aElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;firstName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lastName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;aElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addEventListener&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;printRole&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 익명함수 대신 bind 함수를 사용함.&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;divElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;classList&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;divElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;textContent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;liElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;aElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;divElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;ulElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;liElement&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;2-settimeout&quot;&gt;2. setTimeout&lt;/h3&gt;
+&lt;p&gt;setTimeout의 콜백함수는 다른 실행 컨텍스트에서 실행된다. this를 호출하면 전역객체 Windows를 출력한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;area&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;width&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;printArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;area&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;printAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;board&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Rectangle&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;board&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this가 windows 전역객체이므로 Error 발생&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;예전에는 익명함수를 사용했지만, 이제 bind를 사용할 수 있다. 콜백함수의 this를 인스턴스로 바인딩한다. 프로토타입 함수 내부이므로 this를 bind 함수의 인자로 전달하면 된다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시 1. bind&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;printAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;다른 방법으로는 화살표 함수가 있다. 화살표 함수의 this는 상위스코프의 this를 가리킨다는 것을 활용하자. 화살표 함수의 상위스코프는 인스턴스의 프로토타입 함수이기 때문에 this가 인스턴스로 바인딩된다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예시 2. 화살표 함수&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;printAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;printArea&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><category term="TIL" /><category term="this" /><category term="apply" /><category term="bind" /><category term="call" /><summary type="html">call, apply, bind의 활용법</summary></entry><entry><title type="html">Git의 사용법과 Workflow 이해</title><link href="https://kavoom2.github.io/git/git-basic/" rel="alternate" type="text/html" title="Git의 사용법과 Workflow 이해" /><published>2021-01-11T00:00:00+09:00</published><updated>2021-01-12T04:00:00+09:00</updated><id>https://kavoom2.github.io/git/git-basic</id><content type="html" xml:base="https://kavoom2.github.io/git/git-basic/">&lt;p&gt;upstream은 fork를 한 원격저장소의 원본이 있는 원격저장소이다.
 origin master에서 origin은 원격저장소, main은 브랜치다. 자주 사용하던 git push origin main은 원격저장소 origin의 브랜치 main으로로 커밋을 전송한다는 것이다.&lt;/p&gt;
 &lt;div class=&quot;mermaid&quot;&gt;
 graph LR 
@@ -1047,117 +1124,4 @@ $O(n!)$과 같은 팩토리얼 형태&lt;/p&gt;
   &lt;li&gt;https://stackabuse.com/bubble-sort-and-cocktail-shaker-sort-in-javascript/&lt;/li&gt;
   &lt;li&gt;https://loving-wright-d0eedb.netlify.app/blog/selection-sort-in-javascript&lt;/li&gt;
   &lt;li&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><summary type="html">공간복잡도와 시간복잡도 그리고 정렬 알고리즘</summary></entry><entry><title type="html">재귀(Recursion)</title><link href="https://kavoom2.github.io/javascript/recursion/" rel="alternate" type="text/html" title="재귀(Recursion)" /><published>2021-01-01T00:00:00+09:00</published><updated>2021-01-05T06:15:00+09:00</updated><id>https://kavoom2.github.io/javascript/recursion</id><content type="html" xml:base="https://kavoom2.github.io/javascript/recursion/">&lt;h2 id=&quot;1-재귀란&quot;&gt;1. 재귀란?&lt;/h2&gt;
-&lt;p&gt;컴퓨터 과학에서 재귀(recursion)은 자신을 정의할 때 자기 자신을 참조하는 것이라고 합니다. 프로그래밍에서 재귀함수는 자기 자신을 호출하도록 정의한 함수입니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;1-1-재귀함수의-구성요소&quot;&gt;1. 1. 재귀함수의 구성요소&lt;/h3&gt;
-&lt;p&gt;재귀함수는 베이스(base case)와 재귀단계(recursive case)로 구성됩니다.
-x를 n 제곱하는 함수 pow(x, n)을 예시로 재귀함수의 구성과 작동원리를 이해해봅시다.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Base case&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;pow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Recursive case&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이 함수는 다음 단계로 나누어져 실행됩니다.&lt;/p&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-graph LR
-A[&quot;pow(x, n)&quot;] --&amp;gt; B{&quot;n === 1?&quot;}
-B -- &quot;No&quot; --&amp;gt; C(&quot;x * pow(x, n-1)&quot;)
-C -- &quot;recursive call until n === 1&quot; --&amp;gt; A
-B -- &quot;Yes&quot; --&amp;gt; D(&quot;return x&quot;)
-&lt;/div&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Base case( n=== 1 ): 즉시 x에 해당하는 값을 반환합니다.&lt;/p&gt;
-
-  &lt;p&gt;Recursive case( n !== 1): pow(x, n) 은 x * pow(x, n-1)으로 표현할 수 있습니다. 즉, pow(x, n)은 pow(x, n-1)을 참조해야 하며, Base case에 도달할 때까지 서브함수를 참조하는 재귀단계를 반복합니다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;따라서, pow(2, 4)를 실행하면 다음과 같은 4단계로 재귀함수를 호출합니다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;stage 1: pow(2, 4) = 2 * pow(2, 3)   &lt;br /&gt;
-stage 2: pow(2, 3) = 2 * pow(2, 2)  &lt;br /&gt;
-stage 3: pow(2, 2) = 2 * pow(2, 1)  &lt;br /&gt;
-stage 4: pow(2, 1) = 2&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;1-2-서브호출subcall과-실행-컨텍스트execution-context&quot;&gt;1. 2. 서브호출(subcall)과 실행 컨텍스트(Execution Context)&lt;/h3&gt;
-
-&lt;p&gt;pow(2, 4)를 실행하면 순차적으로 pow(2, 3)에서 pow(2, 1)까지 생성됩니다. 실행 중인 함수의 정보는 함수의 실행 컨텍스트(Execution Context)에 저장됩니다. 함수 호출 1회마다 하나의 실행 컨텍스트가 실행됩니다. 예제에서는 총 4개의 컨텍스트가 생성됩니다.&lt;/p&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt;
-graph TB
-subgraph step 4
-G[&quot;context: {x: 2, n: 1}&quot;] --- H[&quot;context {x: 2, n: 2}&quot;]
-H --- I[&quot;context: {x: 2, n: 3}&quot;]
-I --- J[&quot;context: {x: 2, n: 4}&quot;]
-end
-
-subgraph step 3
-D[&quot;context: {x: 2, n: 2}&quot;] --- E[&quot;context: {x: 2, n: 3}&quot;]
-E --- F[&quot;context: {x: 2, n: 4}&quot;]
-end
-
-subgraph step 2
-B[&quot;context: {x: 2, n: 3}&quot;] --- C[&quot;context: {x: 2, n: 4}&quot;]
-end
-
-subgraph step 1
-A[&quot;context: {x: 2, n: 4}&quot;]
-end
-&lt;/div&gt;
-
-&lt;p&gt;첫 호출 pow(2, 4)를 계산하려면 새로운 서브 호출(subcall) pow(2, 3)을 만들어야 합니다. 새로 만들어진 실행 컨텍스트는 스택 최상단에 위치하게 됩니다. 이전 실행 컨텍스트인 pow(2, 4)는 중지된 상태로 남게됩니다. 동일한 과정을 pow(2, 1)까지 반복합니다.&lt;/p&gt;
-
-&lt;center&gt;&lt;div class=&quot;mermaid&quot;&gt;
-graph TB
-subgraph step 5-8
-A[&quot;context: {x: 2, n: 1}&quot;] --&quot;return 2, destroy current context&quot;--&amp;gt; B[&quot;context {x: 2, n: 2}&quot;]
-B --&quot;return 4, destroy current context&quot;--&amp;gt; C[&quot;context: {x: 2, n: 3}&quot;]
-C --&quot;return 8, destroy current context&quot;--&amp;gt; D[&quot;context: {x: 2, n: 4}&quot;]
-D --&quot;return 16&quot;, destroy current context--&amp;gt; E(&quot;result = 16&quot;)
-end
-&lt;/div&gt;&lt;/center&gt;
-&lt;p&gt;pow(2, 1)이 실행되면 상황이 달라집니다. base case(n === 1)을 만족하여 2가 반환됩니다. 서브호출 없이 함수가 종료되었죠. 함수가 종료되면 상응하는 실행컨텍스트는 메모리에서 폐기됩니다. 최상단 컨텍스트가 삭제되면, 바로 아래에 있는 컨텍스트가 최상단 컨텍스트가 되어 반환값을 받아 다시 실행됩니다. 이 과정을 실행 컨텍스트가 스택에 쌓일 때의 역순으로 반복하게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;실행 컨텍스트는 그 함수가 종료되어 폐기되기 전까지 메모리를 차지하게 됩니다. 따라서, 재귀함수를 사용할 땐 메모리 요구사항을 유의해야 합니다. 보통 위와 같은 단편적인 문제는 반복문 기반의 알고리즘을 사용하는 것이 효과적입니다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;함수를 호출할 때 함수의 입력값 (매개 변수: argument), 리턴값, 리턴됐을 때 돌아갈 위치값 등을 스택에 저장한다. 재귀함수를 사용하면 함수가 끝나지 않은 채 연속적으로 함수를 호출하므로 스택에 메모리가 쌓이게 된다. 이 때문에 스택의 최대 크기 이상의 메모리가 쌓이게 되면 스택 오버 플로우가 일어나게 된다. 잦은 점프의 반복으로 성능이 저하될 위험도 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;1-3-꼬리-재귀tail-recursion&quot;&gt;1. 3. 꼬리 재귀(Tail recursion)&lt;/h3&gt;
-&lt;p&gt;꼬리재귀는 재귀함수의 단점인 지나친 메모리 점유율을 해결하기 위한 호출방식 중 하나입니다. 재귀함수의 실행결과가 연산에 사용되지 않고 바로 반환되도록 하여 이전 함수의 상태를 유지할 필요가 없도록 함수를 작성하는 것입니다. 꼬리 재귀가 정상적으로 동작하려면 플랫폼에서 TGO(Tail Call Optimization)을 지원해야 합니다.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 일반 재귀함수&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 꼬리 재귀함수&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factorialTail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;acc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factorialTail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;acc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;factorialTail&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;꼬리재귀 함수는 acc(accumulator)라는 인자를 하나 더 가지고 있습니다. 보이지는 않지만, 컴파일러가 꼬리재귀 함수를 반복문으로 바꾸어줍니다. 실제 동작 또한 스택을 한 번만 호출하게 됩니다.&lt;/p&gt;
-
-&lt;p&gt;자세한 내용은 레퍼런스 중 꼬리재귀 함수 관련 내용을 참조할 것.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-reference&quot;&gt;2. Reference&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;https://ko.javascript.info/recursion&lt;/li&gt;
-  &lt;li&gt;https://bozeury.tistory.com/entry/꼬리-재귀-최적화Tail-Recursion&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><summary type="html">재귀함수의 구성요소와 작동방식</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><summary type="html">공간복잡도와 시간복잡도 그리고 정렬 알고리즘</summary></entry></feed>

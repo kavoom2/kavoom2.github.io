@@ -1,0 +1,77 @@
+I"�-<h2 id="call-apply-활용">call, apply 활용</h2>
+<p>call, apply 함수를 사용하면 유사객체도 객체의 메소드를 사용할 수 있다.
+querySelector 리턴값 NodeList는 대표적인 유사객체이다. 배열 내부에 길이 속성이 있어 length 메소드를 사용할 수 있지만, 배열의 고유 메소드인 map, forEach 등은 직접 사용할 수 없다. 하지만 아래 예제에서 볼 수 있듯이 apply, call, bind로 메소드를 빌려서 사용할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">allDivs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">)</span> <span class="c1">// nodeList는 유사배열이다.</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">allDivs</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="c1">// 유사배열이지만 길이 속성이 있으므로 nodeList 길이를 출력한다</span>
+<span class="nx">Arrray</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">map</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">allDivs</span><span class="p">,</span> <span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">el</span><span class="p">.</span><span class="nx">className</span><span class="p">;</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h2 id="bind-활용">bind 활용</h2>
+<h3 id="1-이벤트-핸들러event-handler">1. 이벤트 핸들러(Event Handler)</h3>
+<p>bind는 this에 바인딩한 새로운 함수를 리턴한다. 즉시 실행하는 apply, call과의 차이점이다.
+아래 예제에서 이벤트 핸들러에서 this는 HTML element인 <code class="language-plaintext highlighter-rouge">&lt;button&gt;...&lt;/button&gt;</code>을 가리킨다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">let</span> <span class="nx">btn</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#btn</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">btn</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">handleClick</span><span class="p">;</span>
+<span class="kd">function</span> <span class="nx">handleClick</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// &lt;button&gt;...&lt;/button&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>이는 this를 사전에 바인딩 해놓으면 해결할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">btn</span><span class="p">.</span><span class="nx">onclick</span> <span class="o">=</span> <span class="nx">handleClick</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span> <span class="c1">// console.log(this)는 obj를 출력함</span>
+</code></pre></div></div>
+<p>Hire Assessment 4번 문제를 풀 때, 이전에는 이벤트핸들러를 익명함수 내부에서 실행시켰다. 위 내용을 바탕으로 bind를 사용하여 수정하였다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">test4</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// TODO: 여기에 코드를 작성합니다.</span>
+  <span class="kd">let</span> <span class="nx">ulElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">"</span><span class="s2">#container</span><span class="dl">"</span><span class="p">);</span>
+
+  <span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="p">(</span><span class="nx">user</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">liElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">li</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">aElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">a</span><span class="dl">"</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">divElement</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">"</span><span class="s2">div</span><span class="dl">"</span><span class="p">);</span>
+
+    <span class="nx">aElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">aElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">firstName</span><span class="p">}</span><span class="s2"> </span><span class="p">${</span><span class="nx">user</span><span class="p">.</span><span class="nx">lastName</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="nx">aElement</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">"</span><span class="s2">click</span><span class="dl">"</span><span class="p">,</span> <span class="nx">printRole</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">user</span><span class="p">));</span> <span class="c1">// 익명함수 대신 bind 함수를 사용함.</span>
+
+    <span class="nx">divElement</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="dl">"</span><span class="s2">age</span><span class="dl">"</span><span class="p">);</span>
+    <span class="nx">divElement</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">age</span><span class="p">;</span>
+
+    <span class="nx">liElement</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">aElement</span><span class="p">,</span> <span class="nx">divElement</span><span class="p">);</span>
+    <span class="nx">ulElement</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">liElement</span><span class="p">);</span>
+  <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="2-settimeout">2. setTimeout</h3>
+<p>setTimeout의 콜백함수는 다른 실행 컨텍스트에서 실행된다. this를 호출하면 전역객체 Windows를 출력한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Rectangle</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">area</span> <span class="o">=</span> <span class="nx">width</span> <span class="o">*</span> <span class="nx">height</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">printArea</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">area</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">printAsync</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">printArea</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">board</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Rectangle</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">);</span>
+<span class="nx">board</span><span class="p">.</span><span class="nx">printAsync</span><span class="p">()</span> <span class="c1">// this가 windows 전역객체이므로 Error 발생</span>
+</code></pre></div></div>
+<p>예전에는 익명함수를 사용했지만, 이제 bind를 사용하면 된다. 콜백함수의 this를 인스턴스로 바인딩한다. 클래스 프로토타입 함수 내부이므로 this를 bind 함수의 인자로 전달하면 된다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">printAsync</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">printArea</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>다른 방법으로는 화살표 함수가 있다. 화살표 함수의 this는 상위스코프의 this를 가리킨다는 것을 활용하자. 화살표 함수의 상위스코프는 인스턴스의 프로토타입 함수이기 때문에 this가 인스턴스로 바인딩된다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">printAsync</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nx">setTimeout</span><span class="p">(</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">printArea</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

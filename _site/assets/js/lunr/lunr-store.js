@@ -64,4 +64,10 @@ var store = [{
         "tags": ["ESLint"],
         "url": "https://kavoom2.github.io/node.js/Eslint/",
         "teaser": null
+      },{
+        "title": "TIL - call, apply, bind 유용한 예제",
+        "excerpt":"call, apply 활용 call, apply 함수를 사용하면 유사객체도 객체의 메소드를 사용할 수 있다. querySelector 리턴값 NodeList는 대표적인 유사객체이다. 배열 내부에 길이 속성이 있어 length 메소드를 사용할 수 있지만, 배열의 고유 메소드인 map, forEach 등은 직접 사용할 수 없다. 하지만 아래 예제에서 볼 수 있듯이 apply, call, bind로 메소드를 빌려서 사용할...","categories": ["Javascript"],
+        "tags": ["TIL","this","apply","bind","call"],
+        "url": "https://kavoom2.github.io/javascript/apply-call-bind-practice/",
+        "teaser": null
       }]
