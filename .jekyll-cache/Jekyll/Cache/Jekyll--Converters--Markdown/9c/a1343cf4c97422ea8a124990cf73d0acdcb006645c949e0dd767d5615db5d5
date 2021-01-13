@@ -1,0 +1,97 @@
+I"9#<p>개발자는 일상의 불편하고 비효율적인 문제들을 개선하는 사람이다. 하지만 그런 개발자라도 장문의 코드를 직접 작성해야한다. 더욱이 프로젝트에서는 여러 사람과 공동으로 작업한다. 합쳐진 결과물이 뒤죽박죽이면 숨이 턱 막힐 것이다. ESlint는 이러한 문제를 해결할 수 있도록 도와주는 도구이다. 어떻게 코드를 작성할지 규범을 정해놓으면, 그 패턴을 기반으로 문법오류 등을 표시하거나 교정한다.</p>
+
+<h2 id="eslint-설치">ESLint 설치</h2>
+<p><a href="https://eslint.org/docs/user-guide/getting-started"><strong>공식문서</strong></a>를 보고 ESlint를 설치하고 사용해보자.  <br />
+Node.js를 설치한 상태에서 진행한다. ESlint를 사용하려는 프로젝트 디렉토리에서 다음 명령어를 실행한다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">eslint</span> <span class="o">--</span><span class="nx">save</span> <span class="o">-</span><span class="nx">dev</span>
+</code></pre></div></div>
+<p>ESLint 패키지를 설치하였다. 아직 ESLint 환경설정 파일이 생성되어 않았으므로 초기화를 해야한다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npx</span> <span class="nx">eslint</span> <span class="o">--</span><span class="nx">init</span>
+</code></pre></div></div>
+<p>위 명령어를 입력하면 선택지가 나온다. 과제 스프린트에서는 다음과 같이 선택하도록 안내했다. 추후에 프로젝트를 진행한다면, 프레임워크나 타입스크립트 사용여부 등은 각자 상황에 맞게 선택하면 될 것이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>질문</th>
+      <th>답변</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>How would you like to use ESLint?</td>
+      <td>To check syntax and find problems</td>
+    </tr>
+    <tr>
+      <td>Waht type of modules does your project use?</td>
+      <td>Common JS</td>
+    </tr>
+    <tr>
+      <td>Which framework does your project use?</td>
+      <td>None of these</td>
+    </tr>
+    <tr>
+      <td>Does your project use Typescript?</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <td>Where does your code run?</td>
+      <td>Node</td>
+    </tr>
+    <tr>
+      <td>What format do you want your config file to be in?</td>
+      <td>원하는 확장자 선택</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="eslint-설정">ESLint 설정</h2>
+<p>초기화가 끝나면 프로젝트 최상위 경로에 .eslintrc.js 파일이 생성된다. 확장자는 마지막 선택지에서 무엇은 선택하느냐에 따라 달라지니 크게 신경쓰지 않아도 된다. 이제 eslintrc 설정파일을 열어보자.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">env</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">browser</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">commonjs</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">es2021</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">node</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="dl">"</span><span class="s2">mocha</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">extends</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eslint:recommended</span><span class="dl">"</span><span class="p">,</span>
+    <span class="dl">"</span><span class="s2">parserOptions</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">ecmaVersion</span><span class="dl">"</span><span class="p">:</span> <span class="mi">12</span>
+    <span class="p">},</span>
+    <span class="dl">"</span><span class="s2">rules</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">"</span><span class="s2">semi</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">always</span><span class="dl">"</span><span class="p">],</span>
+        <span class="dl">"</span><span class="s2">quotes</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">error</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">double</span><span class="dl">"</span><span class="p">],</span>
+        <span class="dl">"</span><span class="s2">no-unused-vars</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="s2">off</span><span class="dl">"</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+<p><a href="https://eslint.org/docs/user-guide/configuring#specifying-environments"><strong>env</strong></a>는 어떤 환경에서 스크립트를 실행할 것인지 설정한다. 과제 스프린트에서는 Node.js와 mocha를 의존하므로 위와 같이 실행환경을 추가하였다.</p>
+
+<p><a href="https://eslint.org/docs/user-guide/configuring#extending-configuration-files"><strong>extends</strong></a>는 ESLint 설정을 확장할 때 사용한다. ESLint에서 권장하는 규칙들이 적용된 eslint:recommended으로 설정했다. prettier, airbnb, google 등 다른 사용자의 설정을 불러올 수 있다.</p>
+
+<p><a href="https://eslint.org/docs/rules/"><strong>rules</strong></a>는 프로젝트에서 강제하고 싶은 규칙들을 설정한다. extends에 설정한 기능을 덮어씌운다. HA 과제 스크립트에서 선언한 함수들이 사용되지 않아 no-unused-vars 에러가 발생하였다. 이 오류를 rules에서 검사하지 않는 것으로 설정하였다.</p>
+
+<p>검사를 실행하려면 터미널에서 다음 명령어를 입력하면 된다. 일괄적으로 특정 파일들을 검사하고 싶다면 package.json에 검사할 코드를 작성해도 된다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// terminal</span>
+<span class="nx">npx</span> <span class="nx">eslint</span> <span class="nx">파일명</span><span class="p">.</span><span class="nx">js</span>
+<span class="nx">npx</span> <span class="nx">eslint</span> <span class="nx">파일명</span><span class="p">.</span><span class="nx">js</span> <span class="o">--</span><span class="nx">fix</span> <span class="c1">// 자동으로 코드를 교정합니다.</span>
+
+<span class="c1">// 또는 package.json</span>
+<span class="dl">"</span><span class="s2">scripts</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">lint</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">eslint 폴더명/**/파일명.js</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>VS Code에서 ESLint 확장프로그램을 설치하면 저장할 때마다 자동으로 검사와 교정을 할 수 있다. 자세한 내용은 <a href="https://feynubrick.github.io/2019/05/20/eslint-prettier.html"><strong>링크</strong></a>를 참고하자.</p>
+
+<h2 id="reference">Reference</h2>
+<p><a href="https://www.daleseo.com/js-eslint/">ESLint로 소스코드의 문제찾기</a>  <br />
+<a href="https://feynubrick.github.io/2019/05/20/eslint-prettier.html">VS Code에서 ESlint와 Prettier 함께 사용하기</a>  <br />
+<a href="https://tech.kakao.com/2019/12/05/make-better-use-of-eslint/">ESLint 조금 더 잘 활용하기</a></p>
+
+<h2 id="eslint-프리셋">ESLint 프리셋</h2>
+<p><a href="https://github.com/prettier/eslint-config-prettier">Prettier</a>  <br />
+<a href="https://github.com/airbnb/javascript">Airbnb Style Guide</a>  <br />
+<a href="https://github.com/google/eslint-config-google">Google Style Guide</a></p>
+:ET

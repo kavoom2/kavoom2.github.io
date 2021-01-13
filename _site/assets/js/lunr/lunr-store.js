@@ -25,7 +25,7 @@ var store = [{
       },{
         "title": "This",
         "excerpt":"1. this란 this는 모든 함수 스코프(scope) 내에서 자동으로 설정되는 식별자입니다. 실행 컨텍스트(Execution Context)의 구성요소로 함수가 실행되는 동안 이용할 수 있습니다. 어느 지점에서 this를 호출하였는지에 따라 컨텍스트가 달라집니다. 2. 바인딩 규칙 규칙은 다음과 같이 5가지로 구분할 수 있습니다. 바인딩 우선순위는 명시적 바인딩 - 암시적 바인딩 - 기본 바인딩 순입니다. 구분 호출방식...","categories": ["Javascript"],
-        "tags": [],
+        "tags": ["this"],
         "url": "https://kavoom2.github.io/javascript/this/",
         "teaser": null
       },{
@@ -48,8 +48,8 @@ var store = [{
         "teaser": null
       },{
         "title": "Git의 사용법과 Workflow 이해",
-        "excerpt":"GitHub 원격저장소 연결 원격 저장소를 사용하고 관리할 줄 알아야 공동작업 중 생기는 문제들을 줄일 수 있을 것이다. 다른 사용자와 원격저장소를 연결하는 방법을 배워보자. 다른 사람의 리모트저장소를 추가하는 방법은 다음과 같다. name에는 저장할 별칭을 적어주면 된다. $ git remote add &lt;name&gt; &lt;repro url for other user fork&gt; 현재 연결되어있는 원격저장소를 확인할...","categories": ["Git"],
-        "tags": [],
+        "excerpt":"upstream은 fork를 한 원격저장소의 원본이 있는 원격저장소이다. origin master에서 origin은 원격저장소, main은 브랜치다. 자주 사용하던 git push origin main은 원격저장소 origin의 브랜치 main으로로 커밋을 전송한다는 것이다. graph LR A([\"upstream\"]) --&gt;|fork| B([\"user Repository\"]) B --&gt;|clone| C([\"local Storage\"]) GitHub 원격저장소 연결 원격 저장소를 사용하고 관리할 줄 알아야 공동작업 중 생기는 문제들을 줄일...","categories": ["Git"],
+        "tags": ["workflow"],
         "url": "https://kavoom2.github.io/git/git-basic/",
         "teaser": null
       },{
@@ -57,5 +57,11 @@ var store = [{
         "excerpt":"Node.js는 Javascript가 동작할 수 있는 환경 또는 프로그램인 런타임(Runtime) 중 하나이다. Javascript 코드를 브라우저에서 실행할 수도 있고, Node.js에서도 실행할 수 있는 것. 다음 예제에서는 터미널에서 Node.js로 스크립트를 실행한 결과를 출력한다. // runnode.js function testFunction(arg) { console.log(\"Arg is \", arg); } testFunction(arg) // terminal $ Node runnode.js // \"Arg is 20\"...","categories": ["Node.js"],
         "tags": ["package.json","nvm","npm"],
         "url": "https://kavoom2.github.io/node.js/node-basic/",
+        "teaser": null
+      },{
+        "title": "ESLint 설치와 사용법",
+        "excerpt":"개발자는 일상의 불편하고 비효율적인 문제들을 개선하는 사람이다. 하지만 그런 개발자라도 장문의 코드를 직접 작성해야한다. 더욱이 프로젝트에서는 여러 사람과 공동으로 작업한다. 합쳐진 결과물이 뒤죽박죽이면 숨이 턱 막힐 것이다. ESlint는 이러한 문제를 해결할 수 있도록 도와주는 도구이다. 어떻게 코드를 작성할지 규범을 정해놓으면, 그 패턴을 기반으로 문법오류 등을 표시하거나 교정한다. ESLint 설치 공식문서를...","categories": ["Node.js"],
+        "tags": ["ESLint"],
+        "url": "https://kavoom2.github.io/node.js/Eslint/",
         "teaser": null
       }]

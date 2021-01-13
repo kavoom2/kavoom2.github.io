@@ -357,11 +357,20 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="github-원격저장소-연결">GitHub 원격저장소 연결</h2>
+        <p>upstream은 fork를 한 원격저장소의 원본이 있는 원격저장소이다.
+origin master에서 origin은 원격저장소, main은 브랜치다. 자주 사용하던 git push origin main은 원격저장소 origin의 브랜치 main으로로 커밋을 전송한다는 것이다.</p>
+<div class="mermaid">
+graph LR 
+A(["upstream"]) --&gt;|fork| B(["user Repository"])
+B --&gt;|clone| C(["local Storage"])
+</div>
+
+<h2 id="github-원격저장소-연결">GitHub 원격저장소 연결</h2>
 <p>원격 저장소를 사용하고 관리할 줄 알아야 공동작업 중 생기는 문제들을 줄일 수 있을 것이다. 다른 사용자와 원격저장소를 연결하는 방법을 배워보자.</p>
 
-<p>다른 사람의 리모트저장소를 추가하는 방법은 다음과 같다. name에는 저장할 별칭을 적어주면 된다.</p>
+<p>다른 사람의 리모트저장소를 추가하는 방법은 다음과 같다. name에는 저장할 별칭을 적어주면 된다. 삭제는 remove 명령어를 사용한다.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add &lt;name&gt; &lt;repro url for other user fork&gt;
+$ git remote remove &lt;name&gt; or &lt;url&gt;
 </code></pre></div></div>
 <p>현재 연결되어있는 원격저장소를 확인할 수 있다. 아래 예제에서는 페어의 별칭과 깃허브 리포지토리도 출력되는 것을 볼 수 있다.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote -v
@@ -369,11 +378,14 @@
 // 해당명령어 입력 시 출력예시
 origin	https://github.com/kavoom2/simple-git-workflow.git (fetch)
 origin	https://github.com/kavoom2/simple-git-workflow.git (push)
-pair	https://github.com/Pangho297/simple-git-workflow (fetch)
-pair	https://github.com/Pangho297/simple-git-workflow (push)
+pair	https://github.com/lotteryman/simple-git-workflow (fetch)
+pair	https://github.com/lotteryman/simple-git-workflow (push)
 </code></pre></div></div>
 <p>상대방의 원격저장소에서 데이터를 가져오려면 다음과 같은 명령어를 실행한다.</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git pull &lt;name&gt; &lt;branch name&gt; // ex) git pull pair master
+</code></pre></div></div>
+<p>저장소의 깃 사용내역을 확인하고 싶으면 log 명령어를 사용하자. 누가 언제 무엇을 어느 활동을 했는지 알 수 있다. 커밋, 머지 등 작업내역을 직접 확인가능하다.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log
 </code></pre></div></div>
 
 <h2 id="git-기반-workflow-관리">Git 기반 Workflow 관리</h2>
@@ -456,6 +468,25 @@ $ git branch -d release/1.0
       <footer class="page__meta">
         
         
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#workflow" class="page__taxonomy-item" rel="tag">workflow</a>
+    
+    </span>
+  </p>
+
+
 
 
   
@@ -528,6 +559,52 @@ $ git branch -d release/1.0
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/node.js/Eslint/" rel="permalink">ESLint 설치와 사용법
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-13T00:00:00+09:00">January 13, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">ESLint기반의 코드 규범화
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
         <a href="/node.js/node-basic/" rel="permalink">Node.js와 관련 툴
 </a>
       
@@ -559,7 +636,7 @@ $ git branch -d release/1.0
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">Node.js 사용에 필요한 툴과 package.json의 역할 이해
+    <p class="archive__item-excerpt" itemprop="description">Node.js 사용에 필요한 도구와 package.json의 역할
 </p>
   </article>
 </div>
@@ -652,52 +729,6 @@ $ git branch -d release/1.0
 
 
     <p class="archive__item-excerpt" itemprop="description">우분투에서 가짜출력이 나오거나, 스피커 상호작용은 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/algorithm/hanoi/" rel="permalink">하노이의 탑
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-06T00:00:00+09:00">January 6, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">재귀 호출의 대표적인 예시 하노이의 탑
 </p>
   </article>
 </div>
