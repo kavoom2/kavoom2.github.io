@@ -10,7 +10,6 @@ classes: wide
 
 last_modified_at: 2021-01-08T24:00:00
 use_mermaid: true
-use_math: true
 
 categories:
 - Toy
