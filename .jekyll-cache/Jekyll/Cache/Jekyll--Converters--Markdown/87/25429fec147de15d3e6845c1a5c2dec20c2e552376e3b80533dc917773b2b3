@@ -1,0 +1,203 @@
+I"�l<p>자바스크립트에서 객체기반 프로그래밍은 클래스와 인스턴스로 구현하고 있다. 클래스 용법을 배우기에 앞서 레거시 코드로 구현하면서 원리를 이해하자.</p>
+
+<h2 id="1-인스턴트-생성-패턴instantiation-patterns">1. 인스턴트 생성 패턴(Instantiation Patterns)</h2>
+<p>자바스크립트의 객체를 Pseudoclassical 방식이라고 한다. pseudo는 “가짜”라는 뜻을 지니고 있다. 직역하면 가짜로 Class 개념을 구현한다는 뜻이다. 자바스크립트에서는 어떤 편법(?)으로 클래스를 구현했는지 한 번 살펴보자.</p>
+
+<h3 id="1-1-functional">1. 1. Functional</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">Instance</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">printAll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`이름은 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">, 나이는 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="s2">살입니다`</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">Instance</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">james</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">james</span><span class="dl">"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">peter</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">peter</span><span class="dl">"</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="nx">james</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 james, 나이는 20살입니다</span>
+<span class="nx">peter</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 peter, 나이는 35살입니다</span>
+</code></pre></div></div>
+<p>이 방식은 james와 peter의 메소드가 별개로 존재한다. 즉, 인스턴스 갯수가 많아질 수록 동일한 구동을 하는 함수가 메모리에서 차지하는 공간이 많아지게 되는 것. 이러한 문제를 다음에 나올 Functional Shared 방식으로 해결할 수 있다.</p>
+
+<h3 id="1-2-functional-shared">1. 2. Functional Shared</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">extend</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">to</span><span class="p">,</span> <span class="k">from</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="k">from</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">to</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="k">from</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">personMethods</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">personMethods</span><span class="p">.</span><span class="nx">printAll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`이름은 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">, 나이는 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="s2">살입니다`</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">personMethods</span><span class="p">.</span><span class="nx">changeName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">Instance</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+    
+    <span class="nx">extend</span><span class="p">(</span><span class="nx">Instance</span><span class="p">,</span> <span class="nx">personMethods</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">Instance</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">james</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">james</span><span class="dl">"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">peter</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">peter</span><span class="dl">"</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="nx">peter</span><span class="p">.</span><span class="nx">changeName</span><span class="p">(</span><span class="dl">"</span><span class="s2">adam</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">james</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 james, 나이는 20살입니다</span>
+<span class="nx">peter</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 adam, 나이는 35살입니다</span>
+<span class="nx">james</span><span class="p">.</span><span class="nx">printAll</span> <span class="o">===</span> <span class="nx">peter</span><span class="p">.</span><span class="nx">printAll</span> <span class="c1">// true</span>
+</code></pre></div></div>
+<p>메소드를 personMethods.printAll, personMethods.changeName의 주소값으로 전달하면 서로 다른 인스턴스도 공유할 수 있다. 인스턴스 james와 peter는 parentMethods에서 메소드를 공유하기 때문에 보다 적은 메모리를 사용한다.</p>
+
+<h3 id="1-3-prototypal">1. 3. Prototypal</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">personMethods</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">personMethods</span><span class="p">.</span><span class="nx">printAll</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`이름은 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">, 나이는 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">age</span><span class="p">}</span><span class="s2">살입니다`</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nx">personMethods</span><span class="p">.</span><span class="nx">changeName</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">Instance</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">personMethods</span><span class="p">);</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">Instance</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">james</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">james</span><span class="dl">"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">peter</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">peter</span><span class="dl">"</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="nx">peter</span><span class="p">.</span><span class="nx">changeName</span><span class="p">(</span><span class="dl">"</span><span class="s2">adam</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">james</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 james, 나이는 20살입니다</span>
+<span class="nx">peter</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 adam, 나이는 35살입니다</span>
+<span class="nx">james</span><span class="p">.</span><span class="nx">printAll</span> <span class="o">===</span> <span class="nx">peter</span><span class="p">.</span><span class="nx">printAll</span> <span class="c1">// true</span>
+</code></pre></div></div>
+<p>Object.create를 사용하면 지정한 객체를 프로토타입 객체로 갖는 객체를 만들 수 있다. 예제에서는 Isntace가 personMethods를 프로토타입 객체로 갖는 객체가 되도록 하였다. 인스턴스마다 메소드 함수의 주소값을 할당하는 함수를 만들 필요가 없으니 훨씬 간결해졌다.</p>
+
+<h3 id="1-4-pseudoclassical">1. 4. Pseudoclassical</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">Person</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="nx">Instance</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="nx">age</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">james</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">james</span><span class="dl">"</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">peter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">(</span><span class="dl">"</span><span class="s2">peter</span><span class="dl">"</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="nx">peter</span><span class="p">.</span><span class="nx">changeName</span><span class="p">(</span><span class="dl">"</span><span class="s2">adam</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">james</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 james, 나이는 20살입니다</span>
+<span class="nx">peter</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 이름은 adam, 나이는 35살입니다</span>
+<span class="nx">james</span><span class="p">.</span><span class="nx">printAll</span> <span class="o">===</span> <span class="nx">peter</span><span class="p">.</span><span class="nx">printAll</span> <span class="c1">// true</span>
+</code></pre></div></div>
+<p>new 연산자를 사용하면 인스턴스를 만들 수 있다.</p>
+
+<h2 id="2-es6-class와-super-키워드">2. ES6 Class와 super 키워드</h2>
+<p>Class 문법은 ECMAScript6에서 구현한 객체지향 프로그래밍 방식이다. Class 사용법은 어느정도 알고 있으니 클래스 상속기능 등 알아두어야 할 기능을 정리한다.</p>
+<h3 id="2-1-private-필드-선언">2. 1. Private 필드 선언</h3>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Rectangle</span> <span class="p">{</span>
+    <span class="err">#</span><span class="nx">height</span><span class="p">;</span>
+    <span class="err">#</span><span class="nx">width</span><span class="p">;</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">height</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span>
+        <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">printArea</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">height</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">box</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Rectangle</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">box</span><span class="p">.</span><span class="nx">width</span><span class="p">)</span> <span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">box</span><span class="p">.</span><span class="err">#</span><span class="nx">width</span><span class="p">)</span> <span class="c1">// SyntaxError: Private field "#width" must be declared in an enclosing class</span>
+<span class="nx">box</span><span class="p">.</span><span class="nx">printArea</span><span class="p">()</span> <span class="c1">// 5000</span>
+</code></pre></div></div>
+<p>인스턴스의 속성은 Public 필드를 기본설정으로 한다. Private 필드로 선언하고자 하는 변수 앞에 #을 붙이면, 외부에서 임의로 변경하지 못하도록 할 수 있다. 예제 마지막 부분에서 볼 수 있듯이 프로토타입 객체의 메소드로는 접근할 수 있다.</p>
+
+<h3 id="2-2-sub-classing">2. 2. Sub classing</h3>
+<p>extends 키워드로 클래스를 선언하면 다른 클래스의 자식 클래스를 생성할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">speak</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> makes a noise.`</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Dog</span> <span class="kd">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// name 매개변수를 전달한다.</span>
+    <span class="p">}</span>
+    <span class="nx">speak</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> barks.`</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Human</span> <span class="kd">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+
+<span class="p">}</span> <span class="c1">// 부모 클래스의 생성자와 메소드가 동일하다면 비워둘 수 있다.</span>
+
+<span class="nx">james</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Human</span><span class="p">(</span><span class="dl">"</span><span class="s2">james</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">bulldog</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="dl">"</span><span class="s2">navi</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">james</span><span class="p">.</span><span class="nx">speark</span><span class="p">()</span> <span class="c1">// james makes a noise.</span>
+<span class="nx">bulldog</span><span class="p">.</span><span class="nx">speak</span><span class="p">()</span> <span class="c1">// navi barks.</span>
+</code></pre></div></div>
+
+<h3 id="2-3-super를-통한-상위-클래스-속성-메소드-호출">2. 3. super()를 통한 상위 클래스 속성, 메소드 호출</h3>
+<p>super는 상위 클래스의 this로 바인딩해준다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Polygon</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">height</span><span class="p">,</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">=</span> <span class="nx">height</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span>
+    <span class="p">}</span>
+    <span class="nx">printArea</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Square</span> <span class="kd">extends</span> <span class="nx">Polygon</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">length</span><span class="p">,</span> <span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">(</span><span class="nx">length</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">name</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nx">getArea</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">printAll</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`넓이가 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">height</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span><span class="p">}</span><span class="s2">인 </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">입니다.`</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">square</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Square</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="dl">"</span><span class="s2">정사각형</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">square</span><span class="p">.</span><span class="nx">printAll</span><span class="p">()</span> <span class="c1">// 넓이가 25인 정사각형입니다.</span>
+</code></pre></div></div>
+<p>부모 클래스의 this.height, this.width, this.name에 값이 할당되었음을 확인하였다. 또한, 부모 클래스의 함수를 실행할 수 있다. 객체기반 프로그래밍의 특징 중 하나가 다형성이었다. 같은 메소드여도 다른 동작을 수행하도록 작성한 예제를 보자.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Human</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">sleep</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">: Z...z..z..zz`</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Student</span> <span class="kd">extends</span> <span class="nx">Human</span> <span class="p">{</span>
+    <span class="nx">sleep</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">.</span><span class="nx">sleep</span><span class="p">()</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">은(는) 침을 흘리며 자고있다.`</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">cosnt</span> <span class="nx">james</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Student</span><span class="p">(</span><span class="dl">"</span><span class="s2">James</span><span class="dl">"</span><span class="p">)</span>
+<span class="nx">james</span><span class="p">.</span><span class="nx">sleep</span><span class="p">()</span> <span class="c1">// James: Z...z..z..zz</span>
+              <span class="c1">// James은(는) 침을 흘리며 자고있다.</span>
+</code></pre></div></div>
+:ET

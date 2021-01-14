@@ -1,0 +1,63 @@
+I"V<h2 id="3-인스턴트-생성-패턴instantiation-patterns">3. 인스턴트 생성 패턴(Instantiation Patterns)</h2>
+<p>Pseudoclassical</p>
+
+<ul>
+  <li>
+    <p>자바스크립트에서 Object를 생성하는 여러가지 방법</p>
+  </li>
+  <li>
+    <p>자바스크립트에서 Prototype은 무엇이며 왜 사용해야하는가</p>
+  </li>
+</ul>
+
+<h2 id="3-프로토타입-체인prototype-chain">3. 프로토타입 체인(Prototype Chain)</h2>
+
+<p>// legacy code (원리를 알 수 있다)
+Student = function(name) {
+    Human.call(this, name); // 부모 객체까지 this가 전달되지 않으므로, 바인딩해야 한다.
+}
+Student.prototype = Object.Create(Human.prototype)
+Student.prototype.constructor = Student;
+Student.prototype.learn = function() {}</p>
+
+<p>// OOP Class
+class Human {
+    constructor(name) {
+        this.name = name;
+    }
+    sleep() {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>} } }
+</code></pre></div></div>
+
+<p>class Student extends Human {
+    constructor(name) {]
+        super(name); // super는 상위객체로 this를 바인딩시켜준다
+    }
+    learn() {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>} }
+</code></pre></div></div>
+
+<p>다형성: 자식 객체가 부모 객체와 동일한 메서드를 가지더라도 기능을 변형시키는 것. (유닛은 움직이지만 공중유닛은 지형경계를 무시한다. 지상유닛은 충돌크기를 가지고 있다)</p>
+
+<p>Student.prototype.sleep = function() {
+    Human.prototype.sleep.apply(this)
+    additional functions…
+}</p>
+
+<p>Class Human {
+    constructor(name) {
+        this.name = name;
+    }
+    sleep() {
+    }
+}</p>
+
+<p>Class Student extends Human {
+    sleep() {
+        super.sleep
+        additional functions…
+    }
+}</p>
+:ET

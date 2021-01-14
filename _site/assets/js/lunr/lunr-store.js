@@ -12,7 +12,7 @@ var store = [{
         "teaser": null
       },{
         "title": "복잡도(Complexity)",
-        "excerpt":"(수정 중인 TIL.) 1. 복잡도 처리해야 할 데이터의 양이 방대해지면서, 알고리즘의 효율성 차이가 커질 수 밖에 없습니다. 가령, 데이터를 정렬하더라도 정렬 알고리즘마다 정렬에 걸리는 시간은 천차만별입니다. 방대한 데이터를 더 빨리 처리할 수 있는 방법을 선택해야겠습니다. 서로 다른 알고리즘을 비교할 때, 하드웨어와 소프트웨어 환경이 천차만별이라면 결과를 신뢰하기 힘들겁니다. 계산복잡도는 이러한 환경을...","categories": ["Javascript"],
+        "excerpt":"(아직도 작성 중) 1. 복잡도 처리해야 할 데이터의 양이 방대해지면서, 알고리즘의 효율성 차이가 커질 수 밖에 없습니다. 가령, 데이터를 정렬하더라도 정렬 알고리즘마다 정렬에 걸리는 시간은 천차만별입니다. 방대한 데이터를 더 빨리 처리할 수 있는 방법을 선택해야겠습니다. 서로 다른 알고리즘을 비교할 때, 하드웨어와 소프트웨어 환경이 천차만별이라면 결과를 신뢰하기 힘들겁니다. 계산복잡도는 이러한 환경을...","categories": ["Javascript"],
         "tags": [],
         "url": "https://kavoom2.github.io/javascript/complexity/",
         "teaser": null
@@ -65,9 +65,21 @@ var store = [{
         "url": "https://kavoom2.github.io/node.js/Eslint/",
         "teaser": null
       },{
-        "title": "TIL - call, apply, bind 유용한 예제",
+        "title": "call, apply, bind 유용한 예제",
         "excerpt":"call, apply 활용 call, apply 함수를 사용하면 유사객체도 객체의 메소드를 사용할 수 있다. querySelector 리턴값 NodeList는 대표적인 유사객체이다. 배열 내부에 길이 속성이 있어 length 메소드를 사용할 수 있지만, 배열의 고유 메소드인 map, forEach 등은 직접 사용할 수 없다. 하지만 아래 예제에서 볼 수 있듯이 apply, call, bind로 메소드를 빌려서 사용할...","categories": ["Javascript"],
         "tags": ["TIL","this","apply","bind","call"],
         "url": "https://kavoom2.github.io/javascript/apply-call-bind-practice/",
+        "teaser": null
+      },{
+        "title": "인스턴트 생성 패턴(Instantiation Patterns)과 클래스(Class)",
+        "excerpt":"1. 인스턴트 생성 패턴(Instantiation Patterns) 자바스크립트의 객체를 Pseudoclassical 방식이라고 한다. pseudo는 “가짜”라는 뜻을 지니고 있다. 직역하면 가짜로 Class 개념을 구현한다는 뜻이다. 자바스크립트에서는 어떤 편법(?)으로 클래스를 구현했는지 한 번 살펴보자. 1. 1. Functional const Person = function(name, age) { let Instance = {}; Instance.name = name; Instance.age = age; Instance.printAll =...","categories": ["Javascript"],
+        "tags": ["class","instance"],
+        "url": "https://kavoom2.github.io/javascript/ingeritance-patterns/",
+        "teaser": null
+      },{
+        "title": "객체지향 프로그래밍(Object Oriented Programming)",
+        "excerpt":"일생생활을 돌아보면 수많은 대상이 있다. 동물, 물건 등이 있다. 대상들은 저마다 특성과 기능을 가지고 있는데, 가령 스마트폰을 예로 들어보자. 대상의 형태, 색상 등을 나타내는 “특성”과 어플리케이션 실행, 종료 등 “기능”을 가지고 있다. 그리고 같은 핸드폰이라도 아이폰과 갤럭시 노트 S20의 특성과 기능을 차이가 있다. 객체지향 프로그래밍은 프로그램을 이러한 대상들의 모임으로 보는...","categories": ["Javascript"],
+        "tags": ["OOP"],
+        "url": "https://kavoom2.github.io/javascript/object-oriented-programming/",
         "teaser": null
       }]

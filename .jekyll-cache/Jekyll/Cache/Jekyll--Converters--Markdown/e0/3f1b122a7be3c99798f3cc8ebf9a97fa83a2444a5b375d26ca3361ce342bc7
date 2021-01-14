@@ -1,0 +1,117 @@
+I"3<p>일생생활을 돌아보면 수많은 대상이 있다. 동물, 물건 등이 있다. 대상들은 저마다 특성과 기능을 가지고 있는데, 가령 핸드폰을 예로 들어보자. 대상의 형태, 색상 등을 나타내는 “특성”과 어플리케이션 실행, 종료 등 “기능”을 가지고 있다. 그리고 같은 핸드폰이라도 아이폰과 갤럭시 노트 S20의 특성과 기능을 차이가 있다.</p>
+
+<p>객체지향 프로그래밍은 프로그램을 이러한 대상들의 모임으로 보는 방법론이다. 자바스크립트에서는 ES6 클래스 문법으로 이를 구현하였다. 예제를 통해 주요한 특징 4가지를 살펴보자.</p>
+
+<h2 id="2-객체-지향-프로그래밍의-특징">2. 객체 지향 프로그래밍의 특징</h2>
+<h3 id="2-1-캡슐화encapsulation">2. 1. 캡슐화(Encapsulation)</h3>
+<p>캡슐화는 변수와 함수를 하나의 단위로 묶는 것이다. 자바스크립트에서는 클래스라는 개념으로 구현하고 있다. 클래스의 인스턴스를 생성하면 클래스 안에 담겨있는 특징, 기능에 쉽게 접근할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Speaker</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">volume</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">volumeUp</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">volume</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">volumeDown</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">volume</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">printVolume</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">volume</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">printColor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
+
+<span class="nx">speaker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Speaker</span><span class="p">(</span><span class="dl">"</span><span class="s2">black</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">speaker</span><span class="p">.</span><span class="nx">volumeUp</span><span class="p">()</span>
+<span class="nx">speaker</span><span class="p">.</span><span class="nx">printVolume</span><span class="p">()</span> <span class="c1">// 40</span>
+<span class="nx">speaker</span><span class="p">.</span><span class="nx">printColor</span><span class="p">()</span> <span class="c1">// "black"</span>
+
+<span class="nx">speaker</span><span class="p">.</span><span class="nx">volume</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nx">speaker</span><span class="p">.</span><span class="nx">printVolume</span><span class="p">()</span> <span class="c1">// 0</span>
+</code></pre></div></div>
+<p>클래스 스피커 안에 각 인스턴스의 특징(색상, 볼륨크기)은 변수, 기능은 메소드로 구현된다. 인스턴스 speaker에서 각 기능을 쉽게 사용한 것을 확인할 수 있다.</p>
+
+<p>캡슐화는 구체적인 정보가 외부로 노출되는 것을 최소화하기도 한다. 이를 정보은닉이라고 하는데, 클래스 외부에서 특정 값에 직접 접근하지 못하고, 오직 메소드로만 접근 가능하도록 하는 것이다.</p>
+
+<p>그런데, 예제 마지막 부분에서 인스턴스 speaker.volume으로 접근하여 값을 변경하였다. Private 속성을 사용하면 외부로부터 접근을 제한할 수 있다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Speaker</span> <span class="p">{</span>
+    <span class="err">#</span><span class="nx">volume</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="nx">color</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">volumeUp</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">volume</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">volumeDown</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">volume</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">printVolume</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">volume</span>
+    <span class="p">}</span>
+    <span class="nx">printColor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">color</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span> 
+
+<span class="nx">speaker</span><span class="p">.</span><span class="nx">volumeUp</span><span class="p">()</span>
+<span class="nx">speaker</span><span class="p">.</span><span class="nx">printVolume</span><span class="p">()</span> <span class="c1">// 60</span>
+<span class="nx">speaker</span><span class="p">.</span><span class="err">#</span><span class="nx">volume</span> <span class="c1">// Syntax Error: Private Field</span>
+</code></pre></div></div>
+<p>속성명 앞에 #을 붙이면 Private필드로 동작한다. 특이한 점은 자식 인스턴스도 부모 클래스의 private 속성에 접근할 수 없다는 것이다. 자세한 내용은 다음 <a href="https://ui.toast.com/weekly-pick/ko_20200312"><strong>링크</strong></a>를 참조하길 바란다.</p>
+
+<h3 id="2-2-추상화abstraction">2. 2. 추상화(Abstraction)</h3>
+<p>스피커 볼륨을 조절한다고 하자. 사용자는 버튼을 조작하면서 볼륨을 조절한다. 하지만, 어떤 원리로 스피커 볼륨이 커지거나 줄어드는지 정확히 알지 못한다. 객체의 복잡한 기능을 사용자가 손쉽게 사용할 수 있도록 구현하는 작업을 추상화라고 한다.</p>
+
+<h3 id="2-3-상속inheritance">2. 3. 상속(Inheritance)</h3>
+<p>상속은 부모 클래스의 특징과 속성을 자식 클래스에게 그대로 물려주는 것을 말한다. 개, 사람, 고양이는 동물이고, 이들 모두 말할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">talk</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> is talking`</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Human</span> <span class="kd">extends</span> <span class="nx">Animal</span> <span class="p">{}</span>
+<span class="kd">class</span> <span class="nx">Cat</span> <span class="kd">extends</span> <span class="nx">Animal</span> <span class="p">{}</span>
+<span class="kd">class</span> <span class="nx">Dog</span> <span class="kd">extends</span> <span class="nx">Animal</span> <span class="p">{}</span>
+
+<span class="kd">let</span> <span class="nx">james</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Human</span><span class="p">(</span><span class="dl">"</span><span class="s2">james</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">navi</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Cat</span><span class="p">(</span><span class="dl">"</span><span class="s2">navi</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">baekgoo</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Dog</span><span class="p">(</span><span class="dl">"</span><span class="s2">baekgoo</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">james</span><span class="p">.</span><span class="nx">talk</span><span class="p">()</span> <span class="c1">// james is talking</span>
+<span class="nx">navi</span><span class="p">.</span><span class="nx">talk</span><span class="p">()</span> <span class="c1">// navi is talking</span>
+<span class="nx">baekgoo</span><span class="p">.</span><span class="nx">talk</span><span class="p">()</span> <span class="c1">// baekgoo is talking</span>
+
+<span class="nx">james</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">talk</span> <span class="o">===</span> <span class="nx">Animal</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">talk</span> <span class="c1">// true</span>
+</code></pre></div></div>
+<p>예제에서는 사람, 개, 고양이에게 어떠한 기능을 설정하지 않았음에도, talk()가 정상적으로 작동한다. 이는 부모 클래스의 기능이 상속되었기 때문인데, 예제 마지막 줄을 보면 <code class="language-plaintext highlighter-rouge">Human.__proto__</code>가 Animal 클래스와 동일</p>
+<h3 id="2-4-다형성polymorphism">2. 4. 다형성(Polymorphism)</h3>
+<p>다형성은 하나의 메소드를 다양한 방법으로 동작시킬 수 있도록 하는 것을 말한다. 사람, 개, 고양이는 모두 동물이며 말을 할 수 있지만 그 방식에는 차이가 있다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">talk</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="s2">`</span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2"> is talking`</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Human</span> <span class="kd">extends</span> <span class="nx">Animal</span> <span class="p">{</span>
+    <span class="nx">talk</span><span class="p">(</span><span class="nx">word</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">super</span><span class="p">.</span><span class="nx">talk</span><span class="p">()}</span><span class="s2">, "</span><span class="p">${</span><span class="nx">word</span><span class="p">}</span><span class="s2">"`</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+
+</code></pre></div></div>
+:ET

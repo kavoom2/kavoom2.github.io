@@ -1,0 +1,66 @@
+I""	<p>자바스크립트에서 객체기반 프로그래밍은 클래스와 인스턴스로 구현하고 있다. 클래스 용법을 배우기에 앞서 레거시 코드로 구현하면서 원리를 이해하자.</p>
+
+<h2 id="인스턴트-생성-패턴instantiation-patterns">인스턴트 생성 패턴(Instantiation Patterns)</h2>
+<p>자바스크립트의 객체를 Pseudoclassical 방식이라고 한다. pseudo는 “가짜”라는 뜻을 지니고 있다. 직역하면 가짜로 Class 개념을 구현한다는 뜻이다.</p>
+<ul>
+  <li>
+    <p>자바스크립트에서 Object를 생성하는 여러가지 방법</p>
+  </li>
+  <li>
+    <p>자바스크립트에서 Prototype은 무엇이며 왜 사용해야하는가</p>
+  </li>
+</ul>
+
+<h2 id="클래스class-함수-사용">클래스(Class) 함수 사용</h2>
+
+<h2 id="3-프로토타입-체인prototype-chain">3. 프로토타입 체인(Prototype Chain)</h2>
+
+<p>// legacy code (원리를 알 수 있다)
+Student = function(name) {
+    Human.call(this, name); // 부모 객체까지 this가 전달되지 않으므로, 바인딩해야 한다.
+}
+Student.prototype = Object.Create(Human.prototype)
+Student.prototype.constructor = Student;
+Student.prototype.learn = function() {}</p>
+
+<p>// OOP Class
+class Human {
+    constructor(name) {
+        this.name = name;
+    }
+    sleep() {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>} } }
+</code></pre></div></div>
+
+<p>class Student extends Human {
+    constructor(name) {]
+        super(name); // super는 상위객체로 this를 바인딩시켜준다
+    }
+    learn() {</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>} }
+</code></pre></div></div>
+
+<p>다형성: 자식 객체가 부모 객체와 동일한 메서드를 가지더라도 기능을 변형시키는 것. (유닛은 움직이지만 공중유닛은 지형경계를 무시한다. 지상유닛은 충돌크기를 가지고 있다)</p>
+
+<p>Student.prototype.sleep = function() {
+    Human.prototype.sleep.apply(this)
+    additional functions…
+}</p>
+
+<p>Class Human {
+    constructor(name) {
+        this.name = name;
+    }
+    sleep() {
+    }
+}</p>
+
+<p>Class Student extends Human {
+    sleep() {
+        super.sleep
+        additional functions…
+    }
+}</p>
+:ET
