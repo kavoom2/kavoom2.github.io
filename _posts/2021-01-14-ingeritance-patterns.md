@@ -227,5 +227,5 @@ james.sleep() // James: Z...z..z..zz
               // James은(는) 침을 흘리며 자고있다.
 ````
 ## 3. Reference
-[MDN - Class]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes")    
-[MDN - super]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super")
+[MDN - Class](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes)    
+[MDN - super](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super)

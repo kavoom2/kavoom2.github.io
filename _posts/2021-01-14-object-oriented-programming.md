@@ -246,7 +246,9 @@ james.talk === Human.prototype.talk // true
 Human.prototype.__proto__ === Object.prototype // true
 Function.prototype.__proto__ === Object.prototype // true
 ````
-다음과 같이 정리할 수 있다.
+정확한 모델을 보고 싶다면 [이 글](http://insanehong.kr/post/javascript-prototype/)울 참고하도록 하자.   
+
+<img src = "https://drive.google.com/uc?export=view&id=1ezkZIxtJEQXrbS2EAa2soCtyGPrdp1G4">
 <div class = "mermaid">
 graph LR
 A(["james"]) --> B["james.__proto__"]
@@ -264,7 +266,7 @@ L --- H
 
 
 ## 4. Reference
-[PoiemaWeb - 객체]("https://poiemaweb.com/js-object")    
-[PoiemaWeb - 프로토타입]("https://poiemaweb.com/js-prototype")    
-[[Javascript] 프로토타입 이해하기]("https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67")    
-[Javascript 기초 - Object prototype 이해하기]("http://insanehong.kr/post/javascript-prototype")
+[PoiemaWeb - 객체](https://poiemaweb.com/js-object)    
+[PoiemaWeb - 프로토타입](https://poiemaweb.com/js-prototype)    
+[[Javascript] 프로토타입 이해하기](https://medium.com/@bluesh55/javascript-prototype-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-f8e67c286b67)    
+[Javascript 기초 - Object prototype 이해하기](http://insanehong.kr/post/javascript-prototype)
