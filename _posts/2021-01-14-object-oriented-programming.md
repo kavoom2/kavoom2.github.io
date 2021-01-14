@@ -258,6 +258,7 @@ G --- H["Object.prototype"]
 I(["Human"]) --> J["Human.__proto__"]
 J --- K["Function.prototype"]
 K --> L["Function.prototype.__proto__"]
+L --- H
 </div>
 
 
