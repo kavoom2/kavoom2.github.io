@@ -98,9 +98,16 @@ peter.changeName("adam")
 
 james.printAll() // 이름은 james, 나이는 20살입니다
 peter.printAll() // 이름은 adam, 나이는 35살입니다
+
 james.printAll === peter.printAll // true
+james.__proto__ === Person.prototype // fales
+james.__proto__ === personMethods // true
 ````
-Object.create를 사용하면 지정한 객체를 프로토타입 객체로 갖는 객체를 만들 수 있다. 예제에서는 Isntace가 personMethods를 프로토타입 객체로 갖는 객체가 되도록 하였다. 인스턴스마다 메소드 함수의 주소값을 할당하는 함수를 만들 필요가 없으니 훨씬 간결해졌다.
+Object.create를 사용하면 지정한 객체를 프로토타입 객체로 갖는 객체를 만들 수 있다. 예제에서는 Instance가 personMethods를 프로토타입 객체로 갖는 객체가 되도록 하였다. 인스턴스마다 메소드 함수의 주소값을 할당하는 함수를 만들 필요가 없으니 훨씬 간결해졌다.
+
+인스턴스의 프로토타입 링크를 따라가면 메소드를 공유하는 객체 personMethods와 연결되어 있음을 확인하였다. 이는 클래스 함수를 정의하면서 인스턴스의 프로토타입 객체를 personMethods로 설정하였기 때문이다. 객체 james, peter)는 함수 Person와 공유해야 할 속성이나 메소드를 가지고 있지 않다.
+
+
 
 ### 1. 4. Pseudoclassical
 ```js
@@ -117,7 +124,9 @@ james.printAll() // 이름은 james, 나이는 20살입니다
 peter.printAll() // 이름은 adam, 나이는 35살입니다
 james.printAll === peter.printAll // true
 ````
-new 연산자를 사용하면 인스턴스를 만들 수 있다. 
+new 키워드를 사용하면 인스턴스를 만들 수 있다. 원형 객체는 반드시 생성자(Constructor)가 있어야 하고, 없다면 `OOO is not a constructor`라는 오류를 반환한다. 함수가 아닌 객체는 생성자 자격이 없어 new 키워드를 사용할 수 없으니 참고하도록 하자.
+
+모든 함수는 생성자 자격이 부여되고, 프토토타입 객체도 같이 생성되어 new 생성자를 사용할 수 있다. 예제에서는 new 키워드로 생성자 함수(Person)을 호출하여 인스턴스(james, peter)를 생성한다.
 
 ## 2. ES6 Class와 super 키워드
 Class 문법은 ECMAScript6에서 구현한 객체지향 프로그래밍 방식이다. Class 사용법은 어느정도 알고 있으니 클래스 상속기능 등 알아두어야 할 기능을 정리한다.

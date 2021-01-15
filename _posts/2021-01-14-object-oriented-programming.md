@@ -212,12 +212,12 @@ console.log(person1.married) // undefined
 ## 4. 프로토타입(Prototype)
 자바스크립트의 객체는 부모 객체와 연결되어 있다. 상속, 다형성에서 볼 수 있듯이 부모의 속성, 메소드에 접근할 수 있다. 프로토타입 객체는 각각의 객체가 속성 ,함수 메소드를 공유할 수 있도록 한다.
 
-`__proto__(프토로타입 링크)`는 모든 객체가 가지고 있는데, 부모 객체의 프로토타입을 가리킨다.
+`__proto__(프토로타입 링크)`는 모든 객체가 가지고 있는데, 생성할 때 원형이었던 객체의 `prototype(프로토타입 객체)`을 가리킨다.
 ```js
 person.__proto__ === Person.prototype // true
 Person.__proto__ === Function.prototype // true
 ````
-`prototype "객체"`는 `constructor` 속성을 갖고 있다. 이 속성은 자신을 생성한 부모객체를 지칭한다. 일반적으로 프로토타입이라 하면 **프로토타입 객체가 아닌 프로토타입 링크**를 지칭한다.
+`prototype "객체"`는 `constructor` 속성을 갖고 있다. 이 속성은 자신을 생성한 부모객체를 지칭한다. 일반적으로 프로토타입이라 하면 **프로토타입 객체가 아닌 프로토타입 링크**를 지칭함을 알아두자.
 ```js
 Person.prototype.constructor === Person // true
 person.construtor === Person // true
