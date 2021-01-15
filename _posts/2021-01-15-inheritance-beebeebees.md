@@ -89,7 +89,50 @@ bee.eat() // Yummy, jelly is so delicious..!
 bee.__proto__ === Bee.prototype // true, 인스턴스의 원형객체는 부모클래스이다
 Bee.prototype.__proto__ === Grub.prototype // true, 상속받을 클래스의 메소드를 공유할 수 있도록 프로토타입 객체끼리 연결해야 한다.
 ````
-부모 클래스의 속성은 `Class.call(arguments)`로 불러왔으므로, 메소드만 참조할 수 있도록 연결하면 된다.
+부모 클래스의 속성은 `Class.call(arguments)`로 불러왔으므로, 메소드만 참조할 수 있도록 연결하면 된다. 단 다형성을 구현할 때, 아래 예제처럼 메소드 내부에 함수 스코프가 존재하면 인스턴스의 this로 바인딩해야한다. this의 바인딩 규칙을 이해하면 쉬울 것이다.
+
+```js
+var HoneyMakerBee = function () {
+    Bee.call(this);
+    this.age = 10;
+    this.job = "make honey";
+    this.honeyPot = 0;
+};
+
+HoneyMakerBee.prototype = Object.create(Bee.prototype);
+HoneyMakerBee.prototype.constructor = HoneyMakerBee;
+
+HoneyMakerBee.prototype.makeHoney = function () {
+    this.honeyPot ++;
+}
+HoneyMakerBee.prototype.giveHoney = function () {
+    this.honeyPot --;
+}
+
+
+var RetiredForagerBee = function () {
+    ForagerBee.call(this);
+    this.age = 40;
+    this.job = "gamble";
+    this.canFly = false;   
+    this.color = "grey";
+}
+
+RetiredForagerBee.prototype = Object.create(ForagerBee.prototype);
+RetiredForagerBee.prototype.constructor = RetiredForagerBee;
+
+RetiredForagerBee.prototype.forage = function() {
+    return "I am too old, let me play cards instead";
+}
+RetiredForagerBee.prototype.gamble = function(el) {
+    ForagerBee.prototype.forage.call(this, el); // 메소드에서 함수를 호출하므로 반드시 this를 바인딩해야 한다.
+}
+
+
+
+
+````
+
 
 ## 3. Reference
 [MDN - super](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super)    
