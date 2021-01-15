@@ -21,7 +21,8 @@ tags:
 ## 1. ECMAScript6 Class문법에서 속성과 메소드 상속
 ECMAScript6 문법에서 Class 상속은 다음과 같이 표현할 수 있다. Constuctor와 메소드에서 super가 어떻게 사용되는지 유심히 살펴보자.
 > 1. 생성자에서 부모 클래스의 속성과 메소드 상속 : super([arguments]);
-> 2. 부모 클래스의 함수 호출 : super.functionOnParent([arguments]);
+> 2. 부모 클래스의 함수 호출 : super.functionOnParent([arguments]);    
+
 ```js
 class Grub {
     constructor() {
