@@ -1,0 +1,75 @@
+I"%$<h2 id="1-ecmascript6-class문법에서-속성과-메소드-상속">1. ECMAScript6 Class문법에서 속성과 메소드 상속</h2>
+<p>ECMAScript6 문법에서 Class 상속은 다음과 같이 표현할 수 있다. Constuctor와 메소드에서 super가 어떻게 사용되는지 유심히 살펴보자.</p>
+<blockquote>
+  <ol>
+    <li>생성자에서 부모 클래스의 속성과 메소드 상속 : super([arguments]);</li>
+    <li>부모 클래스의 함수 호출 : super.functionOnParent([arguments]);</li>
+  </ol>
+</blockquote>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Grub</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">pink</span><span class="dl">"</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">food</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">jelly</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">eat</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="dl">"</span><span class="s2">Yummy</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nx">Bee</span> <span class="kd">extends</span> <span class="nx">Grub</span> <span class="p">{</span>
+    <span class="kd">constructor</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">super</span><span class="p">();</span> <span class="c1">// Grub의 속성과 메소드를 상속받는다. this 키워드가 사용되기 전에 호출되어야 한다.</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">yellow</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">eat</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="k">super</span><span class="p">.</span><span class="nx">eat</span><span class="p">()}</span><span class="s2">, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">food</span><span class="p">}</span><span class="s2"> is so delicious..!`</span> <span class="c1">// 다형성을 구현할 수 있다.</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">bee</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bee</span><span class="p">();</span>
+
+<span class="nx">bee</span><span class="p">.</span><span class="nx">eat</span><span class="p">()</span> <span class="c1">// Yummy, jelly is so delicious..!</span>
+
+<span class="nx">bee</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true</span>
+<span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Grub</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true</span>
+</code></pre></div></div>
+
+<h2 id="2-ecmascript5-pseudoclasscal-inheritance">2. ECMAScript5 Pseudoclasscal inheritance</h2>
+<p>레거시 코드로 구현해보자. 프로토타입 체인, 프로토타입 객체, 생성자의 관계를 이해해야 한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">Grub</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">pink</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">food</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">jelly</span><span class="dl">"</span>
+<span class="p">}</span>
+
+<span class="nx">Grub</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">eat</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">Yummy</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">// 메소드는 프로토타입에서 선언한다.</span>
+
+<span class="nx">Grub</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">Grub</span><span class="p">;</span> <span class="c1">// 생성자와 Class를 연결한다.</span>
+
+<span class="kd">var</span> <span class="nx">Bee</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Grub</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> <span class="c1">// 부모 클래스의 속성값을 먼저 받아온다.</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">yellow</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Grub</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span> <span class="c1">// </span>
+<span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">Bee</span><span class="p">;</span>
+
+<span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">eat</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="s2">`</span><span class="p">${</span><span class="nx">Grub</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">eat</span><span class="p">()}</span><span class="s2">, </span><span class="p">${</span><span class="k">this</span><span class="p">.</span><span class="nx">food</span><span class="p">}</span><span class="s2"> is so delicious..!`</span> <span class="c1">// 다형성을 부모 객체의 메소드를 직접 불러와서 구현한다.</span>
+<span class="p">}</span>
+
+<span class="nx">bee</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Bee</span><span class="p">();</span>
+
+<span class="nx">bee</span><span class="p">.</span><span class="nx">eat</span><span class="p">()</span> <span class="c1">// Yummy, jelly is so delicious..!</span>
+
+<span class="nx">bee</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true, 인스턴스의 원형객체는 부모클래스이다</span>
+<span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Grub</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true, 상속받을 클래스의 메소드를 공유할 수 있도록 프로토타입 객체끼리 연결해야 한다.</span>
+</code></pre></div></div>
+<p>부모 클래스의 속성은 <code class="language-plaintext highlighter-rouge">Class.call(arguments)</code>로 불러왔으므로, 메소드만 참조할 수 있도록 연결하면 된다.</p>
+:ET

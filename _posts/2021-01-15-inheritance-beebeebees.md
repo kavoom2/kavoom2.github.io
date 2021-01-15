@@ -90,3 +90,7 @@ bee.__proto__ === Bee.prototype // true, 인스턴스의 원형객체는 부모�
 Bee.prototype.__proto__ === Grub.prototype // true, 상속받을 클래스의 메소드를 공유할 수 있도록 프로토타입 객체끼리 연결해야 한다.
 ````
 부모 클래스의 속성은 `Class.call(arguments)`로 불러왔으므로, 메소드만 참조할 수 있도록 연결하면 된다.
+
+## 3. Reference
+[MDN - super](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super)    
+[MDN - Inheritance in Javascript](https://developer.mozilla.org/ko/docs/Learn/JavaScript/Objects/Inheritance)
