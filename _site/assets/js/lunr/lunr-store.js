@@ -82,4 +82,10 @@ var store = [{
         "tags": ["OOP"],
         "url": "https://kavoom2.github.io/javascript/object-oriented-programming/",
         "teaser": null
+      },{
+        "title": "클래스 예제 - Beebeebees",
+        "excerpt":"1. ECMAScript6 Class문법에서 속성과 메소드 상속 ECMAScript6 문법에서 Class 상속은 다음과 같이 표현할 수 있다. Constuctor와 메소드에서 super가 어떻게 사용되는지 유심히 살펴보자. 생성자에서 부모 클래스의 속성과 메소드 상속 : super([arguments]); 부모 클래스의 함수 호출 : super.functionOnParent([arguments]); ```js class Grub { constructor() { this.age = 0; this.color = “pink”; this.food =...","categories": ["Javascript"],
+        "tags": ["class","instance","inheritance","TIL"],
+        "url": "https://kavoom2.github.io/javascript/inheritance-beebeebees/",
+        "teaser": null
       }]

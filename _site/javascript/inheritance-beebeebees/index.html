@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Node.js와 관련 툴 - 건축공학도의 개발자 성장기</title>
-<meta name="description" content="Node.js 사용에 필요한 도구와 package.json의 역할">
+<!-- begin _includes/seo.html --><title>클래스 예제 - Beebeebees - 건축공학도의 개발자 성장기</title>
+<meta name="description" content="스프린트 과제로 배우는 클래스 상속구현">
 
 
   <meta name="author" content="liondoge">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="건축공학도의 개발자 성장기">
-<meta property="og:title" content="Node.js와 관련 툴">
-<meta property="og:url" content="https://kavoom2.github.io/node.js/node-basic/">
+<meta property="og:title" content="클래스 예제 - Beebeebees">
+<meta property="og:url" content="https://kavoom2.github.io/javascript/inheritance-beebeebees/">
 
 
-  <meta property="og:description" content="Node.js 사용에 필요한 도구와 package.json의 역할">
+  <meta property="og:description" content="스프린트 과제로 배우는 클래스 상속구현">
 
 
 
@@ -36,11 +36,11 @@
 
 
 
-  <meta property="article:published_time" content="2021-01-11T00:00:00+09:00">
+  <meta property="article:published_time" content="2021-01-15T00:00:00+09:00">
 
 
 
-  <meta property="article:modified_time" content="2021-01-12T07:00:00+09:00">
+  <meta property="article:modified_time" content="2021-01-16T03:00:00+09:00">
 
 
 
@@ -49,7 +49,7 @@
   
 
 
-<link rel="canonical" href="https://kavoom2.github.io/node.js/node-basic/">
+<link rel="canonical" href="https://kavoom2.github.io/javascript/inheritance-beebeebees/">
 
 
 
@@ -288,15 +288,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Node.js와 관련 툴">
-    <meta itemprop="description" content="Node.js 사용에 필요한 도구와 package.json의 역할">
-    <meta itemprop="datePublished" content="2021-01-11T00:00:00+09:00">
-    <meta itemprop="dateModified" content="2021-01-12T07:00:00+09:00">
+    <meta itemprop="headline" content="클래스 예제 - Beebeebees">
+    <meta itemprop="description" content="스프린트 과제로 배우는 클래스 상속구현">
+    <meta itemprop="datePublished" content="2021-01-15T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2021-01-16T03:00:00+09:00">
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Node.js와 관련 툴
+          <h1 id="page-title" class="page__title" itemprop="headline">클래스 예제 - Beebeebees
 </h1>
           
 
@@ -305,7 +305,7 @@
       
       <span class="page__meta-date">
         <i class="far fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-11T00:00:00+09:00">January 11, 2021</time>
+        <time datetime="2021-01-15T00:00:00+09:00">January 15, 2021</time>
       </span>
     
 
@@ -330,65 +330,80 @@
 
       <section class="page__content" itemprop="text">
         
-        <p>Node.js는 Javascript가 동작할 수 있는 환경 또는 프로그램인 런타임(Runtime) 중 하나이다. Javascript 코드를 브라우저에서 실행할 수도 있고, Node.js에서도 실행할 수 있는 것. 다음 예제에서는 터미널에서 Node.js로 스크립트를 실행한 결과를 출력한다.</p>
+        <h2 id="1-ecmascript6-class문법에서-속성과-메소드-상속">1. ECMAScript6 Class문법에서 속성과 메소드 상속</h2>
+<p>ECMAScript6 문법에서 Class 상속은 다음과 같이 표현할 수 있다. Constuctor와 메소드에서 super가 어떻게 사용되는지 유심히 살펴보자.</p>
+<blockquote>
+  <ol>
+    <li>생성자에서 부모 클래스의 속성과 메소드 상속 : super([arguments]);</li>
+    <li>부모 클래스의 함수 호출 : super.functionOnParent([arguments]);
+```js
+class Grub {
+ constructor() {
+     this.age = 0;
+     this.color = “pink”;
+     this.food = “jelly”;
+ }
+ eat() {
+     return “Yummy”;
+ }
+}</li>
+  </ol>
+</blockquote>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// runnode.js</span>
-<span class="kd">function</span> <span class="nx">testFunction</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">Arg is </span><span class="dl">"</span><span class="p">,</span> <span class="nx">arg</span><span class="p">);</span>
-<span class="p">}</span>
+<p>class Bee extends Grub {
+    constructor () {
+        super(); // Grub의 속성과 메소드를 상속받는다. this 키워드가 사용되기 전에 호출되어야 한다.
+        this.age = 5;
+        this.color = “yellow”;
+    }
+    eat() {
+        return <code class="language-plaintext highlighter-rouge">${super.eat()}, ${this.food} is so delicious..!</code> // 다형성을 구현할 수 있다.
+    }
+}
+bee = new Bee();</p>
 
-<span class="nx">testFunction</span><span class="p">(</span><span class="nx">arg</span><span class="p">)</span>
+<p>bee.eat() // Yummy, jelly is so delicious..!</p>
 
-<span class="c1">// terminal</span>
-<span class="nx">$</span> <span class="nx">Node</span> <span class="nx">runnode</span><span class="p">.</span><span class="nx">js</span> <span class="c1">// "Arg is 20"</span>
+<p>bee.<strong>proto</strong> === Bee.prototype // true
+Bee.prototype.<strong>proto</strong> === Grub.prototype // true</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+## 2. ECMAScript5 Pseudoclasscal inheritance
+레거시 코드로 구현해보자. 프로토타입 체인, 프로토타입 객체, 생성자의 관계를 이해해야 한다.
+
+```js
+var Grub = function () {
+    this.age = 0;
+    this.color = "pink";
+    this.food = "jelly"
+}
+
+Grub.prototype.eat = function () {
+    return "Yummy";
+} // 메소드는 프로토타입에서 선언한다.
+
+Grub.prototype.constructor = Grub; // 생성자와 Class를 연결한다.
+
+var Bee = function () {
+    Grub.call(this); // 부모 클래스의 속성값을 먼저 받아온다.
+    this.age = 5;
+    this.color = "yellow";
+}
+
+Bee.prototype = Object.create(Grub.prototype); // 
+Bee.prototype.constructor = Bee;
+
+Bee.prototype.eat = function () {
+    return `${Grub.prototype.eat()}, ${this.food} is so delicious..!` // 다형성을 부모 객체의 메소드를 직접 불러와서 구현한다.
+}
+
+bee = new Bee();
+
+bee.eat() // Yummy, jelly is so delicious..!
+
+bee.__proto__ === Bee.prototype // true, 인스턴스의 원형객체는 부모클래스이다
+Bee.prototype.__proto__ === Grub.prototype // true, 상속받을 클래스의 메소드를 공유할 수 있도록 프로토타입 객체끼리 연결해야 한다.
 </code></pre></div></div>
-
-<h2 id="nvm">NVM</h2>
-<p>Node.js를 사용하려면 관련 프로그램들이 필요하다. 먼저 Node.js를 설치, 관리하는 NVM(Node.js Version Manager)을 살펴보자. NVM이 설치되었다면, 다음 명령어를 실행하여 현재 버전을 확인할 수 있다.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">nvm</span> <span class="o">--</span><span class="nx">version</span>
-</code></pre></div></div>
-<p>설치할 수 있는 Node.js의 버전은 다음 명령어로 확인할 수 있다. 원하는 버전을 설치하면 된다. 다만, 호환성 문제가 발생기지 않도록 LTS(Long Term Supported) 버전을 설치하자.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">nvm</span> <span class="nx">ls</span><span class="o">-</span><span class="nx">remote</span> <span class="o">--</span><span class="nx">lts</span> <span class="c1">// 설치가능한 버전 확인</span>
-<span class="nx">nvm</span> <span class="nx">isntall</span> <span class="mf">14.15</span><span class="p">.</span><span class="mi">4</span>
-</code></pre></div></div>
-<p>제대로 설치되었는지 확인해보려면 버전을 출력해보자.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span> <span class="nx">Node</span> <span class="o">-</span><span class="nx">v</span>
-</code></pre></div></div>
-<p>여러 버전을 설치하여 사용한다면 다음 명령어로 버전을 변경하면서 사용할 수 있다.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">nvm</span> <span class="nx">use</span> <span class="mf">14.15</span><span class="p">.</span><span class="mi">4</span>
-<span class="nx">nvm</span> <span class="nx">use</span> <span class="mf">12.16</span><span class="p">.</span><span class="mi">1</span>
-</code></pre></div></div>
-<h2 id="npm">NPM</h2>
-<p>NPM(Node Package Manager)은 프로그램에 필요한 모듈을 받을 수 있는 앱스토어의 일종이다.</p>
-
-<h2 id="packagejson">package.json</h2>
-<p>프로젝트는 필연적으로 다른 사람들과 함께 개발하고 사용하게 된다. 프로그램에 필요한 모듈이 무엇이고 어떻게 실행하는지를 알아야한다. package.json이 이러한 내용들을 알려주는 설명서다.</p>
-
-<p>참고로 프로젝트에 필요한 모듈 파일들은 node_modules에 설치되어 있다.</p>
-
-<p>package.json에서 scripts는 npm으로 실행할 수 있는 명령어를 정의한다. 아래 예제를 보도록 하자.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// package.json</span>
-<span class="dl">"</span><span class="s2">scripts</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="dl">"</span><span class="s2">start</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Node app.js</span><span class="dl">"</span>
-    <span class="dl">"</span><span class="s2">test</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Node test.js</span><span class="dl">"</span>
-<span class="p">}</span>
-
-<span class="c1">// terminal</span>
-<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">run</span> <span class="nx">test</span> <span class="c1">// test.js를 실행</span>
-<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">run</span> <span class="nx">start</span> <span class="c1">// app.js을 실행</span>
-</code></pre></div></div>
-
-<h2 id="dev-dependencies-vs-dependencies">dev Dependencies vs dependencies</h2>
-<p>package.json에는 devDependencies와 dependencies가 있다. 전자는 로컬 개발 및 테스트 과정에서만 필요한 패키지이다. 실제 배포에는 포함되지 않는다. 후자는 프로그램의 실제 기술스펙으로 사용되는 패키지이다.</p>
-
-<p>패키지를 설치할 때 다음 명령어로 각각 구분하여 설치한다. –save 명령어는 패키지 간 충돌을 잡아준다.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="o">-</span><span class="nx">dev</span> <span class="c1">// devDependencies 패키지 설치</span>
-<span class="nx">$</span> <span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="c1">// Dependencies 패키지 설치</span>
-</code></pre></div></div>
-
-<p>스프린트 과제 패키지 설치 중 오류가 발생하면 다음 명령어를 입력해보자.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">sh</span><span class="p">.</span> <span class="nx">registry</span><span class="p">.</span><span class="nx">sh</span>
-</code></pre></div></div>
+<p>부모 클래스의 속성은 <code class="language-plaintext highlighter-rouge">Class.call(arguments)</code>로 불러왔으므로, 메소드만 참조할 수 있도록 연결하면 된다.</p>
 
         
       </section>
@@ -409,15 +424,19 @@
     
       
       
-      <a href="/tags/#npm" class="page__taxonomy-item" rel="tag">npm</a><span class="sep">, </span>
+      <a href="/tags/#class" class="page__taxonomy-item" rel="tag">class</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#nvm" class="page__taxonomy-item" rel="tag">nvm</a><span class="sep">, </span>
+      <a href="/tags/#inheritance" class="page__taxonomy-item" rel="tag">inheritance</a><span class="sep">, </span>
     
       
       
-      <a href="/tags/#package-json" class="page__taxonomy-item" rel="tag">package.json</a>
+      <a href="/tags/#instance" class="page__taxonomy-item" rel="tag">instance</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#til" class="page__taxonomy-item" rel="tag">TIL</a>
     
     </span>
   </p>
@@ -438,14 +457,14 @@
     
       
       
-      <a href="/categories/#node-js" class="page__taxonomy-item" rel="tag">Node.js</a>
+      <a href="/categories/#javascript" class="page__taxonomy-item" rel="tag">Javascript</a>
     
     </span>
   </p>
 
 
         
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-11">January 11, 2021</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-15">January 15, 2021</time></p>
 
 
       </footer>
@@ -455,23 +474,22 @@
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Node.js%EC%99%80+%EA%B4%80%EB%A0%A8+%ED%88%B4%20https%3A%2F%2Fkavoom2.github.io%2Fnode.js%2Fnode-basic%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%ED%81%B4%EB%9E%98%EC%8A%A4+%EC%98%88%EC%A0%9C+-+Beebeebees%20https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Finheritance-beebeebees%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fnode.js%2Fnode-basic%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Finheritance-beebeebees%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fnode.js%2Fnode-basic%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Finheritance-beebeebees%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/git/git-basic/" class="pagination--pager" title="Git의 사용법과 Workflow 이해
+      <a href="/javascript/object-oriented-programming/" class="pagination--pager" title="객체지향 프로그래밍(Object Oriented Programming)
 ">Previous</a>
     
     
-      <a href="/node.js/Eslint/" class="pagination--pager" title="ESLint 설치와 사용법
-">Next</a>
+      <a href="#" class="pagination--pager disabled">Next</a>
     
   </nav>
 
@@ -485,52 +503,6 @@
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/javascript/inheritance-beebeebees/" rel="permalink">클래스 예제 - Beebeebees
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-15T00:00:00+09:00">January 15, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">스프린트 과제로 배우는 클래스 상속구현
-</p>
-  </article>
-</div>
-
         
           
 
@@ -670,6 +642,52 @@
 </div>
 
         
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/node.js/Eslint/" rel="permalink">ESLint 설치와 사용법
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-13T00:00:00+09:00">January 13, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">ESLint기반의 코드 규범화
+</p>
+  </article>
+</div>
+
+        
       </div>
     </div>
   
@@ -728,8 +746,8 @@
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://kavoom2.github.io/node.js/node-basic/";  /* Replace PAGE_URL with your page's canonical URL variable */
-      this.page.identifier = "/node.js/node-basic"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+      this.page.url = "https://kavoom2.github.io/javascript/inheritance-beebeebees/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/javascript/inheritance-beebeebees"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
       var d = document, s = d.createElement('script');

@@ -519,11 +519,11 @@
 <h2 id="4-프로토타입prototype">4. 프로토타입(Prototype)</h2>
 <p>자바스크립트의 객체는 부모 객체와 연결되어 있다. 상속, 다형성에서 볼 수 있듯이 부모의 속성, 메소드에 접근할 수 있다. 프로토타입 객체는 각각의 객체가 속성 ,함수 메소드를 공유할 수 있도록 한다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">__proto__(프토로타입 링크)</code>는 모든 객체가 가지고 있는데, 부모 객체의 프로토타입을 가리킨다.</p>
+<p><code class="language-plaintext highlighter-rouge">__proto__(프토로타입 링크)</code>는 모든 객체가 가지고 있는데, 생성할 때 원형이었던 객체의 <code class="language-plaintext highlighter-rouge">prototype(프로토타입 객체)</code>을 가리킨다.</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">person</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true</span>
 <span class="nx">Person</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true</span>
 </code></pre></div></div>
-<p><code class="language-plaintext highlighter-rouge">prototype "객체"</code>는 <code class="language-plaintext highlighter-rouge">constructor</code> 속성을 갖고 있다. 이 속성은 자신을 생성한 부모객체를 지칭한다. 일반적으로 프로토타입이라 하면 <strong>프로토타입 객체가 아닌 프로토타입 링크</strong>를 지칭한다.</p>
+<p><code class="language-plaintext highlighter-rouge">prototype "객체"</code>는 <code class="language-plaintext highlighter-rouge">constructor</code> 속성을 갖고 있다. 이 속성은 자신을 생성한 부모객체를 지칭한다. 일반적으로 프로토타입이라 하면 <strong>프로토타입 객체가 아닌 프로토타입 링크</strong>를 지칭함을 알아두자.</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">Person</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nx">Person</span> <span class="c1">// true</span>
 <span class="nx">person</span><span class="p">.</span><span class="nx">construtor</span> <span class="o">===</span> <span class="nx">Person</span> <span class="c1">// true</span>
 <span class="nx">Person</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">===</span> <span class="nb">Function</span> <span class="c1">// true</span>
@@ -644,7 +644,8 @@ L --- H
 ">Previous</a>
     
     
-      <a href="#" class="pagination--pager disabled">Next</a>
+      <a href="/javascript/inheritance-beebeebees/" class="pagination--pager" title="클래스 예제 - Beebeebees
+">Next</a>
     
   </nav>
 
@@ -658,6 +659,52 @@ L --- H
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/inheritance-beebeebees/" rel="permalink">클래스 예제 - Beebeebees
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+09:00">January 15, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">스프린트 과제로 배우는 클래스 상속구현
+</p>
+  </article>
+</div>
+
         
           
 
@@ -692,7 +739,7 @@ L --- H
       <span class="page__meta-readtime">
         <i class="far fa-fw fa-clock" aria-hidden="true"></i>
         
-          3 minute read
+          4 minute read
         
       </span>
     
@@ -792,52 +839,6 @@ L --- H
 
 
     <p class="archive__item-excerpt" itemprop="description">ESLint기반의 코드 규범화
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/node.js/node-basic/" rel="permalink">Node.js와 관련 툴
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-11T00:00:00+09:00">January 11, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          1 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">Node.js 사용에 필요한 도구와 package.json의 역할
 </p>
   </article>
 </div>
