@@ -198,11 +198,12 @@ class GroundLine {
 
 참고로 베지어 곡선을 보다보면, $t(0\leqq t \leqq 1)$가 무엇을 의미하는지 애매할 수도 있다. 베지어 곡선을 양 끝에 위치한 두 점을 이은 직선을 하나 만들자. 직선 위에서 어느 지점에 위치해있는지 비율로 나타낸 값으로 볼 수 있는데, 베지어 곡선 상에 있는 특정 점을 구하는데 요긴하게 쓰이니 알아두면 좋다. 곡선이 그려지는 원리를 보면 이해하는데 도움이 될 것이다. 자세한 내용은 [다음 글](https://lee-seokhyun.gitbook.io/workspace/client/easy-mathematics/gdc2012/2)을 참조하자.    
 
-> Find coordinates on a bezier curve
+> Find coordinates on a bezier curve    
 > t = 0.25; // P0와 P1사이 지점을 1:3으로 등분하는 지점          
 > x = (1 - t) * (1 - t) * p[0].x + 2 * (1 - t) * t * p[1].x + t * t * p[2].x;    
 > y = (1 - t) * (1 - t) * p[0].y + 2 * (1 - t) * t * p[1].y + t * t * p[2].y;    
-> p[0] is the start point, p[1] is the control point, and p[2] is the end point. t is the parameter, which goes from 0 to 1.    
+> p[0] is the start point, p[1] is the control point, and p[2] is the end point.    
+> t is the parameter, which goes from 0 to 1.    
 
 참고로 직선은 quadraticCurveTo를 moveTo(x, y) 함수로 변경하면 된다.
 
