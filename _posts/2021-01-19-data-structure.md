@@ -1,0 +1,133 @@
+---
+
+title: 자료구조(Data Structure) - Stack, Queue
+
+excerpt: "스택과 큐의 개념, 코드로 구현한 자료구조"
+
+classes: wide
+
+  
+
+last_modified_at: 2021-01-19T17:00:00
+
+use_math: true
+
+categories:
+- Javascript
+tags:
+- Data Structure
+---
+## 1. 스택(Stack)
+스택은 마지막에 들어온 데이터가 먼저 나가는 LIFO(Last In First Out) 방식의 자료구조이다. 어떻게 스택을 사용할지에 따라 다르겠지만, 스택에 필요한 주요 속성과 메소드는 다음과 같다.
+> Stack.pop() 스택 최상단 데이터를 반환하고 제거하는 메소드.    
+> 
+> Stack.push(element) 스택에 메모리를 생성하여 추가하는 메소드. this.top + 1에 추가한다.    
+> 
+> Stack.empty() 스택이 비었는지 확인하는 메소드. 비었으면 1, 그렇지 않으면 0을 반환.    
+> 
+> Stack.size() 스택의 총 요소 갯수를 반환하는 메소드.    
+> 
+> Stack.peek() 가장 최상단 데이터를 반환하는 메소드.    
+> 
+> Stack.top 가장 최상단 데이터를 나타내는 속성(Property)   
+
+스택을 처음 구현하려고 생각했을 때, storage 내부에 들어가는 키에는 값의 순번을 알 수 있는 속성을 담아야 한다고 생각했다. pop, push를 수행할 때 자료구조를 순회하면서 데이터를 찾는 방법으로 구상했는데, 이 경우 시간복잡도가 $O(1)$이 아닌 $O(n)$ 이 된다. 이 문제는 같이 진행한 페어분의 도움을 받아 윤곽을 잡을 수 있었다. 스택은 다음과 같이 구현하였다.
+
+```js
+class Stack {
+  constructor() {
+    this.storage = {};
+    this.top = -1;
+  }
+
+  size() {
+    return this.top + 1;
+  }
+
+  empty() {
+    if (this.top === -1) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  peek() {
+    if ( this.top === -1) {
+      return undefined;
+    } else {
+      return this.storage[this.top + 1];
+    }
+  }
+
+  push(el) {
+    this.top += 1;
+    this.storage[this.top] = el;
+  }
+
+  pop() {
+
+    if (this.top === -1 ) {
+      return undefined;
+    }
+    this.top -= 1;
+    const tempObj = this.storage[this.top + 1];
+    delete this.storage[this.top + 1];
+    return tempObj;
+  }
+}
+````
+스택은 재귀함수의 실행에도 사용된다는 것을 알아두자. base case가 실행되기까지 콜스택에 함수가 쌓이게 된다. 이후 base case가 실행되면 역방향으로 함수가 실행되어 값을 반환하게 된다. 관련내용은 재귀함수 관련 TIL에서 정리하였으니 참고하도록 하자.
+
+### 2. 큐(Queue)
+큐는 선입선출 방식의 자료구조이다. 큐를 우리말로 옮기면 대기열이 되는데, 온라인 게임의 대기열이나 줄을 서는 방식과 흡사하다. 큐에 필요한 주요 속성과 메소드는 다음과 같다.
+> Queue.front 가장 처음에 들어간 데이터의 인덱스    
+>
+> Queue.rear 다음에 들어올 데이터의 인덱스( = 가장 마지막에 들어온 인덱스 + 1)    
+>
+> Queue.enqueue(el) (또는 put, insert) 큐의 가장 뒤에 새로운 데이터를 추가하는 메소드.    
+> 
+> Queue.dequeue() (또는 get, delete)큐의 가장 앞에 위치한 데이터를 제거한 뒤 반환하는 메소드.    
+> 
+> Queue.size() 큐의 현재 총 데이터 갯수를 반환하는 메소드.
+
+선형 큐과 환형 큐로 구분할 수 있다. 큐의 구조상 자료를 입출입하는 과정에서 front 순번이 점차 뒤로 밀리게 된다. 선형 큐에서는 front의 앞칸을 사용하지 못하는 단점이 있는데, 이를 보완한 것이 환형 큐 방식이다.    
+
+스택과 마찬가지로 큐의 시간복잡도는 탐색이 $O(n)$이고 추가 및 삭제가 $O(1)$이다. 이를 고려해서 자바스크립트로 구현해보자.
+```js
+class Queue {
+    constructor() {
+        this.storage = {};
+        this.front = 0;
+        this.rear = 0;
+    }
+    size() {
+        if ( this.front === this.rear ) {
+            return 0;
+        }
+        return this.rear - this.front;
+    }
+    
+    enqueue(el) {
+        if ( this.front === this.rear ) {
+            this.storage[this.front] = el;
+            this.rear += 1;
+        } else {
+            this.storage[this.rear] = el;
+            this.rear += 1;
+        }
+
+    }
+
+    dequeue() {
+        if ( this.front === this.rear ) {
+            return undefined;
+        } else {
+            const tempObj = this.storage[this.front];
+            delete this.storage[this.front];
+            this.front += 1;
+            return tempObj;
+        }
+    }
+}
+````

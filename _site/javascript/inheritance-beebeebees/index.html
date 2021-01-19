@@ -403,7 +403,52 @@
 <span class="nx">bee</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true, 인스턴스의 원형객체는 부모클래스이다</span>
 <span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">Grub</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// true, 상속받을 클래스의 메소드를 공유할 수 있도록 프로토타입 객체끼리 연결해야 한다.</span>
 </code></pre></div></div>
-<p>부모 클래스의 속성은 <code class="language-plaintext highlighter-rouge">Class.call(arguments)</code>로 불러왔으므로, 메소드만 참조할 수 있도록 연결하면 된다.</p>
+<p>부모 클래스의 속성은 <code class="language-plaintext highlighter-rouge">Class.call(arguments)</code>로 불러왔으므로, 메소드만 참조할 수 있도록 연결하면 된다. 단 다형성을 구현할 때, 아래 예제처럼 메소드 내부에 함수 스코프가 존재하면 인스턴스의 this로 바인딩해야한다. this의 바인딩 규칙을 이해하면 쉬울 것이다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">HoneyMakerBee</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">Bee</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">make honey</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">honeyPot</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="nx">HoneyMakerBee</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">Bee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="nx">HoneyMakerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">HoneyMakerBee</span><span class="p">;</span>
+
+<span class="nx">HoneyMakerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">makeHoney</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">honeyPot</span> <span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">HoneyMakerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">giveHoney</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">honeyPot</span> <span class="o">--</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kd">var</span> <span class="nx">RetiredForagerBee</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">ForagerBee</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">age</span> <span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">job</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">gamble</span><span class="dl">"</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">canFly</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>   
+    <span class="k">this</span><span class="p">.</span><span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">grey</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">RetiredForagerBee</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">ForagerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">);</span>
+<span class="nx">RetiredForagerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="kd">constructor</span> <span class="o">=</span> <span class="nx">RetiredForagerBee</span><span class="p">;</span>
+
+<span class="nx">RetiredForagerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">forage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">"</span><span class="s2">I am too old, let me play cards instead</span><span class="dl">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">RetiredForagerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">gamble</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ForagerBee</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">forage</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">el</span><span class="p">);</span> <span class="c1">// 메소드에서 함수를 호출하므로 반드시 this를 바인딩해야 한다.</span>
+<span class="p">}</span>
+
+
+
+
+</code></pre></div></div>
+
+<h2 id="3-reference">3. Reference</h2>
+<p><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/super">MDN - super</a>  <br />
+<a href="https://developer.mozilla.org/ko/docs/Learn/JavaScript/Objects/Inheritance">MDN - Inheritance in Javascript</a></p>
 
         
       </section>
