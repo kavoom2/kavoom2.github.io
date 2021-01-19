@@ -1,8 +1,8 @@
 ---
 
-title: 테트리스 구현
+title: 개인 토이프로젝트 - 테트리스 클론
 
-excerpt: "자바스크립트 기반 테트리스 게임 구현"
+excerpt: "자바스크립트 기반 테트리스 게임"
 
 classes: wide
 

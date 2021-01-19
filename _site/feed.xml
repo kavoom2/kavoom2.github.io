@@ -1,4 +1,327 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-15T14:59:28+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">클래스 예제 - Beesbeesbees</title><link href="https://kavoom2.github.io/javascript/inheritance-beebeebees/" rel="alternate" type="text/html" title="클래스 예제 - Beesbeesbees" /><published>2021-01-15T00:00:00+09:00</published><updated>2021-01-16T03:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/inheritance-beebeebees</id><content type="html" xml:base="https://kavoom2.github.io/javascript/inheritance-beebeebees/">&lt;h2 id=&quot;1-ecmascript6-class문법에서-속성과-메소드-상속&quot;&gt;1. ECMAScript6 Class문법에서 속성과 메소드 상속&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-20T03:26:27+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">자료구조(Data Structure) - Stack, Queue</title><link href="https://kavoom2.github.io/javascript/data-structure/" rel="alternate" type="text/html" title="자료구조(Data Structure) - Stack, Queue" /><published>2021-01-19T00:00:00+09:00</published><updated>2021-01-20T02:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/data-structure</id><content type="html" xml:base="https://kavoom2.github.io/javascript/data-structure/">&lt;h2 id=&quot;1-스택stack&quot;&gt;1. 스택(Stack)&lt;/h2&gt;
+&lt;p&gt;스택은 마지막에 들어온 데이터가 먼저 나가는 LIFO(Last In First Out) 방식의 자료구조이다. 어떻게 스택을 사용할지에 따라 다르겠지만, 스택에 필요한 주요 속성과 메소드는 다음과 같다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Stack.pop() 스택 최상단 데이터를 반환하고 제거하는 메소드.&lt;/p&gt;
+
+  &lt;p&gt;Stack.push(element) 스택에 메모리를 생성하여 추가하는 메소드. this.top + 1에 추가한다.&lt;/p&gt;
+
+  &lt;p&gt;Stack.empty() 스택이 비었는지 확인하는 메소드. 비었으면 1, 그렇지 않으면 0을 반환.&lt;/p&gt;
+
+  &lt;p&gt;Stack.size() 스택의 총 요소 갯수를 반환하는 메소드.&lt;/p&gt;
+
+  &lt;p&gt;Stack.peek() 가장 최상단 데이터를 반환하는 메소드.&lt;/p&gt;
+
+  &lt;p&gt;Stack.top 가장 최상단 데이터를 나타내는 속성(Property)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;스택을 처음 구현하려고 생각했을 때, storage 내부에 들어가는 키에는 값의 순번을 알 수 있는 속성을 담아야 한다고 생각했다. pop, push를 수행할 때 자료구조를 순회하면서 데이터를 찾는 방법으로 구상했는데, 이 경우 시간복잡도가 $O(1)$이 아닌 $O(n)$ 이 된다. 이 문제는 같이 진행한 페어분의 도움을 받아 윤곽을 잡을 수 있었다. 스택은 다음과 같이 구현하였다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Stack&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;empty&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;peek&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tempObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tempObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;스택은 재귀함수의 실행에도 사용된다는 것을 알아두자. base case가 실행되기까지 콜스택에 함수가 쌓이게 된다. 이후 base case가 실행되면 역방향으로 함수가 실행되어 값을 반환하게 된다. 관련내용은 재귀함수 관련 TIL에서 정리하였으니 참고하도록 하자.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-큐queue&quot;&gt;2. 큐(Queue)&lt;/h3&gt;
+&lt;p&gt;큐는 선입선출 방식의 자료구조이다. 큐를 우리말로 옮기면 대기열이 되는데, 온라인 게임의 대기열이나 줄을 서는 방식과 흡사하다. 큐에 필요한 주요 속성과 메소드는 다음과 같다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Queue.front 가장 처음에 들어간 데이터의 인덱스&lt;/p&gt;
+
+  &lt;p&gt;Queue.rear 다음에 들어올 데이터의 인덱스( = 가장 마지막에 들어온 인덱스 + 1)&lt;/p&gt;
+
+  &lt;p&gt;Queue.enqueue(el) (또는 put, insert) 큐의 가장 뒤에 새로운 데이터를 추가하는 메소드.&lt;/p&gt;
+
+  &lt;p&gt;Queue.dequeue() (또는 get, delete)큐의 가장 앞에 위치한 데이터를 제거한 뒤 반환하는 메소드.&lt;/p&gt;
+
+  &lt;p&gt;Queue.size() 큐의 현재 총 데이터 갯수를 반환하는 메소드.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;선형 큐과 환형 큐로 구분할 수 있다. 큐의 구조상 자료를 입출입하는 과정에서 front 순번이 점차 뒤로 밀리게 된다. 선형 큐에서는 front의 앞칸을 사용하지 못하는 단점이 있는데, 이를 보완한 것이 환형 큐 방식이다.&lt;/p&gt;
+
+&lt;p&gt;스택과 마찬가지로 큐의 시간복잡도는 탐색이 $O(n)$이고 추가 및 삭제가 $O(1)$이다. 이를 고려해서 자바스크립트로 구현해보자.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Queue&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;nx&quot;&gt;enqueue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;el&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;dequeue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;rear&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;undefined&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tempObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;storage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;front&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tempObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><category term="Data Structure" /><summary type="html">스택과 큐의 개념, 코드로 구현한 자료구조</summary></entry><entry><title type="html">개인 토이프로젝트 중간점검 - 폴 가이즈</title><link href="https://kavoom2.github.io/toy/javscript/toy-fallGuys/" rel="alternate" type="text/html" title="개인 토이프로젝트 중간점검 - 폴 가이즈" /><published>2021-01-19T00:00:00+09:00</published><updated>2021-01-20T09:10:00+09:00</updated><id>https://kavoom2.github.io/toy/javscript/toy-fallGuys</id><content type="html" xml:base="https://kavoom2.github.io/toy/javscript/toy-fallGuys/">&lt;p&gt;시작하기에 앞서 정말 좋은 컨텐츠와 강의를 제공해주신 개발자 &lt;a href=&quot;https://www.youtube.com/user/cmiscm&quot;&gt;&lt;strong&gt;Interactive Developer&lt;/strong&gt;&lt;/a&gt;님에게 감사의 말씀을 드리고 싶다. 덕분에 HTML5와 자바스크립트만으로도 다양한 시각적 경험을 만들 수 있다는 것을 알게 되었다. 그리고 이 영상들을 보면서 배운 내용을 어떻게 활용할지 머리 속에 그려볼 수 있었다. 지금까지 올리신 강의는 &lt;a href=&quot;https://youtube.com/playlist?list=PLGf_tBShGSDNGHhFBT4pKFRMpiBrZJXCm&quot;&gt;&lt;strong&gt;이 곳&lt;/strong&gt;&lt;/a&gt;에서 볼 수 있다. 심지어 무료다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-프로젝트를-하게-된-계기&quot;&gt;1. 프로젝트를 하게 된 계기&lt;/h2&gt;
+&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1n5plZiRSb7SqJKK3roX5aXZ-6d8SdZDs&quot; /&gt;&lt;/center&gt;
+
+&lt;p&gt;폴 가이 토이 프로젝트를 진행하게 된 이유는 두 가지였다. 하나는 예전부터 “개인적으로 정말 만들고 싶은 것”을 내 손으로 만드려는 욕구를 해소하고 싶었기 때문이고, 다른 하나는 Interactive Developer님의 이야기가 크게 와닿았기 때문이다. 어도비 플래시에 관한 내용으로 개발 툴의 패러다임이 바뀌어도 적응할 수 있는 기초를 다져야 한다는 내용이었다. 그 내용을 들었을 때 정말 머리가 띵했었다.&lt;/p&gt;
+
+&lt;p&gt;마침 부트캠프에서 클래스에 관한 개념을 어느정도 잡아놨었고, 다행히 많이 바쁜 시기는 아니었다. 이 만한 기회는 없다고 생각하고 즉시 행동에 옮겼다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-무엇을-구현할-것인가&quot;&gt;2. 무엇을 구현할 것인가&lt;/h2&gt;
+
+&lt;p&gt;의욕도 앞서고 하고 싶은 것은 정말 많지만, 과욕은 일을 망치기도 하는 법이다. 진행하기에 앞서 무게를 두고 먼저 구현해야 할 것들을 정리했다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;다양한 움직임을 구현하되, CSS는 최소한으로 사용하고 자바스크립트로 구현하기&lt;/p&gt;
+
+  &lt;p&gt;HTML5 캔버스의 다양한 기능을 찾아보고 직접 사용해보기&lt;/p&gt;
+
+  &lt;p&gt;HTML, Javascript에서 프레임 단위로 애니메이션을 재생하는 기능 활용하기&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;게임으로 만들고 싶은 욕구가 가득하지만 실력을 한 단계 끌어올리는게 주된 목적이니 부차적인 기능들은 미뤄두었다. 마침 최근에 재밌게 했던 폴가이즈를 바탕으로 만들고 싶었는데, 무엇을 구현할지는 폴가이즈 몇 판하면서 정리했다.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1Aa7Fm4JBM4RNkRlrVl5TtXtqP1TZllZe&quot; /&gt;&lt;/center&gt;
+
+&lt;p&gt;메인화면과 게임 스테이지를 만들고, 게임은 횡스크롤 형식의 피하기 게임으로 계획했다. 피그마에 만들었던 초기 디자인과는 많이 달라졌는데, 예상보다 시각적인 요소들이 제 기능을 못하다보니 변경사항이 꽤나 많이 생겼다.&lt;/p&gt;
+
+&lt;p&gt;현재까지 구현하고, 앞으로 구현할 핵심요소들은 다음과 같다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;바람 - 집중선 형태로 캐릭터가 달리는 효과를 강조한다.&lt;/p&gt;
+
+  &lt;p&gt;움직이는 캐릭터 - gif 파일이 아닌 스프라이트 이미지를 사용하여 달리거나 뛰는 행동을 구사한다.&lt;/p&gt;
+
+  &lt;p&gt;움직이는 바닥 - 바닥은 서로 다른 색상의 블록으로 구성되었고, 캐릭터가 이동함에 따라 원근법을 적용하여 서서히 지평선으로 사라지도록 한다.&lt;/p&gt;
+
+  &lt;p&gt;장애물 - 캐릭터가 피해야 할 간단한 장애물을 추가한다. 점차 크기가 줄어들고 지평선으로 사라져야 한다. 또한, 캐릭터와 장애물이 충돌했는지 판단해야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;현재 장애물을 제외한 나머지 요소들은 구현하였다. 이제 장애물과 기본적인 게임 시스템만 구현하면 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-핵심요소-구현&quot;&gt;3. 핵심요소 구현&lt;/h2&gt;
+&lt;h3 id=&quot;3-1-애니메이션-재생&quot;&gt;3. 1. 애니메이션 재생&lt;/h3&gt;
+&lt;p&gt;애니메이션을 재생하는 방법은 영화관 영사기를 떠올리면 된다. 그림을 매우 짧은 간격으로 바꾸어서 마치 움직이는 것처럼 보이게 하는 원리이다. 다만 필름처럼 이미 모든 그림이 완성된 상태는 아니다보니, 매 프레임마다 캔버스를 지우고 요소들을 그려주는 과정이 필요하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/Window/requestAnimationFrame&quot;&gt;window.requestAnimationFrame&lt;/a&gt;으로 애니메이션을 재생할 수 있다. 이전에 테트리스 클론 토이 프로젝트에서도 언급한 내용이지만 주의할 점이 있다. 하드웨어 성능 차이 때문에 모니터마다 주사율이 천차만별인데, 재생할 수 있는 최대 프레임에 따라 재생속도가 달라질 수 있다. 60장의 그림을 재생하는데 한 모니터는 1초 동안 보여주고, 다른 모니터는 0.5초동안 보여준다고 생각하면 이해가 될 것이다.&lt;/p&gt;
+
+&lt;p&gt;이 문제는 requestAnimationFrame의 콜백함수가 인자로 받는 &lt;strong&gt;TimeStamp&lt;/strong&gt;를 활용하면 된다. 일정시간마다 움직이도록 구현하면 되는데, 다음 예제를 살펴보자.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;App&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;requestAnimationFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 콜백함수에서 실행할 draw 함수들의 this를 바인딩해주어야 한다.&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;groundLine&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;GroundLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nx&quot;&gt;animate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// requestAnimationFrame 함수는 타임스탬프를 매개인자로 받는다.&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;requestID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;requestAnimationFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;animate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;clearRect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stageWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stageHeight&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;groundLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;GroundLine&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 1000ms 마다 움직이도록 한다.&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// 이하 움직이도록 하는 함수를 작성.&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beginPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 각 점을 이어서 선분으로 만드는 함수는 생략&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;strokeStyle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stroke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;콜백함수 animate(t)는 재귀적으로 실행된다. 실행될 때마다 현재 타임스탬프를 자동적으로 받아오게 된다. 이 값을 각 요소를 그리는 함수(Class.draw)에 넣어서 일정 시간마다 움직이도록 만들어주면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-2-바람하늘-집중선&quot;&gt;3. 2. 바람(하늘 집중선)&lt;/h3&gt;
+&lt;p&gt;하늘 끝 지점에서 생성된 임의의 폭, 길이를 가진 사각형이 화면 중심으로 이동하도록 하였다. 시간이 지남에 따라 크기와 속도가 줄어들도록 하였는데, 이는 일정시간마다 정해놓은 값을 나누어 현재 크기와 속도값가 지수함수 형태로 줄어들도록 하였다. 이 경우 중앙에 도달하지 못한 선분이 있을 수 있는데, 사각형의 폭이 일정 크기 이하가 되면 제거되도록 하였다.&lt;/p&gt;
+
+&lt;p&gt;들었던 강의의 도움을 받아 이 강조선들을 관리하는 Wind-Controller 클래스를 만들었다. 컨테이너는 일정 개수 미만의 Wind 인스턴스들을 가지도록 하고, 각 인스턴스가 종료조건을 만족하는지 확인한다. 종료조건에 해당하면 해당 선분을 제거하고 새로운 Wind 인스턴스를 생성한다.&lt;/p&gt;
+
+&lt;p&gt;강조선이 이동하려면 시작점과 종료지점 사이의 각도를 알아야 한다. 그리고 이 값으로 X축과 Y축 변화량 dx, dy를 계산하면 된다. 두 점 사이의 각도는 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atan2&quot;&gt;Math.atan2()&lt;/a&gt;로 계산하면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-3-캐릭터---x축-이동&quot;&gt;3. 3. 캐릭터 - x축 이동&lt;/h3&gt;
+&lt;p&gt;폴 가이즈를 해본 사람은 캐릭터가 굉장히 답답하게 움직인다는 것을 알 것이다. 이동을 구현하되, 이 느낌을 살리는 것이 목표였다. 키보드 A 또는 D를 누르면, 일정시간 동안 가속하다가 최대속도에 이르면 그 속도를 유지한다. 그리고 키를 누르지 않으면 캐릭터가 서서히 멈추어야 한다.&lt;/p&gt;
+
+&lt;p&gt;이 움직임은 사인함수를 사용해서 구현하려고 했다. 현재 이동속도를 sin(value)로 하고, 그 변수가 일정범위($-Pi/2 &amp;lt; value &amp;lt; Pi/2$) 내에서만 움직이도록 하였다.&lt;/p&gt;
+
+&lt;p&gt;그리고, 이동을 구현하면서 조건문을 많이 걸어놓다보니 키씹힘 현상이 종종 일어났다. 이는 A, D의 keyDown 이벤트가 발생하면 value를 결정하는 계산식을 결정하는 요소의 값을 각각 변경하는 방법으로 최소화했다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-4-캐릭터---점프&quot;&gt;3. 4. 캐릭터 - 점프&lt;/h3&gt;
+&lt;p&gt;이동기능을 구현했다면 뛰는 동작은 크게 어렵지 않다. 사인함수가 범위($0 &amp;lt; value &amp;lt; Pi$) 내에서 value를 서서히 키우면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-5-캐릭터---스프라이트-이미지-재생&quot;&gt;3. 5. 캐릭터 - 스프라이트 이미지 재생&lt;/h3&gt;
+&lt;p&gt;이번에 스프라이트 이미지를 사용하여 애니메이션을 재생하는 법을 처음으로 알게 되었다. gif를 사용하면 되지 않느냐고 물을 수 있는데, 이 방법은 &lt;strong&gt;내가 원하는 속도&lt;/strong&gt;로 &lt;strong&gt;원하는 특정 동작만&lt;/strong&gt; 수행하도록 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;어떤 캐릭터를 구현한다고 해보자. 공격, 이동, 달리기, 걷기 등 무수히 많은 동작이 있는데 이를 모든 이미지를 일일이 불러오기보다, 하나의 이미지 안에 저장해놓고 특정 사진만 연속적으로 출력하면 된다. 여러 이미지를 불러올 필요 없이, 하나의 이미지만으로도 다양한 움직임을 구사할 수 있는 것이다.&lt;/p&gt;
+
+&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1fmoILgSsvqxPQCsTsYeqDPqbphq9XToL&quot; /&gt;&lt;/center&gt;
+&lt;p&gt;이 그림이 스프라이트 이미지다. 여러 동작을 하나의 그림 파일 안에 합쳐 놓은 것을 볼 수 있는데, 그렇다면 코드상으로 어떻게 출력하는 것인지는 다음 예제를 살펴보자.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Fallguy&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;now&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fpsTime&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 일정 시간이 지났는지 확인한다.&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curFrame&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 스프라이트의 다음 장면을 사용할 수 있도록 한다.&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curFrame&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;totalFrame&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+              &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curFrame&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;animate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;animate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;translate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 기준점(0,0)의 위치를 변경한다. 그림은 항상 기준점이 그림의 좌측상단에 위치하도록 그려진다.&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;drawImage&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;imgWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 스프라이트 이미지의 한 장면만 출력한다&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;imgWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;imgWidthHalf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;initY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;imgWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;imgHeight&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;restore&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;3-6-움직이는-바닥---블록-사이-곡선또는-블록의-앞면&quot;&gt;3. 6. 움직이는 바닥 - 블록 사이 곡선(또는 블록의 앞면)&lt;/h3&gt;
+&lt;p&gt;처음에는 구현할 생각이 없던 요소였지만, 만들고 보니 굉장히 밋밋한 느낌을 지울 수 없었다. 폴 가이즈 스테이지 중 롤아웃을 보고 만들어보고자 한 요소다.&lt;/p&gt;
+
+&lt;p&gt;움직이는 지형은 형형색색의 블록이 붙어있는 형태로 구상하였다. 이를 구현하려면, 다음 요소들을 구현해야 했다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;곡선이 일정시간마다 생성되어 캔버스 바닥에서 시작해 지평선을 향해 움직여야 한다.&lt;/p&gt;
+
+  &lt;p&gt;시간이 지나면서 곡선의 폭은 줄어들어야 하며, 입체감이 느껴지도록 곡선의 형태가 변해야 한다.&lt;/p&gt;
+
+  &lt;p&gt;블록과 블록 사이는 입체감이 느껴지도록 간격이 있다. 이질감이 들지 않으려면, 곡선(블록의 앞면)의 색은 바로 위에 인접한 직사각형(블록의 윗면)의 색상에 맞춰져야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;우선, 곡선을 만들어보자. HTML5 캔버스 상에서 직선 또는 곡선으로 다양한 형태의 선이나 도형을 만들 수 있다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;GroundLine&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;beginPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 도형 그리기를 시작한다.&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;prevX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;prevY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// 2. Draw - Draw A Quadratic Lines&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;moveTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prevX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;prevY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// canvas.moveTo(x, y)는 선 또는 도형의 시작점이다.&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;curPoint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cpX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prevX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cpY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;prevY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;quadraticCurveTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cpX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;cpY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 다음 점으로 곡선을 잇는다.&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;prevX&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curX&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;nx&quot;&gt;prevY&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;curY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lineWidth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lineWidth&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;strokeStyle&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;ctx&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;stroke&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;곡선을 그리는 함수를 보면 cpX, cpY라는 이상한 인자가 보일 것이다. 이는 Control Point로 &lt;a href=&quot;https://en.wikipedia.org/wiki/B%C3%A9zier_curve&quot;&gt;&lt;strong&gt;베지어 곡선(Bézier Curve&lt;/strong&gt;)&lt;/a&gt;을 그리는데 필요한 기준점이다. 베지어 곡선은 2차, 3차 등 여러 곡선이 존재하나, HTML5는 2차 베지에 곡선을 채택하고 있으니 필요한 공식들을 찾는다면 &lt;strong&gt;Quadratic Bézier curves&lt;/strong&gt;로 검색하면 된다.&lt;/p&gt;
+
+&lt;p&gt;참고로 베지어 곡선을 보다보면, $t(0\leqq t \leqq 1)$가 무엇을 의미하는지 애매할 수도 있다. 베지어 곡선을 양 끝에 위치한 두 점을 이은 직선을 하나 만들자. 직선 위에서 어느 지점에 위치해있는지 비율로 나타낸 값으로 볼 수 있는데, 베지어 곡선 상에 있는 특정 점을 구하는데 요긴하게 쓰이니 알아두면 좋다. 곡선이 그려지는 원리를 보면 이해하는데 도움이 될 것이다. 자세한 내용은 &lt;a href=&quot;https://lee-seokhyun.gitbook.io/workspace/client/easy-mathematics/gdc2012/2&quot;&gt;다음 글&lt;/a&gt;을 참조하자.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Find coordinates on a bezier curve
+t = 0.25; // P0와 P1사이 지점을 1:3으로 등분하는 지점        &lt;br /&gt;
+x = (1 - t) * (1 - t) * p[0].x + 2 * (1 - t) * t * p[1].x + t * t * p[2].x;  &lt;br /&gt;
+y = (1 - t) * (1 - t) * p[0].y + 2 * (1 - t) * t * p[1].y + t * t * p[2].y;  &lt;br /&gt;
+p[0] is the start point, p[1] is the control point, and p[2] is the end point. t is the parameter, which goes from 0 to 1.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;참고로 직선은 quadraticCurveTo를 moveTo(x, y) 함수로 변경하면 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-7-움직이는-바닥---원근감-구현&quot;&gt;3. 7. 움직이는 바닥 - 원근감 구현&lt;/h3&gt;
+&lt;p&gt;블록도 지평선을 향해 움직인다. 원근감이 느껴지려면 곡선의 폭이 점차 줄어들어야 하고, 곡선의 형태 또한 변해야 할 것이다. 곡선이 변형되는 방법은 소닉의 &lt;a href=&quot;https://www.youtube.com/watch?v=_QCmIbYm5Rg&quot;&gt;보너스 스테이지&lt;/a&gt;에서 아이디어를 얻었다. 선을 각 지점을 등분하는 5개의 점으로 구성고, 이 점들은 화면 바닥에서 동시에 출발하여, 일정시간이 지나면 지평선에 동시에 도착하도록 했다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-8-움직이는-바닥---블록과-선또는-블록앞면의-색상-통일&quot;&gt;3. 8. 움직이는 바닥 - 블록과 선(또는 블록앞면)의 색상 통일&lt;/h3&gt;
+&lt;p&gt;블록은 총 4가지의 색상이 임의의 순번으로 칠해지도록 하였다. 여기서 중요한 것은 블록(사각형)과 블록의 앞면(곡선)의 색상이 통일성이 있어야 한다는 점이다. 이를 GroundLine 인스턴스들을 관리하는 Ground에서 코드로 구현하였다. 블록의 색상을 토대로 선의 색상을 바꾸도록 하였다. 예외 케이스인 처음 블록이 생성된 경우와 생성된 블록이 캔버스 바닥에 닿은 경우를 고려하여 작업하였다.&lt;/p&gt;
+
+&lt;p&gt;작업 도중에 새로운 효과를 추가하려니 코드가 심각하게 지저분해진 부분이다. 분명 더 간결하게 작성할 수 있는 방법이 있을텐데 아쉬움이 많이 남는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-마치며&quot;&gt;5. 마치며&lt;/h2&gt;
+&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1KRpBwitPg7NpmNiLiMcTYKHFtkDKQGM4&quot; /&gt;&lt;/center&gt;
+
+&lt;p&gt;폴가이즈를 하면서 용 코스튬을 입은 &lt;strong&gt;크레이지 스텀블링 애니멀&lt;/strong&gt;을 보면, 담굴 생각말고 반갑게 손 한번 들어주길 바란다.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-reference&quot;&gt;4. Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/kavoom2/toy-fall-guy&quot;&gt;&lt;strong&gt;토이 프로젝트 GitHub&lt;/strong&gt;&lt;/a&gt;   &lt;br /&gt;
+&lt;a href=&quot;https://youtu.be/-F0pgU2-TAg&quot;&gt;&lt;strong&gt;테스트 영상 - 2021. 01. 19.&lt;/strong&gt;&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;https://www.deviantart.com/arisumatio/art/MMD-Fall-Guys-Astronaut-854647126&quot;&gt;&lt;strong&gt;폴가이 모델파일 및 이미지&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Toy" /><category term="Javscript" /><category term="fallguys" /><summary type="html">자바스크립트와 HTML5 캔버스 학습</summary></entry><entry><title type="html">클래스 예제 - Beesbeesbees</title><link href="https://kavoom2.github.io/javascript/inheritance-beebeebees/" rel="alternate" type="text/html" title="클래스 예제 - Beesbeesbees" /><published>2021-01-15T00:00:00+09:00</published><updated>2021-01-16T03:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/inheritance-beebeebees</id><content type="html" xml:base="https://kavoom2.github.io/javascript/inheritance-beebeebees/">&lt;h2 id=&quot;1-ecmascript6-class문법에서-속성과-메소드-상속&quot;&gt;1. ECMAScript6 Class문법에서 속성과 메소드 상속&lt;/h2&gt;
 &lt;p&gt;ECMAScript6 문법에서 Class 상속은 다음과 같이 표현할 수 있다. Constuctor와 메소드에서 super가 어떻게 사용되는지 유심히 살펴보자.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;ol&gt;
@@ -896,7 +1219,7 @@ $ git branch -d release/1.0
 
 &lt;p&gt;스프린트 과제 패키지 설치 중 오류가 발생하면 다음 명령어를 입력해보자.&lt;/p&gt;
 &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;sh&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;registry&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sh&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>liondoge</name></author><category term="Node.js" /><category term="package.json" /><category term="nvm" /><category term="npm" /><summary type="html">Node.js 사용에 필요한 도구와 package.json의 역할</summary></entry><entry><title type="html">테트리스 구현</title><link href="https://kavoom2.github.io/toy/toy-clone-tetris01/" rel="alternate" type="text/html" title="테트리스 구현" /><published>2021-01-08T00:00:00+09:00</published><updated>2021-01-09T09:00:00+09:00</updated><id>https://kavoom2.github.io/toy/toy-clone-tetris01</id><content type="html" xml:base="https://kavoom2.github.io/toy/toy-clone-tetris01/">&lt;p&gt;다음 글은 &lt;strong&gt;테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)&lt;/strong&gt;를 직접 구현해보고 정리한 내용이다.  &lt;br /&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>liondoge</name></author><category term="Node.js" /><category term="package.json" /><category term="nvm" /><category term="npm" /><summary type="html">Node.js 사용에 필요한 도구와 package.json의 역할</summary></entry><entry><title type="html">개인 토이프로젝트 - 테트리스 클론</title><link href="https://kavoom2.github.io/toy/toy-clone-tetris01/" rel="alternate" type="text/html" title="개인 토이프로젝트 - 테트리스 클론" /><published>2021-01-08T00:00:00+09:00</published><updated>2021-01-09T09:00:00+09:00</updated><id>https://kavoom2.github.io/toy/toy-clone-tetris01</id><content type="html" xml:base="https://kavoom2.github.io/toy/toy-clone-tetris01/">&lt;p&gt;다음 글은 &lt;strong&gt;테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)&lt;/strong&gt;를 직접 구현해보고 정리한 내용이다.  &lt;br /&gt;
 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다.&lt;/p&gt;
 
 &lt;h2 id=&quot;1-블록의-기본요소&quot;&gt;1. 블록의 기본요소&lt;/h2&gt;
@@ -1226,113 +1549,4 @@ A --- F[&quot;clearLines()&quot;]
 
 &lt;p&gt;우리가 원하는건 일정시간마다 블록이 움직이는 것이다. 동영상처럼 화면이 움직이게 하려면 예제 animate()함수와 같이 함수를 재귀로 호출해야 한다. 주의할 점은 프레임 단위로 보여주므로, 모니터 주사율이 다르면 모니터 성능마다 영상 재생속도가 달라진다는 점이다. 60프레임을 보여준다고 하면 모니터 주사율이 60fps인 모니터에서는 1초 동안 재생하지만, 주사율이 120fps인 모니터는 0.5초 동안 재생한다. 따라서, 경과한 시간을 받아서 일정시간마다 재생할 수 있도록 해야한다. 예제에서는 객체 time에 start, elapsed, level(레벨마다 블록이 떨어지는 시간간격)으로 조정하였다.&lt;/p&gt;
 
-&lt;p&gt;방향키로 블록을 이동하거나 회전하는 등 조작 이벤트는 위 내용과 기본적인 흐름은 유사하다. 회전은 변환행렬 곱을 이용하여 배열을 만들고, 함수실행은 특정 키가 눌렸을 때로 바꾸어주면 된다. 이벤트 사용법과 행렬변환으로 회전하는 방법을 자세히 알고 싶다면 최상단 링크의 관련내용을 살펴보자.&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Toy" /><category term="clone" /><category term="tetris" /><summary type="html">자바스크립트 기반 테트리스 게임 구현</summary></entry><entry><title type="html">하노이의 탑</title><link href="https://kavoom2.github.io/algorithm/hanoi/" rel="alternate" type="text/html" title="하노이의 탑" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T22:00:00+09:00</updated><id>https://kavoom2.github.io/algorithm/hanoi</id><content type="html" xml:base="https://kavoom2.github.io/algorithm/hanoi/">&lt;p&gt;세 개의 기둥과 크기가 서로 다른 원판이 있다. 처음에는 아래 그림처럼 기둥 A에 원판이 작은 것이 위로 오도록 쌓여 있다. 게임의 목적은 처음에 꽂혀 있던 순서대로 기둥 C에 옮겨서 쌓는 것이다. 다음 규칙들을 만족하면서 움직여야한다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;원판은 한 번에 한 개만 이동할 수 있다.&lt;/li&gt;
-  &lt;li&gt;큰 원판은 작은 원판 위에 있을 수 없다.&lt;/li&gt;
-  &lt;li&gt;최소한의 횟수로 원판을 이동해야 한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1TteQdy041mcPxIXklqOEbWnGQ4e8E0pJ&quot; width=&quot;500px&quot; /&gt;&lt;/center&gt;
-
-&lt;p&gt;하노이의 탑은 재귀 호출의 대표적인 문제이다. 총 원판 갯수를 n이라 할 때, n = 1, 2, 4인 경우를 예시로 살펴보자.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-n--1&quot;&gt;1. n = 1&lt;/h2&gt;
-&lt;p&gt;기둥 A에서 기둥 C로 옮기면 문제가 해결된다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;1번 원판을 A에서 C로 이동한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;2-n--2&quot;&gt;2. n = 2&lt;/h2&gt;
-&lt;p&gt;큰 원판은 항상 작은 원판보다 아래에 있어야 한다는걸 생각하자. 큰 원판을 C로 옮기려면 먼저 작은 원판을 B로 먼저 옮겨야 한다. 그 뒤에 큰 원판을 C로 옮기고, 작은 원판을 C로 옮기면 마무리된다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;1번 원판을  A에서 B로 이동한다.  &lt;br /&gt;
-2번 원판을 A에서 C로 이동한다.  &lt;br /&gt;
-1번 원판을 B에서 C로 이동한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;3-n--4&quot;&gt;3. n = 4&lt;/h2&gt;
-&lt;center&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1nEBr69D7L-Z78fynAC1B0d9qJHf0Edp5&quot; width=&quot;700px&quot; /&gt;&lt;/center&gt;
-
-&lt;p&gt;위 그림은 n=4일 때, 가장 큰 원판을 A에서 C로 옮기는 과정이다. 유심히 봐야할 부분은 8번이다. 1~8번 과정을 거치면서 가장 큰 원판을 제외하고 나머지 원판을 순서대로 B에 쌓아놓았다. 그리고 9번으로 넘어가서 A에 있는 4번 원판을 C로 옮겨보자. 그러면, n=3인 하노이의 문제를 풀어야하는 상황이 나온다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;3개의 원판을 A에서 B로 이동한다.  &lt;br /&gt;
-4번 원판을 A에서 C로 이동한다.  &lt;br /&gt;
-3개의 원판을 B에서 C로 이동한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;하노이의 문제를 해결하는 함수를 hanoi(n, from, via, to)라고 하자. n은 원판의 총 갯수, from은 출발지, via는 경유지, to는 목적지라고 하면, n = 4인 경우는 다음과 같이 나타낼 수 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;hanoi(4, A, B, C) = hanoi(3, A, C, B) + hanoi(1, A, B, C) + hanoi(3, B, A, C)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;hanoi(1, from, via, to)는 1이므로, n일 때 함수를 다음과 같이 정리할 수 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;hanoi(n, from, via, to) = hanoi(n-1, from, to, via) + 1 + hanoi(n-1, via, from, to)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;4-함수구현&quot;&gt;4. 함수구현&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;문제 주소:&lt;/strong&gt; https://programmers.co.kr/learn/courses/30/lessons/12946?language=javascript#&lt;/p&gt;
-
-&lt;p&gt;다음은 프로그래머스에 나온 알고리즘 문제를 일부 변형한 해답이다. 문제에서는 이동경로만 배열로 제시하도록 했는데, 어떤 원반이 이동했는지 알 수 있도록 수정했다.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;solution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;via&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// base case: 1번 원반이 from에서 to로 이동&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;via&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// recursion: n번 원반이 from에서 to로 이동&lt;/span&gt;
-      &lt;span class=&quot;nx&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;via&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;hanoi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
-&lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>liondoge</name></author><category term="Algorithm" /><category term="hanoi" /><category term="recursion" /><summary type="html">재귀 호출의 대표적인 예시 하노이의 탑</summary></entry><entry><title type="html">Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우</title><link href="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/" rel="alternate" type="text/html" title="Ubuntu 20.04에서 소리가 정상적으로 출력되지 않는 경우" /><published>2021-01-06T00:00:00+09:00</published><updated>2021-01-06T10:20:00+09:00</updated><id>https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem</id><content type="html" xml:base="https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/">&lt;h2 id=&quot;1-해결방법&quot;&gt;1. 해결방법&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;원문:&lt;/strong&gt; https://www.maketecheasier.com/fix-no-sound-issue-ubuntu/&lt;/p&gt;
-
-&lt;p&gt;위 주소에서 도움을 받아 해결할 수 있었다. 마지막 방법인 패키지 재설치를 시도해보자.  &lt;br /&gt;
-유의할 점은 설정파일도 제거할 수 있도록 반드시 &lt;strong&gt;purge&lt;/strong&gt;를 실행해야 한다는 것이다.&lt;/p&gt;
-
-&lt;p&gt;다음 명령어를 실행하고 재부팅하면 해결된다.&lt;/p&gt;
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt remove &lt;span class=&quot;nt&quot;&gt;--purge&lt;/span&gt; alsa-base    
-&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt remove &lt;span class=&quot;nt&quot;&gt;--purge&lt;/span&gt; pulseaudio    
-&lt;span class=&quot;go&quot;&gt;     
-&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;alsa-base    
-&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;pulseaudio    
-&lt;span class=&quot;go&quot;&gt;     
-&lt;/span&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;alsa force-reload    
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;2-alsa와-pulseaudio&quot;&gt;2. ALSA와 Pulseaudio&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;원문:&lt;/strong&gt; https://makersweb.net/linux/19723  &lt;br /&gt;
-&lt;strong&gt;이하 내용은 관련 지식을 알아둘 목적으로만 적어둔 것입니다. 제가 작성한 내용이 아닙니다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;alsa&quot;&gt;ALSA&lt;/h3&gt;
-&lt;p&gt;ALSA(Advanced Linux Sound Architecture)는 응용 프로그램이 시스템의 실제 하드웨어와 상호작용할 수 있는 가장 낮은 수준의 인터페이스이다. ALSA는 한 번에 하나의 채널만 하드웨어로 전송하게 되고, 이로 인해 단일 응용프로그램만 ALSA에 한 번에 소리를 보낼 수 있다. 미디어 플레이어의 음악과 메신저의 알림음을 동시에 받을 수 없다.&lt;/p&gt;
-
-&lt;p&gt;이것을 개선하기 위해 Mixer를 구현하고, 여러 가상 오디오 채널을 단일 채널로 결합할 수 있게 한 것이 alsalib이다. 하지만, 라이브러리 수준의 믹싱 방식은 데스크톱 환경에서는 단일 응용 프로그램만 오디오를 출력할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;pulseaudio&quot;&gt;Pulseaudio&lt;/h3&gt;
-&lt;p&gt;Pulseaudio는 Linux 배포판의 표준 사운드 서버이다.&lt;/p&gt;
-
-&lt;p&gt;데스크톱 환경에서는 여러 응용 프로그램의 사운드를 병렬로 출력할 수 있어야 했다. 이를 구현하고자 사운드 서버가 등장했다. 사운드 서버는 데몬(daemon, 컴퓨터의 백그라운드에서 지속적으로 실행되는 서비스)이다.&lt;/p&gt;
-
-&lt;p&gt;사운드 서버는 소리를 출력해야 하는 모든 애플리케이션에 믹서슬롯을 제공한다. 사운드 서버는 들어오는 모든 오디오 슬롯을 하나로 믹싱하여 ALSA에 전달한다. 이 방법으로 여러 응용프로그램의 소리를 병렬로 출력할 수 있었으며, 개별 볼륨제어 등 다른기능도 구현할 수 있게 되었다.&lt;/p&gt;
-
-&lt;center&gt;&lt;div class=&quot;mermaid&quot;&gt;
-graph TB
-A[&quot;application&quot;] --&amp;gt; E[&quot;Sound server: Pulseaudio&quot;]
-B[&quot;application&quot;] --&amp;gt; E
-C[&quot;application&quot;] --&amp;gt; E
-D[&quot;application&quot;] --&amp;gt; E
-
-E --&amp;gt; F[&quot;Linux kernel: ALSA&quot;]
-F --&amp;gt; G[&quot;Hardware: Soundcard&quot;]
-&lt;/div&gt;&lt;/center&gt;</content><author><name>liondoge</name></author><category term="기타" /><category term="Ubuntu" /><category term="alsa" /><category term="pulseaudio" /><category term="dummy output" /><summary type="html">우분투에서 가짜출력이 나오거나, 스피커 상호작용은 정상적으로 표시되지만 소리가 출력되지 않을 시 해결방법</summary></entry></feed>
+&lt;p&gt;방향키로 블록을 이동하거나 회전하는 등 조작 이벤트는 위 내용과 기본적인 흐름은 유사하다. 회전은 변환행렬 곱을 이용하여 배열을 만들고, 함수실행은 특정 키가 눌렸을 때로 바꾸어주면 된다. 이벤트 사용법과 행렬변환으로 회전하는 방법을 자세히 알고 싶다면 최상단 링크의 관련내용을 살펴보자.&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Toy" /><category term="clone" /><category term="tetris" /><summary type="html">자바스크립트 기반 테트리스 게임</summary></entry></feed>

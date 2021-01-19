@@ -1,0 +1,825 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>자료구조(Data Structure) - Stack, Queue - 건축공학도의 개발자 성장기</title>
+<meta name="description" content="스택과 큐의 개념, 코드로 구현한 자료구조">
+
+
+  <meta name="author" content="liondoge">
+  
+  <meta property="article:author" content="liondoge">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="건축공학도의 개발자 성장기">
+<meta property="og:title" content="자료구조(Data Structure) - Stack, Queue">
+<meta property="og:url" content="https://kavoom2.github.io/javascript/data-structure/">
+
+
+  <meta property="og:description" content="스택과 큐의 개념, 코드로 구현한 자료구조">
+
+
+
+  <meta property="og:image" content="https://kavoom2.github.io/assets/images/og_image.jpeg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-01-19T00:00:00+09:00">
+
+
+
+  <meta property="article:modified_time" content="2021-01-20T02:00:00+09:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kavoom2.github.io/javascript/data-structure/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "liondoge",
+      "url": "https://kavoom2.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="/googled26c62ed370d78cf.html" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="건축공학도의 개발자 성장기 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    
+    
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          건축공학도의 개발자 성장기
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/readme/">ReadMe</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kavoom2.github.io/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/logo.jpg" alt="liondoge" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">liondoge</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>기억보다는 기록하려는 개발자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Suwon, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:kavoom2@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/kavoom2" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="자료구조(Data Structure) - Stack, Queue">
+    <meta itemprop="description" content="스택과 큐의 개념, 코드로 구현한 자료구조">
+    <meta itemprop="datePublished" content="2021-01-19T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2021-01-20T02:00:00+09:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">자료구조(Data Structure) - Stack, Queue
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-19T00:00:00+09:00">January 19, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="1-스택stack">1. 스택(Stack)</h2>
+<p>스택은 마지막에 들어온 데이터가 먼저 나가는 LIFO(Last In First Out) 방식의 자료구조이다. 어떻게 스택을 사용할지에 따라 다르겠지만, 스택에 필요한 주요 속성과 메소드는 다음과 같다.</p>
+<blockquote>
+  <p>Stack.pop() 스택 최상단 데이터를 반환하고 제거하는 메소드.</p>
+
+  <p>Stack.push(element) 스택에 메모리를 생성하여 추가하는 메소드. this.top + 1에 추가한다.</p>
+
+  <p>Stack.empty() 스택이 비었는지 확인하는 메소드. 비었으면 1, 그렇지 않으면 0을 반환.</p>
+
+  <p>Stack.size() 스택의 총 요소 갯수를 반환하는 메소드.</p>
+
+  <p>Stack.peek() 가장 최상단 데이터를 반환하는 메소드.</p>
+
+  <p>Stack.top 가장 최상단 데이터를 나타내는 속성(Property)</p>
+</blockquote>
+
+<p>스택을 처음 구현하려고 생각했을 때, storage 내부에 들어가는 키에는 값의 순번을 알 수 있는 속성을 담아야 한다고 생각했다. pop, push를 수행할 때 자료구조를 순회하면서 데이터를 찾는 방법으로 구상했는데, 이 경우 시간복잡도가 $O(1)$이 아닌 $O(n)$ 이 된다. 이 문제는 같이 진행한 페어분의 도움을 받아 윤곽을 잡을 수 있었다. 스택은 다음과 같이 구현하였다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Stack</span> <span class="p">{</span>
+  <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">storage</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">empty</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">peek</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nx">push</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">top</span><span class="p">]</span> <span class="o">=</span> <span class="nx">el</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="nx">pop</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">===</span> <span class="o">-</span><span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">tempObj</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">top</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="k">return</span> <span class="nx">tempObj</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>스택은 재귀함수의 실행에도 사용된다는 것을 알아두자. base case가 실행되기까지 콜스택에 함수가 쌓이게 된다. 이후 base case가 실행되면 역방향으로 함수가 실행되어 값을 반환하게 된다. 관련내용은 재귀함수 관련 TIL에서 정리하였으니 참고하도록 하자.</p>
+
+<h3 id="2-큐queue">2. 큐(Queue)</h3>
+<p>큐는 선입선출 방식의 자료구조이다. 큐를 우리말로 옮기면 대기열이 되는데, 온라인 게임의 대기열이나 줄을 서는 방식과 흡사하다. 큐에 필요한 주요 속성과 메소드는 다음과 같다.</p>
+<blockquote>
+  <p>Queue.front 가장 처음에 들어간 데이터의 인덱스</p>
+
+  <p>Queue.rear 다음에 들어올 데이터의 인덱스( = 가장 마지막에 들어온 인덱스 + 1)</p>
+
+  <p>Queue.enqueue(el) (또는 put, insert) 큐의 가장 뒤에 새로운 데이터를 추가하는 메소드.</p>
+
+  <p>Queue.dequeue() (또는 get, delete)큐의 가장 앞에 위치한 데이터를 제거한 뒤 반환하는 메소드.</p>
+
+  <p>Queue.size() 큐의 현재 총 데이터 갯수를 반환하는 메소드.</p>
+</blockquote>
+
+<p>선형 큐과 환형 큐로 구분할 수 있다. 큐의 구조상 자료를 입출입하는 과정에서 front 순번이 점차 뒤로 밀리게 된다. 선형 큐에서는 front의 앞칸을 사용하지 못하는 단점이 있는데, 이를 보완한 것이 환형 큐 방식이다.</p>
+
+<p>스택과 마찬가지로 큐의 시간복잡도는 탐색이 $O(n)$이고 추가 및 삭제가 $O(1)$이다. 이를 고려해서 자바스크립트로 구현해보자.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nx">Queue</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">storage</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">rear</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">front</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">rear</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">rear</span> <span class="o">-</span> <span class="k">this</span><span class="p">.</span><span class="nx">front</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="nx">enqueue</span><span class="p">(</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">front</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">rear</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">front</span><span class="p">]</span> <span class="o">=</span> <span class="nx">el</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">rear</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">rear</span><span class="p">]</span> <span class="o">=</span> <span class="nx">el</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">rear</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span>
+
+    <span class="p">}</span>
+
+    <span class="nx">dequeue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">front</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">rear</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">tempObj</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">front</span><span class="p">];</span>
+            <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">storage</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">front</span><span class="p">];</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">front</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="k">return</span> <span class="nx">tempObj</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#data-structure" class="page__taxonomy-item" rel="tag">Data Structure</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#javascript" class="page__taxonomy-item" rel="tag">Javascript</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-19">January 19, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0%28Data+Structure%29+-+Stack%2C+Queue%20https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Fdata-structure%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Fdata-structure%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Fdata-structure%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/javascript/inheritance-beebeebees/" class="pagination--pager" title="클래스 예제 - Beesbeesbees
+">Previous</a>
+    
+    
+      <a href="/toy/javscript/toy-fallGuys/" class="pagination--pager" title="개인 토이프로젝트 중간점검 - 폴 가이즈
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/toy/javscript/toy-fallGuys/" rel="permalink">개인 토이프로젝트 중간점검 - 폴 가이즈
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-19T00:00:00+09:00">January 19, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">자바스크립트와 HTML5 캔버스 학습
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/inheritance-beebeebees/" rel="permalink">클래스 예제 - Beesbeesbees
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-15T00:00:00+09:00">January 15, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">스프린트 과제로 배우는 클래스 상속구현
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/object-oriented-programming/" rel="permalink">객체지향 프로그래밍(Object Oriented Programming)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-14T00:00:00+09:00">January 14, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          5 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">객체지향 프로그래밍의 정의와 특징
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/ingeritance-patterns/" rel="permalink">인스턴트 생성 패턴(Instantiation Patterns)과 클래스(Class)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-14T00:00:00+09:00">January 14, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">클래스의 레거시 코드 구현과 클래스 기초문법
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 liondoge. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kavoom2.github.io/javascript/data-structure/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/javascript/data-structure"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-kavoom2-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

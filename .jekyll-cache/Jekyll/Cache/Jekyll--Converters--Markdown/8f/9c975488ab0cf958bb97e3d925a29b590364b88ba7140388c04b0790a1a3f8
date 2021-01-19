@@ -1,0 +1,30 @@
+I"I<p>글을 쓰기에 앞서 좋은 컨텐츠와 강의를 제공해주신 개발자 <a href="https://www.youtube.com/user/cmiscm"><strong>Interactive Developer</strong></a>님에게 감사의 말씀을 드리고 싶다. 덕분에 HTML5와 자바스크립트만으로도 다양한 시각적 경험을 만들 수 있다는 것을 알게 되었다. 그리고 올려주신 정말 좋은 영상들을 보면서 이를 어떻게 활용할지 알 수 있었다. 지금까지 올리신 강의는 <a href="https://youtube.com/playlist?list=PLGf_tBShGSDNGHhFBT4pKFRMpiBrZJXCm"><strong>이 곳</strong></a>에서 볼 수 있다. 심지어 무료다.</p>
+
+<h2 id="1-프로젝트를-하게-된-계기는">1. 프로젝트를 하게 된 계기는..</h2>
+<center><img src="https://drive.google.com/uc?export=view&amp;id=1n5plZiRSb7SqJKK3roX5aXZ-6d8SdZDs" /></center>
+
+<p>폴 가이 토이 프로젝트를 진행하게 된 이유는 두 가지였다. 하나는 예전부터 “개인적으로 정말 만들고 싶은 것”을 내 손으로 만드려는 욕구를 해소하고 싶었기 때문이고, 다른 하나는 Interactive Developer님의 이야기가 크게 와닿았기 때문이다. 어도비 플래시에 관한 내용으로 개발 툴의 패러다임이 바뀌어도 적응할 수 있는 기초를 다져야 한다는 내용이었다. 그 내용을 들었을 때 정말 머리가 띵했었다.</p>
+
+<p>마침 부트캠프에서 클래스에 관한 개념을 어느정도 잡아놨었고, 다행히 많이 바쁜 시기는 아니었다. 이 만한 기회는 없다고 생각하고 즉시 행동에 옮겼다.</p>
+
+<h2 id="2-무엇을-구현할-것인가">2. 무엇을 구현할 것인가</h2>
+
+<p>의욕도 앞서고 하고 싶은 것은 정말 많지만, 과욕은 일을 망치기도 하는 법이다. 진행하기에 앞서 무게를 두고 먼저 구현해야 할 것들을 정리했다.</p>
+<blockquote>
+  <p>다양한 움직임을 구현하되, CSS는 최소한으로 사용하고 자바스크립트로 구현하기</p>
+
+  <p>HTML5 캔버스의 다양한 기능을 찾아보고 직접 사용해보기</p>
+
+  <p>HTML, Javascript에서 프레임 단위로 애니메이션을 재생하는 기능 활용하기</p>
+</blockquote>
+
+<p>게임으로 만들고 싶은 욕구가 가득하지만 실력을 한 단계 끌어올리는게 주된 목적이니 부차적인 기능들은 미뤄두었다. 마침 최근에 재밌게 했던 폴가이즈를 바탕으로 만들고 싶었는데, 무엇을 구현할지는 가볍게 몇 판 하면서 정리했다…..</p>
+
+<center><img src="https://drive.google.com/uc?export=view&amp;id=1Aa7Fm4JBM4RNkRlrVl5TtXtqP1TZllZe" /></center>
+
+<p>메인화면과 게임 스테이지를 만들고, 게임은 횡스크롤 형식의 피하기 게임으로 계획했다. 피그마에 만들었던 초기 디자인은 진행하다보니 개인 욕심에 이것저것 많이 추가되었다.</p>
+
+<h2 id="링크">링크</h2>
+<p><a href="https://github.com/kavoom2/toy-fall-guy"><strong>토이 프로젝트 GitHub</strong></a>   <br />
+<a href="https://youtu.be/-F0pgU2-TAg"><strong>테스트 영상 - 2021. 01. 19.</strong></a></p>
+:ET

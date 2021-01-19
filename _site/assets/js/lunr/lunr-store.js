@@ -41,7 +41,7 @@ var store = [{
         "url": "https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/",
         "teaser": null
       },{
-        "title": "테트리스 구현",
+        "title": "개인 토이프로젝트 - 테트리스 클론",
         "excerpt":"다음 글은 테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)를 직접 구현해보고 정리한 내용이다. 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다. 1. 블록의 기본요소 테트리스 게임의 핵심은 블록의 움직임과 물리적 충돌을 어떻게 구현할 것인가이다. 게임 시작, 종료, 점수 매기기 등 기능들은 우선 배제하고 블록의 움직임만 생각해보자. 1.1. 블록...","categories": ["Toy"],
         "tags": ["clone","tetris"],
         "url": "https://kavoom2.github.io/toy/toy-clone-tetris01/",
@@ -87,5 +87,17 @@ var store = [{
         "excerpt":"1. ECMAScript6 Class문법에서 속성과 메소드 상속 ECMAScript6 문법에서 Class 상속은 다음과 같이 표현할 수 있다. Constuctor와 메소드에서 super가 어떻게 사용되는지 유심히 살펴보자. 생성자에서 부모 클래스의 속성과 메소드 상속 : super([arguments]); 부모 클래스의 함수 호출 : super.functionOnParent([arguments]); class Grub { constructor() { this.age = 0; this.color = \"pink\"; this.food = \"jelly\";...","categories": ["Javascript"],
         "tags": ["class","instance","inheritance","TIL"],
         "url": "https://kavoom2.github.io/javascript/inheritance-beebeebees/",
+        "teaser": null
+      },{
+        "title": "자료구조(Data Structure) - Stack, Queue",
+        "excerpt":"1. 스택(Stack) 스택은 마지막에 들어온 데이터가 먼저 나가는 LIFO(Last In First Out) 방식의 자료구조이다. 어떻게 스택을 사용할지에 따라 다르겠지만, 스택에 필요한 주요 속성과 메소드는 다음과 같다. Stack.pop() 스택 최상단 데이터를 반환하고 제거하는 메소드. Stack.push(element) 스택에 메모리를 생성하여 추가하는 메소드. this.top + 1에 추가한다. Stack.empty() 스택이 비었는지 확인하는 메소드. 비었으면 1,...","categories": ["Javascript"],
+        "tags": ["Data Structure"],
+        "url": "https://kavoom2.github.io/javascript/data-structure/",
+        "teaser": null
+      },{
+        "title": "개인 토이프로젝트 중간점검 - 폴 가이즈",
+        "excerpt":"시작하기에 앞서 정말 좋은 컨텐츠와 강의를 제공해주신 개발자 Interactive Developer님에게 감사의 말씀을 드리고 싶다. 덕분에 HTML5와 자바스크립트만으로도 다양한 시각적 경험을 만들 수 있다는 것을 알게 되었다. 그리고 이 영상들을 보면서 배운 내용을 어떻게 활용할지 머리 속에 그려볼 수 있었다. 지금까지 올리신 강의는 이 곳에서 볼 수 있다. 심지어 무료다. 1....","categories": ["Toy","Javscript"],
+        "tags": ["fallguys"],
+        "url": "https://kavoom2.github.io/toy/javscript/toy-fallGuys/",
         "teaser": null
       }]
