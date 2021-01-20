@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-20T03:26:27+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">자료구조(Data Structure) - Stack, Queue</title><link href="https://kavoom2.github.io/javascript/data-structure/" rel="alternate" type="text/html" title="자료구조(Data Structure) - Stack, Queue" /><published>2021-01-19T00:00:00+09:00</published><updated>2021-01-20T02:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/data-structure</id><content type="html" xml:base="https://kavoom2.github.io/javascript/data-structure/">&lt;h2 id=&quot;1-스택stack&quot;&gt;1. 스택(Stack)&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-01-20T03:28:41+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">자료구조(Data Structure) - Stack, Queue</title><link href="https://kavoom2.github.io/javascript/data-structure/" rel="alternate" type="text/html" title="자료구조(Data Structure) - Stack, Queue" /><published>2021-01-19T00:00:00+09:00</published><updated>2021-01-20T02:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/data-structure</id><content type="html" xml:base="https://kavoom2.github.io/javascript/data-structure/">&lt;h2 id=&quot;1-스택stack&quot;&gt;1. 스택(Stack)&lt;/h2&gt;
 &lt;p&gt;스택은 마지막에 들어온 데이터가 먼저 나가는 LIFO(Last In First Out) 방식의 자료구조이다. 어떻게 스택을 사용할지에 따라 다르겠지만, 스택에 필요한 주요 속성과 메소드는 다음과 같다.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Stack.pop() 스택 최상단 데이터를 반환하고 제거하는 메소드.&lt;/p&gt;
@@ -296,11 +296,12 @@
 &lt;p&gt;참고로 베지어 곡선을 보다보면, $t(0\leqq t \leqq 1)$가 무엇을 의미하는지 애매할 수도 있다. 베지어 곡선을 양 끝에 위치한 두 점을 이은 직선을 하나 만들자. 직선 위에서 어느 지점에 위치해있는지 비율로 나타낸 값으로 볼 수 있는데, 베지어 곡선 상에 있는 특정 점을 구하는데 요긴하게 쓰이니 알아두면 좋다. 곡선이 그려지는 원리를 보면 이해하는데 도움이 될 것이다. 자세한 내용은 &lt;a href=&quot;https://lee-seokhyun.gitbook.io/workspace/client/easy-mathematics/gdc2012/2&quot;&gt;다음 글&lt;/a&gt;을 참조하자.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Find coordinates on a bezier curve
+  &lt;p&gt;Find coordinates on a bezier curve  &lt;br /&gt;
 t = 0.25; // P0와 P1사이 지점을 1:3으로 등분하는 지점        &lt;br /&gt;
 x = (1 - t) * (1 - t) * p[0].x + 2 * (1 - t) * t * p[1].x + t * t * p[2].x;  &lt;br /&gt;
 y = (1 - t) * (1 - t) * p[0].y + 2 * (1 - t) * t * p[1].y + t * t * p[2].y;  &lt;br /&gt;
-p[0] is the start point, p[1] is the control point, and p[2] is the end point. t is the parameter, which goes from 0 to 1.&lt;/p&gt;
+p[0] is the start point, p[1] is the control point, and p[2] is the end point.  &lt;br /&gt;
+t is the parameter, which goes from 0 to 1.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;참고로 직선은 quadraticCurveTo를 moveTo(x, y) 함수로 변경하면 된다.&lt;/p&gt;
