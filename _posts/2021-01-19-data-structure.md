@@ -13,9 +13,10 @@ last_modified_at: 2021-01-19T17:00:00
 use_math: true
 
 categories:
-- Javascript
-tags:
 - Data Structure
+tags:
+- stack
+- queue
 ---
 ## 1. 스택(Stack)
 스택은 마지막에 들어온 데이터가 먼저 나가는 LIFO(Last In First Out) 방식의 자료구조이다. 어떻게 스택을 사용할지에 따라 다르겠지만, 스택에 필요한 주요 속성과 메소드는 다음과 같다.

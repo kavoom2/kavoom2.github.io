@@ -1,6 +1,6 @@
 ---
 
-title: 자료구조(Data Structure) - Linked List, Hash Table
+title: 자료구조(Data Structure) - Linked list, Hash table
 
 excerpt: "연결 리스트와 해시 테이블의 개념, 코드로 구현한 자료구조"
 
@@ -13,9 +13,10 @@ last_modified_at: 2021-01-20T23:00:00
 use_math: true
 
 categories:
-- Javascript
-tags:
 - Data Structure
+tags:
+- linked list
+- hash table
 ---
 출처에 표기한 글을 정리한 내용입니다.
 

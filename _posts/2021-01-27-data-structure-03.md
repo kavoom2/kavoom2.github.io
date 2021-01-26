@@ -1,6 +1,6 @@
 ---
 
-title: 자료구조(Data Structure) - Tree, Binary Search Tree
+title: 자료구조(Data Structure) - Tree, Binary search tree
 
 excerpt: "트리의 개념, 코드로 구현한 자료구조"
 
@@ -13,9 +13,10 @@ last_modified_at: 2021-01-27T00:00:00
 use_math: true
 
 categories:
-- Javascript
-tags:
 - Data Structure
+tags:
+- tree
+- binary search tree
 ---
 ## 1. 트리(Tree) 
 먼저 트리의 구성요소를 살펴보도록 하자.
@@ -123,13 +124,6 @@ class BinarySearchTreeNode {
     }
 }
 ````
-
-
-
-
-
-
-
 
 ## 3. Refernece
 [트리(tree)와 이진트리(binary tree)](https://ratsgo.github.io/data%20structure&algorithm/2017/10/21/tree/)    
