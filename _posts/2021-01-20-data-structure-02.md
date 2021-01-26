@@ -132,7 +132,7 @@ class LinkedList {
 
 해시테이블에서 중요한 개념은 적재율(Load Factor)와 충돌(Collision)이다. 적재율은 $K/N$($K는 키의 갯수, N은 테이블의 크기$)이다. 적재율이 1 이상이면 필연적으로 충돌이 발생한다. 그리고, 데이터들의 색인 분포가 한 쪽으로 몰리면, 하나의 색인에 수많은 데이터가 몰릴 수 있다. 이는 데이터 탐색의 이점을 살리려는 해시 테이블의 목적과는 거리가 멀다.
 
-먼저, 충돌이 발생하여 같은 색인에 두 개 이상의 자료가 들어가야 하는 상황은 어떻게 해결할 수 있을까. 체이닝(Chaining)은 충돌이 발생하면, 데이터를 동일한 버켓(Bucket)에 저장하고 연결리스트 방식으로로 저장하는 개념이다. 
+먼저, 충돌이 발생하여 같은 색인에 두 개 이상의 자료가 들어가야 하는 상황은 어떻게 해결할 수 있을까. 체이닝(Chaining)은 충돌이 발생하면, 데이터를 동일한 버켓(Bucket)에 저장하고 연결리스트 방식으로로 저장하는 개념이다. 예제에서는 객체 내부 안에 여러 키를 가지게 하는 방식으로 버킷을 구현하였으나, 배열을 사용하여도 된다.
 
 
 ```js
@@ -154,112 +154,73 @@ class HashTable {
     }
 
     insert(key, value) {
-        // Insertion
-        const index = hashFunction(key, this._bucketNum);
-        let obj;
-        let insertData = {};
-        if ( this._storage.get(index) === undefined ) {
-            obj = {};
-        } else {
-            obj = this._storage.get(index);
-        }
-        let result = Object.assgin(obj, insertData);
-        this._storage.set(index, result);
-        this._size += 1;
+      // Insert
+      const index = hashFunction(key, this._bucketNum);
+      const obj = this._storage.get(index) || {};
+      const insertData = {};
+      insertData[key] = value;
 
-        // Resize
-        let percentage = ( this._size / this._bucketNum ) * 100;
-        if ( percentage > 75) {
-            this._bucketNum *= 2;
-        } else if ( percentage < 25 ) {
-            this._bucketNum /= 2;
-        } else {
-            return;
-        }
-        this._resize(this._bucketNum);
+      const result = Object.assign(obj, insertData);
+      this._storage.set(index, result);
+      this._size += 1;
+
+      // Resize
+      const percentage = (this._size / this._bucketNum) * 100;
+      if (percentage > 75) this._bucketNum *= 2;
+      else if (percentage < 25) this._bucketNum /= 2;
+      else return;
+      this._resize(this._bucketNum);
     }
 
     retrieve(key) {
         const index = hasFunction(key, this._bucketNum);
         const obj = this._storage.get(index);
-        if ( obj === undefined ) {
-            return undefined;
-        }
+
+        if ( obj === undefined ) return undefined;
         return obj[key];
     }
 
 
     remove(key) {
-        // Remove
-        const index = hasFunction(key, thos._bucketNum);
-        const data = this._storage.get(index);
-        if ( data === undefined ) {
-            return;
-        }
+      // Remove
+      const index = hashFunction(key, this._bucketNum);
+      let data = this._storage.get(index);
+      if (data === undefined) return;
 
-        const result = {};
-        let count = 0;
-        for ( let prop in data ) {
-            if ( prop !== key ) {
-                result[prop] = data[prop];
-                count ++
-            }
-        }
-        if ( count === 0 ) {
-            this._storage.set(index, undefined);
-        } else {
-            this._storage.set(index, result);
-        }
-        this._size -= 1;
+      if (key in data) delete data[key]
+      if (Object.keys(data).length === 0) data = undefined;
+      this._storage.set(index, data);
+      this._size -= 1;
 
-        // Resize
-        let percentage = (this._size / this._bucketNum) * 100;
-        if ( percentage > 75 ) {
-            this._bucketNum *= 2;
-        } else if ( percentage < 25 ) {
-            this.bucketNum /= 2;
-        } else {
-            return;
-        }
-        this._resize(this._bucketNum);
+      // Resize
+      const percentage = (this._size / this._bucketNum) * 100;
+      if (percentage > 75) this._bucketNum *= 2;
+      else if (percentage < 25) this._bucketNum /= 2;
+      else return;
+      this._resize(this._bucketNum);
     }
 
     _resize(newBucketNum) {
-        // Backup current storage
-        const backUp = [];
-        this._storage.each( (data) => {
-            if ( data !== undefined ) {
-                for ( let key in data ) {
-                    let obj = {};
-                    obj[key] = data[key];
-                    backUp.push(obj);
-                }
-            }
-        });
-
-        // Resize current storage
+        const oldStorage = this._storage;
         this._storage = LimitedArray(newBucketNum);
-        for ( let data of backUp ) {
-            for ( let key in data ) {
-                cosnt index = hashFunction(key, newBucketNum);
-                let obj;
-                let insertData ={};
+        oldStorage.each( (data) => {
+            if ( data === undefined ) return
+            for ( const key in data ) {
+                const index = hashFunction(key, newBucketNum);
+
+                const obj = this._storage.get(index) || [];
+                const insertData ={};
                 insertData[key] = data[key];
 
-                if ( this._storage.get(index) === undefined ) {
-                    obj = {};
-                } else {
-                    obj = this._storage.get(index);
-                }
-                let result = Object.assign(obj, insertData);
+                const result = Object.assign(obj, insertData);
                 this._storage.set(index, result);
             }
-        }
+        });
     }
 }
-
-
 ````
+
+
 
 ## 3. Refernece
 

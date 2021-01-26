@@ -23,14 +23,14 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="건축공학도의 개발자 성장기">
 <meta property="og:title" content="Git의 사용법과 Workflow 이해">
-<meta property="og:url" content="https://kavoom2.github.io/git/git-basic/">
+<meta property="og:url" content="http://localhost:4000/git/git-basic/">
 
 
   <meta property="og:description" content="Git의 사용법과 프로젝트에서 git 기반의 Workflow 이해">
 
 
 
-  <meta property="og:image" content="https://kavoom2.github.io/assets/images/og_image.jpeg">
+  <meta property="og:image" content="http://localhost:4000/assets/images/og_image.jpeg">
 
 
 
@@ -49,7 +49,7 @@
   
 
 
-<link rel="canonical" href="https://kavoom2.github.io/git/git-basic/">
+<link rel="canonical" href="http://localhost:4000/git/git-basic/">
 
 
 
@@ -60,7 +60,7 @@
     
       "@type": "Person",
       "name": "liondoge",
-      "url": "https://kavoom2.github.io/"
+      "url": "http://localhost:4000/"
     
   }
 </script>
@@ -344,11 +344,11 @@ B --&gt;|clone| C(["local Storage"])
 <p>원격 저장소를 사용하고 관리할 줄 알아야 공동작업 중 생기는 문제들을 줄일 수 있을 것이다. 다른 사용자와 원격저장소를 연결하는 방법을 배워보자.</p>
 
 <p>다른 사람의 리모트저장소를 추가하는 방법은 다음과 같다. name에는 저장할 별칭을 적어주면 된다. 삭제는 remove 명령어를 사용한다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add &lt;name&gt; &lt;repro url for other user fork&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add &lt;name&gt; &lt;repro url for other user fork&gt;
 $ git remote remove &lt;name&gt; or &lt;url&gt;
 </code></pre></div></div>
 <p>현재 연결되어있는 원격저장소를 확인할 수 있다. 아래 예제에서는 페어의 별칭과 깃허브 리포지토리도 출력되는 것을 볼 수 있다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote -v
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote -v
 
 // 해당명령어 입력 시 출력예시
 origin	https://github.com/kavoom2/simple-git-workflow.git (fetch)
@@ -357,10 +357,10 @@ pair	https://github.com/lotteryman/simple-git-workflow (fetch)
 pair	https://github.com/lotteryman/simple-git-workflow (push)
 </code></pre></div></div>
 <p>상대방의 원격저장소에서 데이터를 가져오려면 다음과 같은 명령어를 실행한다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git pull &lt;name&gt; &lt;branch name&gt; // ex) git pull pair master
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git pull &lt;name&gt; &lt;branch name&gt; // ex) git pull pair master
 </code></pre></div></div>
 <p>저장소의 깃 사용내역을 확인하고 싶으면 log 명령어를 사용하자. 누가 언제 무엇을 어느 활동을 했는지 알 수 있다. 커밋, 머지 등 작업내역을 직접 확인가능하다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git log
 </code></pre></div></div>
 
 <h2 id="git-기반-workflow-관리">Git 기반 Workflow 관리</h2>
@@ -377,44 +377,44 @@ pair	https://github.com/lotteryman/simple-git-workflow (push)
 </ul>
 
 <p>우선 메인 브랜치 만들어야 한다. 브랜치 생성과 이동 명령어는 다음과 같다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch &lt;branch name&gt; // 브랜치 생성
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch &lt;branch name&gt; // 브랜치 생성
 $ git checkout &lt;branch name&gt; // 브랜치 이동
 $ git checkout -b &lt;branch name&gt; // 브랜치 생성 후 이동
 </code></pre></div></div>
 
 <p>브랜치 생성은 현재 브랜치를 기준으로 한다는 것을 잊지말자.  <br />
 개발을 하는 메인 브렌치 develop를 만든다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -b develop
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout -b develop
 </code></pre></div></div>
 <p>기능추가 등 개발작업은 develop에서 수행한다. 개발을 완료하면 출시를 위한 준비를 해야한다. 수정한 코드는 보조브랜치 Relase에 커밋한다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
 $ git checkout -b release/0.1
 // 이후 relase/0.1에서 git add 와 commmit를 한다.
 </code></pre></div></div>
 
 <p>다음과 같이 devlop으로 이동하여 보조브랜치를 병합한다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
 $ git merge release/0.1 
 </code></pre></div></div>
 <p>Release 보조브랜치가 문제가 없으면 메인 브랜치로 이동하여 다시 한 번 병합한다. 이 때 동일 내용이 포함되는 브랜치를 병합하므로 fast forward가 자동으로 적용된다. <strong>fast forwarding 로 병합하면 작업 히스토리가 남지 않는다.</strong> 따라서 <strong>–no-ff</strong> 명령어로 히스토리를 커밋 메시지를 강제로 생성한다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout main
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout main
 $ git merge --no-ff release/0.1
 </code></pre></div></div>
 <p>합병했다는 기록이 남았으니 보조브랜치는 삭제하고, 메인 브랜치에 현재 버전을 태그로 남긴다. 불가피하게 이전버전으로 돌아가야 할 경우 유용할 것이다.</p>
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch -d release/0.1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git branch -d release/0.1
 $ git tag 0.1
 </code></pre></div></div>
 
 <p>복습할 겸 short과 long라는 신규기능을 만들어보자. develop으로 이동하여 다음과 같이 브랜치를 만들자. 신규기능을 구현한 코드를 커밋하려면 해당 보조브랜치로 이동한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout develop
 $ git checkout -b feature/short
 $ git checkout -b feature/long
 </code></pre></div></div>
 
 <p>신규로 구현한 기능들은 develop에서 병합한다. 병합할 때는 ff를 사용하지 않도록 해야한다. 그리고, 출시버전을 확인할 수 있도록 release 보조브랜치를 만들자.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 신규기능들을 develop에 병합
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>// 신규기능들을 develop에 병합
 $ git checkout develop
 $ git merge --no-ff feature/short
 $ git merge --no-ff feature/long
@@ -431,7 +431,7 @@ $ git merge --no-ff release/1.0
 </code></pre></div></div>
 <p>긴급하게 수정해야할 문제(hot-fix)가 없다면, main 브랜치에서 최종적으로 병합을 하고 불필요한 브랜치를 정리한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout master
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git checkout master
 $ git merge --no-ff release/1.0
 $ git tag 1.0
 $ git branch -d release/1.0
@@ -494,11 +494,11 @@ $ git branch -d release/1.0
     <h4 class="page__share-title">Share on</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Git%EC%9D%98+%EC%82%AC%EC%9A%A9%EB%B2%95%EA%B3%BC+Workflow+%EC%9D%B4%ED%95%B4%20https%3A%2F%2Fkavoom2.github.io%2Fgit%2Fgit-basic%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Git%EC%9D%98+%EC%82%AC%EC%9A%A9%EB%B2%95%EA%B3%BC+Workflow+%EC%9D%B4%ED%95%B4%20http%3A%2F%2Flocalhost%3A4000%2Fgit%2Fgit-basic%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fgit%2Fgit-basic%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fgit%2Fgit-basic%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fgit%2Fgit-basic%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fgit%2Fgit-basic%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -524,6 +524,52 @@ $ git branch -d release/1.0
     <div class="page__related">
       <h4 class="page__related-title">You may also enjoy</h4>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/data-structure-02/" rel="permalink">자료구조(Data Structure) - Linked List, Hash Table
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-20T00:00:00+09:00">January 20, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">연결 리스트와 해시 테이블의 개념, 코드로 구현한 자료구조
+</p>
+  </article>
+</div>
+
         
           
 
@@ -663,52 +709,6 @@ $ git branch -d release/1.0
 </div>
 
         
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/javascript/object-oriented-programming/" rel="permalink">객체지향 프로그래밍(Object Oriented Programming)
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-      
-      <span class="page__meta-date">
-        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-        <time datetime="2021-01-14T00:00:00+09:00">January 14, 2021</time>
-      </span>
-    
-
-    <span class="page__meta-sep"></span>
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-        
-          5 minute read
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">객체지향 프로그래밍의 정의와 특징
-</p>
-  </article>
-</div>
-
-        
       </div>
     </div>
   
@@ -767,7 +767,7 @@ $ git branch -d release/1.0
     
   <script>
     var disqus_config = function () {
-      this.page.url = "https://kavoom2.github.io/git/git-basic/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.url = "http://localhost:4000/git/git-basic/";  /* Replace PAGE_URL with your page's canonical URL variable */
       this.page.identifier = "/git/git-basic"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
     };
     (function() { /* DON'T EDIT BELOW THIS LINE */
