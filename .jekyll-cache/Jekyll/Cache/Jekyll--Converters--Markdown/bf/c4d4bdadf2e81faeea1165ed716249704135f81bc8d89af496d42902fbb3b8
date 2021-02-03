@@ -1,0 +1,55 @@
+I"�<h2 id="개요">개요</h2>
+<p>정수 n이 매개변수로 주어진다. 밑변의 길이와 높이가 각각 n인 삼각형에서 맨 위 꼭지점부터 반시계 방ㄴ향으로 달팽이 채우기를 한다. 만들어진 삼각형의 첫 행부터 마지막 행까지 순서대로 합친 배열을 반환해야 한다.</p>
+
+<h2 id="조건">조건</h2>
+<ul>
+  <li>n은 1 이상 1,000 이하이다.</li>
+</ul>
+
+<h2 id="풀이">풀이</h2>
+<p>이 삼각형은 달리 생각하면 밑변과 높이가 n인 삼각형으로 치환할 수 있다. 그 말인 즉슨, 2차원 배열 위로 옮길 수 있다는 것. 반시계 방향으로 움직이는 것은 이동거리를 계산하거나 벽에 부딛혔을 때 방향을 바꾸도록 하면 된다. 매 시행의 이동거리를 계산했었는데, 이동거리는 n ~ 1로 점차 줄어든다. 지금 생각해보면, 다음에 이동할 칸이 존재하지 않거나 값이 1 이상인 경우를 확인하는게 작성하기 훨씬 수월하다고 생각한다.</p>
+
+<p>그리고 Array.prototype.flat 메서드를 사용해볼 기회였다. 여러 메서드를 시의적절하게 사용하자.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 개인풀이</span>
+<span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">checker</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">curPosition</span> <span class="o">=</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+    <span class="kd">let</span> <span class="nx">direction</span> <span class="o">=</span> <span class="p">{</span><span class="na">dx</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">dy</span><span class="p">:</span> <span class="mi">1</span><span class="p">};</span>
+
+    <span class="c1">// 이동방향을 바꾸는 함수</span>
+    <span class="kd">function</span> <span class="nx">directionChanger</span><span class="p">(</span><span class="nx">num</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">checker</span> <span class="o">=</span> <span class="nx">num</span> <span class="o">%</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">checker</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="p">{</span><span class="na">dx</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="na">dy</span><span class="p">:</span><span class="mi">1</span><span class="p">};</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">checker</span> <span class="o">===</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span> <span class="p">{</span><span class="na">dx</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">dy</span><span class="p">:</span><span class="mi">0</span><span class="p">};</span>
+        <span class="k">else</span> <span class="k">return</span> <span class="p">{</span><span class="na">dx</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="na">dy</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="c1">// (n x n) matrix를 만든다. 처음부터 만들 때, 삼각형만 만드는 것이 수월하다.</span>
+    <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span><span class="p">).</span><span class="nx">fill</span><span class="p">().</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">fill</span><span class="p">());</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 1. 칸을 이동한다.</span>
+        <span class="nx">count</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="nx">matrix</span><span class="p">[</span><span class="nx">curPosition</span><span class="p">.</span><span class="nx">y</span><span class="p">][</span><span class="nx">curPosition</span><span class="p">.</span><span class="nx">x</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+
+        <span class="c1">// 2. 다음 칸으로 이동하기 전에 방향을 바꾸어야하는지 확인한다.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">count</span> <span class="o">===</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">checker</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nx">direction</span> <span class="o">=</span> <span class="nx">directionChanger</span><span class="p">(</span><span class="nx">checker</span><span class="p">);</span>
+            <span class="nx">n</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 3. 다음 칸으로 이동한다.</span>
+        <span class="nx">curPosition</span><span class="p">.</span><span class="nx">x</span> <span class="o">+=</span> <span class="nx">direction</span><span class="p">.</span><span class="nx">dx</span><span class="p">;</span>
+        <span class="nx">curPosition</span><span class="p">.</span><span class="nx">y</span> <span class="o">++</span> <span class="nx">direction</span><span class="p">.</span><span class="nx">dy</span><span class="p">;</span>
+        <span class="nx">value</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">answer</span> <span class="o">=</span> <span class="nx">matrix</span><span class="p">.</span><span class="nx">flat</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

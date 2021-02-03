@@ -81,7 +81,7 @@ const getDataFromFilePromise = filePath => {
 }
 
 getDataFromFilePromise(validPath).then((data) => console.log(data)); //Resolve의 값을 매개인자로 받는다.
-getDataFromFilePromise(invalidPath).then().catch((error) => console.log(error)); // Reject의 값을 매개인자로 받는다. 프로미스의 오류는 다음과 같이 catch로 실행하도록 하자.
+getDataFromFilePromise(invalidPath).then().catch((error) => console.log(error)); // Reject의 값을 매개인자로 받는다. 프로미스의 오류는 catch로 받도록 하자.
 ````
 
 프로미스의 주요한 특징이 하나 더 있다. 바로 여러 개의 프로미스를 사슬처럼 연결하여 사용할 수 있다는 것. 이러한 방식을 프로미스 체이닝(Promise Chaining)이라고 한다. **then() 메서드를 호출하면 새로운 프로미스 객체를 반환하는 것을 이용한 방법이다**. 예제를 한 번 보도록 하자.

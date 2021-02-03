@@ -1,0 +1,42 @@
+I"�<h2 id="개요">개요</h2>
+<p>가로 길이 Wcm, 세로 길이 Hcm인 모눈종이 사각형이 있다. 격자 칸의 크기는 1cm x 1cm이다. 좌측상단 꼭지점에서 우측하단 꼭지점을 이은 직선으로 종이를 잘랐다. 이 때 온전한 1cm x 1cm 정사각형의 갯수를 구하는 문제이다.</p>
+
+<h2 id="조건">조건</h2>
+<ul>
+  <li>W, H는 100,000,000이하의 자연수이다.</li>
+</ul>
+
+<h2 id="풀이">풀이</h2>
+<p>예제 그림을 보니 단위사각형으로 나눌 수 있다는 것을 확인했다. 그리고 단위 사각형으로 자세히 살펴보니, 사용할 수 없는 사각형의 갯수는 “단위너비 + 단위 폭 - 1”으로 나타낼 수 있었다. 그러면 “단위사각형에서 사용할 수 없는 사각형의 갯수 * 단위사각형 갯수”를 하면, 총 사용할 수 없는 사각형의 갯수를 구할 수 있다.</p>
+
+<p>사실 여기까지는 큰 문제가 아니다. 진짜 문제는 단위사각형을 구하려면 원래 높이와 폭의 최대공약수를 알아야 한다는 것…..</p>
+
+<p>최대공약수를 구하려면 <a href="https://ko.wikipedia.org/wiki/%EC%9C%A0%ED%81%B4%EB%A6%AC%EB%93%9C_%ED%98%B8%EC%A0%9C%EB%B2%95">유클리드 호제법</a>을 알아야 한다. 예를 들어 1071과 1029의 최대공약수를 구한다고 하자. 1 ~ 2번을 보면 알겠지만, 어떤 수를 먼저 계산하더라도 상관없다.</p>
+
+<blockquote>
+  <ol>
+    <li>1029를 <strong>1071</strong>로 나눈다. 나누어떨어지지 않으며, 나머지는 <strong>1029</strong>이다.</li>
+    <li>“1071”을 방금 계산한 나머지 <strong>1029</strong>로 나눈다. 나누어떨어지지 않으며, 나머지는 <strong>42</strong>이다.</li>
+    <li>1029를 <strong>42</strong>로 나눈다. 나누어떨어지지 않으며, 나머지는 <strong>21</strong>이다.</li>
+    <li>42를 <strong>21</strong>로 나눈다. 나누어떨이지므로, <strong>최대공약수는 21</strong>이다.</li>
+  </ol>
+</blockquote>
+
+<p>정리하면, a와 b의 최대공약수를 구한다고 하자. a % b === c(c !== 0)이라면, b % c를 한다. b % c === d(d !===0)이라면, 다시 c % d를 한다. 나머지가 0이 될 때까지 반복하며, 나머지가 0일 때 나누었던 숫자가 최대공약수이다. 이제 어떻게 함수를 작성해야 할지 머리 속에 그려질 것이다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 개인풀이</span>
+<span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">answer</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">function</span> <span class="nx">gcd</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">a</span><span class="o">%</span><span class="nx">b</span> <span class="o">===</span> <span class="mi">0</span> <span class="p">?</span> <span class="nx">b</span> <span class="p">:</span> <span class="nx">gcd</span><span class="p">(</span><span class="nx">b</span><span class="p">,</span> <span class="nx">a</span><span class="o">%</span><span class="nx">b</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="kd">const</span> <span class="nx">greatestCommon</span> <span class="o">=</span> <span class="nx">gcd</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="nx">h</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">unitW</span> <span class="o">=</span> <span class="nx">w</span> <span class="o">/</span> <span class="nx">greatestCommon</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">unitH</span> <span class="o">=</span> <span class="nx">h</span> <span class="o">/</span> <span class="nx">greatestCommon</span><span class="p">;</span>
+    
+    <span class="nx">answer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">w</span> <span class="o">*</span> <span class="nx">h</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="nx">unitW</span> <span class="o">+</span> <span class="nx">unitH</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nx">greatestCommon</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

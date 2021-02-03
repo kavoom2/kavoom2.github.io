@@ -1,0 +1,35 @@
+I"�<h2 id="개요">개요</h2>
+<p>3명의 수포자가 각각 맞춘 문제를 파악하고, 가장 많은 문제를 맞춘 사람을 오름차순 순으로 반환해야 하는 문제이다.</p>
+
+<h2 id="조건">조건</h2>
+<ul>
+  <li>문제의 답은 1, 2, 3, 4, 5 중 하나이다. 또한, 각자 정해진 규칙에 따라 문제를 찍는다.</li>
+  <li>자료의 크기는 최대 10,000이다. 즉, 최대 30,000번까지 탐색을 해야한다.</li>
+  <li>가장 높은 점수를 받은 사람이 여러명일 경우, 오름차순으로 정렬하여 반환해야 한다.</li>
+</ul>
+
+<h2 id="문제풀이">문제풀이</h2>
+<p>우선, 각자 맞은 정답의 갯수를 알아낸 다음, 그 값을 토대로 가장 많이 맞춘 사람의 정답수를 구해야 한다. 또한, 어떤 사람이 가장 많이 풀었는지, 그리고 동점자가 있을 경우 오름차순으로 정렬해야 한다. 따라서, 정답 갯수를 카운트 할 때, 배열을 사용하였다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 개인풀이</span>
+<span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">answers</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">answer</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">const</span> <span class="nx">man1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+    <span class="kd">const</span> <span class="nx">man2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+    <span class="kd">const</span> <span class="nx">man3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+    <span class="kd">const</span> <span class="nx">grades</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">answers</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">man1</span><span class="p">[</span><span class="nx">i</span> <span class="o">%</span> <span class="nx">man1</span><span class="p">.</span><span class="nx">length</span><span class="p">])</span> <span class="nx">grades</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">man2</span><span class="p">[</span><span class="nx">i</span> <span class="o">%</span> <span class="nx">man2</span><span class="p">.</span><span class="nx">length</span><span class="p">])</span> <span class="nx">grades</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">answers</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">===</span> <span class="nx">man3</span><span class="p">[</span><span class="nx">i</span> <span class="o">%</span> <span class="nx">man3</span><span class="p">.</span><span class="nx">length</span><span class="p">])</span> <span class="nx">grades</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kd">const</span> <span class="nx">maxGrade</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(...</span><span class="nx">grades</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">grades</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">maxGrade</span> <span class="o">===</span> <span class="nx">grades</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

@@ -1,0 +1,909 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>깊이 우선 탐색(Depth-First Search)와 되추적(Backtracking)을 활용한 Nqueens 문제해결 - 건축공학도의 개발자 성장기</title>
+<meta name="description" content="탐색방법의 종류와 개념. 이를 활용한 알고리즘 문제 해결">
+
+
+  <meta name="author" content="liondoge">
+  
+  <meta property="article:author" content="liondoge">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="건축공학도의 개발자 성장기">
+<meta property="og:title" content="깊이 우선 탐색(Depth-First Search)와 되추적(Backtracking)을 활용한 Nqueens 문제해결">
+<meta property="og:url" content="https://kavoom2.github.io/data%20structure/algorithm/nQueens/">
+
+
+  <meta property="og:description" content="탐색방법의 종류와 개념. 이를 활용한 알고리즘 문제 해결">
+
+
+
+  <meta property="og:image" content="https://kavoom2.github.io/assets/images/og_image.jpeg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-01-27T00:00:00+09:00">
+
+
+
+  <meta property="article:modified_time" content="2021-01-27T21:00:00+09:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kavoom2.github.io/data%20structure/algorithm/nQueens/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "liondoge",
+      "url": "https://kavoom2.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="/googled26c62ed370d78cf.html" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="건축공학도의 개발자 성장기 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    
+    
+    <script src="/js/mermaid.js"></script>
+  
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          건축공학도의 개발자 성장기
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/readme/">ReadMe</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kavoom2.github.io/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/logo.jpg" alt="liondoge" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">liondoge</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>기억보다는 기록하려는 개발자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Suwon, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:kavoom2@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/kavoom2" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="깊이 우선 탐색(Depth-First Search)와 되추적(Backtracking)을 활용한 Nqueens 문제해결">
+    <meta itemprop="description" content="탐색방법의 종류와 개념. 이를 활용한 알고리즘 문제 해결">
+    <meta itemprop="datePublished" content="2021-01-27T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2021-01-27T21:00:00+09:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">깊이 우선 탐색(Depth-First Search)와 되추적(Backtracking)을 활용한 Nqueens 문제해결
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-27T00:00:00+09:00">January 27, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="1-너비-우선-탐색breadth-first-search">1. 너비 우선 탐색(Breadth-first search)</h2>
+<p>루트 노드에서 시작하여 인접한 노드를 먼저 탐색하는 방법이다. 현재 탐색할 레벨에 있는 노드를 모두 방문한 뒤에 다음 레벨에 있는 노드를 탐색한다. 아래 트리를 탐색하는 순서는 root, 1, 2, 3, 4, 5, 6이다.</p>
+
+<!-- <center><div class = "mermaid">
+graph TD
+A((root)) --- B((1))
+A --- C((2))
+B --- D((3))
+B --- E((4))
+C --- F((5))
+C --- G((6))
+</div></center> -->
+
+<p>너비 우선 탐색은 깊이 탐색하기 전에 넓게 탐색한다. 주로 두 노드 사이의 최단경로나 임의의 경로를 찾아야 할 때 사용한다. 이를 구현하려면 현재 레벨에서 방문해야 할 노드를 차례로 저장하고, 꺼낼 수 있는 큐(Queue)를 사용해야 한다.</p>
+
+<h2 id="2-1-깊이-우선-탐색depth-first-search">2. 1. 깊이 우선 탐색(Depth-first search)</h2>
+<p>루트 노드에서 시작하여 다음 인접노드로 넘어가기 전에 해당 분기를 완벽하게 탐색하는 방법이다. 넓게 탐색하기 전에 깊이 탐색하는 방법. 주로 모든 노드를 방문해야할 경우에 사용한다. 위 트리에서 노드를 방문하는 순서는 root, 1, 3, 4, 2, 5, 6이다.</p>
+
+<h2 id="2-2-되추적backtracking">2. 2. 되추적(Backtracking)</h2>
+<p>깊이 우선 탐색은 자료의 크기가 방대해질 경우 시간복잡도가 기하급수적으로 커지게 된다. 따라서 모든 노드를 방문하기보다, 방문할 노드의 유망성(Promosing)을 확인하고, 유망하지 않으면 해당 노드를 방문하지 않고 부모노드로 돌아가서 다른 자손노드를 탐색한다. 이를 가지치기(Pruning)라고 한다.</p>
+
+<p>깊이 우선 탐색과 되추적은 재귀호출과 스택 자료구조를 활용하여 구현할 수 있다. 예제에서는 클래스와 재귀호출 방식을 사용하였다.</p>
+
+<h2 id="3-nqueens-문제해결">3. NQueens 문제해결</h2>
+
+<p>N-queens 문제에서 깊이 우선 탐색을 재귀호출로 구현하면서 보드 matrix가 제대로 구현되지 않는 문제가 발생했다. 매 탐색마다 보드판에 말을 놓고, 탐색한 뒤에 해당 말을 원위치하는 백트래킹을 제대로 구현하지 못해 발생한 문제였다.</p>
+
+<p>알고리즘을 해결하는 함수는 보드판 인스턴스와 nQueens를 해결하는 재귀함수를 내부에 변수로 저장하고 있었다. 재귀함수는 자신의 스코프에 보드판 Matrix를 변수로 가지고 있지 않으니, 외부 스코프에서 이를 호출한다. 이 과정에서 문제가 발생했다. 동일한 보드판 인스턴스를 여러 재귀함수 콜스택에서 호출하다보니, 이전 콜스택에서 말을 놓고나면 그 위치에 그대로 있었다. 노드상으로 동일한 레벨의 다음 콜스택이 호출했을 때, 보드판의 배치가 이전 시행과는 달라게 된 것이다. 당연히 제대로 탐색이 되지 않았다. 그 결과 1번째 열의 모든 칸에 말이 놓이고 다음 단계로 넘어가지 않았다.</p>
+
+<p>해결 방법은 생각보다 간단하다. 다음 탐색을 진행하기 전에 현재 보드의 상태를 원상복귀해주면 된다. 덕분에 백트래킹 개념을 머리 속에 확실히 각인시켰다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// #1. 개인풀이</span>
+<span class="kd">function</span> <span class="nx">countNQueensSolutions</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Board</span><span class="p">({</span><span class="na">n</span><span class="p">:</span> <span class="nx">n</span><span class="p">});</span>
+    <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">rows</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">rows</span> <span class="o">===</span> <span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">answer</span> <span class="o">++</span><span class="p">;</span>
+        <span class="k">return</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="nx">matrix</span><span class="p">.</span><span class="nx">togglePiece</span><span class="p">(</span><span class="nx">rows</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">matrix</span><span class="p">.</span><span class="nx">hasAnyQueenConflictsOn</span><span class="p">(</span><span class="nx">rows</span><span class="p">,</span> <span class="nx">i</span><span class="p">))</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">rows</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+          <span class="nx">matrix</span><span class="p">.</span><span class="nx">togglePiece</span><span class="p">(</span><span class="nx">rows</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span> <span class="c1">// Backtracking </span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="nx">solution</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="c1">// #2. 레퍼런스 코드</span>
+<span class="kd">function</span> <span class="nx">searchWtRecursion</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">board</span><span class="p">,</span> <span class="nx">hasConflict</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">row</span> <span class="o">===</span> <span class="nx">n</span><span class="p">)</span> <span class="k">return</span> <span class="nx">callback</span><span class="p">();</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">col</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">col</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">board</span><span class="p">.</span><span class="nx">togglePiece</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">hasConflict</span><span class="p">())</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">searchWtRecursion</span><span class="p">(</span><span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">board</span><span class="p">,</span> <span class="nx">hasConflict</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="nx">board</span><span class="p">.</span><span class="nx">togglePiece</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">countNQueensSolutions</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">board</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Board</span><span class="p">({</span><span class="na">n</span><span class="p">:</span> <span class="nx">n</span><span class="p">});</span>
+    <span class="kd">const</span> <span class="nx">hasConflict</span> <span class="o">=</span> <span class="nx">board</span><span class="p">[</span><span class="dl">'</span><span class="s1">hasAnyQueensConflicts</span><span class="dl">'</span><span class="p">].</span><span class="nx">bind</span><span class="p">(</span><span class="nx">board</span><span class="p">);</span>
+    <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="nx">searchWtRecursion</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">board</span><span class="p">,</span> <span class="nx">hasConflict</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="k">return</span> <span class="nx">count</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">findNqueensSolution</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">board</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Board</span><span class="p">({</span><span class="na">n</span><span class="p">:</span> <span class="nx">n</span><span class="p">});</span>
+    <span class="kd">const</span> <span class="nx">hasConflict</span> <span class="o">=</span> <span class="nx">board</span><span class="p">[</span><span class="dl">'</span><span class="s1">hasAnyQueensConflicts</span><span class="dl">'</span><span class="p">].</span><span class="nx">bind</span><span class="p">(</span><span class="nx">board</span><span class="p">);</span>
+    <span class="nx">searchWtRecursion</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">n</span><span class="p">,</span> <span class="nx">board</span><span class="p">,</span> <span class="nx">hasConflict</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">})</span>
+    <span class="kd">const</span> <span class="nx">solution</span> <span class="o">=</span> <span class="nx">board</span><span class="p">.</span><span class="nx">rows</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">solution</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<p>스프린트에서는 이차원 배열로 매트릭스를 구현하여 문제를 풀었지만, 1차원 배열로도 충분히 문제를 해결할 수 있다. 4 x 4 체스판을 만든다고 해보자. 이를 1차원, 2차원 배열로 각각 다음과 같이 만들 수 있다. 이 방법은 각 열에 말을 하나씩만 둘 수 있는 상황에만 사용할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 2차원 배열로 구현한 NQueens 보드판</span>
+<span class="p">[</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="c1">// 1차원 배열로 구현한 NQueens 보드판</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div></div>
+<p>퀸은 좌우상하와 대각선 방향으로 움직일 수 있다. 각 열에는 무조건 하나의 말 밖에 둘 수 없다는 것을 알아두자. 따라서, 1차원 배열에서 요소의 값(value)는 x축 좌표를 나타내고, 인덱스(index)는 y축 좌표를 나타내도록 표현할 수 있다.</p>
+
+<p>그 다음으로 퀸들 사이에 충돌이 있는지 확인해야 한다. 좌우 방향은 각 열에 하나만 두도록 배열을 만들었으므로 해결되었다. 상하 방향에 간섭되는 말이 있는지 확인하려면, 배열 내에 동일한 값을 가진 요소가 2개 이상 있는지 확인하면 된다. 값(value)이 x축 좌표이기 때문이다.</p>
+
+<p>대각선 방향은 어떻게 확인할 수 있을까. 앞서 언급했듯이 퀸은 대각선 방향으로 움직일 수 있는데, 기울기($y/x$)가 $1$ 또는 $-1$ 이라는 것에 주목하자. 좌표계에서 동일 직선상에 위치한 좌표들의 기울기는 모두 동일하다. 따라서 ${\Delta}y/{\Delta}x$의 절댓값이 $1$인지만 확인하면 되는 것이다. 풀이는 다음과 같다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// #1. 개인풀이</span>
+<span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">isPruning</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">board</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">function</span> <span class="nx">nqueen</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 탈출조건에 도달하면 종료한다.</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="nx">i</span> <span class="o">===</span> <span class="nx">n</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">answer</span> <span class="o">++</span><span class="p">;</span>
+            <span class="k">return</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="c1">// 해당 열에 좌표값을 넣고 확인한다.</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">board</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">j</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span> <span class="kd">let</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="nx">j</span> <span class="o">===</span> <span class="nx">board</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">||</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">j</span> <span class="o">-</span> <span class="nx">board</span><span class="p">[</span><span class="nx">k</span><span class="p">])</span> <span class="o">===</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">abs</span><span class="p">(</span><span class="nx">i</span> <span class="o">-</span> <span class="nx">k</span><span class="p">))</span> <span class="p">)</span> <span class="nx">isPruning</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">isPruning</span> <span class="p">)</span> <span class="nx">nqueen</span><span class="p">(</span><span class="nx">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="nx">isPruning</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="nx">board</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="nx">nqueen</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+<span class="c1">// #2. 레퍼런스 코드: 대칭을 활용하여 연산속도를 훨씬 단축시켰다.</span>
+<span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">colUsed</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">n</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">slashUsed</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">backSlashUsed</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nx">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">isValid</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="o">!</span><span class="p">(</span><span class="nx">colUsed</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">||</span> <span class="nx">slashUsed</span><span class="p">[</span><span class="nx">r</span> <span class="o">+</span> <span class="nx">c</span><span class="p">]</span> <span class="o">||</span> <span class="nx">backSlashUsed</span><span class="p">[</span><span class="nx">c</span> <span class="o">-</span> <span class="nx">r</span> <span class="o">+</span> <span class="nx">n</span><span class="p">]);</span>
+  <span class="kd">const</span> <span class="nx">place</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="p">(</span><span class="nx">colUsed</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="nx">slashUsed</span><span class="p">[</span><span class="nx">r</span> <span class="o">+</span> <span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="nx">backSlashUsed</span><span class="p">[</span><span class="nx">c</span> <span class="o">-</span> <span class="nx">r</span> <span class="o">+</span> <span class="nx">n</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">unPlace</span> <span class="o">=</span> <span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">c</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="p">(</span><span class="nx">colUsed</span><span class="p">[</span><span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="nx">slashUsed</span><span class="p">[</span><span class="nx">r</span> <span class="o">+</span> <span class="nx">c</span><span class="p">]</span> <span class="o">=</span> <span class="nx">backSlashUsed</span><span class="p">[</span><span class="nx">c</span> <span class="o">-</span> <span class="nx">r</span> <span class="o">+</span> <span class="nx">n</span><span class="p">]</span> <span class="o">=</span> <span class="kc">false</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">aux</span> <span class="o">=</span> <span class="p">(</span><span class="nx">row</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">row</span> <span class="o">===</span> <span class="nx">n</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">col</span> <span class="o">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">col</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">isValid</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">))</span> <span class="p">{</span>
+        <span class="nx">place</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">);</span>
+        <span class="nx">cnt</span> <span class="o">+=</span> <span class="nx">aux</span><span class="p">(</span><span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="nx">unPlace</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">cnt</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="kd">let</span> <span class="nx">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">place</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+    <span class="nx">cnt</span> <span class="o">+=</span> <span class="nx">aux</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="nx">unPlace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">i</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">cnt</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="nx">cnt</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">===</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">place</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">));</span>
+    <span class="nx">cnt</span> <span class="o">+=</span> <span class="nx">aux</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">cnt</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<h2 id="3-refernece">3. Refernece</h2>
+<p><a href="https://gmlwjd9405.github.io/2018/08/15/algorithm-bfs.html">[알고리즘] 너비 우선 탐색(BFS)이란</a>  <br />
+<a href="https://gmlwjd9405.github.io/2018/08/14/algorithm-dfs.html">[알고리즘] 깊이 우선 탐색(DFS)이란</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#breadth-first-search" class="page__taxonomy-item" rel="tag">breadth-first search</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#depth-first-search" class="page__taxonomy-item" rel="tag">depth-first search</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#nqueens" class="page__taxonomy-item" rel="tag">nqueens</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#algorithm" class="page__taxonomy-item" rel="tag">Algorithm</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#data-structure" class="page__taxonomy-item" rel="tag">Data Structure</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-01-27">January 27, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EA%B9%8A%EC%9D%B4+%EC%9A%B0%EC%84%A0+%ED%83%90%EC%83%89%28Depth-First+Search%29%EC%99%80+%EB%90%98%EC%B6%94%EC%A0%81%28Backtracking%29%EC%9D%84+%ED%99%9C%EC%9A%A9%ED%95%9C+Nqueens+%EB%AC%B8%EC%A0%9C%ED%95%B4%EA%B2%B0%20https%3A%2F%2Fkavoom2.github.io%2Fdata%2520structure%2Falgorithm%2FnQueens%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fdata%2520structure%2Falgorithm%2FnQueens%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fdata%2520structure%2Falgorithm%2FnQueens%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/data%20structure/data-structure-03/" class="pagination--pager" title="자료구조(Data Structure) - Tree, Binary search tree
+">Previous</a>
+    
+    
+      <a href="/algorithm/algorithm-2xN-tile-placing/" class="pagination--pager" title="코딩 테스트 - 2 x N 타일링
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/server/interaction-client-server/" rel="permalink">클라이언트와 서버의 통신
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-02T00:00:00+09:00">February 2, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">클라이언트와 서버가 통신하는 방법. 전달되는 데이터의 형태
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/api/Event-loop/" rel="permalink">이벤트 루프
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-02T00:00:00+09:00">February 2, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">작성예정
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/asynchronous/" rel="permalink">비동기 호출 - Callback, Promise, Async
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-01T00:00:00+09:00">February 1, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">자바스크립트 비동기 호출패턴
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/algorithm/algorithm-triangle-snail/" rel="permalink">코딩 테스트 - 삼각 달팽이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-29T00:00:00+09:00">January 29, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">프로그래머스 코딩 테스트
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 liondoge. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kavoom2.github.io/data%20structure/algorithm/nQueens/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/data%20structure/algorithm/nQueens"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-kavoom2-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

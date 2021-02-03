@@ -1,0 +1,891 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>비동기 호출 - Callback, Promise, Async - 건축공학도의 개발자 성장기</title>
+<meta name="description" content="자바스크립트 비동기 호출패턴">
+
+
+  <meta name="author" content="liondoge">
+  
+  <meta property="article:author" content="liondoge">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="건축공학도의 개발자 성장기">
+<meta property="og:title" content="비동기 호출 - Callback, Promise, Async">
+<meta property="og:url" content="https://kavoom2.github.io/javascript/asynchronous/">
+
+
+  <meta property="og:description" content="자바스크립트 비동기 호출패턴">
+
+
+
+  <meta property="og:image" content="https://kavoom2.github.io/assets/images/og_image.jpeg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-02-01T00:00:00+09:00">
+
+
+
+  <meta property="article:modified_time" content="2021-02-01T21:00:00+09:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kavoom2.github.io/javascript/asynchronous/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "liondoge",
+      "url": "https://kavoom2.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="/googled26c62ed370d78cf.html" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="건축공학도의 개발자 성장기 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    
+    
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          건축공학도의 개발자 성장기
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/readme/">ReadMe</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kavoom2.github.io/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/logo.jpg" alt="liondoge" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">liondoge</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>기억보다는 기록하려는 개발자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Suwon, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:kavoom2@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/kavoom2" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="비동기 호출 - Callback, Promise, Async">
+    <meta itemprop="description" content="자바스크립트 비동기 호출패턴">
+    <meta itemprop="datePublished" content="2021-02-01T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2021-02-01T21:00:00+09:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">비동기 호출 - Callback, Promise, Async
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-01T00:00:00+09:00">February 1, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>비동기 호출이란 특정 코드의 연산이 끝날 때까지 실행을 멈추지 않고, 다음 코드를 먼저 실행하는 자바스크립트의 작동방식이다. 가령, 클라이언트가 서버에서 데이터를 요청한다고 해보자. 서버로 데이터를 요청하면 응답이 언제 올지는 명확히 알 수 없다. 요청을 보내놓고 무작정 기다리기보다 다른 코드를 실행하는 것이 나을 것이다.</p>
+
+<h2 id="1-콜백callback">1. 콜백(Callback)</h2>
+<p>setTimeout은 비동기 처리의 대표적 예시이다. 코드를 바로 실행하지 않고, 일정시간 만큼 기다린 다음에 실행한다. 여러 작업들을 비동기으로 실행하면서도 순서를 제어할 수 있다. 아래 코드는 비동기적으로 “A”, “B”, “C”를 일정한 순서대로 실행하는 예시이다. 다만 무수한 콜백은 코드 가독성 및 유지보수 측면에서 좋지 않으니 가급적 지양해야 한다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">printString</span> <span class="o">=</span> <span class="p">(</span><span class="nx">string</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span>
+        <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">string</span><span class="p">);</span>
+            <span class="nx">callback</span><span class="p">();</span>
+        <span class="p">},</span>
+        <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">printAll</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">A</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">B</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">printString</span><span class="p">(</span><span class="dl">"</span><span class="s2">C</span><span class="dl">"</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{});</span>
+        <span class="p">})</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>콜백을 사용하면서 바로 함수가 실행되도록 할 수 있지만, 예상과 다른 결과가 발생할 수 있다. 이러한 경우 함수가 실행되지 않고 오류가 출력되도록 설계할 수도 있다. 일반적으로 첫 번째 인자를 error, 마지막 인자를 data로 사용한다. Error Handling Design 예시를 보도록 하자.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">getDataFromFile</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">filePath</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">filePath</span><span class="p">,</span> <span class="dl">"</span><span class="s2">utf8</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="k">else</span> <span class="nx">callback</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+    <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="2-프로미스promise">2. 프로미스(Promise)</h2>
+<p>비동기 함수를 순차적으로 실행하다보면 흔히 콜백지옥이라 부르는 상황에 빠질 수 있다. 일반적으로 Promise나 Async를 사용하면 해결할 수 있다.</p>
+
+<p>프로미스는 자바스크립트 비동기 처리에 사용되는 객체이다. 사용하기에 앞서 알아야 할 개념이 있다. 프로미스에는 3가지 상태 “대기, 이행, 실패” 가 있다.</p>
+
+<blockquote>
+  <p>대기(Pending): 비동기 로직이 완료되지 않은 상태</p>
+
+  <p>이행(Fulfilled): 비동기 처리가 완료되어 프로미스가 Resolve값을 반환한 상태</p>
+
+  <p>실패(Rejected): 비동기 처리가 실패하거나 오류가 발생하여 Reject값을 반환한 상태</p>
+</blockquote>
+
+<p>프로미스를 <code class="language-plaintext highlighter-rouge">new Promise()</code> 메서드로 호출하면 대기상태에 진입한다. 프로미스는 콜백함수를 인자로 받을 수 있으며, 콜백함수는 Resolve와 Reject를 인자로 받는다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">new</span> <span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{})</span>
+</code></pre></div></div>
+
+<p>콜백함수의 인자 resolve를 실행하면 이행상태가 되며, 프로미스의 메서드 then에서 그 값을 매개인자로 받을 수 있다. 마찬가지로 reject를 호출하면 실패 상태가 되며, then과 catch 메서드에서 reject의 값을 인자로 받을 수 있다. 즉, 분기에 따라 then(), catch()로 나뉘어 결과를 출력할 수 있다. 일반적으로 catch는 예제처럼 모든 then 메소드를 거치고 나서 작동하도록 마지막에 붙여준다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">getDataFromFilePromise</span> <span class="o">=</span> <span class="nx">filePath</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nb">Promise</span><span class="p">(</span><span class="nx">resolve</span><span class="p">,</span> <span class="nx">reject</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">fs</span><span class="p">.</span><span class="nx">readFile</span><span class="p">(</span><span class="nx">filePath</span><span class="p">,</span> <span class="dl">"</span><span class="s2">utf8</span><span class="dl">"</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="nx">reject</span> <span class="p">(</span><span class="nx">error</span><span class="p">);</span> <span class="c1">// catch 에서 error를 받을 수 있다.</span>
+            <span class="k">else</span> <span class="nx">resolve</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span> <span class="c1">// then에서 data를 받을 수 있다.</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">validPath</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span> <span class="c1">//Resolve의 값을 매개인자로 받는다.</span>
+<span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">invalidPath</span><span class="p">).</span><span class="nx">then</span><span class="p">().</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span> <span class="c1">// Reject의 값을 매개인자로 받는다. 프로미스의 오류는 catch로 받도록 하자.</span>
+</code></pre></div></div>
+
+<p>프로미스의 주요한 특징이 하나 더 있다. 바로 여러 개의 프로미스를 사슬처럼 연결하여 사용할 수 있다는 것. 이러한 방식을 프로미스 체이닝(Promise Chaining)이라고 한다. <strong>then() 메서드를 호출하면 새로운 프로미스 객체를 반환하는 것을 이용한 방법이다</strong>. 예제를 한 번 보도록 하자.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예제 1.</span>
+<span class="kd">function</span> <span class="nx">readAllUserChaining</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 문자열 상태의 user1, user2를 객체로 변환하고 배열에 담아 반환하는 함수 </span>
+  <span class="k">return</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user1Path</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user1</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user2Path</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user2</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">[</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">user1</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">user2</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">]</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">})</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">text</span> <span class="o">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">text</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1">// 예제 2.</span>
+<span class="kd">function</span> <span class="nx">getNewsAndWeather</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">newsURL</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json1</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">weatherURL</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">res</span> <span class="o">=&gt;</span> <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">json2</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="p">{</span>
+                    <span class="na">news</span><span class="p">:</span> <span class="nx">json1</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+                    <span class="na">weather</span><span class="p">:</span> <span class="nx">json2</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">})</span>
+      <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p>단, then은 대기(Pending) 상태인 프로미스를 받아야 정상적으로 작동한다. 아래 예제의 첫 번째 사례와 같이 작성하면 이미 프로미스가 이행되어 제대로 작동하지 않을 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 수정 전</span>
+<span class="kd">function</span> <span class="nx">getData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">promise1</span> <span class="o">=</span> <span class="nx">getDatafromFilePromise</span><span class="p">(</span><span class="nx">user1Path</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">promise2</span> <span class="o">=</span> <span class="nx">getDatafromFilePromise</span><span class="p">(</span><span class="nx">user2Path</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nx">promise1</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user1</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">promise2</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user2</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="c1">// 이미 promise2가 이행된 상태이면 제대로 작동하지 않는다.</span>
+              <span class="k">return</span> <span class="dl">"</span><span class="s2">[</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">user1</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">user2</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">]</span><span class="dl">"</span><span class="p">;</span>
+          <span class="p">})</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">text</span> <span class="o">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">text</span><span class="p">))</span>
+<span class="p">}</span>
+
+<span class="c1">// 2. 수정 후</span>
+<span class="kd">function</span> <span class="nx">getData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user1Path</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user1</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user2Path</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">user2</span> <span class="o">=&gt;</span> <span class="k">return</span> <span class="dl">"</span><span class="s2">[</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">user1</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">,</span><span class="dl">"</span> <span class="o">+</span> <span class="nx">user2</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">]</span><span class="dl">"</span><span class="p">;</span>
+            <span class="p">})</span>
+      <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">text</span> <span class="o">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">text</span><span class="p">));</span>
+<span class="p">}</span>
+
+
+</code></pre></div></div>
+
+<p>Promise.all() 메서드는 순회 가능한 객체를 매개인자로 받는다. 객체 안에 있는 모든 비동기 작업을 이행한 새로운 배열을 프로미스로 반환한다. 이 때, 인자로 받은 프로미스들은 <strong>병렬</strong>로 수행된다.</p>
+
+<p>모든 프로미스들가 이행 상태가 되면 then, catch 등 메소드에 새로이 만든 배열 프로미스를 넘긴다. 만약, 하나라도 비동기 호출이 실패하다면 먼저 실패한 프로미스의 reject가 넘겨진다.</p>
+
+<p>Promise.allSettled()는 Promise.all과 유사하다. 차이점은 내부 프로미스들 중 호출이 실패한 것이 있더라도, 이행된 프로미스들을 추려서 반환할 수 있다는 것이다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예제 1.</span>
+<span class="kd">function</span> <span class="nx">readAllUser</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">user1</span> <span class="o">=</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user1Path</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">user2</span> <span class="o">=</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user2Path</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">user1</span><span class="p">,</span> <span class="nx">user2</span><span class="p">])</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">arr</span> <span class="o">=&gt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">)));</span>
+<span class="p">}</span>
+<span class="c1">// 예제 2.</span>
+<span class="kd">function</span> <span class="nx">getNewsAndWeatherAll</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">newsURL</span><span class="p">),</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">weatherURL</span><span class="p">)])</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(([</span><span class="nx">newsResponse</span><span class="p">,</span> <span class="nx">weatherResponse</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nb">Promise</span><span class="p">.</span><span class="nx">all</span><span class="p">([</span><span class="nx">newsResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">(),</span> <span class="nx">weatherResponse</span><span class="p">.</span><span class="nx">json</span><span class="p">()]);</span>
+       <span class="p">})</span>
+      <span class="p">.</span><span class="nx">then</span><span class="p">(([</span><span class="nx">json1</span><span class="p">,</span> <span class="nx">json2</span><span class="p">])</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">{</span>
+              <span class="na">news</span><span class="p">:</span> <span class="nx">json1</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+              <span class="na">weather</span><span class="p">:</span> <span class="nx">json2</span><span class="p">,</span>
+          <span class="p">}</span>
+      <span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<h2 id="3-async와-await">3. async와 await</h2>
+<p>async와 await은 프로미스를 조금 더 편리하게 사용하기 위한 목적으로 고안한 문법이다. 함수 앞에 <strong>async</strong>를 붙이면, 해당 함수는 항상 프로미스를 결과값으로 반환한다. 또한, 프로미스가 아닌 값을 반환하더라도 이행 상태의 프로미스로 반환되도록 한다.</p>
+
+<p><strong>await</strong>는 오직 async 함수 내부에서만 사용할 수 있다. 자바스크립트는 await를 만나면 해당 프로미스가 처리될 때 까지 기다린다. 그 전까지 async 내부에 있는 이하의 코드는 실행되지 않는 것. 실제로 코드를 작성해보면 직관적이다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 예제 1.</span>
+<span class="kd">const</span> <span class="nx">readAllUserAsyncAwait</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">result</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="kd">const</span> <span class="nx">data1</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user1Path</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">data2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">getDataFromFilePromise</span><span class="p">(</span><span class="nx">user2Path</span><span class="p">);</span>
+
+    <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data1</span><span class="p">));</span>   
+    <span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data2</span><span class="p">));</span>
+
+    <span class="k">return</span> <span class="nx">result</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 예제 2.</span>
+<span class="nx">asnyc</span> <span class="kd">function</span> <span class="nx">getNewsAndWeatherAsync</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">json1</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">newsURL</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+    <span class="kd">const</span> <span class="nx">json2</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">weatherURL</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">resp</span> <span class="o">=&gt;</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">news</span><span class="p">:</span> <span class="nx">json1</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span>
+        <span class="na">weather</span><span class="p">:</span> <span class="nx">json2</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="4-reference">4. Reference</h2>
+<p><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN - Promise</a>  <br />
+<a href="https://ko.javascript.info/async-await">JAVASCRIPT.INFO - async와 await</a>  <br />
+<a href="https://joshua1988.github.io/web-development/javascript/promise-for-beginners/">자바스크립트 Promise 쉽게 이해하기</a>  <br />
+<a href="https://joshua1988.github.io/web-development/javascript/js-async-await/">자바스크립트 async와 await</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#asynchronous" class="page__taxonomy-item" rel="tag">asynchronous</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#javascript" class="page__taxonomy-item" rel="tag">Javascript</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-02-01">February 1, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EB%B9%84%EB%8F%99%EA%B8%B0+%ED%98%B8%EC%B6%9C+-+Callback%2C+Promise%2C+Async%20https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Fasynchronous%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Fasynchronous%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fjavascript%2Fasynchronous%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/algorithm-triangle-snail/" class="pagination--pager" title="코딩 테스트 - 삼각 달팽이
+">Previous</a>
+    
+    
+      <a href="/javascript/api/Event-loop/" class="pagination--pager" title="이벤트 루프
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/server/interaction-client-server/" rel="permalink">클라이언트와 서버의 통신
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-02T00:00:00+09:00">February 2, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">클라이언트와 서버가 통신하는 방법. 전달되는 데이터의 형태
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/javascript/api/Event-loop/" rel="permalink">이벤트 루프
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-02T00:00:00+09:00">February 2, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">작성예정
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/algorithm/algorithm-triangle-snail/" rel="permalink">코딩 테스트 - 삼각 달팽이
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-29T00:00:00+09:00">January 29, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">프로그래머스 코딩 테스트
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/algorithm/algorithm-test/" rel="permalink">코딩 테스트 - 모의고사
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-01-29T00:00:00+09:00">January 29, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">프로그래머스 코딩 테스트
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 liondoge. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kavoom2.github.io/javascript/asynchronous/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/javascript/asynchronous"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-kavoom2-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,41 @@
+I"m<h2 id="개요">개요</h2>
+<p>각 기능은 진도가 100%가 되면 배포할 수 있다. 단, 개발속도와 작업진도는 작업마다 다르다. 이 때, 배열 progress는 배포되어야 하는 순서대로 작업의 진도가 요소로 담겨있다. 그리고 각 요소의 작업속도가 담긴 배열 speed가 주어진다. 매번 배포할 때마다 몇 개의 기능이 배포되는지를 요소로 담은 배열을 반환해야 한다.</p>
+
+<h2 id="조건">조건</h2>
+<ul>
+  <li>작업 진도는 100 미만의 자연수이다.</li>
+  <li>작업 속도는 100 이하의 자연수이다.</li>
+  <li>작업의 개수는 100개 이하이다.</li>
+</ul>
+
+<h2 id="풀이">풀이</h2>
+<p>우선 매일 사건이 어떻게 일어나는지 정리하자. 간단하게 이렇게 생각하면 좋다. 오전에는 작업만 한다. 그리고 오후에 완료된 기능들을 배포한다. 다리를 지나는 트럭 문제에서 공백기간이 발생하고, 그 만큼 효율이 떨어지는 문제가 발생했다. 여기서는 가장 먼저 배포되어야 하는 기능의 최소작업시간을 계산하는 방법을 적용하여 연산횟수를 줄였다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 개인풀이</span>
+<span class="kd">function</span> <span class="nx">solution</span><span class="p">(</span><span class="nx">progresses</span><span class="p">,</span> <span class="nx">speeds</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">answer</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="nx">progresses</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 1. 먼저 배포되어야 할 기능의 필요 작업일수를 계산한다.</span>
+        <span class="kd">let</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="kd">const</span> <span class="nx">restDay</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">((</span><span class="mi">100</span> <span class="o">-</span> <span class="nx">progresses</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="nx">speeds</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+        
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">progresses</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 2. 소요된 기간만큼 각 기능들의 개발진도를 계산한다.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">progresses</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">progresses</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+=</span> <span class="nx">restDay</span> <span class="o">*</span> <span class="nx">speeds</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">progresses</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span> <span class="nx">progresses</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 3. 배포해야 할 작업을 카운트한다.</span>
+        <span class="k">while</span><span class="p">(</span><span class="nx">progresses</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">progresses</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+            <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+            <span class="nx">progresses</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+            <span class="nx">speeds</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+        <span class="p">}</span> 
+        <span class="k">if</span> <span class="p">(</span><span class="nx">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">count</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
