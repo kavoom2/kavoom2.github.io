@@ -110,7 +110,7 @@ HTTP 요청이 성공적으로 완료되었는지 확인할 필요가 있다. �
 
 
 
-### 4. 읽어봐야할 문서들
+## 4. 읽어봐야할 문서들
 [NAVER D2 - 브라우저는 어떻게 작동하는가?](https://d2.naver.com/helloworld/59361)    
 [MDN - MIME Type: Content-Type에 대한 설명](https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types)    
 [지메일이 핫메일을 이긴 진짜 이유 - Ajax가 가져온 유저 인터페이스의 혁신](https://sungmooncho.com/2012/12/04/gmail-and-ajax/)    
