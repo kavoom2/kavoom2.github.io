@@ -204,14 +204,20 @@ var store = [{
         "teaser": null
       },{
         "title": "이벤트 루프",
-        "excerpt":" ","categories": ["Javascript","API"],
+        "excerpt":" ","categories": ["Javascript"],
         "tags": [],
-        "url": "https://kavoom2.github.io/javascript/api/Event-loop/",
+        "url": "https://kavoom2.github.io/javascript/Event-loop/",
         "teaser": null
       },{
         "title": "클라이언트와 서버의 통신",
         "excerpt":"1. 클라이언트 서버 아키텍쳐 쇼핑몰 앱을 이용하는데 상품 목록이나 정보를 바꾸려고 앱을 다시 받는 것은 그다지 좋은 경험이 아닐 것이다. 그래서 데이터 업데이트가 빈번하게 일어나는 환경에서는 리소스를 보관하는 공간과 리소스를 사용하는 앱을 분리하는 것이 효율적이다. 리소스를 사용하는 앱을 클라이언트(Client), 리소스가 존재하는 곳을 서버(Server)라고 한다. 이러한 통신형태를 클라이언트 서버 아키텍쳐(Client-Server Architecture)라고...","categories": ["Server"],
         "tags": ["http","protocol","api","ajax"],
         "url": "https://kavoom2.github.io/server/interaction-client-server/",
+        "teaser": null
+      },{
+        "title": "브라우저 보안",
+        "excerpt":"1. XXS flowchart LR C([Attacker Web Browser]) --&gt;|sends XXS payload| D[Server] D &lt;--&gt;|victim views XXS payload| E([Victim Web Browser]) 클라이언트가 서버를 신뢰하기 때문에 발생하는 보안이슈이다. 클라이언트는 서버로 부터 받는 데이터를 정상 데이터라고 생각하고 일방적으로 받아들인다. 그리고 서버에서 받은 리소스를 처리하여 돔 오브젝트에 반영한다. 스크립트 인젝션(Script Inject) 공격은 이러한 방식의 취약점을...","categories": ["Server"],
+        "tags": ["cors","xxs"],
+        "url": "https://kavoom2.github.io/server/CORS-XXS/",
         "teaser": null
       }]
