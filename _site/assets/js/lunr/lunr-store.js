@@ -220,4 +220,10 @@ var store = [{
         "tags": ["cors","xxs"],
         "url": "https://kavoom2.github.io/server/CORS-XXS/",
         "teaser": null
+      },{
+        "title": "TIL - HTTP",
+        "excerpt":"URL(Uniform Resource Locator) http://www.google.com/search?q=puppies#p2      scheme: http, https, ssh, git   host: google.com, localhost, 192.168.1.1   subdomain: www, mail, blog   path: search, about.html, blog/entries/2/big-day   query string: q=puppies&amp;ref=mobile&amp;page=4   hash fragment: p2, FAQ, /profile/edit  ","categories": ["HTTP"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/http/HTTP-TIL/",
+        "teaser": null
       }]
