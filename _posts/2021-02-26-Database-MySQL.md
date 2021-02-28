@@ -69,14 +69,14 @@ ALIASES,
 INNER JOIN / LEFT JOIN / RIGHT JOIN, 
 GROUP BY, 
 LIMIT, 
-HAVING
-
-SELECT - FROM - JOIN - ON / WHERE - GROUP BY - ORDER BY - HAVING
-WHERE / ON: GROUP BY로 그룹화 하기 전에 조회한 데이터를 필터링함.
-HAVING: GROUP BY로 그룹화 한 결과를 필터링함.
+HAVING    
 
 2. 데이터베이스 명령어
-CREATE DB, DROP DB, CREATE TABLE, DROP TABLE, ALTER TABLE, NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, DEFAULT, AUTO INCREMENT, DATAES
+CREATE DB, DROP DB, CREATE TABLE, DROP TABLE, ALTER TABLE, NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, DEFAULT, AUTO INCREMENT, DATAES    
+
+> SELECT - FROM - JOIN - ON / WHERE - GROUP BY - ORDER BY - HAVING
+> WHERE / ON: GROUP BY로 그룹화 하기 전에 조회한 데이터를 필터링함.
+> HAVING: GROUP BY로 그룹화 한 결과를 필터링함.    
 
 ## 4. Schema & Query Design
 스키마(Schema): 데이터베이스에서 데이터가 구성되는 방식, 엔티티간의 관계에 대한 설명. 데이터베이스의 청사진/설계도.    
@@ -131,11 +131,12 @@ class Database {
 
 
 ## 5. MySQL: Getting Started
-1. mySQL에 접속하여 데이터베이스를 만든다
+mySQL에 접속하여 데이터베이스를 만든다
 ```js
 mysql > CREATE DATABASE learnmysql;
 ````
-2. 배치파일(schema.sql)을 작성하면 데이터베이스의 스키마를 한 번에 적용할 수 있다. [공식문서](https://dev.mysql.com/doc/refman/8.0/en/batch-mode.html)를 보도록 하자.
+배치파일(schema.sql)을 작성하면 데이터베이스의 스키마를 한 번에 적용할 수 있다. [공식문서](https://dev.mysql.com/doc/refman/8.0/en/batch-mode.html)를 보도록 하자.    
+
 ```js
 // schema.sql 예시
 CREATE TABLE users (
@@ -165,7 +166,7 @@ $ mysql -u root -p < 터미널에서 해당 파일까지 경로/schema.sql
 DROP DATABASE IF EXIST [다시 생성할 데이터베이스] CREATE DATABASE [다시 생성할 데이터베이스]
 ````
 
-3. node.js에서 mySQL을 사용하려면 mysql 모듈을 설치해야한다. 클라이언트, 서버를 나누어놓았다면 서버 디렉토리에 모듈을 설치하도록 하자.
+node.js에서 mySQL을 사용하려면 mysql 모듈을 설치해야한다. 클라이언트, 서버를 나누어놓았다면 서버 디렉토리에 모듈을 설치하도록 하자.
 
 config.js 파일에서 mySQL과 관련한 설정을 관리하도록 하였다.
 ```js
@@ -186,7 +187,7 @@ const config = {
 module.exports = config;
 ````
 
-4. 데이터베이스와 서버 인스턴스를 연결해야 한다. 데이터베이스를 구축하자.
+데이터베이스와 서버 인스턴스를 연결해야 한다. 데이터베이스를 구축하자.    
 
 ```js
 // db/index.js
@@ -205,7 +206,8 @@ con.connetc((err) => {
 module.exports = con;
 ````
 
-5. 클라이언트와 연결할 서버를 구축한다.
+클라이언트와 연결할 서버를 구축한다.    
+
 ```js
 // app.js
 const express = require("express");
@@ -240,10 +242,12 @@ router.get("/:userId/orders/new", controller.orders.post);
 
 // URL에서 :userId는 URL에서 :userId 부분을 해당 이름으로 하는 변수로 전달할 수 있도록 한다.
 ````
-다음은 라우터 분기별로 요청에 대해 수행하는 함수이다. 클라이언트로 요청을 받은 것을 토대로 데이터베이스에 요청한다.
+
+다음은 라우터 분기별로 요청에 대해 수행하는 함수이다. 클라이언트로 요청을 받은 것을 토대로 데이터베이스에 요청한다.    
+
 ```js
 // controllers/index.js
-const models = require("../models)
+const models = require("../models")
 
 module.exports = {
     // 주문과 아이템에 관한 Action을 분리한다.
@@ -327,7 +331,7 @@ module.exports = {
 ````
 
 last_insert_id를 사용할 수도 있지만, 이 경우 bulk array형태인 params로 활용할 수 없다. 따라서,
-첫 번째 쿼리를 실행하고 나서, FOREIGN KEY에 result.insertId를 할당하는 방법으로 해결할 수 있다. 
+첫 번째 쿼리를 실행하고 나서, FOREIGN KEY에 result.insertId를 할당하는 방법으로 해결할 수 있다.      
 
 ```js
 // models.orders.post를 LAST_INSERT_ID()를 사용하여 구현하는 경우.
@@ -340,6 +344,6 @@ con.query(sql1 + sql2 + params, (err, result) => {
 })
 ````
 
-LAST_INSET_ID()는 **마지막으로 성공적으로 수행한 INSERT 구문의 첫 번째 AUTO_INCREMENT INDEX**값이다. 또한 서로 다른 Connection의 A, B가 동시에 호출해도 LAST_INSERT_ID()는 별도로 관리된다. 다음 예제를 보도록 하자.
-
-초기 LAST_INSERT_ID()는 1이라고 하자. A에서 INSERT를 하여 AUTO_INCREMENT가 2이 되었고, B에서 INSERT를 하여 AUTO_INCREMENT가 3가 되었다. INSERT를 마치고나서 A가 LAST_INSERT_ID()를 불러오고, B가 LAST_INSERT_ID()를 불러오면 각각 2, 3를 불러오게 된다. 이는 LAST_INSERT_ID()가 Connetion마다 별도로 관리되기 때문.
+LAST_INSET_ID()는 **마지막으로 성공적으로 수행한 INSERT 구문의 첫 번째 AUTO_INCREMENT INDEX**값이다. 또한 서로 다른 Connection의 A, B가 동시에 호출해도 LAST_INSERT_ID()는 별도로 관리된다. 다음 예제를 보도록 하자.    
+    
+초기 LAST_INSERT_ID()는 1이라고 하자. A에서 INSERT를 하여 AUTO_INCREMENT가 2이 되었고, B에서 INSERT를 하여 AUTO_INCREMENT가 3가 되었다. INSERT를 마치고나서 A가 LAST_INSERT_ID()를 불러오고, B가 LAST_INSERT_ID()를 불러오면 각각 2, 3를 불러오게 된다. 이는 LAST_INSERT_ID()가 Connetion마다 별도로 관리되기 때문.     

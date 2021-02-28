@@ -1,0 +1,118 @@
+I"�9<p>컴포넌트 구성이 깊고 복잡해지면서, 소위 드릴링이라고 하는 부모 컴포넌트의 상태 전달이 굉장히 번거로워진다. React에서도 Context API로 드릴링 없이 부모의 상태를 가져올 수 있긴 하다. Redux도 Context API를 가지고 만든 라이브러리인지라, 전역상태 관리 측면에서는 거의 차이점이 없다고 한다. Redux는 전역상태관리 외에도 다양한 기능을 제공하며, 확장성이 뛰어나다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// index.js</span>
+<span class="k">import</span> <span class="nx">React</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">ReactDOM</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-dom</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">App</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./App</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="nx">store</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">./store/store</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">Provider</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">react-redux</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Provider</span> <span class="nx">store</span><span class="o">=</span><span class="p">{</span><span class="nx">store</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/Provider&gt;</span><span class="err">,
+</span>    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// store/store.js</span>
+<span class="k">import</span> <span class="p">{</span> <span class="nx">compose</span><span class="p">,</span> <span class="nx">createStore</span><span class="p">,</span> <span class="nx">applyMiddleware</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">redux</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">rootReducer</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">../reducers/index</span><span class="dl">"</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">thunk</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">redux-thunk</span><span class="dl">"</span><span class="p">;</span>
+
+<span class="c1">// Redux Dev Tools 기본 Setting</span>
+<span class="c1">// https://extension.remotedev.io/#usage의 Advanced store setup을 참조할 것.</span>
+<span class="c1">// createStore에서 compose 대신 composeEnhancer를 사용한다.</span>
+<span class="kd">const</span> <span class="nx">composeEnhancers</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</span> <span class="p">?</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">__REDUX_DEVTOOLS_EXTENSION_COMPOSE__</span><span class="p">({})</span>
+  <span class="p">:</span> <span class="nx">compose</span><span class="p">;</span>
+
+<span class="c1">// 1. createStore(reducer function, preloaded state(=initial state), enhancer(3rd party store enhancer))</span>
+<span class="c1">// 아래 예제는 rootReducer 객체를 reducer 함수로 전달. thunk(비동기 호출을 가능하게 하는 미들웨어)를 Enhahcer로 사용한다.</span>
+<span class="c1">// 반환값인 Store는 states를 담고 있는 객체.</span>
+
+<span class="c1">// 2. applyMiddleWare(...)는 dispatch 메서드의 wrapper를 무엇으로 사용할 것인지 정의한다. 미들웨어 확장 함수.</span>
+<span class="c1">// 각 미들웨어의 골조는 다음과 같다. ({getState, dispatch) =&gt; (next) =&gt; action})</span>
+<span class="c1">// 즉, Dispatch와 관련이 있는 미들웨어를 병합할 때 사용한다.</span>
+
+<span class="c1">// 3. compose(...functions) 또는 composeEnhancer</span>
+<span class="c1">// 함수 실행순서는 가장 마지막 인자 ~ 첫 번째 인자 순이다. 반환값이 다음 함수의 매개인자로 전달되는 방식이다. 체이닝.</span>
+<span class="c1">// Dispatch와 관련이 없는 추가 인핸서를 병합해야할 때 사용한다.</span>
+<span class="kd">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">rootReducer</span><span class="p">,</span> <span class="nx">composeEnhancer</span><span class="p">(</span><span class="nx">applyMiddleware</span><span class="p">(</span><span class="nx">thunk</span><span class="p">)));</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">store</span><span class="p">;</span>
+</code></pre></div></div>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// reducers/index.js</span>
+<span class="c1">// 1. combineReducer는 Redux Store 내부의 여러 상태들의 리듀서를 관리하기 위해 사용. 반환값은 Reducer 함수이다.</span>
+<span class="kd">const</span> <span class="nx">rootReducer</span> <span class="o">=</span> <span class="nx">combineReducers</span><span class="p">({</span>
+  <span class="c1">// useSelect를 사용하여 상태를 가져올 때 rootReducer의 "key"를 이용한다.</span>
+  <span class="na">items</span><span class="p">:</span> <span class="nx">itemReducer</span><span class="p">,</span>
+  <span class="na">notifictations</span><span class="p">:</span> <span class="nx">notificationReducer</span>
+<span class="p">})</span>
+
+<span class="c1">// actions/index.js</span>
+<span class="c1">// 1. 동기함수</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">setQuantity</span> <span class="o">=</span> <span class="p">(</span><span class="nx">itemId</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SET_QUANTITY</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">payload</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nx">quantity</span><span class="p">,</span>
+      <span class="nx">itemId</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// 2. 비동기함수, Redux thunk를 사용한다.</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">notify</span> <span class="o">=</span> <span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">dismissTime</span> <span class="o">=</span> <span class="mi">3000</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">uuid</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">();</span>
+  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">enqueueNotification</span><span class="p">(</span><span class="nx">message</span><span class="p">,</span> <span class="nx">dismissTime</span><span class="p">,</span> <span class="nx">uuid</span><span class="p">))</span>
+  <span class="c1">// 비동기 호출.</span>
+  <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="nx">dispatch</span><span class="p">(</span><span class="nx">dequeueNotification</span><span class="p">),</span> <span class="nx">dismissTime</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="c1">// reducers/itemReducer.js</span>
+<span class="kd">const</span> <span class="nx">itemReducer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">state</span> <span class="o">=</span> <span class="nx">initialState</span><span class="p">,</span> <span class="nx">action</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">switch</span> <span class="p">(</span><span class="nx">action</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// P.S. Switch-Case문에서 동일명 변수를 여러 케이스에서 사용할 경우 {}로 스코프를 구분해야 한다. 이중선언 오류 발생함.</span>
+    <span class="k">case</span> <span class="na">ADD_TO_CART</span><span class="p">:</span> <span class="p">{...}</span>
+    <span class="k">case</span> <span class="na">REMOVE_FROM_CART</span><span class="p">:</span> <span class="p">{...}</span>
+    <span class="k">case</span> <span class="na">SET_QUANTITY</span><span class="p">:</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nx">state</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">itemId</span> <span class="o">===</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">itemId</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">({},</span> <span class="nx">state</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">cartItems</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">...</span><span class="nx">state</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">idx</span><span class="p">),</span>
+          <span class="p">{</span> <span class="na">itemId</span><span class="p">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">itemId</span><span class="p">,</span> <span class="na">quantity</span><span class="p">:</span> <span class="nx">action</span><span class="p">.</span><span class="nx">payload</span><span class="p">.</span><span class="nx">quantity</span> <span class="p">},</span>
+          <span class="p">...</span><span class="nx">state</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">]</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="nl">default</span><span class="p">:</span> 
+      <span class="k">return</span> <span class="nx">state</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. React: useState</span>
+<span class="kd">const</span> <span class="p">[</span><span class="nx">count</span><span class="p">,</span> <span class="nx">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">initialValue</span><span class="p">);</span>
+
+<span class="c1">// 2. React: useEffect</span>
+<span class="nx">userEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// ComponentDidMount, ComponentDidUpdate</span>
+  <span class="p">...</span>
+  <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//ComponentWillUnmount(Clean-up)</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">})</span>
+
+<span class="c1">// 3. Redux: useSelector, Redux Store에서 특정 State를 불러온다. rootReducer에 전달한 Key 이름으로 불러올 수 있다.</span>
+<span class="kd">const</span> <span class="nx">state</span> <span class="o">=</span> <span class="nx">useSelector</span><span class="p">(</span><span class="nx">state</span> <span class="o">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">items</span><span class="p">)</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">cartItems</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">state</span><span class="p">;</span>
+
+<span class="c1">// 4. Redux: useDispatch, Reducer에 action 객체를 전달하는 역할. 액션생성자의 결과값을 전달해야 한다. dispatch(actionCreator(payload parameter))으로 실행한다. </span>
+
+<span class="kd">const</span> <span class="nx">handleQuantityChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">quantity</span><span class="p">,</span> <span class="nx">itemId</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">dispatch</span><span class="p">(</span><span class="nx">setQuantity</span><span class="p">(</span><span class="nx">itemId</span><span class="p">,</span> <span class="nx">quantity</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

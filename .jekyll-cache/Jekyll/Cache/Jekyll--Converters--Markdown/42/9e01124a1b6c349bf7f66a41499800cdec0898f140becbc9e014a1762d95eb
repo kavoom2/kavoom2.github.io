@@ -1,0 +1,335 @@
+I"X�<h2 id="1-데이터베이스의-필요성">1. 데이터베이스의 필요성</h2>
+<p>In-Memory: 자바스크립트 변수에 할당하는 방식.  <br />
+배열에 넣는 방법이 이 방식이다. 프로그램이 종료되면 데이터도 같이 없어진다.
+데이터 수명의 프로그램의 수명에 의존하게 됨.</p>
+
+<p>File I/O: 파일을 읽어오는 방식  <br />
+파일을 매번 읽어야 한다는 것이 단점. 파일 크기가 커질 수록 버거워진다.
+파일이 손상되거나 여러 파일을 동시에 다뤄야 하는 등 복잡하고 데이터양이 방대해질 수록 데이터 가공 및 선별이 힘들어진다.</p>
+
+<p>SQL(Structured Query Language): 구조화된 쿼리 언어. 데이터베이스 언어의     기준이다.
+쿼리(Query)는 질의문이라는 의미이다. 데이터베이스 언어의 쿼리는 원하는 데이터를 가져올 수 있도록 무엇을 요청하는지 작성한 언어.</p>
+
+<h2 id="2-sql구조화-쿼리-언어--nosql비구조화-쿼리-언어">2. SQL(구조화 쿼리 언어) / NoSQL(비구조화 쿼리 언어)</h2>
+<p>NoSQL 기반 비관계형 데이터베이스의 종류는 다음과 같다.</p>
+<ul>
+  <li>Key-Value: 데이터를 키-값의 쌍으로 저장. (Redis, Dynamo)</li>
+  <li>Document: 데이터를 테이블이 아닌 문서처럼 저장. JSON 유사 형식으로 데이터를 문서화. (MongoDB)</li>
+  <li>Wide-Column:</li>
+  <li>Graph</li>
+</ul>
+
+<p>SQL과 NOSQL의 차이점</p>
+<ul>
+  <li>데이터 저장(Storage): 관계형 데이터베이스는 미리 작성된 스키마를 기반으로 정해신 형식에 맞게 테이블에 저장. 비관계형 데이터베이스는 key-value, document, graph 등의 방식으로 저장.</li>
+  <li>스키마(Schema): NoSQL은 스키마가 보다 동적.</li>
+  <li>확장성(Scalability): SQL 기반 관계형 데이터베이스는 일반적으로 수직적으로 확장. 데이터베이스가 하드웨어의 성능을 많이 이용하므로 고비용. NoSQL 데이터베이스는 수평적으로 확장. 많은 트래픽을 처리할 수 있도록 서버를 추가 구축하는 것이 보다 편리함. 저렴한 범용 하드웨어나 클라우드 기반 인스턴스에 NoSQL 데이터베이스를 호스팅 할 수 있다.</li>
+</ul>
+
+<p>SQL기반 관계형 데이터베이스를 사용하는 케이스</p>
+<ul>
+  <li>
+    <p>ACID(Atomicity, Consistency, Isolation, Durability)를 준수해야 하는 경우. 하나의 상태변화 수행에 안전성을 보장하기 위해 필요한 성질. 데이터베이스와 상호작용하는 방식을 명확히 규정할 수 있어 데이터 처리시 이상징후를 줄이고 무결성을 보호할 수 있다. 전자상거래, 금융서비스 소프트웨어 개발에서는 필히 준수.</p>
+  </li>
+  <li>
+    <p>데이터가 구조적이고 일관적인 경우.</p>
+  </li>
+</ul>
+
+<p>NoSQL기반 비관계형 데이터베이스를 사용하는 케이스</p>
+<ul>
+  <li>데이터 구조가 거의 또는 전혀 없는 대용량 데이터를 저장하는 경우. 데이터 유형에 제한을 두지 않는 것이 일반적이고, 필요에 따라 새로운 유형을 추가할 수 있다. 정형화되지 않은 방대한 데이터가 필요한 경우 적합</li>
+  <li>클라우드 컴퓨팅 및 저장공간을 최대한 활용하는 경우. 데이터베이스 확장성이 중요한데, 이 방식은 여러 데이터 센터에 걸쳐 보다 수월하게 확장할 수 있다.</li>
+  <li>빠르게 서비스를 구축하고 데이터 구조를 자주 업데이트하는 경우. 스키마를 미리 준비할 필요가 없으므로 빠르게 개발하는 프로젝트에서 유용. 또한, 데이터베이스 서버를 오프라인(다운타임)없이 자주 업데이트해야 하는 상황에도 더 적합함.</li>
+</ul>
+
+<h2 id="3-sql-기본-명령어">3. SQL 기본 명령어</h2>
+<ol>
+  <li>
+    <p>TABLE 명령어  <br />
+SELECT, 
+WHERE, 
+AND / OR / NOT, 
+ORDER BY, 
+INSERT INTO, 
+NULL, 
+UPDATE, 
+DELETE, 
+COUNT, 
+LIKE, 
+WILDCARDS, 
+ALIASES, 
+INNER JOIN / LEFT JOIN / RIGHT JOIN, 
+GROUP BY, 
+LIMIT, 
+HAVING</p>
+  </li>
+  <li>
+    <p>데이터베이스 명령어
+CREATE DB, DROP DB, CREATE TABLE, DROP TABLE, ALTER TABLE, NOT NULL, UNIQUE, PRIMARY KEY, FOREIGN KEY, DEFAULT, AUTO INCREMENT, DATAES</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>SELECT - FROM - JOIN - ON / WHERE - GROUP BY - ORDER BY - HAVING
+WHERE / ON: GROUP BY로 그룹화 하기 전에 조회한 데이터를 필터링함.
+HAVING: GROUP BY로 그룹화 한 결과를 필터링함.</p>
+</blockquote>
+
+<h2 id="4-schema--query-design">4. Schema &amp; Query Design</h2>
+<p>스키마(Schema): 데이터베이스에서 데이터가 구성되는 방식, 엔티티간의 관계에 대한 설명. 데이터베이스의 청사진/설계도.  <br />
+엔티티(Entity): 고유한 정보 단위. 관계형 데이터베이스에서는 테이블로 표시한다.  <br />
+필드(Field): 각 엔티티마다 특성을 가지고 있다. 각각의 특성을 필트라고 한다. 열(Column)에 해당한다.     <br />
+레코드(record): 테이블에 저장된 항목. 한 행(Row)의 정보이다.   <br />
+기본 키(Primary Key):각 테이블의 레코드 하나를 가리키는 숫자. 유일(Unique)하며, 자동적으로 그 값이 증가한다(Auto Increment). 각 테이블은 반드시 기본키를 가져야한다.  <br />
+외래 키(Foreign Key): 다른 테이블에서 기본 키(Primary Key)를 참조하는 값이다.
+1:N(일대 다), N:M(다대 다): 테이블간의 관계를 나타낸 것.</p>
+
+<h2 id="ps-nodejs-에서-env파일">PS. Node.js 에서 .env파일</h2>
+<p>node.js 기반 프로젝트 개발을 하면서 외부에 알려지면 안될 민감한 정보들은 일반적으로 소스코드에 하드코딩하거나 특정 설정파일을 만들어서 가져오는 경우가 있다. 하드코딩으로 소스코드에 정보를 넣어두면 깃허브 등 오픈소스 공개시 관련 정보 유출의 위험이 있으며, 관련 정보 수정시 서비스를 재배포해야하는 문제가 있다.</p>
+
+<p>이러한 정보들은 환경변수에 저장해놓고 사용하는 것이 일반적이다. 다음과 같이 환경변수명을 설정하고 불러올 수 있다. Node.js는 환경변수에 접근할 때 process.env라는 자바스크립트 객체를 사용한다. 전역객체이므로 별도로 모듈을 임포트하지 않아도 된다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 환경변수 설정</span>
+<span class="k">export</span> <span class="err">환경변수명</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">설정값</span><span class="dl">"</span>
+<span class="c1">// 또는</span>
+<span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="err">환경변수명</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">설정값</span><span class="dl">"</span>
+
+<span class="c1">// 2. 환경변수 불러오기</span>
+<span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="err">환경변수명</span>
+</code></pre></div></div>
+<p>.env는 환경변수를 관리하는 파일이다. node.js의 dotenv 모듈이 필요하다. 프로젝트 최상위 경로에 .env파일을 생성하고, 환경변수 값을 넣어주면 된다. 그리고 오픈소스에 업로드하지 않도록 .gitignore 파일에 .env를 등록해야 한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// .env</span>
+<span class="nx">DATABASE_USERNAME</span><span class="o">=</span><span class="dl">"</span><span class="s2">root</span><span class="dl">"</span>
+<span class="nx">DATABASE_PASSWORD</span><span class="o">=</span><span class="dl">"</span><span class="s2">1234</span><span class="dl">"</span>
+<span class="nx">DATABASE_NAME</span><span class="o">=</span><span class="dl">'</span><span class="s1">learnMySQL</span><span class="dl">'</span>
+
+<span class="c1">// mysql.js에서 다음과 같이 환경파일 내부의 설정값을 불러올 수 있다.</span>
+<span class="kd">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">dotenv</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">class</span> <span class="nx">Database</span> <span class="p">{</span>
+    <span class="kd">constructor</span><span class="p">(){</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="na">host</span><span class="p">:</span> <span class="dl">"</span><span class="s2">localhost</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">user</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_USERNAME</span> <span class="o">||</span> <span class="dl">"</span><span class="s2">root</span><span class="dl">"</span><span class="p">,</span>
+            <span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_PASSWORD</span> <span class="o">||</span> <span class="dl">""</span><span class="p">,</span>
+            <span class="na">database</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_NAME</span> <span class="o">||</span> <span class="dl">"</span><span class="s2">mySQL</span><span class="dl">"</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//.gitignore</span>
+<span class="p">.</span><span class="nx">env</span>
+</code></pre></div></div>
+
+<h2 id="5-mysql-getting-started">5. MySQL: Getting Started</h2>
+<p>mySQL에 접속하여 데이터베이스를 만든다</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">mysql</span> <span class="o">&gt;</span> <span class="nx">CREATE</span> <span class="nx">DATABASE</span> <span class="nx">learnmysql</span><span class="p">;</span>
+</code></pre></div></div>
+<p>배치파일(schema.sql)을 작성하면 데이터베이스의 스키마를 한 번에 적용할 수 있다. <a href="https://dev.mysql.com/doc/refman/8.0/en/batch-mode.html">공식문서</a>를 보도록 하자.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// schema.sql 예시</span>
+<span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">users</span> <span class="p">(</span>
+  <span class="nx">id</span> <span class="nx">INT</span> <span class="nx">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="nx">username</span> <span class="nx">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+  <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">CREATE</span> <span class="nx">TABLE</span> <span class="nx">orders</span> <span class="p">(</span>
+  <span class="nx">id</span> <span class="nx">INT</span> <span class="nx">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="nx">user_id</span> <span class="nx">INT</span><span class="p">,</span>
+  <span class="nx">total_price</span> <span class="nx">INT</span><span class="p">,</span>
+  <span class="nx">created_at</span> <span class="nx">DATAETIME</span> <span class="nx">DEFAULT</span> <span class="nx">CURRENT_TIMESTAMP</span><span class="p">,</span>
+  <span class="c1">// DATETIME TYPE</span>
+  <span class="c1">// DEFAULT CURRENT_TIMESTAMP: 현재 TIMESTAMP값을 INSERT 시점에 기본값으로 설정</span>
+  <span class="c1">// ON UPDATE CURRENT_TIMESTAMP: 해당 열(ROW)가 업데이트될 때마다 업데이트 시점의 TIMESTAMP로 설정</span>
+  <span class="nx">PRIMARY</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">orders</span> <span class="nx">ADD</span> <span class="nx">FOREIGN</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">user_id</span><span class="p">)</span> <span class="nx">REFERENCES</span> <span class="nx">users</span> <span class="p">(</span><span class="nx">id</span><span class="p">);</span>
+
+<span class="c1">// 다음은 터미널에서 실행한다.</span>
+<span class="nx">$</span> <span class="nx">mysql</span> <span class="o">-</span><span class="nx">u</span> <span class="nx">root</span> <span class="o">-</span><span class="nx">p</span> <span class="o">&lt;</span> <span class="err">터미널에서</span> <span class="err">해당</span> <span class="err">파일까지</span> <span class="err">경로</span><span class="o">/</span><span class="nx">schema</span><span class="p">.</span><span class="nx">sql</span>
+</code></pre></div></div>
+<p>잘못된 SQL을 작성하여 해당 데이터베이스를 삭제하고 다시 생성해야할 경우도 있다. 다음 명령어를 실행하면 기존 데이터베이스를 삭제하고, 작성된 SQL에 따라 데이터베이스를 다시 생성한다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">DROP</span> <span class="nx">DATABASE</span> <span class="nx">IF</span> <span class="nx">EXIST</span> <span class="p">[</span><span class="err">다시</span> <span class="err">생성할</span> <span class="err">데이터베이스</span><span class="p">]</span> <span class="nx">CREATE</span> <span class="nx">DATABASE</span> <span class="p">[</span><span class="err">다시</span> <span class="err">생성할</span> <span class="err">데이터베이스</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>node.js에서 mySQL을 사용하려면 mysql 모듈을 설치해야한다. 클라이언트, 서버를 나누어놓았다면 서버 디렉토리에 모듈을 설치하도록 하자.</p>
+
+<p>config.js 파일에서 mySQL과 관련한 설정을 관리하도록 하였다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// config/config.js</span>
+<span class="kd">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">dotenv</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">host</span><span class="p">:</span> <span class="dl">"</span><span class="s2">localhost</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">user</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_USERNAME</span><span class="p">,</span>
+    <span class="na">password</span><span class="p">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">DATABASE_PASSWORD</span><span class="p">,</span>
+    <span class="na">database</span><span class="p">:</span> <span class="dl">"</span><span class="s2">learnmysql</span><span class="dl">"</span><span class="p">,</span>
+    <span class="c1">// 다중쿼리를 사용할 수 있도록 하는 옵션이다.</span>
+    <span class="na">multipleStatements</span><span class="p">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">config</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>데이터베이스와 서버 인스턴스를 연결해야 한다. 데이터베이스를 구축하자.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// db/index.js</span>
+<span class="kd">const</span> <span class="nx">mysql</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">mysql</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">dotenv</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">dotenv</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">config</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">../config/config</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">dotenv</span><span class="p">.</span><span class="nx">config</span><span class="p">();</span>
+
+<span class="kd">const</span> <span class="nx">con</span> <span class="o">=</span> <span class="nx">mysql</span><span class="p">.</span><span class="nx">createConnection</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+
+<span class="nx">con</span><span class="p">.</span><span class="nx">connetc</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">err</span><span class="p">)</span> <span class="k">throw</span> <span class="nx">err</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`connected as id `</span> <span class="o">+</span> <span class="nx">con</span><span class="p">.</span><span class="nx">threadId</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">con</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>클라이언트와 연결할 서버를 구축한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// app.js</span>
+<span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">express</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">./routes</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">morgan</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">morgan</span><span class="dl">"</span><span class="p">);</span> <span class="c1">// request, response를 formmating하는 logger 모듈</span>
+<span class="kd">const</span> <span class="nx">cors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">cors</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">parser</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">body-parser</span><span class="dl">"</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">./controllers</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">;</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">morgan</span><span class="p">(</span><span class="s2">`:method :url :status :res[content-length] - :response-time ms`</span><span class="p">))</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">parser</span><span class="p">.</span><span class="nx">json</span><span class="p">());</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">"</span><span class="s2">/users</span><span class="dl">"</span><span class="p">,</span> <span class="nx">router</span><span class="p">);</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="dl">"</span><span class="s2">/items</span><span class="dl">"</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">item</span><span class="p">.</span><span class="kd">get</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`The server is listening on </span><span class="p">${</span><span class="nx">port</span><span class="p">}</span><span class="s2">`</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="c1">// routes.js</span>
+<span class="kd">const</span> <span class="nx">router</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">express</span><span class="dl">"</span><span class="p">).</span><span class="nx">Router</span><span class="p">();</span>
+<span class="kd">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">./controllers</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="c1">// userId로 전체 주문내역을 조회한다.</span>
+<span class="nx">router</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/:userId/orders</span><span class="dl">"</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="kd">get</span><span class="p">);</span>
+<span class="c1">// 새로운 주문을 생성한다.</span>
+<span class="nx">router</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">/:userId/orders/new</span><span class="dl">"</span><span class="p">,</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">post</span><span class="p">);</span>
+
+
+<span class="c1">// URL에서 :userId는 URL에서 :userId 부분을 해당 이름으로 하는 변수로 전달할 수 있도록 한다.</span>
+</code></pre></div></div>
+
+<p>다음은 라우터 분기별로 요청에 대해 수행하는 함수이다. 클라이언트로 요청을 받은 것을 토대로 데이터베이스에 요청한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// controllers/index.js</span>
+<span class="kd">const</span> <span class="nx">models</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">../models</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// 주문과 아이템에 관한 Action을 분리한다.</span>
+    <span class="c1">// 1. Orders</span>
+    <span class="na">orders</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">get</span><span class="p">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="c1">// 다음과 같이 URL의 :userId를 사용한 것을 확인할 수 있다.</span>
+            <span class="kd">const</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">userId</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">userId</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">401</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Unauthorized user.</span><span class="dl">"</span><span class="p">);</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">models</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">userId</span><span class="p">),</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                    <span class="c1">// query함수의 callback을 controller.js에서 규정할 수 있도록 하였다. 훨씬 명확하다.</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">No orders found.</span><span class="dl">"</span><span class="p">)</span>
+                    <span class="k">else</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+                <span class="p">})</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">post</span><span class="p">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">userId</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">userId</span><span class="p">;</span>
+        <span class="kd">const</span> <span class="p">{</span> <span class="nx">orders</span><span class="p">,</span> <span class="nx">totalPrice</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">orders</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">400</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Bad request.</span><span class="dl">"</span><span class="p">);</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">models</span><span class="p">.</span><span class="nx">orders</span><span class="p">.</span><span class="nx">post</span><span class="p">(</span><span class="nb">Number</span><span class="p">(</span><span class="nx">userId</span><span class="p">),</span> <span class="nx">orders</span><span class="p">,</span> <span class="nx">totalPrice</span><span class="p">,</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Not found.</span><span class="dl">"</span><span class="p">);</span>
+                <span class="k">else</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">201</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Order has been successfully placed.</span><span class="dl">"</span><span class="p">);</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1">// 2. Items</span>
+    <span class="na">items</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">get</span><span class="p">:</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">models</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="kd">get</span><span class="p">((</span><span class="nx">error</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">404</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="dl">"</span><span class="s2">Not found</span><span class="dl">"</span><span class="p">);</span>
+                <span class="k">else</span> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">json</span><span class="p">(</span><span class="nx">result</span><span class="p">);</span>
+            <span class="p">})</span> 
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// models/index.js</span>
+<span class="kd">const</span> <span class="nx">con</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">../db</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// 1. Orders</span>
+    <span class="na">orders</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">get</span><span class="p">:</span> <span class="p">(</span><span class="nx">userId</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="kd">const</span> <span class="nx">sql</span> <span class="o">=</span> <span class="s2">`SELECT orders.id, orders.created_at, orders.total_price, order_items.order_quantity, items.image, items.name, items.price
+           FROM users INNER JOIN orders ON users.id = orders.user_id
+           INNER JOIN order_items ON orders.id = order_items.order_id
+           INNER JOIN items ON order_items.item_id = items.id
+           WHERE users.id = </span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+
+           <span class="nx">con</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+               <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+           <span class="p">})</span>
+        <span class="p">},</span>
+        <span class="na">post</span><span class="p">:</span> <span class="p">(</span><span class="nx">userId</span><span class="p">,</span> <span class="nx">orders</span><span class="p">,</span> <span class="nx">totalPrice</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">sql1</span> <span class="o">=</span> <span class="s2">`INSERT INTO orders (user_id, total_price) VALUES (</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">, </span><span class="p">${</span><span class="nx">totalPrice</span><span class="p">}</span><span class="s2">);`</span>
+            <span class="nx">con</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql1</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+              <span class="k">if</span> <span class="p">(</span><span class="nx">result</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">const</span> <span class="nx">sql2</span> <span class="o">=</span> <span class="s2">`INSERT INTO order_items (order_id, item_id, order_quantity) VALUES ?`</span>
+                <span class="kd">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">orders</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">obj</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">insertId</span><span class="p">,</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">itemId</span><span class="p">,</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">quantity</span><span class="p">])</span>
+                <span class="nx">con</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql2</span><span class="p">,</span> <span class="p">[</span><span class="nx">params</span><span class="p">],</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                  <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span>
+                <span class="p">})</span>
+              <span class="p">}</span> <span class="k">else</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="c1">// 2. Items</span>
+    <span class="na">items</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">get</span><span class="p">:</span> <span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="nx">con</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="s2">`SELECT * FROM items`</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+            <span class="p">})</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>last_insert_id를 사용할 수도 있지만, 이 경우 bulk array형태인 params로 활용할 수 없다. 따라서,
+첫 번째 쿼리를 실행하고 나서, FOREIGN KEY에 result.insertId를 할당하는 방법으로 해결할 수 있다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// models.orders.post를 LAST_INSERT_ID()를 사용하여 구현하는 경우.</span>
+<span class="kd">const</span> <span class="nx">sql1</span> <span class="o">=</span> <span class="s2">`INSERT INTO orders (user_id, total_price) VALUES (</span><span class="p">${</span><span class="nx">userId</span><span class="p">}</span><span class="s2">, </span><span class="p">${</span><span class="nx">totalPrice</span><span class="p">}</span><span class="s2">);`</span>
+<span class="kd">const</span> <span class="nx">sql2</span> <span class="o">=</span> <span class="s2">`INSERT INTO order_items (order_id, item_id, order_quantity) VALUES `</span>
+<span class="kd">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="nx">orders</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">obj</span> <span class="o">=&gt;</span> <span class="dl">"</span><span class="s2">(</span><span class="dl">"</span> <span class="o">+</span> <span class="p">[</span><span class="s2">`LAST_INSERT_ID()`</span><span class="p">,</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">itemId</span><span class="p">,</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">quantity</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2">,</span><span class="dl">"</span><span class="p">)</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">)</span><span class="dl">"</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="dl">"</span><span class="s2">,</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">con</span><span class="p">.</span><span class="nx">query</span><span class="p">(</span><span class="nx">sql1</span> <span class="o">+</span> <span class="nx">sql2</span> <span class="o">+</span> <span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">callback</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">result</span><span class="p">);</span>
+<span class="p">})</span>
+</code></pre></div></div>
+
+<p>LAST_INSET_ID()는 <strong>마지막으로 성공적으로 수행한 INSERT 구문의 첫 번째 AUTO_INCREMENT INDEX</strong>값이다. 또한 서로 다른 Connection의 A, B가 동시에 호출해도 LAST_INSERT_ID()는 별도로 관리된다. 다음 예제를 보도록 하자.</p>
+
+<p>초기 LAST_INSERT_ID()는 1이라고 하자. A에서 INSERT를 하여 AUTO_INCREMENT가 2이 되었고, B에서 INSERT를 하여 AUTO_INCREMENT가 3가 되었다. INSERT를 마치고나서 A가 LAST_INSERT_ID()를 불러오고, B가 LAST_INSERT_ID()를 불러오면 각각 2, 3를 불러오게 된다. 이는 LAST_INSERT_ID()가 Connetion마다 별도로 관리되기 때문.</p>
+:ET

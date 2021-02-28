@@ -222,8 +222,32 @@ var store = [{
         "teaser": null
       },{
         "title": "TIL - HTTP",
-        "excerpt":"URL(Uniform Resource Locator) http://www.google.com/search?q=puppies#p2      scheme: http, https, ssh, git   host: google.com, localhost, 192.168.1.1   subdomain: www, mail, blog   path: search, about.html, blog/entries/2/big-day   query string: q=puppies&amp;ref=mobile&amp;page=4   hash fragment: p2, FAQ, /profile/edit  ","categories": ["HTTP"],
+        "excerpt":"URL(Uniform Resource Locator) http://www.google.com/search?q=puppies#p2      scheme: http, https, ssh, git   host: google.com, localhost, 192.168.1.1   subdomain: www, mail, blog   path: search, about.html, blog/entries/2/big-day   query string: q=puppies&amp;ref=mobile&amp;page=4   hash fragment: p2, FAQ, /profile/edit   Rest, HTTP Verbs  ","categories": ["HTTP"],
         "tags": [],
         "url": "https://kavoom2.github.io/http/HTTP-TIL/",
+        "teaser": null
+      },{
+        "title": "React",
+        "excerpt":"React는 컴포넌트 단위로 어플리케이션을 설계할 수 있도록 하는 자바스크립트 라이브러리이다. 튜토리얼은 공식 홈페이지에 잘 설명되어있으니 꼭 읽어보도록 하자. 1. JSX와 앨리먼트 랜더링 JSX는 자바스크립트를 확장한 문법이다. JSX로 작성한 스크립트는 해석할 수 있도록 자바스크립트 컴파일러 라이브러리 바벨이 변환하게 된다. JSX를 사용하면 아래와 같이 엘리먼트(element)를 생성하여 변수에 할당하거나 반환을 할 수 있다....","categories": ["React"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/react/React/",
+        "teaser": null
+      },{
+        "title": "React",
+        "excerpt":"React는 컴포넌트 단위로 어플리케이션을 설계할 수 있도록 하는 자바스크립트 라이브러리이다. 튜토리얼은 공식 홈페이지에 잘 설명되어있으니 꼭 읽어보도록 하자. 1. JSX와 앨리먼트 랜더링 JSX는 자바스크립트를 확장한 문법이다. JSX로 작성한 스크립트는 해석할 수 있도록 자바스크립트 컴파일러 라이브러리 바벨이 변환하게 된다. JSX를 사용하면 아래와 같이 엘리먼트(element)를 생성하여 변수에 할당하거나 반환을 할 수 있다....","categories": ["React"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/react/Socket-io/",
+        "teaser": null
+      },{
+        "title": "Database - MySQL",
+        "excerpt":"1. 데이터베이스의 필요성 In-Memory: 자바스크립트 변수에 할당하는 방식. 배열에 넣는 방법이 이 방식이다. 프로그램이 종료되면 데이터도 같이 없어진다. 데이터 수명의 프로그램의 수명에 의존하게 됨. File I/O: 파일을 읽어오는 방식 파일을 매번 읽어야 한다는 것이 단점. 파일 크기가 커질 수록 버거워진다. 파일이 손상되거나 여러 파일을 동시에 다뤄야 하는 등 복잡하고 데이터양이...","categories": ["MySQL","Database"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/mysql/database/Database-MySQL/",
+        "teaser": null
+      },{
+        "title": "React + Redux",
+        "excerpt":"컴포넌트 구성이 깊고 복잡해지면서, 소위 드릴링이라고 하는 부모 컴포넌트의 상태 전달이 굉장히 번거로워진다. React에서도 Context API로 드릴링 없이 부모의 상태를 가져올 수 있긴 하다. Redux도 Context API를 가지고 만든 라이브러리인지라, 전역상태 관리 측면에서는 거의 차이점이 없다고 한다. Redux는 전역상태관리 외에도 다양한 기능을 제공하며, 확장성이 뛰어나다. // index.js import React from...","categories": ["React","Redux"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/react/redux/Redux/",
         "teaser": null
       }]
