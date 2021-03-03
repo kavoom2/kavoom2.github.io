@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-03T14:32:01+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">소프트웨어 설계에서 디자인 패턴</title><link href="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/" rel="alternate" type="text/html" title="소프트웨어 설계에서 디자인 패턴" /><published>2021-03-02T00:00:00+09:00</published><updated>2021-03-03T06:00:00+09:00</updated><id>https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns</id><content type="html" xml:base="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/">&lt;h2 id=&quot;1-mvc&quot;&gt;1. MVC&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-03T14:53:41+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">소프트웨어 설계에서 디자인 패턴</title><link href="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/" rel="alternate" type="text/html" title="소프트웨어 설계에서 디자인 패턴" /><published>2021-03-02T00:00:00+09:00</published><updated>2021-03-03T06:00:00+09:00</updated><id>https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns</id><content type="html" xml:base="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/">&lt;h2 id=&quot;1-mvc&quot;&gt;1. MVC&lt;/h2&gt;
 &lt;p&gt;MVC는 Model View Controller의 약자로 애플리케이션을 세 가지 역할로 구분하는 개발 방법론. 사용자가 Controller를 조작하면, Controller는 Model을 통해 데이터를 가져온다. 가져온 정보를 바탕으로 시각적 표현을 담당하는 View를 제어하여 사용자에게 전달한다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Router-MVC-DB.svg/1024px-Router-MVC-DB.svg.png&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
@@ -130,6 +130,8 @@ B --- C[(Relational&lt;br /&gt;Database)]
         &lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
         &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
       &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// 참조하는 테이블을 수정하거나 삭제하면, 다른 테이블도 같이 영향을 받는다.&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// 따라서 삭제 또는 수정할 때 FOREIGN KEY의 제약조건을 미리 설정해야한다.&lt;/span&gt;
       &lt;span class=&quot;na&quot;&gt;onUpdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;CASCADE&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
       &lt;span class=&quot;na&quot;&gt;onDelete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SET NULL&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
     &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
@@ -140,6 +142,38 @@ B --- C[(Relational&lt;br /&gt;Database)]
   }
 };
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;위 예제에서 볼 수 있듯이 외래키를 사용할 때 제약조건을 설정해야한다. 삭제 또는 수정할 때 어떤 행동을 할 것인지 정할 수 있다. 자세한 내용은 다음 테이블을 참조하도록 하자.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;제약조건&lt;/th&gt;
+      &lt;th&gt;내용&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CASCADE&lt;/td&gt;
+      &lt;td&gt;참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블의 데이터도 삭제하거나 수정한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SET NULL&lt;/td&gt;
+      &lt;td&gt;참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블의 데이터를 NULL로 변경한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;NO ACTION&lt;/td&gt;
+      &lt;td&gt;참조되는 테이블에서 데이터를 삭제하거나 수정하여도, 참조하는 테이블의 데이터를 변경하지 않는다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SET DEFAULT&lt;/td&gt;
+      &lt;td&gt;참조되는 테이블에서 데이터를 삭제하거나 수정하면, 참조하는 테이블의 데이터를 필드의 기본값으로 변경한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;RESTRICT&lt;/td&gt;
+      &lt;td&gt;참조되는 테이블에 데이터가 남아있으면, 참조되는 테이블의 데이터를 삭제하거나 수정할 수 없다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&quot;4-reference&quot;&gt;4. Reference&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://opentutorials.org/course/697/3828&quot;&gt;생활코딩 - MVC 디자인 패턴&lt;/a&gt;  &lt;br /&gt;
