@@ -345,7 +345,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          9 minute read
+          10 minute read
         
       </span>
     
@@ -834,6 +834,26 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">CustomerID</span><span class="p">,</span> <span class="nx">CustomerID</span> <span class="o">=</span> <span class="p">(</span><span class="nx">SELECT</span> <span class="nx">CustomerID</span> <span class="nx">FROM</span> <span class="nx">Customers</span> <span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="nx">AS</span> <span class="dl">"</span><span class="s2">Id === 2</span><span class="dl">"</span>
 <span class="nx">FROM</span> <span class="nx">Customers</span>
 <span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">&lt;</span> <span class="mi">6</span>
+</code></pre></div></div>
+
+<h3 id="subquery---in-not-in">SUBQUERY - IN, NOT IN</h3>
+<p>특정 값이 서브쿼리에 있는지 확인할 수 있다. 다음 쿼리에서 서브쿼리는 CustomerID가 10 이하인 데이터를 돌려주며, 쿼리는 서브쿼리에서 속한 데이터들만 조회한다. NOT IN을 사용하면 여집합을 확인할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="o">*</span>
+<span class="nx">FROM</span> <span class="nx">Customers</span>
+<span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="nx">IN</span> <span class="p">(</span><span class="nx">SELECT</span> <span class="nx">CustomerID</span> <span class="nx">FROM</span> <span class="nx">Customers</span> <span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="subquery---exist-not-exist">SUBQUERY - EXIST, NOT EXIST</h3>
+<p>서브쿼리의 존재하는 레코드를 확인한다. 레코드가 존재하면 참, 아니면 거짓을 반환한다.</p>
+
+<h3 id="subquery---from">SUBQUERY - FROM</h3>
+<p>서브쿼리를 FROM과 함께 사용할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="o">*</span>
+<span class="nx">FROM</span> <span class="p">(</span>
+    <span class="nx">SELECT</span> <span class="nx">CustomerID</span>
+    <span class="nx">FROM</span> <span class="nx">Customers</span>
+    <span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<span class="p">)</span>
 </code></pre></div></div>
 
         

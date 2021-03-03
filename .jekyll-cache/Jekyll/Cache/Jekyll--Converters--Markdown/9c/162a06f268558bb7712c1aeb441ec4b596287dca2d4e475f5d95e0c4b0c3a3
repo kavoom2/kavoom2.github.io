@@ -1,4 +1,4 @@
-I"F�<h2 id="1-데이터베이스의-필요성">1. 데이터베이스의 필요성</h2>
+I"�<h2 id="1-데이터베이스의-필요성">1. 데이터베이스의 필요성</h2>
 <p>In-Memory: 자바스크립트 변수에 할당하는 방식.  <br />
 배열에 넣는 방법이 이 방식이다. 프로그램이 종료되면 데이터도 같이 없어진다.
 데이터 수명의 프로그램의 수명에 의존하게 됨.</p>
@@ -440,6 +440,60 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.</p>
 <p>어떤 트랜잭션의 이전과 이후 데이터베이스의 성질은 이전과 같이 유효해야 한다는 원칙. 특정 제약이나 규칙에 의거해야 한다는 것이다. <code class="language-plaintext highlighter-rouge">이름이 없는 고객을 추가하는 쿼리</code>가 예시가 되겠다.</p>
 
 <h3 id="isolation">Isolation</h3>
+<p>하나의 트랜잭션은 다른 트랜잭션과 독립적이어야 한다는 원칙. 실제로 동시에 여러 트랜잭션이 수행되어도, 각 트랜잭션은 연속적으로 실행한 것과 동일한 결과를 나타내야 한다.</p>
 
 <h3 id="durability">Durability</h3>
+<p>하나의 트랜잭션이 수행되면, 그에 대한 기록이 영구적으로 남아야 한다는 원칙.</p>
+
+<h2 id="8-sql-쿼리-문법-종류">8. SQL 쿼리 문법 종류</h2>
+<h3 id="data-definition-languageddl">Data Definition Language(DDL)</h3>
+<p>데이터베이스의 테이블 등 오브젝트를 정의할 때 사용하는 문법. CREATE, DROP 등이 해당된다.</p>
+
+<h3 id="data-manipulation-languagedml">Data Manipulation Language(DML)</h3>
+<p>데이터베이스에 데이터를 저장할 때 사용하는 문법. INSERT, DELETE, UPDATE 등이 해당된다.</p>
+
+<h3 id="data-control-languagedcl">Data Control Language(DCL)</h3>
+<p>정해진 스키마 내에서 쿼리를 할 수 있는 문법. SELECT이 대표적이다.</p>
+
+<h3 id="transaction-control-languagetcl">Transaction Control Language(TCL)</h3>
+<p>DML을 거친 데이터 변경사항을 수정할 수 있는 문법. DML이 작업한 내용을 데이터베이스에 커밋하는 COMMIT과 커밋했던 내용을 다시 롤백하는 ROLLBACK 등이 있다.</p>
+
+<h2 id="9-sql-advanced">9. SQL Advanced</h2>
+<h3 id="case">CASE</h3>
+<p>자바스크립트의 조건문과 유사하다. 다음은 ID가 ~25는 GROUP1, ~50은 GROUP2, 나머지는 GROUP3으로 분류하는 쿼리문이다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">CASE</span>
+<span class="nx">WHEN</span> <span class="nx">CustomerID</span> <span class="o">&lt;=</span> <span class="mi">25</span> <span class="nx">THEN</span> <span class="dl">"</span><span class="s2">GROUP1</span><span class="dl">"</span>
+<span class="nx">WHEN</span> <span class="nx">CustomerID</span> <span class="o">&lt;=</span> <span class="mi">50</span> <span class="nx">THEN</span> <span class="dl">"</span><span class="s2">GROUP2</span><span class="dl">"</span>
+<span class="nx">ELSE</span> <span class="dl">"</span><span class="s2">GROUP3</span><span class="dl">"</span>
+<span class="nx">END</span> <span class="nx">AS</span> <span class="dl">"</span><span class="s2">GROUP</span><span class="dl">"</span><span class="p">,</span> <span class="nx">CustomerName</span>
+<span class="nx">FROM</span> <span class="nx">Customers</span>
+</code></pre></div></div>
+
+<h3 id="subquery">SUBQUERY</h3>
+<p>쿼리문을 작성할 때 다른 쿼리문을 포함하는 것을 서브쿼리라고 한다. 서브 쿼리는 소괄호로 감싸져 있으며, 하나의 칼럼으로 활용하거나 결과를 레코드 리스트로 넘겨줄 수 있다. 다음은 CustomerID &lt; 6인 레코드에서 CustomerID = 2 이면 1, 아니면 0을 반환하는 테이블이다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="nx">CustomerID</span><span class="p">,</span> <span class="nx">CustomerID</span> <span class="o">=</span> <span class="p">(</span><span class="nx">SELECT</span> <span class="nx">CustomerID</span> <span class="nx">FROM</span> <span class="nx">Customers</span> <span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="nx">AS</span> <span class="dl">"</span><span class="s2">Id === 2</span><span class="dl">"</span>
+<span class="nx">FROM</span> <span class="nx">Customers</span>
+<span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">&lt;</span> <span class="mi">6</span>
+</code></pre></div></div>
+
+<h3 id="subquery---in-not-in">SUBQUERY - IN, NOT IN</h3>
+<p>특정 값이 서브쿼리에 있는지 확인할 수 있다. 다음 쿼리에서 서브쿼리는 CustomerID가 10 이하인 데이터를 돌려주며, 쿼리는 서브쿼리에서 속한 데이터들만 조회한다. NOT IN을 사용하면 여집합을 확인할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="o">*</span>
+<span class="nx">FROM</span> <span class="nx">Customers</span>
+<span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="nx">IN</span> <span class="p">(</span><span class="nx">SELECT</span> <span class="nx">CustomerID</span> <span class="nx">FROM</span> <span class="nx">Customers</span> <span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="subquery---exist-not-exist">SUBQUERY - EXIST, NOT EXIST</h3>
+<p>서브쿼리의 존재하는 레코드를 확인한다. 레코드가 존재하면 참, 아니면 거짓을 반환한다.</p>
+
+<h3 id="subquery---from">SUBQUERY - FROM</h3>
+<p>서브쿼리를 FROM과 함께 사용할 수 있다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">SELECT</span> <span class="o">*</span>
+<span class="nx">FROM</span> <span class="p">(</span>
+    <span class="nx">SELECT</span> <span class="nx">CustomerID</span>
+    <span class="nx">FROM</span> <span class="nx">Customers</span>
+    <span class="nx">WHERE</span> <span class="nx">CustomerID</span> <span class="o">&lt;</span> <span class="mi">10</span>
+<span class="p">)</span>
+</code></pre></div></div>
 :ET

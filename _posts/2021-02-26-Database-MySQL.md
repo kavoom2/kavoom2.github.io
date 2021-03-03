@@ -433,3 +433,25 @@ SELECT CustomerID, CustomerID = (SELECT CustomerID FROM Customers WHERE Customer
 FROM Customers
 WHERE CustomerID < 6
 ````
+
+### SUBQUERY - IN, NOT IN
+특정 값이 서브쿼리에 있는지 확인할 수 있다. 다음 쿼리에서 서브쿼리는 CustomerID가 10 이하인 데이터를 돌려주며, 쿼리는 서브쿼리에서 속한 데이터들만 조회한다. NOT IN을 사용하면 여집합을 확인할 수 있다.
+```js
+SELECT *
+FROM Customers
+WHERE CustomerID IN (SELECT CustomerID FROM Customers WHERE CustomerID < 10)
+````
+
+### SUBQUERY - EXIST, NOT EXIST
+서브쿼리의 존재하는 레코드를 확인한다. 레코드가 존재하면 참, 아니면 거짓을 반환한다.
+
+### SUBQUERY - FROM
+서브쿼리를 FROM과 함께 사용할 수 있다.
+```js
+SELECT *
+FROM (
+    SELECT CustomerID
+    FROM Customers
+    WHERE CustomerID < 10
+)
+````
