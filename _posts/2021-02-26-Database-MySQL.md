@@ -347,3 +347,89 @@ con.query(sql1 + sql2 + params, (err, result) => {
 LAST_INSET_ID()는 **마지막으로 성공적으로 수행한 INSERT 구문의 첫 번째 AUTO_INCREMENT INDEX**값이다. 또한 서로 다른 Connection의 A, B가 동시에 호출해도 LAST_INSERT_ID()는 별도로 관리된다. 다음 예제를 보도록 하자.    
     
 초기 LAST_INSERT_ID()는 1이라고 하자. A에서 INSERT를 하여 AUTO_INCREMENT가 2이 되었고, B에서 INSERT를 하여 AUTO_INCREMENT가 3가 되었다. INSERT를 마치고나서 A가 LAST_INSERT_ID()를 불러오고, B가 LAST_INSERT_ID()를 불러오면 각각 2, 3를 불러오게 된다. 이는 LAST_INSERT_ID()가 Connetion마다 별도로 관리되기 때문.     
+
+
+## 6. 데이터베이스 정규화(Database Normalization)
+### 데이터 중복(Data Redundancy)
+어떤 데이터의 동일한 복사본이나 부분적인 복사본을 의미한다. 중복성은 데이터 복구를 수월하게 할 수 있다. 하지만 일관된 자료처리의 어려움, 저장공간 낭비, 데이터 효율성 감소의 문제점을 지니고 있다.    
+
+### 데이터 무결성(Data Integrity)
+데이터는 수명주기 동안에는 정확성과 일관성을 지녀야 한다. 이는 데이터가 오염되지 않아야 하고, 입력받는 그대로 데이터를 사용할 수 있어야 한다는 의미이다.    
+
+### 데이터 이상현상(Data Anomaly)
+데이터를 삽입, 수정, 삭제하게되면 예상치 못한 현상이 일어나기도 한다. 이를 데이터 이상현상이라고 한다.
+
+갱신이상은 동일한 데이터가 여러 레코드에 걸쳐 있을 때, 어느 데이터를 갱신해야하는지 명확하지 않아 발생하는 현상이다. 다음과 같이 두 개의 레코드가 동일한 ID일 때 갱신을 하게 되는 경우 발생할 수 있다.    
+
+|  Employee ID | Employee Address | Skill    |
+|--------------|------------------|----------|
+| 1            | Suwon            | Reading  |
+| 2            | Seoul            | Writing  |
+| 2            | Busan            | Speaking |
+
+
+삽입이상은 데이터 삽입을 하지 못하는 현상이다. 다음 테이블에 새로운 교수를 넣는다고 해보자. 이 교수가 가르칠 수업이 정해지지 않았다면, 코스를 NULL 등으로 지정하지 않는다면 데이터를 추가하지 못할 것이다.    
+
+| Faculty ID | Faculty Name | Course Code |
+|------------|--------------|-------------|
+| 1          | Dr. Kim      | A-01        |
+| 2          | Dr. Min      | B-01        |
+| 2          | Dr. Min      | B-02        |
+
+
+삭제이상은 데이터의 특정부분을 제거할 때 의도치 않게 다른 부분도 함께 지워지는 현상이다. 다음 테이블에서 A-01이라는 수업이 사라진다고 해보자. 의도치 않게 교수에 대한 정보도 같이 삭제될 수 있다.
+
+| Faculty ID | Faculty Name | Course Code |
+|------------|--------------|-------------|
+| 1          | Dr. Kim      | A-01        |
+| 2          | Dr. Min      | B-01        |
+| 2          | Dr. Min      | B-02        |
+
+## 7. ACID
+트랜잭션(Transaction)은 여러 개의 작업을 하나의 실행 유닛으로 묶은 것. **모든 작업들을 완료**해야 성공적으로 작업을 마친다. 하나라도 실패하면 전부 실패한 것으로 판정한다. ACID는 데이터베이스 내에서 일어나는 트랜잭션의 안전성을 보장하기 위한 특성이다.    
+
+### 원자성(Atomicity)
+하나의 트랜잭션은 전부 성공하거나 실패해야 한다는 원칙. 계좌이체를 A 계좌에서 꺼내서 B 계좌에 해당 금액을 추가하는 것으로 나눌 수 있을 것. 두 과정 중 하나라도 실패하면 트랜잭션 내부에 성공한 작업들도 실패로 되돌아가야 한다는 것.
+
+### 일관성(Consistency)
+어떤 트랜잭션의 이전과 이후 데이터베이스의 성질은 이전과 같이 유효해야 한다는 원칙. 특정 제약이나 규칙에 의거해야 한다는 것이다. `이름이 없는 고객을 추가하는 쿼리`가 예시가 되겠다.    
+
+### Isolation
+하나의 트랜잭션은 다른 트랜잭션과 독립적이어야 한다는 원칙. 실제로 동시에 여러 트랜잭션이 수행되어도, 각 트랜잭션은 연속적으로 실행한 것과 동일한 결과를 나타내야 한다.    
+
+### Durability
+하나의 트랜잭션이 수행되면, 그에 대한 기록이 영구적으로 남아야 한다는 원칙.
+
+## 8. SQL 쿼리 문법 종류
+### Data Definition Language(DDL)
+데이터베이스의 테이블 등 오브젝트를 정의할 때 사용하는 문법. CREATE, DROP 등이 해당된다. 
+
+### Data Manipulation Language(DML)
+데이터베이스에 데이터를 저장할 때 사용하는 문법. INSERT, DELETE, UPDATE 등이 해당된다.
+
+### Data Control Language(DCL)
+정해진 스키마 내에서 쿼리를 할 수 있는 문법. SELECT이 대표적이다.
+
+### Transaction Control Language(TCL)
+DML을 거친 데이터 변경사항을 수정할 수 있는 문법. DML이 작업한 내용을 데이터베이스에 커밋하는 COMMIT과 커밋했던 내용을 다시 롤백하는 ROLLBACK 등이 있다.
+
+## 9. SQL Advanced
+### CASE
+자바스크립트의 조건문과 유사하다. 다음은 ID가 ~25는 GROUP1, ~50은 GROUP2, 나머지는 GROUP3으로 분류하는 쿼리문이다.
+```js
+SELECT CASE
+WHEN CustomerID <= 25 THEN "GROUP1"
+WHEN CustomerID <= 50 THEN "GROUP2"
+ELSE "GROUP3"
+END AS "GROUP", CustomerName
+FROM Customers
+````
+
+### SUBQUERY
+쿼리문을 작성할 때 다른 쿼리문을 포함하는 것을 서브쿼리라고 한다. 서브 쿼리는 소괄호로 감싸져 있으며, 하나의 칼럼으로 활용하거나 결과를 레코드 리스트로 넘겨줄 수 있다. 다음은 CustomerID < 6인 레코드에서 CustomerID = 2 이면 1, 아니면 0을 반환하는 테이블이다.
+
+```js
+SELECT CustomerID, CustomerID = (SELECT CustomerID FROM Customers WHERE CustomerID = 2) AS "Id === 2"
+FROM Customers
+WHERE CustomerID < 6
+````

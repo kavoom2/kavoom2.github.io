@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-03T14:53:41+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">소프트웨어 설계에서 디자인 패턴</title><link href="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/" rel="alternate" type="text/html" title="소프트웨어 설계에서 디자인 패턴" /><published>2021-03-02T00:00:00+09:00</published><updated>2021-03-03T06:00:00+09:00</updated><id>https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns</id><content type="html" xml:base="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/">&lt;h2 id=&quot;1-mvc&quot;&gt;1. MVC&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-03T17:11:38+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">소프트웨어 설계에서 디자인 패턴</title><link href="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/" rel="alternate" type="text/html" title="소프트웨어 설계에서 디자인 패턴" /><published>2021-03-02T00:00:00+09:00</published><updated>2021-03-03T06:00:00+09:00</updated><id>https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns</id><content type="html" xml:base="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/">&lt;h2 id=&quot;1-mvc&quot;&gt;1. MVC&lt;/h2&gt;
 &lt;p&gt;MVC는 Model View Controller의 약자로 애플리케이션을 세 가지 역할로 구분하는 개발 방법론. 사용자가 Controller를 조작하면, Controller는 Model을 통해 데이터를 가져온다. 가져온 정보를 바탕으로 시각적 표현을 담당하는 View를 제어하여 사용자에게 전달한다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Router-MVC-DB.svg/1024px-Router-MVC-DB.svg.png&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
@@ -510,7 +510,151 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.&lt;/p&gt;
 
 &lt;p&gt;LAST_INSET_ID()는 &lt;strong&gt;마지막으로 성공적으로 수행한 INSERT 구문의 첫 번째 AUTO_INCREMENT INDEX&lt;/strong&gt;값이다. 또한 서로 다른 Connection의 A, B가 동시에 호출해도 LAST_INSERT_ID()는 별도로 관리된다. 다음 예제를 보도록 하자.&lt;/p&gt;
 
-&lt;p&gt;초기 LAST_INSERT_ID()는 1이라고 하자. A에서 INSERT를 하여 AUTO_INCREMENT가 2이 되었고, B에서 INSERT를 하여 AUTO_INCREMENT가 3가 되었다. INSERT를 마치고나서 A가 LAST_INSERT_ID()를 불러오고, B가 LAST_INSERT_ID()를 불러오면 각각 2, 3를 불러오게 된다. 이는 LAST_INSERT_ID()가 Connetion마다 별도로 관리되기 때문.&lt;/p&gt;</content><author><name>liondoge</name></author><category term="MySQL" /><category term="Database" /><summary type="html">node.js환경에서 MySQL 기반 관계형 데이터베이스 구축</summary></entry><entry><title type="html">React + Redux</title><link href="https://kavoom2.github.io/react/redux/Redux/" rel="alternate" type="text/html" title="React + Redux" /><published>2021-02-26T00:00:00+09:00</published><updated>2021-02-27T06:00:00+09:00</updated><id>https://kavoom2.github.io/react/redux/Redux</id><content type="html" xml:base="https://kavoom2.github.io/react/redux/Redux/">&lt;p&gt;컴포넌트 구성이 깊고 복잡해지면서, 소위 드릴링이라고 하는 부모 컴포넌트의 상태 전달이 굉장히 번거로워진다. React에서도 Context API로 드릴링 없이 부모의 상태를 가져올 수 있긴 하다. Redux도 Context API를 가지고 만든 라이브러리인지라, 전역상태 관리 측면에서는 거의 차이점이 없다고 한다. Redux는 전역상태관리 외에도 다양한 기능을 제공하며, 확장성이 뛰어나다.&lt;/p&gt;
+&lt;p&gt;초기 LAST_INSERT_ID()는 1이라고 하자. A에서 INSERT를 하여 AUTO_INCREMENT가 2이 되었고, B에서 INSERT를 하여 AUTO_INCREMENT가 3가 되었다. INSERT를 마치고나서 A가 LAST_INSERT_ID()를 불러오고, B가 LAST_INSERT_ID()를 불러오면 각각 2, 3를 불러오게 된다. 이는 LAST_INSERT_ID()가 Connetion마다 별도로 관리되기 때문.&lt;/p&gt;
+
+&lt;h2 id=&quot;6-데이터베이스-정규화database-normalization&quot;&gt;6. 데이터베이스 정규화(Database Normalization)&lt;/h2&gt;
+&lt;h3 id=&quot;데이터-중복data-redundancy&quot;&gt;데이터 중복(Data Redundancy)&lt;/h3&gt;
+&lt;p&gt;어떤 데이터의 동일한 복사본이나 부분적인 복사본을 의미한다. 중복성은 데이터 복구를 수월하게 할 수 있다. 하지만 일관된 자료처리의 어려움, 저장공간 낭비, 데이터 효율성 감소의 문제점을 지니고 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;데이터-무결성data-integrity&quot;&gt;데이터 무결성(Data Integrity)&lt;/h3&gt;
+&lt;p&gt;데이터는 수명주기 동안에는 정확성과 일관성을 지녀야 한다. 이는 데이터가 오염되지 않아야 하고, 입력받는 그대로 데이터를 사용할 수 있어야 한다는 의미이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;데이터-이상현상data-anomaly&quot;&gt;데이터 이상현상(Data Anomaly)&lt;/h3&gt;
+&lt;p&gt;데이터를 삽입, 수정, 삭제하게되면 예상치 못한 현상이 일어나기도 한다. 이를 데이터 이상현상이라고 한다.&lt;/p&gt;
+
+&lt;p&gt;갱신이상은 동일한 데이터가 여러 레코드에 걸쳐 있을 때, 어느 데이터를 갱신해야하는지 명확하지 않아 발생하는 현상이다. 다음과 같이 두 개의 레코드가 동일한 ID일 때 갱신을 하게 되는 경우 발생할 수 있다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Employee ID&lt;/th&gt;
+      &lt;th&gt;Employee Address&lt;/th&gt;
+      &lt;th&gt;Skill&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Suwon&lt;/td&gt;
+      &lt;td&gt;Reading&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Seoul&lt;/td&gt;
+      &lt;td&gt;Writing&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Busan&lt;/td&gt;
+      &lt;td&gt;Speaking&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;삽입이상은 데이터 삽입을 하지 못하는 현상이다. 다음 테이블에 새로운 교수를 넣는다고 해보자. 이 교수가 가르칠 수업이 정해지지 않았다면, 코스를 NULL 등으로 지정하지 않는다면 데이터를 추가하지 못할 것이다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Faculty ID&lt;/th&gt;
+      &lt;th&gt;Faculty Name&lt;/th&gt;
+      &lt;th&gt;Course Code&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Dr. Kim&lt;/td&gt;
+      &lt;td&gt;A-01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Dr. Min&lt;/td&gt;
+      &lt;td&gt;B-01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Dr. Min&lt;/td&gt;
+      &lt;td&gt;B-02&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;삭제이상은 데이터의 특정부분을 제거할 때 의도치 않게 다른 부분도 함께 지워지는 현상이다. 다음 테이블에서 A-01이라는 수업이 사라진다고 해보자. 의도치 않게 교수에 대한 정보도 같이 삭제될 수 있다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Faculty ID&lt;/th&gt;
+      &lt;th&gt;Faculty Name&lt;/th&gt;
+      &lt;th&gt;Course Code&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;Dr. Kim&lt;/td&gt;
+      &lt;td&gt;A-01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Dr. Min&lt;/td&gt;
+      &lt;td&gt;B-01&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;Dr. Min&lt;/td&gt;
+      &lt;td&gt;B-02&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;7-acid&quot;&gt;7. ACID&lt;/h2&gt;
+&lt;p&gt;트랜잭션(Transaction)은 여러 개의 작업을 하나의 실행 유닛으로 묶은 것. &lt;strong&gt;모든 작업들을 완료&lt;/strong&gt;해야 성공적으로 작업을 마친다. 하나라도 실패하면 전부 실패한 것으로 판정한다. ACID는 데이터베이스 내에서 일어나는 트랜잭션의 안전성을 보장하기 위한 특성이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;원자성atomicity&quot;&gt;원자성(Atomicity)&lt;/h3&gt;
+&lt;p&gt;하나의 트랜잭션은 전부 성공하거나 실패해야 한다는 원칙. 계좌이체를 A 계좌에서 꺼내서 B 계좌에 해당 금액을 추가하는 것으로 나눌 수 있을 것. 두 과정 중 하나라도 실패하면 트랜잭션 내부에 성공한 작업들도 실패로 되돌아가야 한다는 것.&lt;/p&gt;
+
+&lt;h3 id=&quot;일관성consistency&quot;&gt;일관성(Consistency)&lt;/h3&gt;
+&lt;p&gt;어떤 트랜잭션의 이전과 이후 데이터베이스의 성질은 이전과 같이 유효해야 한다는 원칙. 특정 제약이나 규칙에 의거해야 한다는 것이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이름이 없는 고객을 추가하는 쿼리&lt;/code&gt;가 예시가 되겠다.&lt;/p&gt;
+
+&lt;h3 id=&quot;isolation&quot;&gt;Isolation&lt;/h3&gt;
+&lt;p&gt;하나의 트랜잭션은 다른 트랜잭션과 독립적이어야 한다는 원칙. 실제로 동시에 여러 트랜잭션이 수행되어도, 각 트랜잭션은 연속적으로 실행한 것과 동일한 결과를 나타내야 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;durability&quot;&gt;Durability&lt;/h3&gt;
+&lt;p&gt;하나의 트랜잭션이 수행되면, 그에 대한 기록이 영구적으로 남아야 한다는 원칙.&lt;/p&gt;
+
+&lt;h2 id=&quot;8-sql-쿼리-문법-종류&quot;&gt;8. SQL 쿼리 문법 종류&lt;/h2&gt;
+&lt;h3 id=&quot;data-definition-languageddl&quot;&gt;Data Definition Language(DDL)&lt;/h3&gt;
+&lt;p&gt;데이터베이스의 테이블 등 오브젝트를 정의할 때 사용하는 문법. CREATE, DROP 등이 해당된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-manipulation-languagedml&quot;&gt;Data Manipulation Language(DML)&lt;/h3&gt;
+&lt;p&gt;데이터베이스에 데이터를 저장할 때 사용하는 문법. INSERT, DELETE, UPDATE 등이 해당된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-control-languagedcl&quot;&gt;Data Control Language(DCL)&lt;/h3&gt;
+&lt;p&gt;정해진 스키마 내에서 쿼리를 할 수 있는 문법. SELECT이 대표적이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;transaction-control-languagetcl&quot;&gt;Transaction Control Language(TCL)&lt;/h3&gt;
+&lt;p&gt;DML을 거친 데이터 변경사항을 수정할 수 있는 문법. DML이 작업한 내용을 데이터베이스에 커밋하는 COMMIT과 커밋했던 내용을 다시 롤백하는 ROLLBACK 등이 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;9-sql-advanced&quot;&gt;9. SQL Advanced&lt;/h2&gt;
+&lt;h3 id=&quot;case&quot;&gt;CASE&lt;/h3&gt;
+&lt;p&gt;자바스크립트의 조건문과 유사하다. 다음은 ID가 ~25는 GROUP1, ~50은 GROUP2, 나머지는 GROUP3으로 분류하는 쿼리문이다.&lt;/p&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CASE&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;WHEN&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;THEN&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;GROUP1&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;WHEN&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;50&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;THEN&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;GROUP2&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;ELSE&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;GROUP3&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;END&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;GROUP&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerName&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Customers&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;subquery&quot;&gt;SUBQUERY&lt;/h3&gt;
+&lt;p&gt;쿼리문을 작성할 때 다른 쿼리문을 포함하는 것을 서브쿼리라고 한다. 서브 쿼리는 소괄호로 감싸져 있으며, 하나의 칼럼으로 활용하거나 결과를 레코드 리스트로 넘겨줄 수 있다. 다음은 CustomerID &amp;lt; 6인 레코드에서 CustomerID = 2 이면 1, 아니면 0을 반환하는 테이블이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerID&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerID&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Customers&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;AS&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Id === 2&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;FROM&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Customers&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CustomerID&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>liondoge</name></author><category term="MySQL" /><category term="Database" /><summary type="html">node.js환경에서 MySQL 기반 관계형 데이터베이스 구축</summary></entry><entry><title type="html">React + Redux</title><link href="https://kavoom2.github.io/react/redux/Redux/" rel="alternate" type="text/html" title="React + Redux" /><published>2021-02-26T00:00:00+09:00</published><updated>2021-02-27T06:00:00+09:00</updated><id>https://kavoom2.github.io/react/redux/Redux</id><content type="html" xml:base="https://kavoom2.github.io/react/redux/Redux/">&lt;p&gt;컴포넌트 구성이 깊고 복잡해지면서, 소위 드릴링이라고 하는 부모 컴포넌트의 상태 전달이 굉장히 번거로워진다. React에서도 Context API로 드릴링 없이 부모의 상태를 가져올 수 있긴 하다. Redux도 Context API를 가지고 만든 라이브러리인지라, 전역상태 관리 측면에서는 거의 차이점이 없다고 한다. Redux는 전역상태관리 외에도 다양한 기능을 제공하며, 확장성이 뛰어나다.&lt;/p&gt;
 
 &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// index.js&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;react&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
