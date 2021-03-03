@@ -1,0 +1,14 @@
+I"�<p>URL(Uniform Resource Locator)은 웹 서버가 리소스를 고유하게 식별할 수 있도록 하는 것. 일반적으로 다음과 같은 구조이다.   <br />
+<span style="color:blue">http</span>://<span style="color:green">www</span>.<span style="color:orange">google.com</span>/<span style="color:red">search</span>?<span style="color:teal">q=puppies</span><span style="color:purple">#p2</span></p>
+
+<ul>
+  <li><span style="color:blue">scheme</span>: http, https, ssh, git</li>
+  <li><span style="color:green">host</span>: google.com, localhost, 192.168.1.1</li>
+  <li><span style="color:orange">subdomain</span>: www, mail, blog</li>
+  <li><span style="color:red">path</span>: search, about.html, blog/entries/2/big-day</li>
+  <li><span style="color:teal">query string</span>: q=puppies&amp;ref=mobile&amp;page=4</li>
+  <li><span style="color:purple">hash fragment</span>: p2, FAQ, /profile/edit</li>
+</ul>
+
+<p>Rest, HTTP Verbs</p>
+:ET

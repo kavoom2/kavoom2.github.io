@@ -1,0 +1,860 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.21.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>소프트웨어 설계에서 디자인 패턴 - 건축공학도의 개발자 성장기</title>
+<meta name="description" content="MVC 디자인 패턴과 Sequelize ORM 실습">
+
+
+  <meta name="author" content="liondoge">
+  
+  <meta property="article:author" content="liondoge">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="건축공학도의 개발자 성장기">
+<meta property="og:title" content="소프트웨어 설계에서 디자인 패턴">
+<meta property="og:url" content="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/">
+
+
+  <meta property="og:description" content="MVC 디자인 패턴과 Sequelize ORM 실습">
+
+
+
+  <meta property="og:image" content="https://kavoom2.github.io/assets/images/og_image.jpeg">
+
+
+
+
+
+  <meta property="article:published_time" content="2021-03-02T00:00:00+09:00">
+
+
+
+  <meta property="article:modified_time" content="2021-03-03T06:00:00+09:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "liondoge",
+      "url": "https://kavoom2.github.io/"
+    
+  }
+</script>
+
+
+  <meta name="google-site-verification" content="/googled26c62ed370d78cf.html" />
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="건축공학도의 개발자 성장기 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+    <script type="text/javascript" async
+      src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+    
+    
+    
+    <script src="/js/mermaid.js"></script>
+  
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          건축공학도의 개발자 성장기
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/readme/">ReadMe</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://kavoom2.github.io/">Posts</a>
+            </li><li class="masthead__menu-item">
+              <a href="/categories">Categories</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags">Tags</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="/assets/images/logo.jpg" alt="liondoge" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">liondoge</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>기억보다는 기록하려는 개발자</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Suwon, South Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:kavoom2@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/kavoom2" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="소프트웨어 설계에서 디자인 패턴">
+    <meta itemprop="description" content="MVC 디자인 패턴과 Sequelize ORM 실습">
+    <meta itemprop="datePublished" content="2021-03-02T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2021-03-03T06:00:00+09:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">소프트웨어 설계에서 디자인 패턴
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-03-02T00:00:00+09:00">March 2, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="1-mvc">1. MVC</h2>
+<p>MVC는 Model View Controller의 약자로 애플리케이션을 세 가지 역할로 구분하는 개발 방법론. 사용자가 Controller를 조작하면, Controller는 Model을 통해 데이터를 가져온다. 가져온 정보를 바탕으로 시각적 표현을 담당하는 View를 제어하여 사용자에게 전달한다.</p>
+
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Router-MVC-DB.svg/1024px-Router-MVC-DB.svg.png" width="400px" /></p>
+
+<p>Web에서 MVC를 적용하면 다음 과정을 거치게 된다.</p>
+
+<ul>
+  <li>사용자가 웹 사이트에 접속</li>
+  <li>Controller는 사용자가 요청한 웹페이지를 서비스하고자 모델을 호출</li>
+  <li>Model은 데이터베이스이나 파일 등 리소스를 제어하고, 그 결과를 반환</li>
+  <li>Controller는 Model이 반환한 결과를 View에 반영</li>
+  <li>새로운 정보가 반영된 View가 사용자에게 전달</li>
+</ul>
+
+<h2 id="2-orm">2. ORM</h2>
+
+<p>ORM(Object-Relational Mapping)은 모델을 기술하는 도구이다. ORM을 이용하면 직접 SQL 쿼리를 작성하지 않고, 엔티티를 자바스크립트로 표현할 수 있다. 자바스크립트에는 객체를 클래스로 구현하였는데, 클래스와 데이터 테이블을 자동으로 매핑(연결)한 것이다.</p>
+
+<div class="mermaid">
+graph LR
+A(("&#123;   &#125;"<br />Object)) --- B(ORM)
+B --- C[(Relational<br />Database)]
+
+</div>
+
+<h2 id="3-sequelize">3. Sequelize</h2>
+<p>Sequelize는 프로미스 기반 Node.js 환경에서 사용할 수 있는 ORM이다. 설치 및 사용법은 <a href="https://sequelize.org/master/manual/migrations.html">공식문서 - CLI을 사용하는 방법</a>를 읽도록 하자.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="nx">sequelize</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="nx">mysql2</span> <span class="c1">// 지원하는 데이터베이스 중 원하는 것을 선택.</span>
+<span class="nx">npm</span> <span class="nx">install</span> <span class="o">--</span><span class="nx">save</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="c1">// CLI(Command-line Interface)를 사용할 수 있도록 하는 보조 툴</span>
+</code></pre></div></div>
+
+<p>모델(Models)은 클래스(Class)의 메서드, 속성과 스키마(Schema)의 엔티티를 합쳐놓은 것이다. 실제 데이터베이스로 옮기기 전, 와이어 프레임을 짤 수 있는 곳. 모델의 기능을 추가하거나 삭제할 수 있다.</p>
+
+<p>마이그레이션(Migration)은 스키마(Schema)를 정의한다. 한편, 각각의 마이그레이션은 깃의 <strong>커밋</strong>처럼 작업 히스토리를 남기는 역할을 수행한다. 따라서, 모델을 수정해야한다면 먼저 작업을 되돌리고, 새로운 마이그레이션을 생성한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">db</span><span class="p">:</span><span class="nx">mirgrate</span><span class="p">:</span><span class="nx">undo</span> <span class="c1">// 가장 최근에 데이터베이스로 옮긴 작업을 되돌린다.</span>
+<span class="nx">npx</span> <span class="nx">sequelize</span><span class="o">-</span><span class="nx">cli</span> <span class="nx">migration</span><span class="p">:</span><span class="nx">generate</span> <span class="o">--</span><span class="nx">name</span> <span class="p">...</span><span class="c1">// 모델을 수정하기 위해 새로운 마이그레이션을 생성한다. 새로 생성한 마이그레이션에 수정 작업을 해야한다.</span>
+</code></pre></div></div>
+
+<p>새로 생성한 마이그레이션에 반영할 수정사항을 적어준다. 이 때, 마이그레이션이 작업 히스토리의 역할을 수행할 수 있도록 up, down에 모두 적어주어야 한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 새로 생성한 mirgartion js</span>
+<span class="dl">'</span><span class="s1">use strict</span><span class="dl">'</span><span class="p">;</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">users</span><span class="p">,</span> <span class="nx">url</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">../models</span><span class="dl">"</span><span class="p">)</span>
+
+<span class="c1">// npx sequelize-cli migration:generate --name "name..."</span>
+<span class="c1">//새로운 Migration Skeleton을 생성한다. 여기에서 FK 등 수정작업을 할 것.</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">up</span><span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// UP은 새로 추가할 요소들을 적는다. 데이터 베이스에 적용하기.</span>
+    <span class="c1">// QueryInterface API를 살펴볼 것.</span>
+    <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">addColumn</span><span class="p">(</span><span class="dl">"</span><span class="s2">urls</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">);</span>
+  <span class="p">},</span>
+
+  <span class="na">down</span><span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// DOWN은 Undo 할 때 할 것을 적는다. 데이터 베이스에서 되돌리기.</span>
+    <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">removeColumn</span><span class="p">(</span><span class="dl">"</span><span class="s2">urls</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>Association은 관계형 데이터베이스에서 JOIN 관계를 갖는 데이터 사이의 처리를 위해 사용한다. Sequelize에서 $1: N$을 구현해보자. 새로운 마이그레이션을 생성하여 외래키를 만들고, 각 모델파일에서 association을 추가해야 한다. 모델과 마이그레이션에서 수정작업이 끝나면, <code class="language-plaintext highlighter-rouge">npx sequelize-cli db:migrate</code>를 실행하면 된다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. models/url.js</span>
+<span class="dl">"</span><span class="s2">use strict</span><span class="dl">"</span><span class="p">;</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">Model</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">sequelize</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sequelize</span><span class="p">,</span> <span class="nx">DataType</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">class</span> <span class="nx">url</span> <span class="kd">extends</span> <span class="nx">Model</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="nx">associate</span><span class="p">(</span><span class="nx">models</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Associate를 정의한다.</span>
+      <span class="nx">url</span><span class="p">.</span><span class="nx">belongsTo</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">users</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">foreignKey</span><span class="p">:</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">url</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="c1">// Model fields</span>
+    <span class="na">url</span><span class="p">:</span> <span class="nx">DatyTypes</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+    <span class="na">visits</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">type</span><span class="p">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">INTEGER</span><span class="p">,</span>
+      <span class="na">defaultValue</span><span class="p">:</span><span class="mi">0</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="c1">// Sequelizer Options</span>
+    <span class="nx">sequelize</span><span class="p">,</span>
+    <span class="na">modelName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">url</span><span class="dl">"</span>
+  <span class="p">})</span>
+  <span class="k">return</span> <span class="nx">url</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// 2. models/users.js</span>
+<span class="dl">"</span><span class="s2">use strict</span><span class="dl">"</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="nx">Model</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">sequelizer</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">(</span><span class="nx">sequelize</span><span class="p">,</span> <span class="nx">DataTypes</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">class</span> <span class="nx">users</span> <span class="kd">extends</span> <span class="nx">Model</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="nx">associate</span><span class="p">(</span><span class="nx">models</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Associate를 정의한다.</span>
+      <span class="nx">users</span><span class="p">.</span><span class="nx">hasMany</span><span class="p">(</span><span class="nx">models</span><span class="p">.</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
+        <span class="na">foreignKey</span><span class="p">:</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">as</span><span class="p">:</span> <span class="dl">"</span><span class="s2">urls</span><span class="dl">"</span>
+      <span class="p">})</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="nx">users</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+    <span class="na">name</span><span class="p">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">STRING</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="nx">DataTypes</span><span class="p">.</span><span class="nx">STRING</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="nx">sequelize</span><span class="p">,</span>
+    <span class="na">modelName</span><span class="p">:</span> <span class="dl">"</span><span class="s2">users</span><span class="dl">"</span>
+  <span class="p">});</span>
+  <span class="k">return</span> <span class="nx">users</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 3. migrations/새로 생성한 마이그레이션.js</span>
+<span class="c1">// urls 테이블에 새로운 Column(=userId)를 생성해야 한다.</span>
+<span class="dl">"</span><span class="s2">use strict</span><span class="dl">"</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">up</span><span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">// Model 이름이 아닌 Table 이름으로 적어야 한다. (urls이다)</span>
+    <span class="k">return</span> <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">addColumn</span><span class="p">(</span><span class="dl">"</span><span class="s2">urls</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">userId</span><span class="dl">"</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">type</span><span class="p">:</span> <span class="dl">"</span><span class="s2">integer</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">references</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">model</span><span class="p">:</span> <span class="dl">"</span><span class="s2">users</span><span class="dl">"</span><span class="p">,</span>
+        <span class="na">key</span><span class="p">:</span> <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span>
+      <span class="p">},</span>
+      <span class="na">onUpdate</span><span class="p">:</span> <span class="dl">"</span><span class="s2">CASCADE</span><span class="dl">"</span><span class="p">,</span>
+      <span class="na">onDelete</span><span class="p">:</span> <span class="dl">"</span><span class="s2">SET NULL</span><span class="dl">"</span>
+    <span class="p">})</span>
+  <span class="p">},</span>
+
+  <span class="na">down</span><span class="p">:</span> <span class="k">async</span> <span class="p">(</span><span class="nx">queryInterface</span><span class="p">,</span> <span class="nx">Sequelize</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">queryInterface</span><span class="p">.</span><span class="nx">removeColumn</span><span class="p">(</span><span class="dl">"</span><span class="s2">urls, </span><span class="dl">"</span><span class="nx">userId</span><span class="dl">"</span><span class="s2">);
+  }
+};
+</span></code></pre></div></div>
+
+<h2 id="4-reference">4. Reference</h2>
+<p><a href="https://opentutorials.org/course/697/3828">생활코딩 - MVC 디자인 패턴</a>  <br />
+<a href="https://sequelize.org/">Sequelize 공식문서</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#design-pattern" class="page__taxonomy-item" rel="tag">design pattern</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#mvc" class="page__taxonomy-item" rel="tag">MVC</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/categories/#sequelize" class="page__taxonomy-item" rel="tag">Sequelize</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2021-03-02">March 2, 2021</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%86%8C%ED%94%84%ED%8A%B8%EC%9B%A8%EC%96%B4+%EC%84%A4%EA%B3%84%EC%97%90%EC%84%9C+%EB%94%94%EC%9E%90%EC%9D%B8+%ED%8C%A8%ED%84%B4%20https%3A%2F%2Fkavoom2.github.io%2Fmvc%2Fsequelize%2FMVC-design-patterns%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkavoom2.github.io%2Fmvc%2Fsequelize%2FMVC-design-patterns%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkavoom2.github.io%2Fmvc%2Fsequelize%2FMVC-design-patterns%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/react/redux/Redux/" class="pagination--pager" title="React + Redux
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/react/redux/Redux/" rel="permalink">React + Redux
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-26T00:00:00+09:00">February 26, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">상태관리도구 Redux 기반 프론트엔드 개발
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mysql/database/Database-MySQL/" rel="permalink">Database - MySQL
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-26T00:00:00+09:00">February 26, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">node.js환경에서 MySQL 기반 관계형 데이터베이스 구축
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/react/React/" rel="permalink">React
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-16T00:00:00+09:00">February 16, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">리액트를 이용한 컴포넌트 단위 프론트엔드 개발
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/http/HTTP-TIL/" rel="permalink">HTTP - URL구조
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2021-02-03T00:00:00+09:00">February 3, 2021</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          less than 1 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">URL구조
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2021 liondoge. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/mvc/sequelize/MVC-design-patterns"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://https-kavoom2-github-io.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  </body>
+</html>

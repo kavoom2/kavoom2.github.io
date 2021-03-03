@@ -1,4 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-01T04:14:52+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">Database - MySQL</title><link href="https://kavoom2.github.io/mysql/database/Database-MySQL/" rel="alternate" type="text/html" title="Database - MySQL" /><published>2021-02-26T00:00:00+09:00</published><updated>2021-02-27T06:00:00+09:00</updated><id>https://kavoom2.github.io/mysql/database/Database-MySQL</id><content type="html" xml:base="https://kavoom2.github.io/mysql/database/Database-MySQL/">&lt;h2 id=&quot;1-데이터베이스의-필요성&quot;&gt;1. 데이터베이스의 필요성&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-03T14:32:01+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">소프트웨어 설계에서 디자인 패턴</title><link href="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/" rel="alternate" type="text/html" title="소프트웨어 설계에서 디자인 패턴" /><published>2021-03-02T00:00:00+09:00</published><updated>2021-03-03T06:00:00+09:00</updated><id>https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns</id><content type="html" xml:base="https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/">&lt;h2 id=&quot;1-mvc&quot;&gt;1. MVC&lt;/h2&gt;
+&lt;p&gt;MVC는 Model View Controller의 약자로 애플리케이션을 세 가지 역할로 구분하는 개발 방법론. 사용자가 Controller를 조작하면, Controller는 Model을 통해 데이터를 가져온다. 가져온 정보를 바탕으로 시각적 표현을 담당하는 View를 제어하여 사용자에게 전달한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Router-MVC-DB.svg/1024px-Router-MVC-DB.svg.png&quot; width=&quot;400px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Web에서 MVC를 적용하면 다음 과정을 거치게 된다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사용자가 웹 사이트에 접속&lt;/li&gt;
+  &lt;li&gt;Controller는 사용자가 요청한 웹페이지를 서비스하고자 모델을 호출&lt;/li&gt;
+  &lt;li&gt;Model은 데이터베이스이나 파일 등 리소스를 제어하고, 그 결과를 반환&lt;/li&gt;
+  &lt;li&gt;Controller는 Model이 반환한 결과를 View에 반영&lt;/li&gt;
+  &lt;li&gt;새로운 정보가 반영된 View가 사용자에게 전달&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-orm&quot;&gt;2. ORM&lt;/h2&gt;
+
+&lt;p&gt;ORM(Object-Relational Mapping)은 모델을 기술하는 도구이다. ORM을 이용하면 직접 SQL 쿼리를 작성하지 않고, 엔티티를 자바스크립트로 표현할 수 있다. 자바스크립트에는 객체를 클래스로 구현하였는데, 클래스와 데이터 테이블을 자동으로 매핑(연결)한 것이다.&lt;/p&gt;
+
+&lt;div class=&quot;mermaid&quot;&gt;
+graph LR
+A((&quot;&amp;#123;   &amp;#125;&quot;&lt;br /&gt;Object)) --- B(ORM)
+B --- C[(Relational&lt;br /&gt;Database)]
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;3-sequelize&quot;&gt;3. Sequelize&lt;/h2&gt;
+&lt;p&gt;Sequelize는 프로미스 기반 Node.js 환경에서 사용할 수 있는 ORM이다. 설치 및 사용법은 &lt;a href=&quot;https://sequelize.org/master/manual/migrations.html&quot;&gt;공식문서 - CLI을 사용하는 방법&lt;/a&gt;를 읽도록 하자.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mysql2&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 지원하는 데이터베이스 중 원하는 것을 선택.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cli&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// CLI(Command-line Interface)를 사용할 수 있도록 하는 보조 툴&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;모델(Models)은 클래스(Class)의 메서드, 속성과 스키마(Schema)의 엔티티를 합쳐놓은 것이다. 실제 데이터베이스로 옮기기 전, 와이어 프레임을 짤 수 있는 곳. 모델의 기능을 추가하거나 삭제할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;마이그레이션(Migration)은 스키마(Schema)를 정의한다. 한편, 각각의 마이그레이션은 깃의 &lt;strong&gt;커밋&lt;/strong&gt;처럼 작업 히스토리를 남기는 역할을 수행한다. 따라서, 모델을 수정해야한다면 먼저 작업을 되돌리고, 새로운 마이그레이션을 생성한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;npx&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cli&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;db&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;mirgrate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;undo&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 가장 최근에 데이터베이스로 옮긴 작업을 되돌린다.&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;npx&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;cli&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;migration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;generate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// 모델을 수정하기 위해 새로운 마이그레이션을 생성한다. 새로 생성한 마이그레이션에 수정 작업을 해야한다.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;새로 생성한 마이그레이션에 반영할 수정사항을 적어준다. 이 때, 마이그레이션이 작업 히스토리의 역할을 수행할 수 있도록 up, down에 모두 적어주어야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 새로 생성한 mirgartion js&lt;/span&gt;
+&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;use strict&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;../models&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// npx sequelize-cli migration:generate --name &quot;name...&quot;&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//새로운 Migration Skeleton을 생성한다. 여기에서 FK 등 수정작업을 할 것.&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;up&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// UP은 새로 추가할 요소들을 적는다. 데이터 베이스에 적용하기.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// QueryInterface API를 살펴볼 것.&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addColumn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;urls&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;down&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// DOWN은 Undo 할 때 할 것을 적는다. 데이터 베이스에서 되돌리기.&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;removeColumn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;urls&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Association은 관계형 데이터베이스에서 JOIN 관계를 갖는 데이터 사이의 처리를 위해 사용한다. Sequelize에서 $1: N$을 구현해보자. 새로운 마이그레이션을 생성하여 외래키를 만들고, 각 모델파일에서 association을 추가해야 한다. 모델과 마이그레이션에서 수정작업이 끝나면, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;npx sequelize-cli db:migrate&lt;/code&gt;를 실행하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1. models/url.js&lt;/span&gt;
+&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;use strict&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DataType&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;associate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// Associate를 정의한다.&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;belongsTo&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;foreignKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Model fields&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DatyTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DataTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;visits&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DataTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;INTEGER&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;defaultValue&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Sequelizer Options&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;modelName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 2. models/users.js&lt;/span&gt;
+&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;use strict&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sequelizer&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DataTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Model&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;associate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// Associate를 정의한다.&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hasMany&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;models&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;foreignKey&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;urls&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DataTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;STRING&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;email&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DataTypes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;STRING&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;modelName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 3. migrations/새로 생성한 마이그레이션.js&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// urls 테이블에 새로운 Column(=userId)를 생성해야 한다.&lt;/span&gt;
+&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;use strict&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;exports&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;na&quot;&gt;up&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Model 이름이 아닌 Table 이름으로 적어야 한다. (urls이다)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addColumn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;urls&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;integer&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;references&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;na&quot;&gt;key&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;onUpdate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;CASCADE&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;onDelete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;SET NULL&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+
+  &lt;span class=&quot;na&quot;&gt;down&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Sequelize&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;queryInterface&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;removeColumn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;urls, &lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;);
+  }
+};
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;4-reference&quot;&gt;4. Reference&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://opentutorials.org/course/697/3828&quot;&gt;생활코딩 - MVC 디자인 패턴&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;https://sequelize.org/&quot;&gt;Sequelize 공식문서&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="MVC" /><category term="Sequelize" /><category term="design pattern" /><summary type="html">MVC 디자인 패턴과 Sequelize ORM 실습</summary></entry><entry><title type="html">Database - MySQL</title><link href="https://kavoom2.github.io/mysql/database/Database-MySQL/" rel="alternate" type="text/html" title="Database - MySQL" /><published>2021-02-26T00:00:00+09:00</published><updated>2021-02-27T06:00:00+09:00</updated><id>https://kavoom2.github.io/mysql/database/Database-MySQL</id><content type="html" xml:base="https://kavoom2.github.io/mysql/database/Database-MySQL/">&lt;h2 id=&quot;1-데이터베이스의-필요성&quot;&gt;1. 데이터베이스의 필요성&lt;/h2&gt;
 &lt;p&gt;In-Memory: 자바스크립트 변수에 할당하는 방식.  &lt;br /&gt;
 배열에 넣는 방법이 이 방식이다. 프로그램이 종료되면 데이터도 같이 없어진다.
 데이터 수명의 프로그램의 수명에 의존하게 됨.&lt;/p&gt;
@@ -583,142 +728,6 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;4-reference&quot;&gt;4. Reference&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://ko.reactjs.org/docs/hello-world.html&quot;&gt;&lt;strong&gt;React 공식문서&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="React" /><summary type="html">리액트를 이용한 컴포넌트 단위 프론트엔드 개발</summary></entry><entry><title type="html">React</title><link href="https://kavoom2.github.io/react/Socket-io/" rel="alternate" type="text/html" title="React" /><published>2021-02-16T00:00:00+09:00</published><updated>2021-02-17T06:00:00+09:00</updated><id>https://kavoom2.github.io/react/Socket-io</id><content type="html" xml:base="https://kavoom2.github.io/react/Socket-io/">&lt;p&gt;React는 컴포넌트 단위로 어플리케이션을 설계할 수 있도록 하는 자바스크립트 라이브러리이다. 튜토리얼은 &lt;a href=&quot;https://ko.reactjs.org/docs/hello-world.html&quot;&gt;&lt;strong&gt;공식 홈페이지&lt;/strong&gt;&lt;/a&gt;에 잘 설명되어있으니 꼭 읽어보도록 하자.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-jsx와-앨리먼트-랜더링&quot;&gt;1. JSX와 앨리먼트 랜더링&lt;/h2&gt;
-&lt;p&gt;JSX는 자바스크립트를 확장한 문법이다. JSX로 작성한 스크립트는 해석할 수 있도록 자바스크립트 컴파일러 라이브러리 &lt;a href=&quot;https://babeljs.io/&quot;&gt;&lt;strong&gt;바벨&lt;/strong&gt;&lt;/a&gt;이 변환하게 된다. JSX를 사용하면 아래와 같이 엘리먼트(element)를 생성하여 변수에 할당하거나 반환을 할 수 있다. 시각적으로는 HTML의 구조를 따르면서도, 자바스크립트의 언어체계 방식으로 작업할 수 있다.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Josh&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&amp;gt; /&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;엘리먼트를&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;생성하였다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;후술할&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;컴포넌트의&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;구성요소이다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;React DOM은 랜더링을 할 때마다 지금 랜더링해야할 엘리먼트와 이전 엘리먼트를 비교한다. 그리고, 변경해야할 부분만 선택적으로 변경하여 DOM을 업데이트한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-componenet&quot;&gt;2. Componenet&lt;/h2&gt;
-&lt;p&gt;UI를 구성하는 엘리먼트들을 기능에 따라 재사용 가능한 여러 부품으로 나누어보자. 각 기능을 담당하는 부품을 컴포넌트라고 할 수 있다. React에서는 컴포넌트를 함수와 클래스 방식으로 선언하여 생성할 수 있다. 컴포넌트는 엘리먼트와 마찬가지로 React DOM으로 랜더링할 수 있다.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1. 함수 컴포넌트&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Welcome&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 2. 클래스 컴포넌트&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Welcome&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;React&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Componenet&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 3. &lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Welcome&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;sara&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;getElementById&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;2-1-속성props과-상태state&quot;&gt;2. 1. 속성(Props)과 상태(State)&lt;/h3&gt;
-&lt;p&gt;React에는 데이터를 담아두는 두가지 모델이 있다. Props와 State는 JS 객체이며, 후술할 랜더 업데이트 이벤트를 유발한다. Props는 컴포넌트의 구성(configuration)으로, 원칙적으로 immutable하다. State는 컴포넌트가 마운트될 때 초기값을 가지며, 이벤트에 따라 값이 변하는 mutable한 객체이다.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;Props&lt;/th&gt;
-      &lt;th&gt;State&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;부모 컴포넌트로부터 해당 데이터의 초기값을 가질 수 있는가&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;부모 컴포넌트가 해당 데이터를 변경할 수 있는 수 있는가&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt;X&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;컴포넌트 내부에서 초기값을 설정할 수 있는 데이터인가&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;컴포넌트 내부에서 변경할 수 있는 데이터인가&lt;/td&gt;
-      &lt;td&gt;X&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;자식 컴포넌트의 해당 데이터의 초기값을 설정할 수 있는가&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;자식 컴포넌트의 해당 데이터를 변경할 수 있는가&lt;/td&gt;
-      &lt;td&gt;O&lt;/td&gt;
-      &lt;td&gt;X&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;위 표에서 알 수 있듯이 State는 해당 데이터를 가진 컴포넌트만 접근할 수 있다. 부모와 자식 컴포넌트는 어떤 상태인지 알 수 없으며, 알 필요도 없다. State를 캡슐화라고 부르기도 하는 이유이다.&lt;/p&gt;
-
-&lt;p&gt;한편, Props는 부모 immutable한 데이터라고 하였으나, State를 활용하면 마치 Props를 변경하는 것처럼 구현할 수 있다. 컴포넌트 자신의 State를 자식 컴포넌트의 Props에 전달하면 된다. 이러한 데이터 흐름을 하향식(Top-down)이라고 한다. 대부분의 공대 출신들에게는 익숙한 단어가 아닐까 싶다… 쓸데없는 소리지만 건축에는 탑다운 공법이라는 터파기 및 골조 시공방식이 있다.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;FormattedDate&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&amp;gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;State를 수정할 때에는 직접 수정해서는 안된다. 해당 컴포넌트를 다시 렌더링하는 작업이 실행되지 않기 때문. &lt;strong&gt;this.setState()&lt;/strong&gt; 메서드를 사용해야한다.&lt;/p&gt;
-
-&lt;p&gt;또한 React는 성능을 위해 여러 setState() 호출을 단일 업데이트로 한 번에 처리하기도 한다. 즉, this.props와 this.state가 비동기적으로 업데이트 될 수도 있다는 것. 따라서, 예제의 첫 번째와 같이 적으면 오류가 발생할 수 있다.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Wrong&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// Correct&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;setState&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;counter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;state&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;counter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;props&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;incremenet&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}));&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;2-2-state-끌어올리기&quot;&gt;2. 2. State 끌어올리기&lt;/h3&gt;
-&lt;p&gt;어떤 컴포넌트의 데이터에 대한 변경사항을 여러 컴포넌트에 반영해야 할 수도 있다. State는 해당 컴포넌트에서만 접근할 수 있다고 하였다. 따라서, 우리는 부모와 자식 컴포넌트로 나눌 필요가 있다.&lt;/p&gt;
-
-&lt;p&gt;부모 컴포넌트가 데이터의 State를 관리하며, 이벤트 핸들러를 자식 컴포넌트의 Props로 전달한다. 자식 컴포넌트에서 이벤트가 발생하면, Props의 이벤트 핸들러 함수를 통해서 부모 컴포넌트에 갱신해야 할 데이터를 넘겨줄 수 있다.&lt;/p&gt;
-
-&lt;p&gt;중요하게 생각할 부분은 계층 구조를 어떻게 나눌 것인가이다. 리액트는 하향식 데이터 흐름을 지향하며, State는 해당 컴포넌트에서만 접근할 수 있다. 따라서 설계단계에서 데이터 간 상호관계를 명확히 하여 계층구조를 설계해야 한다.&lt;/p&gt;
-&lt;h3 id=&quot;2-3-생명주기life-cycle&quot;&gt;2. 3. 생명주기(Life Cycle)&lt;/h3&gt;
-
-&lt;p&gt;아래 그림을 참고하여 &lt;a href=&quot;https://codesandbox.io/s/still-cookies-qfgs6?file=/src/App.js&quot;&gt;&lt;strong&gt;예제&lt;/strong&gt;&lt;/a&gt;의 버튼을 입력했을 때 콘솔에 어떤 내용이 뜨는지 확인해보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1DXDzgsb_UkSfWWDUG9pmcfSLNc6KmZ2G&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;constructor: 클래스 생성자. 컴포넌트가 생성될때 호출된다.&lt;/li&gt;
-  &lt;li&gt;componenetDidMount: 컴포넌트가 DOM에 랜더링 된 직후 실행된다.&lt;/li&gt;
-  &lt;li&gt;componenetDidUpdate: 갱신이 일어난 직후에 호출된다. 최초 랜더링에서는 호출되지 않는다.&lt;/li&gt;
-  &lt;li&gt;componenetWillUnmount: 컴포넌트가 마운트가 해제되어 제거되기 직전에 호출된다. 해당 컴포넌트는 이후에 다시 렌더링되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3-create-react-app&quot;&gt;3. Create React App&lt;/h2&gt;
-&lt;p&gt;React를 기반으로 한 프로젝트를 시작하는 제일 쉬운 방법이다. 이 방법을 사용하면 필요한 설정은 다 해주지만, Babel과 Webpack이 무엇이며 어떤 역할을 하는지는 알아두도록 하자.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;npx&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;react&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;my&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;app&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;4-reference&quot;&gt;4. Reference&lt;/h2&gt;
 &lt;p&gt;&lt;a href=&quot;https://ko.reactjs.org/docs/hello-world.html&quot;&gt;&lt;strong&gt;React 공식문서&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="React" /><summary type="html">리액트를 이용한 컴포넌트 단위 프론트엔드 개발</summary></entry><entry><title type="html">브라우저 보안</title><link href="https://kavoom2.github.io/server/CORS-XXS/" rel="alternate" type="text/html" title="브라우저 보안" /><published>2021-02-03T00:00:00+09:00</published><updated>2021-02-03T21:00:00+09:00</updated><id>https://kavoom2.github.io/server/CORS-XXS</id><content type="html" xml:base="https://kavoom2.github.io/server/CORS-XXS/">&lt;h2 id=&quot;1-xxs&quot;&gt;1. XXS&lt;/h2&gt;
 &lt;div class=&quot;mermaid&quot;&gt;
 flowchart LR
@@ -760,7 +769,7 @@ D &amp;lt;--&amp;gt;|victim views XXS payload| E([Victim Web Browser])
 
 &lt;p&gt;서버는 클라이언트에게 쿠키, HTTP인증 등 인증정보를 함께 보내야 한다고 알려줄 수도 있다.&lt;/p&gt;
 
-&lt;p&gt;리소스 접근 요청 시나리오는 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/CORS#%EC%A0%91%EA%B7%BC_%EC%A0%9C%EC%96%B4_%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4_%EC%98%88%EC%A0%9C&quot;&gt;MDN - 접근 제어 시나리오 예제&lt;/a&gt;의 예제를 보도록 하자.&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Server" /><category term="cors" /><category term="xxs" /><summary type="html">보안상 취약점을 공격하는 XXS와 CSRF. 사용자를 보호하는 브라우저 CORS정책</summary></entry><entry><title type="html">TIL - HTTP</title><link href="https://kavoom2.github.io/http/HTTP-TIL/" rel="alternate" type="text/html" title="TIL - HTTP" /><published>2021-02-03T00:00:00+09:00</published><updated>2021-02-04T00:00:00+09:00</updated><id>https://kavoom2.github.io/http/HTTP-TIL</id><content type="html" xml:base="https://kavoom2.github.io/http/HTTP-TIL/">&lt;p&gt;URL(Uniform Resource Locator)
+&lt;p&gt;리소스 접근 요청 시나리오는 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/CORS#%EC%A0%91%EA%B7%BC_%EC%A0%9C%EC%96%B4_%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4_%EC%98%88%EC%A0%9C&quot;&gt;MDN - 접근 제어 시나리오 예제&lt;/a&gt;의 예제를 보도록 하자.&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Server" /><category term="cors" /><category term="xxs" /><summary type="html">보안상 취약점을 공격하는 XXS와 CSRF. 사용자를 보호하는 브라우저 CORS정책</summary></entry><entry><title type="html">HTTP - URL구조</title><link href="https://kavoom2.github.io/http/HTTP-TIL/" rel="alternate" type="text/html" title="HTTP - URL구조" /><published>2021-02-03T00:00:00+09:00</published><updated>2021-02-04T00:00:00+09:00</updated><id>https://kavoom2.github.io/http/HTTP-TIL</id><content type="html" xml:base="https://kavoom2.github.io/http/HTTP-TIL/">&lt;p&gt;URL(Uniform Resource Locator)은 웹 서버가 리소스를 고유하게 식별할 수 있도록 하는 것. 일반적으로 다음과 같은 구조이다.   &lt;br /&gt;
 &lt;span style=&quot;color:blue&quot;&gt;http&lt;/span&gt;://&lt;span style=&quot;color:green&quot;&gt;www&lt;/span&gt;.&lt;span style=&quot;color:orange&quot;&gt;google.com&lt;/span&gt;/&lt;span style=&quot;color:red&quot;&gt;search&lt;/span&gt;?&lt;span style=&quot;color:teal&quot;&gt;q=puppies&lt;/span&gt;&lt;span style=&quot;color:purple&quot;&gt;#p2&lt;/span&gt;&lt;/p&gt;
 
 &lt;ul&gt;
@@ -772,7 +781,10 @@ D &amp;lt;--&amp;gt;|victim views XXS payload| E([Victim Web Browser])
   &lt;li&gt;&lt;span style=&quot;color:purple&quot;&gt;hash fragment&lt;/span&gt;: p2, FAQ, /profile/edit&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Rest, HTTP Verbs&lt;/p&gt;</content><author><name>liondoge</name></author><category term="HTTP" /><summary type="html">작성예정</summary></entry><entry><title type="html">이벤트 루프</title><link href="https://kavoom2.github.io/javascript/Event-loop/" rel="alternate" type="text/html" title="이벤트 루프" /><published>2021-02-02T00:00:00+09:00</published><updated>2021-02-02T21:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/Event-loop</id><content type="html" xml:base="https://kavoom2.github.io/javascript/Event-loop/"></content><author><name>liondoge</name></author><category term="Javascript" /><summary type="html">작성예정</summary></entry><entry><title type="html">클라이언트와 서버의 통신</title><link href="https://kavoom2.github.io/server/interaction-client-server/" rel="alternate" type="text/html" title="클라이언트와 서버의 통신" /><published>2021-02-02T00:00:00+09:00</published><updated>2021-02-02T21:00:00+09:00</updated><id>https://kavoom2.github.io/server/interaction-client-server</id><content type="html" xml:base="https://kavoom2.github.io/server/interaction-client-server/">&lt;h2 id=&quot;1-클라이언트-서버-아키텍쳐&quot;&gt;1. 클라이언트 서버 아키텍쳐&lt;/h2&gt;
+&lt;p&gt;Rest, HTTP Verbs&lt;/p&gt;</content><author><name>liondoge</name></author><category term="HTTP" /><summary type="html">URL구조</summary></entry><entry><title type="html">자바스크립트 이벤트 루프</title><link href="https://kavoom2.github.io/javascript/Event-loop/" rel="alternate" type="text/html" title="자바스크립트 이벤트 루프" /><published>2021-02-02T00:00:00+09:00</published><updated>2021-02-02T21:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/Event-loop</id><content type="html" xml:base="https://kavoom2.github.io/javascript/Event-loop/">&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1-5t0zZk7Mm4uQwwCutb4l8v45qyfiyl_&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=8aGhZQkoFbQ&amp;amp;t=1s&quot;&gt;원본영상&lt;/a&gt;  &lt;br /&gt;
+&lt;a href=&quot;http://latentflip.com/loupe/&quot;&gt;직접 해볼 수 있는 사이트&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><summary type="html">작성예정</summary></entry><entry><title type="html">클라이언트와 서버의 통신</title><link href="https://kavoom2.github.io/server/interaction-client-server/" rel="alternate" type="text/html" title="클라이언트와 서버의 통신" /><published>2021-02-02T00:00:00+09:00</published><updated>2021-02-02T21:00:00+09:00</updated><id>https://kavoom2.github.io/server/interaction-client-server</id><content type="html" xml:base="https://kavoom2.github.io/server/interaction-client-server/">&lt;h2 id=&quot;1-클라이언트-서버-아키텍쳐&quot;&gt;1. 클라이언트 서버 아키텍쳐&lt;/h2&gt;
 &lt;p&gt;쇼핑몰 앱을 이용하는데 상품 목록이나 정보를 바꾸려고 앱을 다시 받는 것은 그다지 좋은 경험이 아닐 것이다. 그래서 데이터 업데이트가 빈번하게 일어나는 환경에서는 리소스를 보관하는 공간과 리소스를 사용하는 앱을 분리하는 것이 효율적이다. 리소스를 사용하는 앱을 &lt;strong&gt;클라이언트(Client)&lt;/strong&gt;, 리소스가 존재하는 곳을 &lt;strong&gt;서버(Server)&lt;/strong&gt;라고 한다. 이러한 통신형태를 &lt;strong&gt;클라이언트 서버 아키텍쳐(Client-Server Architecture)&lt;/strong&gt;라고 한다. 사실, 서버는 리소스를 전달하는 역할만 하며, 서버를 보관하는 &lt;strong&gt;데이터베이스(Database)&lt;/strong&gt;라는 공간을 별도로 둔다.&lt;/p&gt;
 
 &lt;div class=&quot;mermaid&quot;&gt; 
