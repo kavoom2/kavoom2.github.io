@@ -1,0 +1,111 @@
+I"�%<h2 id="1-httpshyper-text-transfer-protocol-secure-socket-layer">1. HTTPS(Hyper Text Transfer Protocol Secure Socket Layer)</h2>
+<p>HTTP 프로토콜의 내용을 암호화한 프로토콜. HTTP over SSL이라 부르기도 한다.</p>
+
+<p>HTTP보다 안전한 프로토콜이며, 데이터 제공자의 신원을 보장할 수 있다. 클라이언트는 데이터 제공자가 제공한 데이터밖에 사용할 수 없다. 그러다보니 요청 및 응답을 중간에 가로채는 중간자 공격에 취약하다. 이를 보완하려면, 해당 데이터가 <strong>특정 도메인</strong>에서 전달되었다는 추가 데이터를 응답에 실어 보내서 요청과 응답의 도메인을 비교할 수 있도록 하며 된다.  물론, 이러한 데이터도 변조할 수 있으니 암호화 작업이 필요하다.</p>
+
+<p><strong>HTTPS에서 사용하는 인증서(Certificate)</strong>는 데이터 제공자의 신원을 보장하는 장치이다. 
+먼저, 요청을 받은 서버는 응답에 인증서를 포함하여 전달한다.
+이후 클라이언트가 응답을 받으면, 요청 인증서의 도메인과 응답 인증서의 도메인을 비교하여 데이터 제공자의 신원을 확인한다.</p>
+
+<p>따라서, 응답 인증서의 도메인이 요청에 있는 것과 다르다면 제 3자가 위조한 것임을 알 수 있다.</p>
+
+<p><strong>CA(Certificate Authority)</strong>는 인증서를 발급하는 공인된 기관이다.</p>
+
+<p><strong>HTTPS에서는 비대칭 키</strong>도 사용한다. 정보를 Key A로 암호화를 했다면, 복호화할 때는 전혀 다른 Key B가 필요하다. 즉, HTTPS는 두 개의 키를 한 쌍으로 사용한다. 하나는 숨겨두고, 다른 하나는 클라이언트에 공개하여 데이터를 안전하게 전달할 수 있도록 한다.</p>
+
+<h3 id="1-1로컬-환경에서-인증서-생성">1. 1.로컬 환경에서 인증서 생성</h3>
+
+<p><a href="https://github.com/FiloSottile/mkcert"><strong>mkcert</strong></a>라는 프로그램을 사용하여 로컬환경 내에 신뢰할 수 있는 인증서를 만들 수 있다. 다음은 인증서의 개인키(Key)와 서명한 인증서(Cert)를 생성하는 명령어이다.</p>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 먼저 인증서를 설치할 디렉토리로 이동한다.</span>
+<span class="nx">$</span> <span class="nx">mkcert</span> <span class="o">-</span> <span class="nx">install</span>
+<span class="nx">$</span> <span class="nx">mkcert</span> <span class="o">-</span><span class="nx">key</span><span class="o">-</span><span class="nx">file</span> <span class="nx">key</span><span class="p">.</span><span class="nx">pem</span> <span class="o">-</span><span class="nx">cert</span><span class="o">-</span><span class="nx">file</span> <span class="nx">cert</span><span class="p">.</span><span class="nx">pem</span> <span class="nx">localhost</span> <span class="mf">127.0</span><span class="p">.</span><span class="mf">0.1</span> <span class="p">::</span><span class="mi">1</span> <span class="c1">// localhost, 127.0.0.1(IPv4), ::1(IPv6)에서 사용할 수 있는 인증서 생성</span>
+</code></pre></div></div>
+
+<h2 id="2-hashing">2. Hashing</h2>
+<p>임의의 연산을 적용하여 다른 문자열로 적용하는 것이다. 해싱에는 3가지 원칙이 있다.</p>
+
+<blockquote>
+  <ol>
+    <li>모든 값에 대해 해시 값을 계산하는데 오래 걸리지 않아아 햔다.</li>
+    <li>가능하면 중복되는 해시값이 없도록 해야하며, 모든 값이 고유한 해시값을 가질 수 있도록 한다.</li>
+    <li>유추할 수 없도록 아주 작은 단위의 문자열이 변경도 완전히 다른 해시값을 가져야 한다.</li>
+  </ol>
+</blockquote>
+
+<p><strong>Salt</strong>는 암호화할 값에 <strong>임의로 정한 별도의 문자열</strong>을 추가하여 결과를 변형하는 것. 암호화 알고리즘이 노출되더라도 원본값을 보호할 수 있는 안전장치이다. Salt에도 지켜야 할 4가지 원칙이 있다.</p>
+
+<ol>
+  <li>Salt는 유저와 패스워드마다 유일한 값을 가져야 한다.</li>
+  <li>사용자 계정을 생성할 때, 비밀번호를 변경할 때 새로운 임의의 Salt를 사용해야 한다.</li>
+  <li>Salt는 재사용하면 안된다.</li>
+  <li>Salt는 DB의 유저 Table에 같이 저장해야 한다.</li>
+</ol>
+
+<div class="mermaid">
+sequenceDiagram
+    Client-&gt;&gt;+Server: email: a@naver.com<br />password:asdf
+    Server-&gt;&gt;+Server: password 암호화<br />asdf --&gt; fghj
+    Database-&gt;&gt;+Server: email: a@naver.com<br />password: fghj
+    Server-&gt;&gt;+Server: 비교하여 일치여부 확인
+    Database-&gt;&gt;+Server: a@naver.com의<br />phoneNumber, address 등.. 전달
+    Server-&gt;&gt;+Client: Resp<br />email, phoneNumber... 전달
+</div>
+
+<h2 id="3-cookie">3. Cookie</h2>
+<p>HTTP: 비연결성(connectionless), 무상태성(stateless)을 보완하기 위한 데이터
+어떤 웹사이트에 들어갔을 때, 서버가 일방적으로 클라이언트에 전달하는 데이터. (규정상 쿠키 사용여부를 묻는 웹사이트도 있으나 일방적으로 전달할 수 있음) 서버가 웹 브라우저에 정보를 저장하거 불러올 수 있다. 클라이언트는 해당 도메인에 대한 쿠키가 존재하면 HTTP 요청 전달시 쿠키를 함께 전달할 수 있다. (단, 이를 사용하는 옵션을 별도로 허용해야 한다)</p>
+
+<p>사용자 선호, 테마 등 장기간 보존해야 하는 정보를 저장하는데 적합</p>
+
+<h2 id="4-session">4. Session</h2>
+<p>서버가 Client에 유일하고 암호화된 ID를 부여하고, 중요 데이터는 서버에서 관리. 신뢰할 수 있는 유저인지 서버에서 확인할 수 있지만, 클라이언트를 확인하려면 접속상태를 알고 있어야하므로 서버를 분산하는 경우에 적합하지 않다. 또한 서버의 메모리에 이용자 정보를 저장하고 있기에, 가용할 수 있는 메모리의 양이 한정적이다.</p>
+
+<h1 id="5-token-base-aunthetication">5. Token-base Aunthetication</h1>
+<p>aaaaa.bbbb.cccc.
+header.payload.signature
+header: 토큰 종류, 암호화 알고리즘
+payload: 유저의 정보, 권한 여부, 기타 정보
+signature: Header, payload를 base64로 인코딩 한 값과 Salt값의 조합으로 암호화한 값</p>
+
+<p><a href="https://jwt.io/">JSON Web Token</a>
+Access Token: 보호된 정보(유저 개인정보)에 접근할 수 있는 권한부여에 사용. 클라이언트가 처음 인증을 받을 때(로그인), Access와 Refresh Token을 받으나 실제로 권한을 얻는데 사용한 것은 Access token. 권한을 부여받는데에는 Access token만 있으면 되지만, 제 3자가 탈취할 수 있기 때문에, 짧은 유효기간을 가지고 있다.</p>
+
+<p>Refresh token: Access token이 만료되면 Refresh token으로 새로운 Access token을 발급받게 된다.</p>
+
+<p>장점</p>
+<ol>
+  <li>
+    <p>Stateless, Scalability(무상태성, 확장성): 세션과 달리 서버는 클라이언트 정보를 저장할 필요가 없으며, 해독이 되는지만 판단한다. 클라이언트가 새로운 요청을 보낼 때 헤더에 토큰을 담으면 된다. 동일 토큰으로 여러 서버에서 인증 가능</p>
+  </li>
+  <li>
+    <p>안전성: 암호화한 토큰을 사용하며, 암호화 키를 노출할 필요가 없으므로 안전함.</p>
+  </li>
+  <li>
+    <p>어디서나 생성가능: 토큰을 확인하는 서버가 꼭 토큰을 만들 필요는 없음. 토큰 생성용 서버나 외부의 서버를 사용하여 생성하여도 해독만 가능하면 무방.</p>
+  </li>
+  <li>
+    <p>권한 부여에 용이: 토큰의 Payload 안에 어떤 정보에 접근 가능한지 정할 수 있다.</p>
+  </li>
+</ol>
+
+<h1 id="6-oauth-2">6. OAuth 2</h1>
+<p>일반적으로 많이 사용하는 소셜 로그인 인증방식. 인증을 중개하는 매커니즘. 이미 사용자 정보를 가지고 있는 웹 서비스(GitHub, google, facebook…)에서 사용자의 인증을 대신 해주고 접근권한에 대한 토큰을 발급하면, 이를 이용해 서버 내에 인증을 하는 방식.</p>
+
+<p>다만, 인증(Authentication)을 다른 서비스에 맡기는 것이며, 권한 관리(Authorization)은 서버에서 담당해야 한다.</p>
+
+<p>Resource Owner: 액세스 중인 리소스의 유저
+Client: Resource owner를 대신하여 보호된 리소스에 액세스하는 응용프로그램
+Resouce server: Client의 요청을 수락하고 응답할 수 있는 서버
+Authorization server: Resource server가 액세스 토큰을 발급받는 서버
+Authorization grant: 클라이언트가 액세스 토큰을 얻을 때 사용한 자격증명
+Authorization code: Access token을 발급받기 전 필요한 Code
+Access token: 보호된 리소스에 액세스하는 데 사용할 Credentials
+Scope: 주어진 액세스 토큰을 사용하여 액세스할 수 있는 리소스 범위</p>
+
+<p>Grant Type: Client가 액세스 토큰을 얻는 방법.
+Authorization Code Grant Type: 가장 일반적으로 사용되는 인증ㅂ방법. 액세스 토큰을 받아오기 위해 Authorization Code를 받아 액세스 토큰과 교환하는 방법. 
+Refresh Token Grant Type: 일정기간 유효시간이 지나서 만료된 액세스 토큰을 편리하게 받아오기 위해 사용하는 방법. Access token보다 Refresh token의 유효시간을 더 길게 설정하기 때문에 가능한 방법. 
+….</p>
+
+<p>Resource</p>
+:ET

@@ -250,4 +250,10 @@ var store = [{
         "tags": ["design pattern"],
         "url": "https://kavoom2.github.io/mvc/sequelize/MVC-design-patterns/",
         "teaser": null
+      },{
+        "title": "권한 부여 와 인증 시스템",
+        "excerpt":"1. HTTPS(Hyper Text Transfer Protocol Secure Socket Layer) HTTP 프로토콜의 내용을 암호화한 프로토콜. HTTP over SSL이라 부르기도 한다. HTTP보다 안전한 프로토콜이며, 데이터 제공자의 신원을 보장할 수 있다. 클라이언트는 데이터 제공자가 제공한 데이터밖에 사용할 수 없다. 그러다보니 요청 및 응답을 중간에 가로채는 중간자 공격에 취약하다. 이를 보완하려면, 해당 데이터가 특정 도메인에서...","categories": ["Authorization"],
+        "tags": ["cookie","session","token","OAuth"],
+        "url": "https://kavoom2.github.io/authorization/authorization/",
+        "teaser": null
       }]
