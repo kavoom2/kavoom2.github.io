@@ -1,4 +1,4 @@
-I"N#<p>개발자는 일상의 불편하고 비효율적인 문제들을 개선하는 사람이다. 하지만 그런 개발자라도 장문의 코드를 직접 작성해야한다. 더욱이 프로젝트에서는 여러 사람과 공동으로 작업한다. 합쳐진 결과물이 뒤죽박죽이면 숨이 턱 막힐 것이다. ESlint는 이러한 문제를 해결할 수 있도록 도와주는 도구이다. 어떻게 코드를 작성할지 규범을 정해놓으면, 그 패턴을 기반으로 문법오류 등을 표시하거나 교정한다.</p>
+I"L#<p>개발자는 일상의 불편하고 비효율적인 문제들을 개선하는 사람이다. 하지만 그런 개발자라도 장문의 코드를 직접 작성해야한다. 더욱이 프로젝트에서는 여러 사람과 공동으로 작업한다. 합쳐진 결과물이 뒤죽박죽이면 숨이 턱 막힐 것이다. ESlint는 이러한 문제를 해결할 수 있도록 도와주는 도구이다. 어떻게 코드를 작성할지 규범을 정해놓으면, 그 패턴을 기반으로 문법오류 등을 표시하거나 교정한다.</p>
 
 <h2 id="eslint-설치">ESLint 설치</h2>
 <p><a href="https://eslint.org/docs/user-guide/getting-started"><strong>공식문서</strong></a>를 보고 ESlint를 설치하고 사용해보자.  <br />
@@ -74,8 +74,8 @@ Node.js를 설치한 상태에서 진행한다. ESlint를 사용하려는 프로
 
 <p>검사를 실행하려면 터미널에서 다음 명령어를 입력하면 된다. 일괄적으로 특정 파일들을 검사하고 싶다면 package.json에 검사할 코드를 작성해도 된다.</p>
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// terminal</span>
-<span class="nx">npx</span> <span class="nx">eslint</span> <span class="err">파일명</span><span class="p">.</span><span class="nx">js</span>
-<span class="nx">npx</span> <span class="nx">eslint</span> <span class="err">파일명</span><span class="p">.</span><span class="nx">js</span> <span class="o">--</span><span class="nx">fix</span> <span class="c1">// 자동으로 코드를 교정합니다.</span>
+<span class="nx">npx</span> <span class="nx">eslint</span> <span class="nx">파일명</span><span class="p">.</span><span class="nx">js</span>
+<span class="nx">npx</span> <span class="nx">eslint</span> <span class="nx">파일명</span><span class="p">.</span><span class="nx">js</span> <span class="o">--</span><span class="nx">fix</span> <span class="c1">// 자동으로 코드를 교정합니다.</span>
 
 <span class="c1">// 또는 package.json</span>
 <span class="dl">"</span><span class="s2">scripts</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span>

@@ -1,4 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-09T03:15:46+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">권한 부여 와 인증 시스템</title><link href="https://kavoom2.github.io/authorization/authorization/" rel="alternate" type="text/html" title="권한 부여 와 인증 시스템" /><published>2021-03-08T00:00:00+09:00</published><updated>2021-03-09T06:00:00+09:00</updated><id>https://kavoom2.github.io/authorization/authorization</id><content type="html" xml:base="https://kavoom2.github.io/authorization/authorization/">&lt;h2 id=&quot;1-httpshyper-text-transfer-protocol-secure-socket-layer&quot;&gt;1. HTTPS(Hyper Text Transfer Protocol Secure Socket Layer)&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-29T20:17:03+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">BuildUp 프로젝트 회고</title><link href="https://kavoom2.github.io/project/Retrospect-first-project/" rel="alternate" type="text/html" title="BuildUp 프로젝트 회고" /><published>2021-03-29T00:00:00+09:00</published><updated>2021-03-30T06:00:00+09:00</updated><id>https://kavoom2.github.io/project/Retrospect-first-project</id><content type="html" xml:base="https://kavoom2.github.io/project/Retrospect-first-project/">&lt;p&gt;&lt;a href=&quot;https://github.com/codestates/BuildUp-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/BuildUp-server&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 서버 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1l-cvsOltC1QdAuz6pXDh6t59oDi4orUH&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;첫 프로젝트에 들어서면서 드디어 내가 배웠던 것들이 유용한 프로그램을 만들어 낼 수 있다는 것이 실감되기 시작했다. 다른 사람들과 함께 페어프로그래밍에서 무의식적으로 해왔던 깃 설정과 브랜치 관리를 왜 해야하는지 체감할 수 있었다. 계획, 설계, 구현, 배포 단계에서 무엇을 준비 해야할지 윤곽을 잡을 수 있었던 뜻 깊은 경험이었다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-buildup을-왜-만들었을까&quot;&gt;1. BuildUp을 왜 만들었을까?&lt;/h2&gt;
+
+&lt;p&gt;최근 코로나19의 여파로 언택트가 일상화되면서 더 밀접해졌다. 우리에게 인터넷은 떼어놓을 수 없는 공간이다. 업무를 보고 여가시간을 보낼 때 더 이상 인터넷은 선택이 아닌 필수다. 매일 브라우저를 당연하게 실행하면서 가끔씩 드는 생각은 흰색 바탕의 첫 화면은 단순하고 명료하지만 어쩐지 삭막하다는 것이다. 우리는 일상적으로 사용하는 브라우저의 홈 화면에서라도 편안함을 느낄 수 있도록 하면 어떨까라는 생각에서 이 프로젝트의 방향을 잡았다.&lt;/p&gt;
+
+&lt;p&gt;또한, 이전 근무현장에서 별도로 바탕화면에 일정관리 어플리케이션을 설치하여 사용한 기억이 있었다. 바탕화면과 달력 어플리케이션이 일체화되어 있다보니 사용하면서 조작에 불편함이 있었다. 이를 브라우저 홈 화면이라는 격리된 공간에 분리하면 불편함을 줄이면서도, 홈 화면의 활용도를 높일 수 있을 것이라는 생각이 들었다.&lt;/p&gt;
+
+&lt;p&gt;우리는 그 날의 날씨에 따라 아름다운 배경을 제공하면서도 미려한 디자인의 일정관리 서비스를 제공하면 유용하지 않을까라는 생각을 다듬어가면서 프로젝트를 진행하였다.&lt;/p&gt;
+
+&lt;h2 id=&quot;프론트엔드에서-적용한-기술스택&quot;&gt;프론트엔드에서 적용한 기술스택&lt;/h2&gt;
+
+&lt;p&gt;프론트 엔드에서 사용한 스택과 이유는 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/React-20232A?style=for-the-badge&amp;amp;logo=react&amp;amp;logoColor=61DAFB&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 페이지와 구성요소를 컴포넌트 단위로 구성하여 설계할 수 있으며, 재사용이 가능하다. 모달창에 적용하였다.&lt;/li&gt;
+  &lt;li&gt;React Router를 사용하여 페이지 간 관계와 흐름을 명료하게 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;Hooks의 useEffect를 사용하면 라이프 사이클에 따라 원하는 액션을 특정 상태의 변화에 따라 실행시킬 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/Redux-593D88?style=for-the-badge&amp;amp;logo=redux&amp;amp;logoColor=white&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;상태를 전역으로 관리할 수 있다. 모달과 날짜 선택에 적용하였다.&lt;/li&gt;
+  &lt;li&gt;상태를 드릴링으로 필요한 컴포넌트까지 전달하지 않더라도 접근할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;프로젝트의-주요기능-살펴보기&quot;&gt;프로젝트의 주요기능 살펴보기&lt;/h2&gt;
+
+&lt;h3 id=&quot;1-메인페이지-캐로셀&quot;&gt;1. 메인페이지 캐로셀&lt;/h3&gt;
+
+&lt;p&gt;메인 페이지는 달성도, 일, 주, 월 일정으로 구성되어 있다. 4개의 페이지를 캐로셀 형식으로 구성하여, 각 페이지를 넓게 사용하면서도 자연스럽게 이동할 수 있도록 하였다. 단, 이러한 방식은 첫 페이지와 마지막 페이지를 오갈 때 지루해질 수 있어, 인피니트 캐로셀로 제작하여 이동시간을 줄이고자 하였다.&lt;/p&gt;
+
+&lt;p&gt;캐로셀은 React Hooks와 CSS 효과를 사용하여 제작하였다. 해당 버튼을 눌렀을 때, 전환하는 CSS효과를 각 컴포넌트의 클래스네임으로 부여하고 버튼을 비활성한다. CSS 전환효과가 끝나면 새로운 배열로 컴포넌트를 다시 랜더링하고, 버튼을 활성화하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=15nFZta9TZ6GOQhcixyxQ9rh1IvDIB8MI&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;2-달성현황&quot;&gt;2. 달성현황&lt;/h3&gt;
+
+&lt;p&gt;우리는 종종 할 일을 적어놓지만, 작심삼일로 끝나곤 한다. 그 이유 중 하나가 성과가 눈에 잘 보이지 않기 때문이라고 생각했다. 지금까지 얼마나 해왔는지와 앞으로 얼마나 남았는지를 자주 노출시키고 보기 쉽게 표현한다면 긍적적인 피드백을 줄 것이라고 생각했다. 또한, 단기/중기/장기적인 관점에서도 확인할 수 있도록 방향을 잡았다.&lt;/p&gt;
+
+&lt;p&gt;TODO 리스트를 Redux 전역 상태로 관리하여, 일/주/월 일정 페이지에서 변경하면 바로 반영하도록 했다. 또한, 성취현황에 따라 각기 다른 메시지를 출력하여 소소한 재미를 주고자 했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1lfkwXF4pZpEyIpW2LFQfwAjRpmq4fImu&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-todo-리스트-drag--drop-crud&quot;&gt;3. TODO 리스트 Drag &amp;amp; Drop, CRUD&lt;/h3&gt;
+
+&lt;p&gt;TODO 목록은 메인페이지와 모달창으로 작성, 편집, 삭제할 수 있다. 특히, 수정할 때 필요한 textarea는 편집 버튼을 눌렀을 때에만 글자가 적혀 있는 위치에 나타나며, 기존 텍스트가 적혀있도록 하였다.&lt;/p&gt;
+
+&lt;p&gt;각 목록의 리스트들을 Drag &amp;amp; Drop으로 언제 어디서든 수정할 수 있도록 편이성을 제공하고자 했다. 이 기능은 HTML의 드래그 이벤트, React Hooks, CSS로 구현하였다. Drag Enter, Over, Leave 이벤트에 리스트가 아닌 다른 오브젝트가 대상이 되었을 때 리스트를 정렬하는 반복문에서 에러가 발생하였는데, 클래스명으로 타겟을 특정하여 해결하였다. 그리고, 각 리스트들은 순서, 고유키값을 가지고 있어야 했다. 이를 HTML 요소의 읽기전용 속성인 Dataset으로 각 리스트마다 속성과 값을 설정하여 해결할 수 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=17EsIVWIu6brCYZFT7jM6ZzezxFQ3y0h-&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;4-모달창-todo-관리자&quot;&gt;4. 모달창: TODO 관리자&lt;/h3&gt;
+
+&lt;p&gt;주, 월 TODO를 작성하는 페이지는 모달창을 실행하여 수정하도록 구성하였다. 이는 하나의 페이지가 담고있어야 할 정보가 너무 많고, 화면에서 일정 이상 크기를 유지해야 하기 때문이었다. 따라서, 특정 요일을 클릭하면 해당 일에 대한 TODO를 CRUD할 수 있는 모달창이 생성되어 내려오도록 하였다.&lt;/p&gt;
+
+&lt;p&gt;선택한 날짜는 Redux의 전역 상태로 관리하였다. 이는 사용자가 날짜를 바꾸었을 때 주, 월 페이지에서도 해당 요일에 맞는 주, 월이 표시되어 착오가 없도록 하기 위함이었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1dlf1IqOqemRP8h8IIdiKb8dK0ctIRce2&quot; /&gt;
+&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1S-G_GSe5sBiuFHBjdZLR-UkbjAv6RlSp&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;5-1-잘했던-점&quot;&gt;5. 1. 잘했던 점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;잘 모르는 것이더라도 시도해보는 자세. 처음 캐로셀과 Drag and Drop을 직접 구현할 때에는 어떻게 해야할 지 고심이 되었지만, 필요한 자료와 예시들을 찾아보고 나만의 방법으로 만들어보면서 계속해서 파고든다면 해낼 수 있다는 확신이 생겼다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;매일 아침 10시, 저녁 6시 각자 일정과 이슈를 공유하는 시간을 갖는 것. 프로젝트 전체일정을 관리하는 것은 각자가 수행할 수 있는 업무의 양, 난이도를 파악하는 것이기도 하다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;문제가 생기면 다른 사람도 알 수 있도록 즉시 공유하는 것. 프로젝트는 팀 단위로 진행하는 것이고, 역량과 수준은 각자 다르다. 나한테 문제가 되지 않는다고 생각하는 것도 다른 사람에게는 문제가 될 수 있다. 반대의 경우도 분명 존재한다. 배우는 방법에는 여러가지가 있지만, 정해진 기한 내에 많은 것을 해내야 하는 프로젝트에서는 꼭 필요했다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;5-2-부족했던-점&quot;&gt;5. 2. 부족했던 점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;계획 단계에서 컨셉을 명확히 통일하지 않은 것. 서로 생각하는 핵심요소가 상이하여 중간에 전반적으로 수정하는 과정이 있었다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;테스크 카드를 점차 관리하지 않고, 에러 핸들링을 미리 공유하지 않았던 것. ENV 설정이나 단순오류 등 쉽게 해결할 수 있는 문제로 애를 먹는 경우가 종종 있었다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;더 나은 경험을 제공하는 UX, UI 디자인을 계획단계에서 함께 고민해보는 것. 캐로셀 페이지에서 우측 버튼은 모달에 가려지는 치명적인 단점이 있었다. 또한, 메인 페이지의 비로그인 기능이 없다는 점도 사용자 입장에서 더 생각했어야 하는 부분이었다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;그날 했던 일들을 회고하고 배웠던 내용들을 팀원들과 공유하는 것.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;항상 롱런을 하는 것이 중요하다. 스케줄 및 체력관리를 하여 번아웃이 오지 않도록 하는 것. 마지막주는 허리 통증이 심해져서 하루종일 파스를 붙이고 있던 기억이 난다. 틈틈이 주 최소 2회 3km 런닝과 규칙적인 생체리듬을 지키도록 하자.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;필요한 스택과 라이브러리에 대한 사전조사. 캐로셀 Week, Month 페이지를 구현할 때 처음에는 자바스크립트의 Date객체를 사용하였다. 마지막 날에 하루가 더해지면 다음 달로 넘어가지만, 첫 날에 하루를 빼면 해당 달의 마지막 날로 넘어가는 치명적인 문제가 있었다. 이러한 부분은 date-fns와 같은 라이브러리를 사용했으면 쉽게 해결할 수 있는 문제였다. 또한, 이번 프로젝트는 역량향상을 목표로 캐로셀과 Drag and Drop을 직접 구현했지만, 다음 프로젝트부터는 최소 요구조건을 충족할 수 있도록 적절한 라이브러리를 적용할 예정이다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;6-레포지토리&quot;&gt;6. 레포지토리&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/codestates/BuildUp-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/BuildUp-server&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 서버 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Project" /><summary type="html">첫 번째 팀 프로젝트 회고</summary></entry><entry><title type="html">권한 부여 와 인증 시스템</title><link href="https://kavoom2.github.io/authorization/authorization/" rel="alternate" type="text/html" title="권한 부여 와 인증 시스템" /><published>2021-03-08T00:00:00+09:00</published><updated>2021-03-09T06:00:00+09:00</updated><id>https://kavoom2.github.io/authorization/authorization</id><content type="html" xml:base="https://kavoom2.github.io/authorization/authorization/">&lt;h2 id=&quot;1-httpshyper-text-transfer-protocol-secure-socket-layer&quot;&gt;1. HTTPS(Hyper Text Transfer Protocol Secure Socket Layer)&lt;/h2&gt;
 &lt;p&gt;HTTP 프로토콜의 내용을 암호화한 프로토콜. HTTP over SSL이라 부르기도 한다.&lt;/p&gt;
 
 &lt;p&gt;HTTP보다 안전한 프로토콜이며, 데이터 제공자의 신원을 보장할 수 있다. 클라이언트는 데이터 제공자가 제공한 데이터밖에 사용할 수 없다. 그러다보니 요청 및 응답을 중간에 가로채는 중간자 공격에 취약하다. 이를 보완하려면, 해당 데이터가 &lt;strong&gt;특정 도메인&lt;/strong&gt;에서 전달되었다는 추가 데이터를 응답에 실어 보내서 요청과 응답의 도메인을 비교할 수 있도록 하며 된다.  물론, 이러한 데이터도 변조할 수 있으니 암호화 작업이 필요하다.&lt;/p&gt;
@@ -601,12 +712,12 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.&lt;/p&gt;
 &lt;p&gt;이러한 정보들은 환경변수에 저장해놓고 사용하는 것이 일반적이다. 다음과 같이 환경변수명을 설정하고 불러올 수 있다. Node.js는 환경변수에 접근할 때 process.env라는 자바스크립트 객체를 사용한다. 전역객체이므로 별도로 모듈을 임포트하지 않아도 된다.&lt;/p&gt;
 
 &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1. 환경변수 설정&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;환경변수명&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;설정값&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;환경변수명&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;설정값&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;// 또는&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;환경변수명&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;설정값&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;환경변수명&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;설정값&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// 2. 환경변수 불러오기&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;환경변수명&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;환경변수명&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;.env는 환경변수를 관리하는 파일이다. node.js의 dotenv 모듈이 필요하다. 프로젝트 최상위 경로에 .env파일을 생성하고, 환경변수 값을 넣어주면 된다. 그리고 오픈소스에 업로드하지 않도록 .gitignore 파일에 .env를 등록해야 한다.&lt;/p&gt;
 
@@ -660,10 +771,10 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.&lt;/p&gt;
 &lt;span class=&quot;nx&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;orders&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ADD&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;FOREIGN&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;KEY&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;REFERENCES&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
 &lt;span class=&quot;c1&quot;&gt;// 다음은 터미널에서 실행한다.&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mysql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;터미널에서&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;해당&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;파일까지&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;경로&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sql&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;mysql&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;root&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;터미널에서&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;해당&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;파일까지&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;경로&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;schema&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;sql&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;잘못된 SQL을 작성하여 해당 데이터베이스를 삭제하고 다시 생성해야할 경우도 있다. 다음 명령어를 실행하면 기존 데이터베이스를 삭제하고, 작성된 SQL에 따라 데이터베이스를 다시 생성한다.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IF&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EXIST&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;다시&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;생성할&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;데이터베이스&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;다시&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;생성할&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;데이터베이스&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;DROP&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;IF&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;EXIST&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;다시&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;생성할&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;데이터베이스&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;다시&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;생성할&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;데이터베이스&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;node.js에서 mySQL을 사용하려면 mysql 모듈을 설치해야한다. 클라이언트, 서버를 나누어놓았다면 서버 디렉토리에 모듈을 설치하도록 하자.&lt;/p&gt;
@@ -1127,7 +1238,7 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.&lt;/p&gt;
 &lt;p&gt;JSX는 자바스크립트를 확장한 문법이다. JSX로 작성한 스크립트는 해석할 수 있도록 자바스크립트 컴파일러 라이브러리 &lt;a href=&quot;https://babeljs.io/&quot;&gt;&lt;strong&gt;바벨&lt;/strong&gt;&lt;/a&gt;이 변환하게 된다. JSX를 사용하면 아래와 같이 엘리먼트(element)를 생성하여 변수에 할당하거나 반환을 할 수 있다. 시각적으로는 HTML의 구조를 따르면서도, 자바스크립트의 언어체계 방식으로 작업할 수 있다.&lt;/p&gt;
 
 &lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Josh&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&amp;gt; /&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;엘리먼트를&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;생성하였다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;후술할&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;컴포넌트의&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;구성요소이다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;h1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&amp;lt;&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/h1&amp;gt; /&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;엘리먼트를&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;생성하였다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;후술할&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;컴포넌트의&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;구성요소이다&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
 
 &lt;span class=&quot;nx&quot;&gt;ReactDOM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;render&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
     &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
@@ -1438,185 +1549,4 @@ end
 &lt;a href=&quot;https://sungmooncho.com/2012/12/04/gmail-and-ajax/&quot;&gt;지메일이 핫메일을 이긴 진짜 이유 - Ajax가 가져온 유저 인터페이스의 혁신&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Fetch%EC%9D%98_%EC%82%AC%EC%9A%A9%EB%B2%95&quot;&gt;MDN - Using Fetch&lt;/a&gt;  &lt;br /&gt;
 &lt;a href=&quot;https://jakearchibald.com/2015/thats-so-fetch/&quot;&gt;That’s so fetch!&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/&quot;&gt;This API is so Fetching!&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Server" /><category term="http" /><category term="protocol" /><category term="api" /><category term="ajax" /><summary type="html">클라이언트와 서버가 통신하는 방법. 전달되는 데이터의 형태</summary></entry><entry><title type="html">비동기 호출 - Callback, Promise, Async</title><link href="https://kavoom2.github.io/javascript/asynchronous/" rel="alternate" type="text/html" title="비동기 호출 - Callback, Promise, Async" /><published>2021-02-01T00:00:00+09:00</published><updated>2021-02-01T21:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/asynchronous</id><content type="html" xml:base="https://kavoom2.github.io/javascript/asynchronous/">&lt;p&gt;비동기 호출이란 특정 코드의 연산이 끝날 때까지 실행을 멈추지 않고, 다음 코드를 먼저 실행하는 자바스크립트의 작동방식이다. 가령, 클라이언트가 서버에서 데이터를 요청한다고 해보자. 서버로 데이터를 요청하면 응답이 언제 올지는 명확히 알 수 없다. 요청을 보내놓고 무작정 기다리기보다 다른 코드를 실행하는 것이 나을 것이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-콜백callback&quot;&gt;1. 콜백(Callback)&lt;/h2&gt;
-&lt;p&gt;setTimeout은 비동기 처리의 대표적 예시이다. 코드를 바로 실행하지 않고, 일정시간 만큼 기다린 다음에 실행한다. 여러 작업들을 비동기으로 실행하면서도 순서를 제어할 수 있다. 아래 코드는 비동기적으로 “A”, “B”, “C”를 일정한 순서대로 실행하는 예시이다. 다만 무수한 콜백은 코드 가독성 및 유지보수 측면에서 좋지 않으니 가급적 지양해야 한다.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;printString&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;floor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;printAll&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;printString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;printString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;nx&quot;&gt;printString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{});&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;콜백을 사용하면서 바로 함수가 실행되도록 할 수 있지만, 예상과 다른 결과가 발생할 수 있다. 이러한 경우 함수가 실행되지 않고 오류가 출력되도록 설계할 수도 있다. 일반적으로 첫 번째 인자를 error, 마지막 인자를 data로 사용한다. Error Handling Design 예시를 보도록 하자.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFile&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;utf8&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;2-프로미스promise&quot;&gt;2. 프로미스(Promise)&lt;/h2&gt;
-&lt;p&gt;비동기 함수를 순차적으로 실행하다보면 흔히 콜백지옥이라 부르는 상황에 빠질 수 있다. 일반적으로 Promise나 Async를 사용하면 해결할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;프로미스는 자바스크립트 비동기 처리에 사용되는 객체이다. 사용하기에 앞서 알아야 할 개념이 있다. 프로미스에는 3가지 상태 “대기, 이행, 실패” 가 있다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;대기(Pending): 비동기 로직이 완료되지 않은 상태&lt;/p&gt;
-
-  &lt;p&gt;이행(Fulfilled): 비동기 처리가 완료되어 프로미스가 Resolve값을 반환한 상태&lt;/p&gt;
-
-  &lt;p&gt;실패(Rejected): 비동기 처리가 실패하거나 오류가 발생하여 Reject값을 반환한 상태&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;프로미스를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;new Promise()&lt;/code&gt; 메서드로 호출하면 대기상태에 진입한다. 프로미스는 콜백함수를 인자로 받을 수 있으며, 콜백함수는 Resolve와 Reject를 인자로 받는다.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{})&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;콜백함수의 인자 resolve를 실행하면 이행상태가 되며, 프로미스의 메서드 then에서 그 값을 매개인자로 받을 수 있다. 마찬가지로 reject를 호출하면 실패 상태가 되며, then과 catch 메서드에서 reject의 값을 인자로 받을 수 있다. 즉, 분기에 따라 then(), catch()로 나뉘어 결과를 출력할 수 있다. 일반적으로 catch는 예제처럼 모든 then 메소드를 거치고 나서 작동하도록 마지막에 붙여준다.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;filePath&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nx&quot;&gt;fs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;readFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;filePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;utf8&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;reject&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// catch 에서 error를 받을 수 있다.&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// then에서 data를 받을 수 있다.&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;validPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//Resolve의 값을 매개인자로 받는다.&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;invalidPath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Reject의 값을 매개인자로 받는다. 프로미스의 오류는 catch로 받도록 하자.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;프로미스의 주요한 특징이 하나 더 있다. 바로 여러 개의 프로미스를 사슬처럼 연결하여 사용할 수 있다는 것. 이러한 방식을 프로미스 체이닝(Promise Chaining)이라고 한다. &lt;strong&gt;then() 메서드를 호출하면 새로운 프로미스 객체를 반환하는 것을 이용한 방법이다&lt;/strong&gt;. 예제를 한 번 보도록 하자.&lt;/p&gt;
-
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예제 1.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readAllUserChaining&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// 문자열 상태의 user1, user2를 객체로 변환하고 배열에 담아 반환하는 함수 &lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예제 2.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNewsAndWeather&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newsURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;weatherURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-                    &lt;span class=&quot;na&quot;&gt;news&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                    &lt;span class=&quot;na&quot;&gt;weather&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;단, then은 대기(Pending) 상태인 프로미스를 받아야 정상적으로 작동한다. 아래 예제의 첫 번째 사례와 같이 작성하면 이미 프로미스가 이행되어 제대로 작동하지 않을 수 있다.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1. 수정 전&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;promise1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDatafromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;promise2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDatafromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;promise1&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;promise2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// 이미 promise2가 이행된 상태이면 제대로 작동하지 않는다.&lt;/span&gt;
-              &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 2. 수정 후&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getData&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Promise.all() 메서드는 순회 가능한 객체를 매개인자로 받는다. 객체 안에 있는 모든 비동기 작업을 이행한 새로운 배열을 프로미스로 반환한다. 이 때, 인자로 받은 프로미스들은 &lt;strong&gt;병렬&lt;/strong&gt;로 수행된다.&lt;/p&gt;
-
-&lt;p&gt;모든 프로미스들가 이행 상태가 되면 then, catch 등 메소드에 새로이 만든 배열 프로미스를 넘긴다. 만약, 하나라도 비동기 호출이 실패하다면 먼저 실패한 프로미스의 reject가 넘겨진다.&lt;/p&gt;
-
-&lt;p&gt;Promise.allSettled()는 Promise.all과 유사하다. 차이점은 내부 프로미스들 중 호출이 실패한 것이 있더라도, 이행된 프로미스들을 추려서 반환할 수 있다는 것이다.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예제 1.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readAllUser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)));&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 예제 2.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNewsAndWeatherAll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newsURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;weatherURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)])&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newsResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;weatherResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;Promise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newsResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;weatherResponse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()]);&lt;/span&gt;
-       &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(([&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-              &lt;span class=&quot;na&quot;&gt;news&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-              &lt;span class=&quot;na&quot;&gt;weather&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-          &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;3-async와-await&quot;&gt;3. async와 await&lt;/h2&gt;
-&lt;p&gt;async와 await은 프로미스를 조금 더 편리하게 사용하기 위한 목적으로 고안한 문법이다. 함수 앞에 &lt;strong&gt;async&lt;/strong&gt;를 붙이면, 해당 함수는 항상 프로미스를 결과값으로 반환한다. 또한, 프로미스가 아닌 값을 반환하더라도 이행 상태의 프로미스로 반환되도록 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;await&lt;/strong&gt;는 오직 async 함수 내부에서만 사용할 수 있다. 자바스크립트는 await를 만나면 해당 프로미스가 처리될 때 까지 기다린다. 그 전까지 async 내부에 있는 이하의 코드는 실행되지 않는 것. 실제로 코드를 작성해보면 직관적이다.&lt;/p&gt;
-&lt;div class=&quot;language-js highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 예제 1.&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;readAllUserAsyncAwait&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[];&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user1Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;data2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getDataFromFilePromise&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user2Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-
-    &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;   
-    &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;JSON&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;parse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;result&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 예제 2.&lt;/span&gt;
-&lt;span class=&quot;nx&quot;&gt;asnyc&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getNewsAndWeatherAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newsURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;fetch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;weatherURL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;resp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;resp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
-
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;news&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-        &lt;span class=&quot;na&quot;&gt;weather&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;json2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;4-reference&quot;&gt;4. Reference&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise&quot;&gt;MDN - Promise&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://ko.javascript.info/async-await&quot;&gt;JAVASCRIPT.INFO - async와 await&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://joshua1988.github.io/web-development/javascript/promise-for-beginners/&quot;&gt;자바스크립트 Promise 쉽게 이해하기&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://joshua1988.github.io/web-development/javascript/js-async-await/&quot;&gt;자바스크립트 async와 await&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><category term="asynchronous" /><summary type="html">자바스크립트 비동기 호출패턴</summary></entry></feed>
+&lt;a href=&quot;https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/&quot;&gt;This API is so Fetching!&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Server" /><category term="http" /><category term="protocol" /><category term="api" /><category term="ajax" /><summary type="html">클라이언트와 서버가 통신하는 방법. 전달되는 데이터의 형태</summary></entry></feed>

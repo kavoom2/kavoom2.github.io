@@ -256,4 +256,10 @@ var store = [{
         "tags": ["cookie","session","token","OAuth"],
         "url": "https://kavoom2.github.io/authorization/authorization/",
         "teaser": null
+      },{
+        "title": "BuildUp 프로젝트 회고",
+        "excerpt":"깃헙 레포지토리 - 클라이언트 바로가기 깃헙 레포지토리 - 서버 바로가기 첫 프로젝트에 들어서면서 드디어 내가 배웠던 것들이 유용한 프로그램을 만들어 낼 수 있다는 것이 실감되기 시작했다. 다른 사람들과 함께 페어프로그래밍에서 무의식적으로 해왔던 깃 설정과 브랜치 관리를 왜 해야하는지 체감할 수 있었다. 계획, 설계, 구현, 배포 단계에서 무엇을 준비 해야할지 윤곽을...","categories": ["Project"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/project/Retrospect-first-project/",
+        "teaser": null
       }]

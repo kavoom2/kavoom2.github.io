@@ -1,10 +1,10 @@
-I"�0<p>React는 컴포넌트 단위로 어플리케이션을 설계할 수 있도록 하는 자바스크립트 라이브러리이다. 튜토리얼은 <a href="https://ko.reactjs.org/docs/hello-world.html"><strong>공식 홈페이지</strong></a>에 잘 설명되어있으니 꼭 읽어보도록 하자.</p>
+I"�0<p>React는 컴포넌트 단위로 어플리케이션을 설계할 수 있도록 하는 자바스크립트 라이브러리이다. 튜토리얼은 <a href="https://ko.reactjs.org/docs/hello-world.html"><strong>공식 홈페이지</strong></a>에 잘 설명되어있으니 꼭 읽어보도록 하자.</p>
 
 <h2 id="1-jsx와-앨리먼트-랜더링">1. JSX와 앨리먼트 랜더링</h2>
 <p>JSX는 자바스크립트를 확장한 문법이다. JSX로 작성한 스크립트는 해석할 수 있도록 자바스크립트 컴파일러 라이브러리 <a href="https://babeljs.io/"><strong>바벨</strong></a>이 변환하게 된다. JSX를 사용하면 아래와 같이 엘리먼트(element)를 생성하여 변수에 할당하거나 반환을 할 수 있다. 시각적으로는 HTML의 구조를 따르면서도, 자바스크립트의 언어체계 방식으로 작업할 수 있다.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Josh</span><span class="dl">"</span>
-<span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="p">}</span><span class="o">!&lt;</span><span class="sr">/h1&gt; /</span><span class="o">/</span> <span class="err">엘리먼트를</span> <span class="err">생성하였다</span><span class="p">.</span> <span class="err">후술할</span> <span class="err">컴포넌트의</span> <span class="err">구성요소이다</span><span class="p">.</span>
+<span class="kd">const</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Hello</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="p">}</span><span class="o">!&lt;</span><span class="sr">/h1&gt; /</span><span class="o">/</span> <span class="nx">엘리먼트를</span> <span class="nx">생성하였다</span><span class="p">.</span> <span class="nx">후술할</span> <span class="nx">컴포넌트의</span> <span class="nx">구성요소이다</span><span class="p">.</span>
 
 <span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
     <span class="nx">element</span><span class="p">,</span>

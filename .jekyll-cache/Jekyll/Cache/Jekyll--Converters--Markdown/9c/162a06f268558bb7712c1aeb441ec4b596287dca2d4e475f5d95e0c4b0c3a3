@@ -1,4 +1,4 @@
-I"�<h2 id="1-데이터베이스의-필요성">1. 데이터베이스의 필요성</h2>
+I"��<h2 id="1-데이터베이스의-필요성">1. 데이터베이스의 필요성</h2>
 <p>In-Memory: 자바스크립트 변수에 할당하는 방식.  <br />
 배열에 넣는 방법이 이 방식이다. 프로그램이 종료되면 데이터도 같이 없어진다.
 데이터 수명의 프로그램의 수명에 의존하게 됨.</p>
@@ -91,12 +91,12 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.</p>
 <p>이러한 정보들은 환경변수에 저장해놓고 사용하는 것이 일반적이다. 다음과 같이 환경변수명을 설정하고 불러올 수 있다. Node.js는 환경변수에 접근할 때 process.env라는 자바스크립트 객체를 사용한다. 전역객체이므로 별도로 모듈을 임포트하지 않아도 된다.</p>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 환경변수 설정</span>
-<span class="k">export</span> <span class="err">환경변수명</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">설정값</span><span class="dl">"</span>
+<span class="k">export</span> <span class="nx">환경변수명</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">설정값</span><span class="dl">"</span>
 <span class="c1">// 또는</span>
-<span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="err">환경변수명</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">설정값</span><span class="dl">"</span>
+<span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">환경변수명</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">설정값</span><span class="dl">"</span>
 
 <span class="c1">// 2. 환경변수 불러오기</span>
-<span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="err">환경변수명</span>
+<span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">환경변수명</span>
 </code></pre></div></div>
 <p>.env는 환경변수를 관리하는 파일이다. node.js의 dotenv 모듈이 필요하다. 프로젝트 최상위 경로에 .env파일을 생성하고, 환경변수 값을 넣어주면 된다. 그리고 오픈소스에 업로드하지 않도록 .gitignore 파일에 .env를 등록해야 한다.</p>
 
@@ -150,10 +150,10 @@ HAVING: GROUP BY로 그룹화 한 결과를 필터링함.</p>
 <span class="nx">ALTER</span> <span class="nx">TABLE</span> <span class="nx">orders</span> <span class="nx">ADD</span> <span class="nx">FOREIGN</span> <span class="nx">KEY</span> <span class="p">(</span><span class="nx">user_id</span><span class="p">)</span> <span class="nx">REFERENCES</span> <span class="nx">users</span> <span class="p">(</span><span class="nx">id</span><span class="p">);</span>
 
 <span class="c1">// 다음은 터미널에서 실행한다.</span>
-<span class="nx">$</span> <span class="nx">mysql</span> <span class="o">-</span><span class="nx">u</span> <span class="nx">root</span> <span class="o">-</span><span class="nx">p</span> <span class="o">&lt;</span> <span class="err">터미널에서</span> <span class="err">해당</span> <span class="err">파일까지</span> <span class="err">경로</span><span class="o">/</span><span class="nx">schema</span><span class="p">.</span><span class="nx">sql</span>
+<span class="nx">$</span> <span class="nx">mysql</span> <span class="o">-</span><span class="nx">u</span> <span class="nx">root</span> <span class="o">-</span><span class="nx">p</span> <span class="o">&lt;</span> <span class="nx">터미널에서</span> <span class="nx">해당</span> <span class="nx">파일까지</span> <span class="nx">경로</span><span class="o">/</span><span class="nx">schema</span><span class="p">.</span><span class="nx">sql</span>
 </code></pre></div></div>
 <p>잘못된 SQL을 작성하여 해당 데이터베이스를 삭제하고 다시 생성해야할 경우도 있다. 다음 명령어를 실행하면 기존 데이터베이스를 삭제하고, 작성된 SQL에 따라 데이터베이스를 다시 생성한다.</p>
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">DROP</span> <span class="nx">DATABASE</span> <span class="nx">IF</span> <span class="nx">EXIST</span> <span class="p">[</span><span class="err">다시</span> <span class="err">생성할</span> <span class="err">데이터베이스</span><span class="p">]</span> <span class="nx">CREATE</span> <span class="nx">DATABASE</span> <span class="p">[</span><span class="err">다시</span> <span class="err">생성할</span> <span class="err">데이터베이스</span><span class="p">]</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">DROP</span> <span class="nx">DATABASE</span> <span class="nx">IF</span> <span class="nx">EXIST</span> <span class="p">[</span><span class="nx">다시</span> <span class="nx">생성할</span> <span class="nx">데이터베이스</span><span class="p">]</span> <span class="nx">CREATE</span> <span class="nx">DATABASE</span> <span class="p">[</span><span class="nx">다시</span> <span class="nx">생성할</span> <span class="nx">데이터베이스</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>node.js에서 mySQL을 사용하려면 mysql 모듈을 설치해야한다. 클라이언트, 서버를 나누어놓았다면 서버 디렉토리에 모듈을 설치하도록 하자.</p>
