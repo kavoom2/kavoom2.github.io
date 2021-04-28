@@ -1,23 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-03-29T20:17:03+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">BuildUp 프로젝트 회고</title><link href="https://kavoom2.github.io/project/Retrospect-first-project/" rel="alternate" type="text/html" title="BuildUp 프로젝트 회고" /><published>2021-03-29T00:00:00+09:00</published><updated>2021-03-30T06:00:00+09:00</updated><id>https://kavoom2.github.io/project/Retrospect-first-project</id><content type="html" xml:base="https://kavoom2.github.io/project/Retrospect-first-project/">&lt;p&gt;&lt;a href=&quot;https://github.com/codestates/BuildUp-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="https://kavoom2.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://kavoom2.github.io/" rel="alternate" type="text/html" /><updated>2021-04-28T23:38:57+09:00</updated><id>https://kavoom2.github.io/feed.xml</id><title type="html">건축공학도의 개발자 성장기</title><subtitle>liondoge's blog</subtitle><author><name>liondoge</name></author><entry><title type="html">팀 프로젝트 Logoyogo 회고</title><link href="https://kavoom2.github.io/project/codestates/Retrospect-final-project/" rel="alternate" type="text/html" title="팀 프로젝트 Logoyogo 회고" /><published>2021-04-28T00:00:00+09:00</published><updated>2021-04-29T06:00:00+09:00</updated><id>https://kavoom2.github.io/project/codestates/Retrospect-final-project</id><content type="html" xml:base="https://kavoom2.github.io/project/codestates/Retrospect-final-project/">&lt;p&gt;&lt;a href=&quot;https://logoyogo.ga/&quot;&gt;&lt;strong&gt;Logoyogo 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/Logoyogo-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/Logoyogo-server&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 서버 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1l-cvsOltC1QdAuz6pXDh6t59oDi4orUH&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;작년 9월 말부터 시작하여 달려온 여정이 어느덧 종점에 이르렀다는 것이 실감이 나지 않는다. 퇴근하고 노트북 앞에 앉아 과제를 어떻게 풀어야 하나 머리를 열심히 굴리던게 엊그저께 같은데 시간이 참 빠르다.&lt;/p&gt;
+
+&lt;p&gt;드디어 시작된 코드스테이츠에서의 마지막 프로젝트는 첫 프로젝트에서 느꼈던 아쉬움들을 개선해야겠다는 생각을 가진 채, 어떤 새로운 일들이 있을지 기대감에 부풀었다. 물론, 프로젝트 중후반에 접어들어서는 여전히 정신 없었다.&lt;/p&gt;
+
+&lt;p&gt;이번에는 첫 번째 프로젝트에 비해 상대적으로 충분한 기간이 주어진 만큼, 새롭고 흥미있는 기술을 사용하는 것을 목표로 했다. 그리고 저번 프로젝트에서 가장 아쉬움을 느꼈던 기획단계에서의 컨셉, 기능, 그리고 UX에 대한 논의를 충분히 진행하여 보다 완성도 있는 결과물을 내고자 했다. 구현할 기능의 우선순위를 명확하게 두어, UX의 질을 가급적 떨어뜨리지 않으면서 개발 과정에서도 차질이 안생기도록 하였다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-logoyogo-개요&quot;&gt;1. Logoyogo 개요&lt;/h2&gt;
+
+&lt;p&gt;학부생 시절 과제를 특정 컨셉에 대한 과제물을 발표하다 보면 로고가 필요하곤 했다. 평소에 Photoshop을 비롯한 각종 편집 프로그램에 관심이 있어 직접 만들곤 했다. 로고를 만들기 위해 필요한 이미지, 폰트, 색상 조합을 선정하는 과정은 재미있었지만 괜찮은 결과물을 내려면 많은 시간을 투자해야 했다.&lt;/p&gt;
+
+&lt;p&gt;편집 프로그램에 관심이 많고, 만드는 것을 좋아하는 사람이라면 그 과정이 그저 즐거울지도 모르겠다. 하지만, 대부분의 사람들은 이러한 이미지 편집 프로그램을 능숙하게 다루지 못한다. 어디서 필요한 벡터 이미지와 폰트, 색상 조합을 구해야 할지도 막막할 것이다.&lt;/p&gt;
+
+&lt;p&gt;프로젝트 Logoyogo는 이러한 불편함을 해소하자는 의견에서 출발했다. 편집 프로그램을 잘 다루지 못하는 사람을 대상으로 쉽고 간단하게 양질의 로고를 제공하고, 필요하다면 간편하게 로고를 수정할 수 있는 서비스를 만들고자 했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-프론트엔드에서-적용한-기술스택&quot;&gt;2. 프론트엔드에서 적용한 기술스택&lt;/h2&gt;
+
+&lt;p&gt;이번 프로젝트에서는 HTML5 캔버스를 활용한 로고 에디터가 핵심이었다. 백엔드 파트를 경험하고 싶은 욕심도 있었지만, 새로운 기술스택의 적용과 완성도 있는 결과물아라는 두 마리 토끼를 잡고 싶었다. 그래서 이번 프로젝트에서도 프론트 엔드를 맡아 진행하였다.&lt;/p&gt;
+
+&lt;p&gt;프론트 엔드에서 사용한 주요 기술스택과 이유를 이야기하고자 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;1. FabricJS&lt;/strong&gt;&lt;br /&gt;
+HTML Canvas 라이브러리에는 PixiJS, Konva, FabricJS 등이 있다. 이 중에서 사용하기로 결정한 라이브러리는 FabricJS로 이유는 아래와 같다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;4주라는 정해진 기한 안에 요구하는 기능들을 구현해야 했다. 따라서, 필요한 메서드들이 잘 갖추어져 개발에 차질이 없는 라이브러리를 선택하고자 하였다. FabricJS에서는 마우스를 이용한 객체 선택 및 크기 조절 액션은 기본적으로 제공한다. 또한, 캔버스와 오브젝트를 간편하게 JSON객체로 변환하거나 역으로 파싱할 수 있다.&lt;/li&gt;
+  &lt;li&gt;FabricJS는 객체 지향 라이브러리이다. 캔버스와 오브젝트를 클래스 형태로 제공한다. 이는 캔버스와 오브젝트를 클래스 단위로 커스터마이징하거나 관리할 수 있도록 한다.&lt;/li&gt;
+  &lt;li&gt;공식문서의 예제, Docs가 잘 정리되어 있고, 라이브러리에 대한 유용한 정보와 예제를 구하기 용이하다.&lt;/li&gt;
+  &lt;li&gt;React와 FabricJS를 함께 사용하는데 치명적인 문제가 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;2. TypeScript&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;변수를 정적 타입으로 관리하여, 타입 불일치로 인한 오류들을 VSCode에서 바로 확인하고 해결할 수 있다.&lt;/li&gt;
+  &lt;li&gt;VSCode에서 제공하는 자동완성 기능으로 능률을 높일 수 있다. 특히, 경로가 다른 스크립트의 함수와 변수를 불러올 때 편리하다.&lt;/li&gt;
+  &lt;li&gt;함수 및 변수에 대한 기능을 팀원과 명확하게 공유할 수 있다. 어떤 기능을 하는지, 어떤 변수를 받아야하는지를 타입을 확인하여 명확하게 이해할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;3. React&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 페이지와 구성요소를 컴포넌트 단위로 구성하여 설계할 수 있으며, 재사용이 가능하다. 모달창에 적용하였다.&lt;/li&gt;
+  &lt;li&gt;React Router를 사용하여 페이지 간 관계와 흐름을 명료하게 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;Hooks의 useEffect를 사용하면 라이프 사이클에 따라 원하는 액션을 특정 상태의 변화에 따라 실행시킬 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;4. Redux&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;상태를 전역으로 관리할 수 있다. 로그인, 모달창 상태 관리에 사용하였다.&lt;/li&gt;
+  &lt;li&gt;상태를 드릴링으로 필요한 컴포넌트까지 전달하지 않더라도 접근할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;5. Sass&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Sass에서 CSS 코드 작업을 HTML 구조와 유사하게 작업할 수 있다. 코드 구조의 직관성을 높일 수 있어 유용하였다.&lt;/li&gt;
+  &lt;li&gt;변수를 특정 파일에 관리하여 CSS 스타일을 손쉽게 관리할 수 있다. 가령 특정 폰트의 색상 또는 크기를 변경하고자 하면, 해당 변수의 값만 변경하면 된다.&lt;/li&gt;
+  &lt;li&gt;&amp;amp; 선택자를 사용하면 스타일을 구조적으로 잘 정리할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3-프로젝트의-주요기능&quot;&gt;3. 프로젝트의 주요기능&lt;/h2&gt;
+
+&lt;h3 id=&quot;3-1-랜딩-페이지&quot;&gt;3. 1. 랜딩 페이지&lt;/h3&gt;
+
+&lt;!-- &lt;랜딩 페이지 MP4&gt; --&gt;
+
+&lt;p&gt;랜딩 페이지에서는 어떤 서비스를 제공하고, 어떻게 사용하는지를 중점적으로 풀어내고자 하였다. 좋은 랜딩 페이지는 필요한 정보를 간결하고 명료하게 전달하면서, 사용자의 이목을 끌어야 한다고 생각한다. 개인적인 욕심으로는 스크롤 위치에 따른 CSS 애니메이션을 만들어보고 싶었지만, 일정 문제로 에디터 설명 항목에 포인트를 주는 것으로 정리하였다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-2-로고-요소-선택-페이지-탬플릿-페이지&quot;&gt;3. 2. 로고 요소 선택 페이지, 탬플릿 페이지&lt;/h3&gt;
+
+&lt;p&gt;로고 제작은 최대한 쉽게 사용하되, 사용자가 원하면 커스터마이징을 할 수 있도록 계획했다. 사용자가 로고에 들어갈 요소를 하나 씩 선택하여 로고를 만들거나, 기존에 만들어진 탬플릿을 선택하여 로고를 만들 수 있도록 하였다. 뭔가 부족하다면, 에디터에서 수정할 수 있다.&lt;/p&gt;
+
+&lt;!-- &lt;로고 요소 선택페이지 MP4&gt;   --&gt;
+
+&lt;p&gt;로고 요소 선택 페이지에서는 도형, 색상, 배치를 선택할 수 있다. 로고에 사용하는 도형은 SVG 벡터 도형을 사용하였고, 해당 도형을 선택할 경우 에디터에서 도형에 대한 SVG Path값을 불러오도록 로직을 작성하였다.&lt;/p&gt;
+
+&lt;p&gt;로고 배치는 캔버스, 도형, 텍스트 상자의 높이, 폭을 계산하여 결정하도록 로직을 작성했다. 여기서 텍스트 상자의 폰트를 특정 값으로 설정하면 폰트 타입마다 폭이 바뀌는 문제가 발생했다. 캔버스 상에 텍스트 상자기 제대로 출력이 되지 않고, 위치 계산도 제대로 되지 않는 치명적인 문제였다. 이를 FabricJS의 ClearCache() 메소드를 사용하여, 폰트를 변경할 때마다 텍스트 상자의 폭을 다시 계산하도록 하여 해결할 수 있었다.&lt;/p&gt;
+
+&lt;!-- &lt;로고 탬플릿 MP4&gt;   --&gt;
+
+&lt;p&gt;로고 탬플릿 선택 페이지는 FabricJS가 캔버스를 JSON으로 저장할 수 있다는 것을 활용하였다. 특정 탬플릿을 선택하면, 탬플릿에 해당하는 인덱스의 Canvas JSON 데이터를 에디터 컴포넌트로 전달하였다.&lt;/p&gt;
+
+&lt;p&gt;개인적으로 아쉬움이 많이 남는 파트이다. 우선 UX측면에서 사용자가 만족하는 로고를 만들려고 했다면, 선택페이지에서 선택 요소에 대한 결과물을 바로 확인할 수 있도록 만들어야 했다. 또한, 로고에 중요한 폰트에 대한 선택 기능도 추가되어야 했다.&lt;/p&gt;
+
+&lt;p&gt;또한 탬플릿 페이지의 경우 서버와 통신하여 ‘사용자가 저장한 로고 템플릿’을 출력하는 것으로 제공하고자 하였지만, 실제로 완벽하게 구현하지 못했다. 그리고 사용자가 원하는 로고를 쉽게 찾을 수 있도록 검색기능을 추가해야 했고, 필요한 로고를 스크롤 위치에 따라 서버에 요청하도록 해야했다. 디테일에서 놓친 부분이 굉장히 많은 파트였다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-3-에디터-페이지&quot;&gt;3. 3. 에디터 페이지&lt;/h3&gt;
+
+&lt;!-- &lt;로고 탬플릿 MP4&gt;   --&gt;
+
+&lt;p&gt;로고 에디터 페이지에서는 탬플릿에서 선택한 로고나, 여러 요소를 조합하여 나온 로고를 수정할 수 있도록 하였다. 기본적으로 제공하는 기능은 ‘컬러 팔레트’, ‘텍스트’, ‘도형’, ‘클립아트’, ‘배경’이다. 사용자층이 디자인에 대한 감각이나 지식이 깊지 않다고 생각하고, 특정 요소를 선택하거나 검색하는 것만으로도 손쉽게 만들 수 있도록 하였다. 컬러 팔레트 탭은 마음에 드는 팔레트를 선택하면 캔버스 상의 요소들을 팔레트에 맞추어 바꾸어준다. 클립아트 탭은 외부 API로부터 원하는 벡터 그림을 가져올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;FabricJS 라이브러리를 처음 사용하다보니 여러모로 고생했던 파트였다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-4-모달창---로그인-회원가입-페이지&quot;&gt;3. 4. 모달창 - 로그인, 회원가입 페이지&lt;/h3&gt;
+
+&lt;!-- &lt;로고 탬플릿 MP4&gt;   --&gt;
+
+&lt;p&gt;첫 프로젝트에서는 단순히 로그인, 회원가입 기능을 구현하고 에러 메시지를 하단에 출력하는 정도로 구현했었다. 이번 프로젝트에서는 각 항목의 유효성 검사를 실시간으로 확인하여, 사용자가 보다 쉽게 해당 기능을 이용할 수 있도록 만들었다.&lt;/p&gt;
+
+&lt;p&gt;모달창의 활성화 여부와 종류는 Redux의 전역상태로 관리하였다. 에디터 페이지의 Preview도 동일하다.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-5-일반-반응형-디자인&quot;&gt;3. 5. 일반, 반응형 디자인&lt;/h3&gt;
+
+&lt;p&gt;PC, 태블릿, 모바일에서 서비스를 이용할 수 있도록 했다. 미디어 쿼리를 사용하여 모바일에 중점을 두어 작업을 하였고, 특정 페이지의 경우 Section의 좌우 Padding으로 컨텐츠가 뭉개지지 않도록 1200px 구간을 별도로 작업하였다. 그리고 이전 프로젝트에서는 거의 사용하지 않았던 min-width를 적용하여 랜딩페이지의 특정 컨테이너가 지나치게 작아지는 문제가 발생하지 않도록 했다.&lt;/p&gt;
+
+&lt;p&gt;아쉬운 점은 미디어 쿼리에서 !important를 지나치게 많이 사용했다는 점이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-마무리&quot;&gt;4. 마무리&lt;/h2&gt;
+
+&lt;h3 id=&quot;4-1-잘했던-점&quot;&gt;4. 1. 잘했던 점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;새로운 것에 적극적으로 도전해보는 자세. 저번 프로젝트의 Carousel, Drag and Drop과 달리 FabricJS는 한국어로 된 포스트를 정말 찾아보기 힘들다. 전적으로 영문으로 된 공식문서, StackOverFlow, 공식 GitHub 등에만 의존해야 하는 상황이었다. 그럼에도 차근차근 React로 FabricJS를 적용하는 것부터 시작하여 필요한 기능 구현과 에러 핸들링까지 해낼 수 있었다. 앞으로 배우고 싶은, 그리고 배워나가야 할 새로운 기술 스택들을 만나도 해낼 수 있을 거라는 확신이 든다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용자의 관점에서 PC, 모바일 환경을 테스트하고 지속적으로 피드백을 주고 받는 것. 개발에 몰입하다보면 단순히 ‘기능구현’을 목표로 하여 UX의 질을 낮추기도 한다. 첫 프로젝트에서 뼈저리게 느꼈던 문제이기도 했었다. 이를 자발적으로 PC, 모바일 등 여러 환경에서 사용해보면서 어떤 점이 아쉬웠는지 공유하는 과정으로 많이 해소할 수 있었다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Task 카드의 세분화와 BugFix 및 Error Handling 카드 관리. Task 카드를 계획, 개발, 배포 단계마다 세분화하여 관리하였고, 덕분에 정해진 일정동안 요구하는 최소한의 기능을 구현할 수 있었다. 그리고, BugFix와 Error Hadnling 카드를 작성하여 원인, 진행현황, 해결방안 등을 팀원과 상세히 공유할 수 있었다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;4-2-부족했던-점&quot;&gt;4. 2. 부족했던 점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;업무분담과 팀 전반에 대한 인적관리의 미흡. 오늘 어떤 작업을 했는지, 앞으로 어떤 작업을 해야 할지에 대해 명확하게 이야기되지 않다보니 작업의 비중이 한 쪽으로 지나치게 쏠려버렸다. 이 부분은 개인의 의지 문제도 있겠지만, 그런 환경에서도 최선의 결과를 낼 수 있도록 협의하여 더 나은 방법을 제시해야 했다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다시금, 롱런을 하지 못한 것. 스케줄 및 체력관리를 하여 번아웃이 오지 않도록 해야 했는데, 이번에도 마지막 주에는 번아웃으로 2~3일 정도는 운동과 코드 작업을 제대로 하지 못했다. 종종 프로젝트의 결과물에 아쉬움을 느끼고 평일, 주말 안가리고 밀어붙이는게 문제가 되었던 것 같다. 회고를 작성하는 지금은 다시 운동을 병행하고 있지만, 여가시간을 활용하여 체력과 스트레스 관리를 어떻게 할지 더 생각을 해봐야겠다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클린 코드에 대한 노력의 부족. 종종 정해진 기한 안에 기능을 구현해야 한다는 생각에 ‘다른 사람이 보기 쉬운, 재사용이 가능한 코드’를 작성해야 한다는 것을 망각한다. 서비스는 확장과 유지보수가 원활하도록 만들어져야 한다. SCSS와 에디터 컴포넌트에서 많은 아쉬움을 느꼈다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;6-배포-주소-및-레포지토리&quot;&gt;6. 배포 주소 및 레포지토리&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://logoyogo.ga/&quot;&gt;&lt;strong&gt;Logoyogo 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/Logoyogo-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/Logoyogo-server&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 서버 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Project" /><category term="Codestates" /><summary type="html">로고를 누구나 쉽게 만들 수 있는 서비스</summary></entry><entry><title type="html">팀 프로젝트 BuildUp 회고</title><link href="https://kavoom2.github.io/project/codestates/Retrospect-first-project/" rel="alternate" type="text/html" title="팀 프로젝트 BuildUp 회고" /><published>2021-03-29T00:00:00+09:00</published><updated>2021-03-30T06:00:00+09:00</updated><id>https://kavoom2.github.io/project/codestates/Retrospect-first-project</id><content type="html" xml:base="https://kavoom2.github.io/project/codestates/Retrospect-first-project/">&lt;p&gt;&lt;a href=&quot;https://www.build-up-v.tk/&quot;&gt;&lt;strong&gt;BuildUp 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/BuildUp-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;https://github.com/codestates/BuildUp-server&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 서버 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1l-cvsOltC1QdAuz6pXDh6t59oDi4orUH&quot; width=&quot;300px&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;첫 프로젝트에 들어서면서 드디어 내가 배웠던 것들이 유용한 프로그램을 만들어 낼 수 있다는 것이 실감되기 시작했다. 다른 사람들과 함께 페어프로그래밍에서 무의식적으로 해왔던 깃 설정과 브랜치 관리를 왜 해야하는지 체감할 수 있었다. 계획, 설계, 구현, 배포 단계에서 무엇을 준비 해야할지 윤곽을 잡을 수 있었던 뜻 깊은 경험이었다.&lt;/p&gt;
+&lt;p&gt;첫 프로젝트에 들어서면서 드디어 내가 배웠던 것들로 유용한 서비스를 만들어 낼 수 있다는 것이 실감되기 시작했다. 또한, 다른 사람들과 함께 페어프로그래밍에서 무의식적으로 해왔던 깃 설정과 브랜치 관리 등을 왜 해야하는지 체감할 수 있었다. 계획, 설계, 구현, 배포 단계에서 무엇을 준비 해야할지 윤곽을 잡을 수 있었던 뜻 깊은 경험이었다.&lt;/p&gt;
 
-&lt;h2 id=&quot;1-buildup을-왜-만들었을까&quot;&gt;1. BuildUp을 왜 만들었을까?&lt;/h2&gt;
+&lt;h2 id=&quot;1-buildup-개요&quot;&gt;1. BuildUp 개요&lt;/h2&gt;
 
 &lt;p&gt;최근 코로나19의 여파로 언택트가 일상화되면서 더 밀접해졌다. 우리에게 인터넷은 떼어놓을 수 없는 공간이다. 업무를 보고 여가시간을 보낼 때 더 이상 인터넷은 선택이 아닌 필수다. 매일 브라우저를 당연하게 실행하면서 가끔씩 드는 생각은 흰색 바탕의 첫 화면은 단순하고 명료하지만 어쩐지 삭막하다는 것이다. 우리는 일상적으로 사용하는 브라우저의 홈 화면에서라도 편안함을 느낄 수 있도록 하면 어떨까라는 생각에서 이 프로젝트의 방향을 잡았다.&lt;/p&gt;
 
 &lt;p&gt;또한, 이전 근무현장에서 별도로 바탕화면에 일정관리 어플리케이션을 설치하여 사용한 기억이 있었다. 바탕화면과 달력 어플리케이션이 일체화되어 있다보니 사용하면서 조작에 불편함이 있었다. 이를 브라우저 홈 화면이라는 격리된 공간에 분리하면 불편함을 줄이면서도, 홈 화면의 활용도를 높일 수 있을 것이라는 생각이 들었다.&lt;/p&gt;
 
-&lt;p&gt;우리는 그 날의 날씨에 따라 아름다운 배경을 제공하면서도 미려한 디자인의 일정관리 서비스를 제공하면 유용하지 않을까라는 생각을 다듬어가면서 프로젝트를 진행하였다.&lt;/p&gt;
+&lt;p&gt;오늘의 날씨에 맞추어 아름다운 배경을 제공하고, 미려한 디자인의 일정관리 서비스를 제공하면 유용하지 않을까라는 생각을 다듬어가면서 프로젝트를 진행하였다.&lt;/p&gt;
 
-&lt;h2 id=&quot;프론트엔드에서-적용한-기술스택&quot;&gt;프론트엔드에서 적용한 기술스택&lt;/h2&gt;
+&lt;h2 id=&quot;2-프론트엔드에서-적용한-기술스택&quot;&gt;2. 프론트엔드에서 적용한 기술스택&lt;/h2&gt;
 
-&lt;p&gt;프론트 엔드에서 사용한 스택과 이유는 다음과 같다.&lt;/p&gt;
+&lt;p&gt;이번 프로젝트에서는 프론트 엔드를 맡아 진행하였다. 프론트 엔드에서 사용한 스택과 이유는 다음과 같다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/React-20232A?style=for-the-badge&amp;amp;logo=react&amp;amp;logoColor=61DAFB&quot; /&gt;&lt;/p&gt;
 
@@ -34,9 +186,9 @@
   &lt;li&gt;상태를 드릴링으로 필요한 컴포넌트까지 전달하지 않더라도 접근할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;프로젝트의-주요기능-살펴보기&quot;&gt;프로젝트의 주요기능 살펴보기&lt;/h2&gt;
+&lt;h2 id=&quot;3-프로젝트의-주요기능&quot;&gt;3. 프로젝트의 주요기능&lt;/h2&gt;
 
-&lt;h3 id=&quot;1-메인페이지-캐로셀&quot;&gt;1. 메인페이지 캐로셀&lt;/h3&gt;
+&lt;h3 id=&quot;3-1-메인페이지-캐로셀&quot;&gt;3. 1. 메인페이지 캐로셀&lt;/h3&gt;
 
 &lt;p&gt;메인 페이지는 달성도, 일, 주, 월 일정으로 구성되어 있다. 4개의 페이지를 캐로셀 형식으로 구성하여, 각 페이지를 넓게 사용하면서도 자연스럽게 이동할 수 있도록 하였다. 단, 이러한 방식은 첫 페이지와 마지막 페이지를 오갈 때 지루해질 수 있어, 인피니트 캐로셀로 제작하여 이동시간을 줄이고자 하였다.&lt;/p&gt;
 
@@ -44,7 +196,7 @@
 
 &lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=15nFZta9TZ6GOQhcixyxQ9rh1IvDIB8MI&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;2-달성현황&quot;&gt;2. 달성현황&lt;/h3&gt;
+&lt;h3 id=&quot;3-2-달성현황&quot;&gt;3. 2. 달성현황&lt;/h3&gt;
 
 &lt;p&gt;우리는 종종 할 일을 적어놓지만, 작심삼일로 끝나곤 한다. 그 이유 중 하나가 성과가 눈에 잘 보이지 않기 때문이라고 생각했다. 지금까지 얼마나 해왔는지와 앞으로 얼마나 남았는지를 자주 노출시키고 보기 쉽게 표현한다면 긍적적인 피드백을 줄 것이라고 생각했다. 또한, 단기/중기/장기적인 관점에서도 확인할 수 있도록 방향을 잡았다.&lt;/p&gt;
 
@@ -52,15 +204,15 @@
 
 &lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1lfkwXF4pZpEyIpW2LFQfwAjRpmq4fImu&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;3-todo-리스트-drag--drop-crud&quot;&gt;3. TODO 리스트 Drag &amp;amp; Drop, CRUD&lt;/h3&gt;
+&lt;h3 id=&quot;3-3-todo-리스트-drag--drop-crud&quot;&gt;3. 3. TODO 리스트 Drag &amp;amp; Drop, CRUD&lt;/h3&gt;
 
-&lt;p&gt;TODO 목록은 메인페이지와 모달창으로 작성, 편집, 삭제할 수 있다. 특히, 수정할 때 필요한 textarea는 편집 버튼을 눌렀을 때에만 글자가 적혀 있는 위치에 나타나며, 기존 텍스트가 적혀있도록 하였다.&lt;/p&gt;
+&lt;p&gt;각 목록의 리스트들을 Drag &amp;amp; Drop으로 언제 어디서든 수정할 수 있도록 편이성을 제공하고자 했다. 이 기능은 HTML의 드래그 이벤트, React Hooks, CSS로 구현하였다. Drag Enter, Over, Leave 이벤트에 리스트가 아닌 다른 오브젝트가 대상이 되었을 때 리스트를 정렬하는 반복문에서 에러가 발생하였는데, 클래스명으로 이벤트 대상을 특정하여 해결하였다. 그리고, 각 리스트들은 순서, 고유키값을 가지고 있어야 했다. 이를 HTML 요소의 읽기전용 속성인 Dataset으로 각 리스트마다 속성과 값을 설정하여 해결할 수 있었다.&lt;/p&gt;
 
-&lt;p&gt;각 목록의 리스트들을 Drag &amp;amp; Drop으로 언제 어디서든 수정할 수 있도록 편이성을 제공하고자 했다. 이 기능은 HTML의 드래그 이벤트, React Hooks, CSS로 구현하였다. Drag Enter, Over, Leave 이벤트에 리스트가 아닌 다른 오브젝트가 대상이 되었을 때 리스트를 정렬하는 반복문에서 에러가 발생하였는데, 클래스명으로 타겟을 특정하여 해결하였다. 그리고, 각 리스트들은 순서, 고유키값을 가지고 있어야 했다. 이를 HTML 요소의 읽기전용 속성인 Dataset으로 각 리스트마다 속성과 값을 설정하여 해결할 수 있었다.&lt;/p&gt;
+&lt;p&gt;TODO 목록은 메인페이지와 모달창으로 작성, 편집, 삭제할 수 있다. 특히, 수정할 때 필요한 textarea는 편집 버튼을 눌렀을 때에만 글자가 적혀 있는 위치에 나타나며, 기존 텍스트가 적혀있도록 하였다. 이는 React Hooks의 로컬 상태를 이용하였는데, 상태값이 특정 리스트의 Dataset 값 중 Primary Key의 값과 동일할 때 textarea를 렌더링하도록 하여 구현했다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=17EsIVWIu6brCYZFT7jM6ZzezxFQ3y0h-&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;4-모달창-todo-관리자&quot;&gt;4. 모달창: TODO 관리자&lt;/h3&gt;
+&lt;h3 id=&quot;3-4-모달창-todo-관리자&quot;&gt;3. 4. 모달창: TODO 관리자&lt;/h3&gt;
 
 &lt;p&gt;주, 월 TODO를 작성하는 페이지는 모달창을 실행하여 수정하도록 구성하였다. 이는 하나의 페이지가 담고있어야 할 정보가 너무 많고, 화면에서 일정 이상 크기를 유지해야 하기 때문이었다. 따라서, 특정 요일을 클릭하면 해당 일에 대한 TODO를 CRUD할 수 있는 모달창이 생성되어 내려오도록 하였다.&lt;/p&gt;
 
@@ -69,7 +221,9 @@
 &lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1dlf1IqOqemRP8h8IIdiKb8dK0ctIRce2&quot; /&gt;
 &lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1S-G_GSe5sBiuFHBjdZLR-UkbjAv6RlSp&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;5-1-잘했던-점&quot;&gt;5. 1. 잘했던 점&lt;/h3&gt;
+&lt;h2 id=&quot;4-마무리&quot;&gt;4. 마무리&lt;/h2&gt;
+
+&lt;h3 id=&quot;4-1-잘했던-점&quot;&gt;4. 1. 잘했던 점&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -83,20 +237,17 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;5-2-부족했던-점&quot;&gt;5. 2. 부족했던 점&lt;/h3&gt;
+&lt;h3 id=&quot;4-2-부족했던-점&quot;&gt;4. 2. 부족했던 점&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;계획 단계에서 컨셉을 명확히 통일하지 않은 것. 서로 생각하는 핵심요소가 상이하여 중간에 전반적으로 수정하는 과정이 있었다.&lt;/p&gt;
+    &lt;p&gt;계획 단계에서 컨셉을 명확히 통일하지 않은 것. 돌이켜보면 첫 프로젝트에서는 크게 비중을 두지 않았나 싶다. 그러다보니 서로 생각하는 핵심요소가 상이하여 중간에 전반적으로 수정하는 과정이 있었다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;테스크 카드를 점차 관리하지 않고, 에러 핸들링을 미리 공유하지 않았던 것. ENV 설정이나 단순오류 등 쉽게 해결할 수 있는 문제로 애를 먹는 경우가 종종 있었다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;더 나은 경험을 제공하는 UX, UI 디자인을 계획단계에서 함께 고민해보는 것. 캐로셀 페이지에서 우측 버튼은 모달에 가려지는 치명적인 단점이 있었다. 또한, 메인 페이지의 비로그인 기능이 없다는 점도 사용자 입장에서 더 생각했어야 하는 부분이었다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;그날 했던 일들을 회고하고 배웠던 내용들을 팀원들과 공유하는 것.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;항상 롱런을 하는 것이 중요하다. 스케줄 및 체력관리를 하여 번아웃이 오지 않도록 하는 것. 마지막주는 허리 통증이 심해져서 하루종일 파스를 붙이고 있던 기억이 난다. 틈틈이 주 최소 2회 3km 런닝과 규칙적인 생체리듬을 지키도록 하자.&lt;/p&gt;
@@ -106,10 +257,11 @@
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;6-레포지토리&quot;&gt;6. 레포지토리&lt;/h3&gt;
+&lt;h3 id=&quot;6-배포-주소-및-레포지토리&quot;&gt;6. 배포 주소 및 레포지토리&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://github.com/codestates/BuildUp-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://github.com/codestates/BuildUp-server&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 서버 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Project" /><summary type="html">첫 번째 팀 프로젝트 회고</summary></entry><entry><title type="html">권한 부여 와 인증 시스템</title><link href="https://kavoom2.github.io/authorization/authorization/" rel="alternate" type="text/html" title="권한 부여 와 인증 시스템" /><published>2021-03-08T00:00:00+09:00</published><updated>2021-03-09T06:00:00+09:00</updated><id>https://kavoom2.github.io/authorization/authorization</id><content type="html" xml:base="https://kavoom2.github.io/authorization/authorization/">&lt;h2 id=&quot;1-httpshyper-text-transfer-protocol-secure-socket-layer&quot;&gt;1. HTTPS(Hyper Text Transfer Protocol Secure Socket Layer)&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.build-up-v.tk/&quot;&gt;&lt;strong&gt;BuildUp 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/BuildUp-client&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 클라이언트 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://github.com/codestates/BuildUp-server&quot;&gt;&lt;strong&gt;깃헙 레포지토리 - 서버 바로가기&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Project" /><category term="Codestates" /><summary type="html">깔끔한 인터페이스의 개인일정 관리서비스</summary></entry><entry><title type="html">권한 부여 와 인증 시스템</title><link href="https://kavoom2.github.io/authorization/authorization/" rel="alternate" type="text/html" title="권한 부여 와 인증 시스템" /><published>2021-03-08T00:00:00+09:00</published><updated>2021-03-09T06:00:00+09:00</updated><id>https://kavoom2.github.io/authorization/authorization</id><content type="html" xml:base="https://kavoom2.github.io/authorization/authorization/">&lt;h2 id=&quot;1-httpshyper-text-transfer-protocol-secure-socket-layer&quot;&gt;1. HTTPS(Hyper Text Transfer Protocol Secure Socket Layer)&lt;/h2&gt;
 &lt;p&gt;HTTP 프로토콜의 내용을 암호화한 프로토콜. HTTP over SSL이라 부르기도 한다.&lt;/p&gt;
 
 &lt;p&gt;HTTP보다 안전한 프로토콜이며, 데이터 제공자의 신원을 보장할 수 있다. 클라이언트는 데이터 제공자가 제공한 데이터밖에 사용할 수 없다. 그러다보니 요청 및 응답을 중간에 가로채는 중간자 공격에 취약하다. 이를 보완하려면, 해당 데이터가 &lt;strong&gt;특정 도메인&lt;/strong&gt;에서 전달되었다는 추가 데이터를 응답에 실어 보내서 요청과 응답의 도메인을 비교할 수 있도록 하며 된다.  물론, 이러한 데이터도 변조할 수 있으니 암호화 작업이 필요하다.&lt;/p&gt;
@@ -1424,129 +1576,4 @@ D &amp;lt;--&amp;gt;|victim views XXS payload| E([Victim Web Browser])
 &lt;p&gt;Rest, HTTP Verbs&lt;/p&gt;</content><author><name>liondoge</name></author><category term="HTTP" /><summary type="html">URL구조</summary></entry><entry><title type="html">자바스크립트 이벤트 루프</title><link href="https://kavoom2.github.io/javascript/Event-loop/" rel="alternate" type="text/html" title="자바스크립트 이벤트 루프" /><published>2021-02-02T00:00:00+09:00</published><updated>2021-02-02T21:00:00+09:00</updated><id>https://kavoom2.github.io/javascript/Event-loop</id><content type="html" xml:base="https://kavoom2.github.io/javascript/Event-loop/">&lt;p&gt;&lt;img src=&quot;https://drive.google.com/uc?export=view&amp;amp;id=1-5t0zZk7Mm4uQwwCutb4l8v45qyfiyl_&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=8aGhZQkoFbQ&amp;amp;t=1s&quot;&gt;원본영상&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;http://latentflip.com/loupe/&quot;&gt;직접 해볼 수 있는 사이트&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><summary type="html">작성예정</summary></entry><entry><title type="html">클라이언트와 서버의 통신</title><link href="https://kavoom2.github.io/server/interaction-client-server/" rel="alternate" type="text/html" title="클라이언트와 서버의 통신" /><published>2021-02-02T00:00:00+09:00</published><updated>2021-02-02T21:00:00+09:00</updated><id>https://kavoom2.github.io/server/interaction-client-server</id><content type="html" xml:base="https://kavoom2.github.io/server/interaction-client-server/">&lt;h2 id=&quot;1-클라이언트-서버-아키텍쳐&quot;&gt;1. 클라이언트 서버 아키텍쳐&lt;/h2&gt;
-&lt;p&gt;쇼핑몰 앱을 이용하는데 상품 목록이나 정보를 바꾸려고 앱을 다시 받는 것은 그다지 좋은 경험이 아닐 것이다. 그래서 데이터 업데이트가 빈번하게 일어나는 환경에서는 리소스를 보관하는 공간과 리소스를 사용하는 앱을 분리하는 것이 효율적이다. 리소스를 사용하는 앱을 &lt;strong&gt;클라이언트(Client)&lt;/strong&gt;, 리소스가 존재하는 곳을 &lt;strong&gt;서버(Server)&lt;/strong&gt;라고 한다. 이러한 통신형태를 &lt;strong&gt;클라이언트 서버 아키텍쳐(Client-Server Architecture)&lt;/strong&gt;라고 한다. 사실, 서버는 리소스를 전달하는 역할만 하며, 서버를 보관하는 &lt;strong&gt;데이터베이스(Database)&lt;/strong&gt;라는 공간을 별도로 둔다.&lt;/p&gt;
-
-&lt;div class=&quot;mermaid&quot;&gt; 
-flowchart TB
-subgraph ide1 [3Tier]
-C[Client] &amp;lt;--&amp;gt; D[Server]
-D &amp;lt;--&amp;gt; id1[(Database)]
-end
-subgraph ide2 [2Tier]
-A[Client] &amp;lt;--&amp;gt; B[Server]
-end
-&lt;/div&gt;
-
-&lt;p&gt;클라이언트는 플랫폼에 따라 구분할 수 있고, 서버는 어떤 작업을 수행하는지에 따라 구분할 수 있다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;클라이언트의 종류
-    &lt;ul&gt;
-      &lt;li&gt;웹 앱&lt;/li&gt;
-      &lt;li&gt;모바일, 태블릿 앱&lt;/li&gt;
-      &lt;li&gt;데스크탑 앱 등…&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;서버의 종류
-    &lt;ul&gt;
-      &lt;li&gt;웹 서버: 웹사이트에 필요한 정보를 제공한다.&lt;/li&gt;
-      &lt;li&gt;파일 서버: 파일을 제공한다.&lt;/li&gt;
-      &lt;li&gt;데이터베이스 서버: 필요한 리소스를 제공한다.&lt;/li&gt;
-      &lt;li&gt;메일 서버 등…&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-클라이언트와-서버의-통신&quot;&gt;2. 클라이언트와 서버의 통신&lt;/h2&gt;
-&lt;p&gt;클라이언트와 서버 사이의 통신은 &lt;strong&gt;요청&lt;/strong&gt;과 &lt;strong&gt;응답&lt;/strong&gt;으로 구성된다. 일부 경우를 제외하면 요청이 있어야 응답이 들어온다. 서버는 클라이언트의 요청이 있기까지 마음대로 리소스를 전달하지 않는다.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-1-프로토콜&quot;&gt;2. 1. 프로토콜&lt;/h3&gt;
-&lt;p&gt;한편, 클라이언트와 서버 사이의 통신에는 정해진 방식이 있다. &lt;strong&gt;프로토콜(Protocol)&lt;/strong&gt;이 클라이언트와 서버 사이의 통신에 지켜야 할 통신규약이다. 클라이언트를 손님, 서버를 카페 종업원으로 생각하자. 손님이 종업원에게 주문을 할 때, 제대로 알아듣지 못할 언어를 쓰면 요청한 음료를 받기 힘들 것이다. 우리가 배울 웹 플랫폼에서는 클라이언트와 서버는 &lt;strong&gt;HTTP&lt;/strong&gt;라는 프로토콜로 서로 통신을 한다.&lt;/p&gt;
-
-&lt;p&gt;프로토콜에도 종류가 있다. 이와 관련해서는 &lt;a href=&quot;https://ko.wikipedia.org/wiki/OSI_%EB%AA%A8%ED%98%95&quot;&gt;&lt;strong&gt;OSI 7 Layers 모형&lt;/strong&gt;&lt;/a&gt;을 찾아보도록 하자. 기본적으로 각 계층은 하위계층의 기능만 이용할 수 있고, 상위계층에는 기능을 제공한다. 계층모형은 1 ~ 7단계까지 나뉜다. 언급된 내용만 간략히 적어본다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;계층 4: &lt;a href=&quot;https://brunch.co.kr/@wangho/6&quot;&gt;전송계층&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;TCP: HTTP, FTP 통신 등의 근간이 되는 인터넷 프로토콜. 양방향 통신이다.&lt;/li&gt;
-      &lt;li&gt;UDP: TCP와 달리 단방향으로 작동하는 프로토콜. 단순하고 빠르지만, 신뢰성이 낮다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;계층 7: 응용계층
-    &lt;ul&gt;
-      &lt;li&gt;HTTP: 웹에서 HTML, JSON 등 정보를 주고받는 프로토콜.&lt;/li&gt;
-      &lt;li&gt;HTTPS: HTTP에서 보안이 강화된 프로토콜.&lt;/li&gt;
-      &lt;li&gt;FTP: 파일전송 프로토콜.&lt;/li&gt;
-      &lt;li&gt;SMTP: 메일을 전송하기 위한 프로토콜.&lt;/li&gt;
-      &lt;li&gt;SSH: CLI환경의 원격 컴퓨터에 접속하기 위한 프로토콜.&lt;/li&gt;
-      &lt;li&gt;RDP: Windows 계열의 원격 컴퓨터에 접속하기 위한 프로토콜.&lt;/li&gt;
-      &lt;li&gt;WebSocket: 실시간 통신, Push 등을 지원하는 프로토콜.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;2-2-api&quot;&gt;2. 2. API&lt;/h3&gt;
-&lt;p&gt;클라이언트와 서버는 프로토콜로 상호 간에 통신을 한다고 했다. 그렇다면 실제 사용자는 어떻게 접근해야 할까. 우리가 사용하는 어플리케이션의 인터페이스, 컴퓨터를 조작하는데 필요한 키보드와 마우스 등을 떠올려보자. 이러한 장치 및 기능들은 실제 사용자가 내부 로직은 잘 알지 못하더라도 편리하게 사용할 수 있도록 도와준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;API(Application Programming Interface)&lt;/strong&gt;도 프로그램 간 통신에서 이러한 역할을 한다. 물론, 서버에서 API를 사전에 잘 구축해놓아야 클라이언트 측에서 잘 활용할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;인터넷에서 데이터를 요청할 때에는 HTTP 프로토콜을 사용하며, 주소(URL, URI)를 통해 접근한다. &lt;a href=&quot;https://en.wikipedia.org/wiki/Query_string&quot;&gt;쿼리 스트링(Query String)&lt;/a&gt;은 사용자가 입력한 데이터를 URL 주소를 활용하여 파라미터로 전달할 수 있다. 예제를 보도록 하자. &lt;a href=&quot;https://koreanjson.com&quot;&gt;좋은 레퍼런스 사이트&lt;/a&gt;도 있다.&lt;/p&gt;
-
-&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;https://starbucks.com/coffee/coldbrew?quantity=2&amp;amp;syrup=hazelnet
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;? : End point 이후에 ?를 표기하여 쿼리스트링이 시작하도록 한다.  &lt;br /&gt;
-= : 파라미터와 키 값은 parameter=key로 표현한다.  &lt;br /&gt;
-&amp;amp; : 파라미터가 둘 이상이면 &amp;amp;으로 구분해준다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;위 예제는 HTTP에서 리소스를 요청하는 “GET”에 대한 예제이다. 요청에는 여러 메소드가 존재하는데 이는 &lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/Methods&quot;&gt;MDN - HTTP 요청 메소드&lt;/a&gt;를 살펴보도록 하자.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;요청&lt;/th&gt;
-      &lt;th&gt;HTTP Response 메소드&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;조회(Read)&lt;/td&gt;
-      &lt;td&gt;GET&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;추가(Create)&lt;/td&gt;
-      &lt;td&gt;POST&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;갱신(Update)&lt;/td&gt;
-      &lt;td&gt;PUT or PATCH&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;삭제(Delete)&lt;/td&gt;
-      &lt;td&gt;DELETE&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;HTTP 요청이 성공적으로 완료되었는지 확인할 필요가 있다. 이는 &lt;a href=&quot;https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C&quot;&gt;HTTP 상태 코드&lt;/a&gt;가 어떻게 왔는지를 통해 알 수 있다. 우선은 상태 코드의 첫 번째 숫자는 응답의 클래스를 나타낸다는 것만 알아두자.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-3-http의-무상태성과-비연결성&quot;&gt;2. 3. HTTP의 무상태성과 비연결성&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;비연결성&lt;/strong&gt;이란 클라이언트 요청에 서버가 응답을 마치면 연결을 끊어버리는 방식을 일컫는다. 연결을 유지하려면 리소스가 발생한다. HTTP는 불특정 다수와 통신을 목적으로 설계되었다는 것음 생각하자.&lt;/p&gt;
-
-&lt;p&gt;비연결성으로 인해 이전 통신의 상태를 알 수 없게 된다. 이를 &lt;strong&gt;무상태성&lt;/strong&gt;이라고 한다. 불필요한 리소스를 줄이기 때문에 서버의 부하를 줄일 수 있지만, 클라이언트의 정보를 유지할 수 없다는 단점이 있다. 자칫하면 사용자가 매번 새로운 인증을 해야하는 불상사가 발생한다. 이를 보완하고자 &lt;strong&gt;쿠키&lt;/strong&gt;와 &lt;strong&gt;세션&lt;/strong&gt;을 사용하고 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-ajax&quot;&gt;3. Ajax&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://web.archive.org/&quot;&gt;WebArchive&lt;/a&gt;에서 20년 전과 지금의 네이버를 비교해보자. 뉴스란을 클릭하면 페이지가 전환되면서 새로운 웹페이지 전체를 다시 불러와야했다. 지금 네이버에 들어가서 웹툰, 게임, 스포츠를 클릭해보면, 해당 컨텐츠를 출력하는 부분만 새로이 렌더링되는 것을 볼 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Ajax(Asynchronous Javascript and XML)&lt;/strong&gt;는 서버와 자유롭게 통신하고, 페이지 깜빡임 없이 작동할 수 있도록 하는 웹 개발 방식이다. XHR(XMLHttpRequest)로 서버와 자유롭게 통신하며, 자바스크립트로 DOM을 조작하여 동적인 화면 출력과 상호작용을 가능하게 한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;4-읽어봐야할-문서들&quot;&gt;4. 읽어봐야할 문서들&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://d2.naver.com/helloworld/59361&quot;&gt;NAVER D2 - 브라우저는 어떻게 작동하는가?&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_types&quot;&gt;MDN - MIME Type: Content-Type에 대한 설명&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://sungmooncho.com/2012/12/04/gmail-and-ajax/&quot;&gt;지메일이 핫메일을 이긴 진짜 이유 - Ajax가 가져온 유저 인터페이스의 혁신&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://developer.mozilla.org/ko/docs/Web/API/Fetch_API/Fetch%EC%9D%98_%EC%82%AC%EC%9A%A9%EB%B2%95&quot;&gt;MDN - Using Fetch&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://jakearchibald.com/2015/thats-so-fetch/&quot;&gt;That’s so fetch!&lt;/a&gt;  &lt;br /&gt;
-&lt;a href=&quot;https://hacks.mozilla.org/2015/03/this-api-is-so-fetching/&quot;&gt;This API is so Fetching!&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Server" /><category term="http" /><category term="protocol" /><category term="api" /><category term="ajax" /><summary type="html">클라이언트와 서버가 통신하는 방법. 전달되는 데이터의 형태</summary></entry></feed>
+&lt;a href=&quot;http://latentflip.com/loupe/&quot;&gt;직접 해볼 수 있는 사이트&lt;/a&gt;&lt;/p&gt;</content><author><name>liondoge</name></author><category term="Javascript" /><summary type="html">작성예정</summary></entry></feed>

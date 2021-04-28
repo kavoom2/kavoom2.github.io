@@ -41,10 +41,10 @@ var store = [{
         "url": "https://kavoom2.github.io/%EA%B8%B0%ED%83%80/ubuntu_sound_mixing_problem/",
         "teaser": null
       },{
-        "title": "개인 토이프로젝트 - 테트리스 클론",
-        "excerpt":"다음 글은 테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)를 직접 구현해보고 정리한 내용이다. 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다. 1. 블록의 기본요소 테트리스 게임의 핵심은 블록의 움직임과 물리적 충돌을 어떻게 구현할 것인가이다. 게임 시작, 종료, 점수 매기기 등 기능들은 우선 배제하고 블록의 움직임만 생각해보자. 1.1. 블록...","categories": ["Toy"],
+        "title": "개인 토이프로젝트 Tetris Clone 회고",
+        "excerpt":"다음 글은 테트리스 예제(https://ui.toast.com/weekly-pick/ko_20191216)를 직접 구현해보고 정리한 내용이다. 프로젝트 트리 구성요소들이 어떤 역할을 하는지 정리한다. 그리고, 직접 구현하면서 알아둘 필요가 있는 내용도 덧붙인다. 1. 블록의 기본요소 테트리스 게임의 핵심은 블록의 움직임과 물리적 충돌을 어떻게 구현할 것인가이다. 게임 시작, 종료, 점수 매기기 등 기능들은 우선 배제하고 블록의 움직임만 생각해보자. 1.1. 블록...","categories": ["Toy","Project"],
         "tags": ["clone","tetris"],
-        "url": "https://kavoom2.github.io/toy/toy-clone-tetris01/",
+        "url": "https://kavoom2.github.io/toy/project/toy-clone-tetris01/",
         "teaser": null
       },{
         "title": "Git의 사용법과 Workflow 이해",
@@ -95,10 +95,10 @@ var store = [{
         "url": "https://kavoom2.github.io/data%20structure/data-structure/",
         "teaser": null
       },{
-        "title": "개인 토이프로젝트 중간점검 - 폴 가이즈",
-        "excerpt":"시작하기에 앞서 정말 좋은 컨텐츠와 강의를 제공해주신 개발자 Interactive Developer님에게 감사의 말씀을 드리고 싶다. 덕분에 HTML5와 자바스크립트만으로도 다양한 시각적 경험을 만들 수 있다는 것을 알게 되었다. 그리고 이 영상들을 보면서 배운 내용을 어떻게 활용할지 머리 속에 그려볼 수 있었다. 지금까지 올리신 강의는 이 곳에서 볼 수 있다. 심지어 무료다. 1....","categories": ["Toy","Javscript"],
+        "title": "개인 토이프로젝트 Fall Guys 회고",
+        "excerpt":"시작하기에 앞서 정말 좋은 컨텐츠와 강의를 제공해주신 개발자 Interactive Developer님에게 감사의 말씀을 드리고 싶다. 덕분에 HTML5와 자바스크립트만으로도 다양한 시각적 경험을 만들 수 있다는 것을 알게 되었다. 그리고 이 영상들을 보면서 배운 내용을 어떻게 활용할지 머리 속에 그려볼 수 있었다. 지금까지 올리신 강의는 이 곳에서 볼 수 있다. 심지어 무료다. 1....","categories": ["Toy","Projcet","Javscript"],
         "tags": ["fallguys"],
-        "url": "https://kavoom2.github.io/toy/javscript/toy-fallGuys/",
+        "url": "https://kavoom2.github.io/toy/projcet/javscript/toy-fallGuys/",
         "teaser": null
       },{
         "title": "자료구조(Data Structure) - Linked list, Hash table",
@@ -257,9 +257,15 @@ var store = [{
         "url": "https://kavoom2.github.io/authorization/authorization/",
         "teaser": null
       },{
-        "title": "BuildUp 프로젝트 회고",
-        "excerpt":"깃헙 레포지토리 - 클라이언트 바로가기 깃헙 레포지토리 - 서버 바로가기 첫 프로젝트에 들어서면서 드디어 내가 배웠던 것들이 유용한 프로그램을 만들어 낼 수 있다는 것이 실감되기 시작했다. 다른 사람들과 함께 페어프로그래밍에서 무의식적으로 해왔던 깃 설정과 브랜치 관리를 왜 해야하는지 체감할 수 있었다. 계획, 설계, 구현, 배포 단계에서 무엇을 준비 해야할지 윤곽을...","categories": ["Project"],
+        "title": "팀 프로젝트 BuildUp 회고",
+        "excerpt":"BuildUp 바로가기 깃헙 레포지토리 - 클라이언트 바로가기 깃헙 레포지토리 - 서버 바로가기 첫 프로젝트에 들어서면서 드디어 내가 배웠던 것들로 유용한 서비스를 만들어 낼 수 있다는 것이 실감되기 시작했다. 또한, 다른 사람들과 함께 페어프로그래밍에서 무의식적으로 해왔던 깃 설정과 브랜치 관리 등을 왜 해야하는지 체감할 수 있었다. 계획, 설계, 구현, 배포 단계에서...","categories": ["Project","Codestates"],
         "tags": [],
-        "url": "https://kavoom2.github.io/project/Retrospect-first-project/",
+        "url": "https://kavoom2.github.io/project/codestates/Retrospect-first-project/",
+        "teaser": null
+      },{
+        "title": "팀 프로젝트 Logoyogo 회고",
+        "excerpt":"Logoyogo 바로가기 깃헙 레포지토리 - 클라이언트 바로가기 깃헙 레포지토리 - 서버 바로가기 작년 9월 말부터 시작하여 달려온 여정이 어느덧 종점에 이르렀다는 것이 실감이 나지 않는다. 퇴근하고 노트북 앞에 앉아 과제를 어떻게 풀어야 하나 머리를 열심히 굴리던게 엊그저께 같은데 시간이 참 빠르다. 드디어 시작된 코드스테이츠에서의 마지막 프로젝트는 첫 프로젝트에서 느꼈던 아쉬움들을...","categories": ["Project","Codestates"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/project/codestates/Retrospect-final-project/",
         "teaser": null
       }]
