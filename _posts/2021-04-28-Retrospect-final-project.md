@@ -19,7 +19,7 @@ tags:
 
 ---
 
-<img src="https://drive.google.com/uc?export=view&id=1l-cvsOltC1QdAuz6pXDh6t59oDi4orUH" width=300px/>
+<img src="https://drive.google.com/uc?export=view&id=1JwUxwROIm0-suDQlHLzBxMQo7AL_Mebn" width="192px"/>
 
 작년 9월 말부터 시작하여 달려온 여정이 어느덧 종점에 이르렀다는 것이 실감이 나지 않는다. 퇴근하고 노트북 앞에 앉아 과제를 어떻게 풀어야 하나 머리를 열심히 굴리던게 엊그저께 같은데 시간이 참 빠르다.
 
@@ -76,7 +76,9 @@ HTML Canvas 라이브러리에는 PixiJS, Konva, FabricJS 등이 있다. 이 중
 
 ### 3. 1. 랜딩 페이지
 
-<!-- <랜딩 페이지 MP4> -->
+<video autoPlay loop muted width="700px">
+  <source src="https://drive.google.com/uc?export=view&id=1pwz5kJiHKrR3U7pPeIZl5gEzLhwpsMFr" type="video/mp4" />
+</video>
 
 랜딩 페이지에서는 어떤 서비스를 제공하고, 어떻게 사용하는지를 중점적으로 풀어내고자 하였다. 좋은 랜딩 페이지는 필요한 정보를 간결하고 명료하게 전달하면서, 사용자의 이목을 끌어야 한다고 생각한다. 개인적인 욕심으로는 스크롤 위치에 따른 CSS 애니메이션을 만들어보고 싶었지만, 일정 문제로 에디터 설명 항목에 포인트를 주는 것으로 정리하였다.
 
@@ -84,15 +86,15 @@ HTML Canvas 라이브러리에는 PixiJS, Konva, FabricJS 등이 있다. 이 중
 
 로고 제작은 최대한 쉽게 사용하되, 사용자가 원하면 커스터마이징을 할 수 있도록 계획했다. 사용자가 로고에 들어갈 요소를 하나 씩 선택하여 로고를 만들거나, 기존에 만들어진 탬플릿을 선택하여 로고를 만들 수 있도록 하였다. 뭔가 부족하다면, 에디터에서 수정할 수 있다.
 
-<!-- <로고 요소 선택페이지 MP4>   -->
+<video autoPlay loop muted width="700px">
+  <source src="https://drive.google.com/uc?export=view&id=1Xv80PRxllcHfJwa755qrtGFIgP3Oc8Pn" type="video/mp4" />
+</video>
 
 로고 요소 선택 페이지에서는 도형, 색상, 배치를 선택할 수 있다. 로고에 사용하는 도형은 SVG 벡터 도형을 사용하였고, 해당 도형을 선택할 경우 에디터에서 도형에 대한 SVG Path값을 불러오도록 로직을 작성하였다.
 
 로고 배치는 캔버스, 도형, 텍스트 상자의 높이, 폭을 계산하여 결정하도록 로직을 작성했다. 여기서 텍스트 상자의 폰트를 특정 값으로 설정하면 폰트 타입마다 폭이 바뀌는 문제가 발생했다. 캔버스 상에 텍스트 상자기 제대로 출력이 되지 않고, 위치 계산도 제대로 되지 않는 치명적인 문제였다. 이를 FabricJS의 ClearCache() 메소드를 사용하여, 폰트를 변경할 때마다 텍스트 상자의 폭을 다시 계산하도록 하여 해결할 수 있었다.
 
-<!-- <로고 탬플릿 MP4>   -->
-
-로고 탬플릿 선택 페이지는 FabricJS가 캔버스를 JSON으로 저장할 수 있다는 것을 활용하였다. 특정 탬플릿을 선택하면, 탬플릿에 해당하는 인덱스의 Canvas JSON 데이터를 에디터 컴포넌트로 전달하였다.
+한편, 로고 탬플릿 선택 페이지는 FabricJS가 캔버스를 JSON으로 저장할 수 있다는 것을 활용하였다. 특정 탬플릿을 선택하면, 탬플릿에 해당하는 인덱스의 Canvas JSON 데이터를 에디터 컴포넌트로 전달하였다.
 
 개인적으로 아쉬움이 많이 남는 파트이다. 우선 UX측면에서 사용자가 만족하는 로고를 만들려고 했다면, 선택페이지에서 선택 요소에 대한 결과물을 바로 확인할 수 있도록 만들어야 했다. 또한, 로고에 중요한 폰트에 대한 선택 기능도 추가되어야 했다.
 
@@ -100,7 +102,9 @@ HTML Canvas 라이브러리에는 PixiJS, Konva, FabricJS 등이 있다. 이 중
 
 ### 3. 3. 에디터 페이지
 
-<!-- <로고 탬플릿 MP4>   -->
+<video autoPlay loop muted width="700px">
+  <source src="https://drive.google.com/uc?export=view&id=1iHFfhdFT2LxVoJVjnAgBLfvu_FJRO5uj"  type="video/mp4" />
+</video>
 
 로고 에디터 페이지에서는 탬플릿에서 선택한 로고나, 여러 요소를 조합하여 나온 로고를 수정할 수 있도록 하였다. 기본적으로 제공하는 기능은 '컬러 팔레트', '텍스트', '도형', '클립아트', '배경'이다. 사용자층이 디자인에 대한 감각이나 지식이 깊지 않다고 생각하고, 특정 요소를 선택하거나 검색하는 것만으로도 손쉽게 만들 수 있도록 하였다. 컬러 팔레트 탭은 마음에 드는 팔레트를 선택하면 캔버스 상의 요소들을 팔레트에 맞추어 바꾸어준다. 클립아트 탭은 외부 API로부터 원하는 벡터 그림을 가져올 수 있다.
 
@@ -108,7 +112,9 @@ FabricJS 라이브러리를 처음 사용하다보니 여러모로 고생했던 
 
 ### 3. 4. 모달창 - 로그인, 회원가입 페이지
 
-<!-- <로고 탬플릿 MP4>   -->
+<video autoPlay loop muted width="700px">
+  <source src="https://drive.google.com/uc?export=view&id=1IQg0kBrlBUnjp9isyI1SoPWwVl5WeBdZ" type="video/mp4" />
+</video>
 
 첫 프로젝트에서는 단순히 로그인, 회원가입 기능을 구현하고 에러 메시지를 하단에 출력하는 정도로 구현했었다. 이번 프로젝트에서는 각 항목의 유효성 검사를 실시간으로 확인하여, 사용자가 보다 쉽게 해당 기능을 이용할 수 있도록 만들었다.
 
@@ -116,9 +122,17 @@ FabricJS 라이브러리를 처음 사용하다보니 여러모로 고생했던 
 
 ### 3. 5. 일반, 반응형 디자인
 
+<video autoPlay loop muted width="700px">
+  <source src="https://drive.google.com/uc?export=view&id=1Ik9Ay-PzGvK3plo3Z7w9C7ycbw4_NPm1"  type="video/mp4" />
+</video>
+
+<video autoPlay loop muted width="700px">
+  <source src="https://drive.google.com/uc?export=view&id=1ECZpxl4rPfIGJbPGsJLzRrIuIM5fJk6f"  type="video/mp4" />
+</video>
+
 PC, 태블릿, 모바일에서 서비스를 이용할 수 있도록 했다. 미디어 쿼리를 사용하여 모바일에 중점을 두어 작업을 하였고, 특정 페이지의 경우 Section의 좌우 Padding으로 컨텐츠가 뭉개지지 않도록 1200px 구간을 별도로 작업하였다. 그리고 이전 프로젝트에서는 거의 사용하지 않았던 min-width를 적용하여 랜딩페이지의 특정 컨테이너가 지나치게 작아지는 문제가 발생하지 않도록 했다.
 
-아쉬운 점은 미디어 쿼리에서 !important를 지나치게 많이 사용했다는 점이다.
+미디어 쿼리에서 !important를 지나치게 많이 사용했다는 아쉬움이 있다.
 
 ## 4. 마무리
 
