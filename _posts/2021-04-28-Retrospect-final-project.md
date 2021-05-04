@@ -13,7 +13,7 @@ categories:
 tags:
 ---
 
-[**Logoyogo 바로가기**](https://logoyogo.ga/)  
+[**Logoyogo 바로가기**](https://logoyogo.me/)  
 [**깃헙 레포지토리 - 클라이언트 바로가기**](https://github.com/codestates/Logoyogo-client)  
 [**깃헙 레포지토리 - 서버 바로가기**](https://github.com/codestates/Logoyogo-server)
 
@@ -156,6 +156,6 @@ PC, 태블릿, 모바일에서 서비스를 이용할 수 있도록 했다. 미�
 
 ### 6. 배포 주소 및 레포지토리
 
-[**Logoyogo 바로가기**](https://logoyogo.ga/)  
+[**Logoyogo 바로가기**](https://logoyogo.me/)  
 [**깃헙 레포지토리 - 클라이언트 바로가기**](https://github.com/codestates/Logoyogo-client)  
 [**깃헙 레포지토리 - 서버 바로가기**](https://github.com/codestates/Logoyogo-server)
