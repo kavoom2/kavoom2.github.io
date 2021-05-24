@@ -1,0 +1,90 @@
+I"�6<h2 id="개요">개요</h2>
+
+<p>동일한 크기의 이미지(Matrix) 2개가 주어진다. 각 이미지의 셀은 “1” 또는 “0”의 정보를 담고 있는데, 이는 해당 영역에 이미지가 있는지 여부를 나타낸다. 상하좌우로 연속된 “1”들의 집합을 “이미지 영역”이라고 한다.</p>
+
+<p>두 그리드를 비교하여 이미지 영역이 완전히 일치할 때, 해당 영역이 일치한다고 한다. 두 이미지를 비교하여, 완전히 일치하는 이미지 영역의 갯수를 계산해야 한다.</p>
+
+<h2 id="조건">조건</h2>
+
+<ul>
+  <li>1 &lt;= n &lt;= 100</li>
+  <li>1 &lt;= 그리드의 폭 / 너비 &lt;= 1</li>
+  <li>셀은 “0” 또는 “1”의 데이터만을 저장한다.</li>
+  <li>이미지 너비와 폭이 3일 때, [“101”, “111”, “011”]의 형태로 주어집니다.</li>
+</ul>
+
+<h2 id="풀이">풀이</h2>
+
+<p>완전히 일치하는 영역만 동일한 영역으로 간주하고 갯수를 센다. 따라서 완전탐색으로 각 영역들을 탐색해야 하되, 일치하지 않은 부분에서도 검토를 끊지 않고 이어나가야 한다.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">countMatches</span><span class="p">(</span><span class="nx">grid1</span><span class="p">,</span> <span class="nx">grid2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">M</span><span class="p">,</span> <span class="nx">N</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="nx">grid1</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">grid1</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">length</span><span class="p">];</span>
+  <span class="kd">const</span> <span class="nx">pathChecker</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">M</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">fill</span><span class="p">(</span><span class="dl">"</span><span class="s2">_</span><span class="dl">"</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nb">Array</span><span class="p">(</span><span class="nx">N</span><span class="p">).</span><span class="nx">fill</span><span class="p">(</span><span class="kc">false</span><span class="p">));</span>
+  <span class="kd">const</span> <span class="nx">answerChecker</span> <span class="o">=</span> <span class="p">[];</span>
+
+  <span class="kd">const</span> <span class="nx">regionFinder</span> <span class="o">=</span> <span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">pathChecker</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">grid1</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">grid2</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span><span class="p">])</span> <span class="p">{</span>
+      <span class="nx">answerChecker</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">row</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span>
+        <span class="p">(</span><span class="nx">grid1</span><span class="p">[</span><span class="nx">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span> <span class="o">||</span> <span class="nx">grid2</span><span class="p">[</span><span class="nx">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="o">!</span><span class="nx">pathChecker</span><span class="p">[</span><span class="nx">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span>
+      <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">regionFinder</span><span class="p">(</span><span class="nx">row</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nx">M</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span>
+        <span class="p">(</span><span class="nx">grid1</span><span class="p">[</span><span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span> <span class="o">||</span> <span class="nx">grid2</span><span class="p">[</span><span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="o">!</span><span class="nx">pathChecker</span><span class="p">[</span><span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span>
+      <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">regionFinder</span><span class="p">(</span><span class="nx">row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">col</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span>
+        <span class="p">(</span><span class="nx">grid1</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span> <span class="o">||</span> <span class="nx">grid2</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="o">!</span><span class="nx">pathChecker</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+      <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">regionFinder</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">col</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nx">N</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span>
+        <span class="p">(</span><span class="nx">grid1</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span> <span class="o">||</span> <span class="nx">grid2</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">1</span><span class="dl">"</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
+        <span class="o">!</span><span class="nx">pathChecker</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+      <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">regionFinder</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">row</span> <span class="o">&lt;</span> <span class="nx">M</span><span class="p">;</span> <span class="nx">row</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">col</span> <span class="o">&lt;</span> <span class="nx">N</span><span class="p">;</span> <span class="nx">col</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">idx</span> <span class="o">=</span> <span class="nx">row</span> <span class="o">*</span> <span class="nx">N</span> <span class="o">+</span> <span class="nx">col</span><span class="p">;</span>
+      <span class="nx">answerChecker</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">grid1</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="nx">grid2</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span><span class="p">]</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">0</span><span class="dl">"</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">pathChecker</span><span class="p">[</span><span class="nx">row</span><span class="p">][</span><span class="nx">col</span><span class="p">])</span> <span class="p">{</span>
+        <span class="nx">answerChecker</span><span class="p">[</span><span class="nx">idx</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="nx">regionFinder</span><span class="p">(</span><span class="nx">row</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">idx</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">answerChecker</span><span class="p">[</span><span class="nx">idx</span><span class="p">])</span> <span class="nx">answer</span><span class="o">++</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">answer</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET

@@ -268,4 +268,16 @@ var store = [{
         "tags": [],
         "url": "https://kavoom2.github.io/project/codestates/Retrospect-final-project/",
         "teaser": null
+      },{
+        "title": "코딩 테스트 - 활성화된 분수",
+        "excerpt":"개요 0 ~ n 인 지점이 있으며, 각 지점마다 분수가 설치되어 있다. 배열 locations의 값은 해당 인덱스에 위치한 분수의 최대 범위를 나타낸다. 즉, locations[2] = 3이라면, 2지점에 있는 분수의 영역은 좌우로 각각 최대 3까지 뻗어나간다. 지점의 갯수와 분수의 최대 범위를 나타내는 locations이 주어졌을 때, 모든 영역을 덮기 위해 최소한으로 활성해야...","categories": ["Algorithm"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/algorithm/algorithm-active-fountain/",
+        "teaser": null
+      },{
+        "title": "코딩 테스트 - 이미지 매칭",
+        "excerpt":"개요 동일한 크기의 이미지(Matrix) 2개가 주어진다. 각 이미지의 셀은 “1” 또는 “0”의 정보를 담고 있는데, 이는 해당 영역에 이미지가 있는지 여부를 나타낸다. 상하좌우로 연속된 “1”들의 집합을 “이미지 영역”이라고 한다. 두 그리드를 비교하여 이미지 영역이 완전히 일치할 때, 해당 영역이 일치한다고 한다. 두 이미지를 비교하여, 완전히 일치하는 이미지 영역의 갯수를 계산해야...","categories": ["Algorithm"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/algorithm/algorithm-image-matching/",
+        "teaser": null
       }]

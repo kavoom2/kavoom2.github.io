@@ -1,0 +1,76 @@
+I"#<h2 id="개요">개요</h2>
+
+<p>0 ~ n 인 지점이 있으며, 각 지점마다 분수가 설치되어 있다. 배열 locations의 값은 해당 인덱스에 위치한 분수의 최대 범위를 나타낸다. 즉, locations[2] = 3이라면, 2지점에 있는 분수의 영역은 좌우로 각각 최대 3까지 뻗어나간다.</p>
+
+<p>지점의 갯수와 분수의 최대 범위를 나타내는 locations이 주어졌을 때, 모든 영역을 덮기 위해 최소한으로 활성해야 하는 분수의 갯수를 계산해야 한다.</p>
+
+<h2 id="조건">조건</h2>
+
+<ul>
+  <li>1 &lt;= n &lt;= 10^5</li>
+  <li>1 &lt;= locations[i] &lt;= min(n, 100)</li>
+</ul>
+
+<h2 id="풀이">풀이</h2>
+
+<p>최소 갯수를 계산해야 하므로, 최단 경로를 찾아내는 BFS를 적용한다. 여러 차례 디버깅을 하면서 시간초과 문제에 직면하였는데, 가지치기를 어느정도까지 할 수 있는지가 핵심이다.</p>
+
+<ol>
+  <li>
+    <p>이전 최대 영역 ~ 현재 분수의 범위 시작지점에 덮이지 않은 곳이 있으면 안된다.</p>
+  </li>
+  <li>
+    <p>각 Depth마다 최대 영역과 그 Case의 마지막 Idx를 기억한다. 그리고, 동일한 Depth를 계속 탐색할 때 최대 영역보다 작으면 해당 CASE를 Queue에 넘기지 않는다.</p>
+  </li>
+</ol>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">fountainActivation</span><span class="p">(</span><span class="nx">locations</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// BFS로 최단경로를 찾아냅니다.</span>
+  <span class="kd">const</span> <span class="nx">queue</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="kd">const</span> <span class="nx">memo_maxRange</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+  <span class="kd">const</span> <span class="nx">memo_lastIdx</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
+  <span class="kd">const</span> <span class="nx">initTask</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">count</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="na">lastCoveredIdx</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+  <span class="p">};</span>
+  <span class="kd">let</span> <span class="nx">answer</span> <span class="o">=</span> <span class="nx">initTask</span><span class="p">;</span>
+  <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">initTask</span><span class="p">);</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">curTask</span> <span class="o">=</span> <span class="nx">queue</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">lastCoveredIdx</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">curTask</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">lastIdx</span> <span class="o">=</span> <span class="nx">memo_lastIdx</span><span class="p">[</span><span class="nx">count</span><span class="p">];</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nx">lastCoveredIdx</span> <span class="o">&gt;=</span> <span class="nx">locations</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">answer</span> <span class="o">=</span> <span class="nx">curTask</span><span class="p">;</span>
+      <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 기억하고 있는 최대영역 미만이라면 검토하지 않습니다.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">lastCoveredIdx</span> <span class="o">&lt;</span> <span class="nx">memo_maxRange</span><span class="p">[</span><span class="nx">count</span><span class="p">])</span> <span class="k">continue</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">lastIdx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">locations</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">range</span> <span class="o">=</span> <span class="nx">locations</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+
+      <span class="c1">// 이전 영역이 완전히 Cover되지 않으면 제외합니다.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">lastCoveredIdx</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="nx">i</span> <span class="o">-</span> <span class="nx">range</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">lastCoveredIdx</span> <span class="o">&gt;=</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">range</span><span class="p">)</span> <span class="k">continue</span><span class="p">;</span>
+
+      <span class="c1">// 최대 영역을 기억하고, 최대 영역 미만인 Case는 제외합니다.</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">memo_maxRange</span><span class="p">[</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">===</span> <span class="kc">undefined</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">memo_lastIdx</span><span class="p">[</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="nx">memo_maxRange</span><span class="p">[</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">range</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">memo_maxRange</span><span class="p">[</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">range</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">memo_lastIdx</span><span class="p">[</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="nx">memo_maxRange</span><span class="p">[</span><span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">range</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">continue</span><span class="p">;</span>
+
+      <span class="kd">const</span> <span class="nx">newTask</span> <span class="o">=</span> <span class="p">{</span> <span class="na">count</span><span class="p">:</span> <span class="nx">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="na">lastCoveredIdx</span><span class="p">:</span> <span class="nx">i</span> <span class="o">+</span> <span class="nx">range</span> <span class="p">};</span>
+      <span class="nx">queue</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">newTask</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="nx">answer</span><span class="p">.</span><span class="nx">count</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+:ET
