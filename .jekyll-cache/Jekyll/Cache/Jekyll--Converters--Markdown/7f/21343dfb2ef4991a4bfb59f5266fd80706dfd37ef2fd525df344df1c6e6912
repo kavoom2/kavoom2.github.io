@@ -1,0 +1,133 @@
+I"7<p>노션으로 개인 일정 관리 테이블을 별도로 작성해야될 것 같은데 평일은 힘들지 싶다. 주말을 활용해서 정리하는 것으로 하고, 일단 남겨두어야할 것들은 임시로 블로그에 게시하도록 하자.</p>
+
+<p>저번 주에 합격 소식을 듣고 오늘부터 바로 근무한다고 했다. 살짝만 더 놀았으면 하는 아쉬움이 있지만, 며칠 지나면 별 감흥이 없을 것 같다. 별거 아닌 일에 마음 쓰지 말자.</p>
+
+<p>오늘은 앞으로 해야 할 프로젝트에 대한 개요 설명 및 협업 툴에 대한 전반적인 설명을 들었다.</p>
+
+<h2 id="0-init">0. Init</h2>
+
+<h3 id="nodejs">Node.js</h3>
+
+<ul>
+  <li>현재 사용 중인 LTS 버전에 대해 검토 후 추후 확정 예정 (현재 12번대 사용 중인 것으로 알고 있음)</li>
+</ul>
+
+<h3 id="eslint--prettier">ESLint / Prettier</h3>
+
+<ul>
+  <li>이전 프로젝트에서 적용한 설정 파일이 있으므로, 참고하여 적용</li>
+</ul>
+
+<h2 id="1-stack">1. Stack</h2>
+
+<p>현재 프론트엔드 파트에서 사용하고 있는 / 사용하게 될 스택들에 대한 내용으로, 경험이 있는 스택은 부족하거나 개선해야할 사항에 대한 피드백을 부탁드렸다.</p>
+
+<h3 id="react-hooks">React (Hooks)</h3>
+
+<ul>
+  <li>Custom Hook에 대한 예제 및 사용법을 습득.</li>
+  <li>React에서 Atomic Design Pattern을 적용.</li>
+</ul>
+
+<h3 id="redux-toolkit--redux-saga">Redux (toolkit) / Redux Saga</h3>
+
+<ul>
+  <li>비동기 처리 시 Redux Saga를 사용한 처리방법 습득.</li>
+  <li>아키텍쳐 설계에 대한 고민.</li>
+</ul>
+
+<h3 id="typescript">TypeScript</h3>
+
+<ul>
+  <li>프로젝트에 TypeScript를 직접 적용한 경험이 부족하므로, 초기에는 JavaScript로 작성하여 TypeScript로 Refactoring하는 것을 고려.</li>
+</ul>
+
+<h3 id="docker">Docker</h3>
+
+<ul>
+  <li>현재 우선적으로 배워야 할 스택.</li>
+</ul>
+
+<h3 id="styled-components">Styled Components</h3>
+
+<ul>
+  <li>Scss와 작성 스타일은 유사하니 큰 문제는 없을 것. 컴포넌트와 페이지의 구분. 코드의 작성에 대해 고민.</li>
+</ul>
+
+<h2 id="2-코드-피드백">2. 코드 피드백</h2>
+
+<p>이전에 면접을 맡으셨던 프론트엔드 엔지니어분에게 개선하면 좋을 것 같다고 생각하신 부분에 대한 피드백을 부탁드렸다. 내용은 다음과 같다.</p>
+
+<ul>
+  <li>함수 작성 시 파라미터가 여러 개 들어가는 경우가 있다. 이 때, 이 함수를 사용하려다 보면 변수의 순서를 확인해야 하다보니 보통 번거로운 것이 아니다. 순서를 잘 못 집어넣게 될 우려도 있다. 이를 다음과 같이 객체를 사용해보도록 하자.</li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nx">foo</span><span class="p">({</span> <span class="nx">size</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">color</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">red</span><span class="dl">"</span><span class="p">,</span> <span class="nx">shape</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">circle</span><span class="dl">"</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">size</span><span class="p">,</span> <span class="nx">color</span><span class="p">,</span> <span class="nx">shape</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">foo</span><span class="p">({});</span> <span class="c1">// 1 "red" "circle"</span>
+<span class="nx">foo</span><span class="p">({</span> <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">green</span><span class="dl">"</span> <span class="p">});</span> <span class="c1">// 1 "green" "circle"</span>
+<span class="nx">foo</span><span class="p">({</span> <span class="na">size</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">color</span><span class="p">:</span> <span class="dl">"</span><span class="s2">blue</span><span class="dl">"</span><span class="p">,</span> <span class="na">shape</span><span class="p">:</span> <span class="dl">"</span><span class="s2">rect</span><span class="dl">"</span> <span class="p">});</span> <span class="c1">// 2 "blue" "rect"</span>
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>첫 번째 프로젝트에서 비동기 처리에 Promise / then 패턴이 사용된 부분이 있었다. 추후 업무에서는 Async / await으로 통일하도록 하자. (협의된 부분)</p>
+  </li>
+  <li>
+    <p><a href="https://ko.javascript.info/optional-chaining">Optional Chaning</a>은 객체의 참조가 null 또는 undefined라면, 에러가 발생할 수 있다. 이 때 옵셔널 체이닝을 사용하면, 앞의 참조 대상이 undefined이거나 null일 때, 평가를 멈추고 undefined를 반환하게 된다. 존재하면, 평가를 진행한다. 예제를 통해 살펴보도록 하자.</p>
+  </li>
+</ul>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">.</span><span class="nx">address</span><span class="p">.</span><span class="nx">street</span><span class="p">);</span> <span class="c1">// TypeError: Cannot read property "street" of undefined</span>
+
+<span class="c1">// Use optional chaning</span>
+<span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">user</span><span class="p">?.</span><span class="nx">address</span><span class="p">?.</span><span class="nx">street</span><span class="p">);</span> <span class="c1">// undefiend, 에러가 발생하지 않는다.</span>
+</code></pre></div></div>
+
+<p>“평가 대상이 없어도 괜찮은 경우에만, 선택적으로 사용하도록 하는 것이 중요하다.”</p>
+
+<ul>
+  <li>
+    <p>Debugging: React, Redux Extension(logger) + Chrome</p>
+  </li>
+  <li>
+    <p>첫 프로젝트에 디자인 패턴을 정의해야 한다. “Atomic Design Pattern”을 적용해보는 것을 생각해보도록 하자.</p>
+  </li>
+</ul>
+
+<h2 id="3-주-업무">3. 주 업무</h2>
+
+<ol>
+  <li>
+    <p>Docker를 사용하여 React의 Index.js 띄우기<br />
+→ 전역 상태관리 (Redux)를 고려해야 하는지 확인이 필요.</p>
+  </li>
+  <li>
+    <p>Docker 테스트 방법에 대한 내용 확인하여 작업에 참고.</p>
+  </li>
+  <li>
+    <p>기본 파일구조 설계(Atomic Design Pattern)에 대한 검토. 자료 서치 및 해당 내용에 대한 도움 요청.</p>
+  </li>
+  <li>
+    <p>부트스트랩 코드 숙지</p>
+  </li>
+  <li>
+    <p>부트스트랩을 활용한 각 페이지 기본 템플릿 작성<br />
+→ 엔드 포인트에 대한 내용 재확인 요청</p>
+  </li>
+</ol>
+
+<h2 id="3-이것-저것-해야할-것들">3. 이것 저것 해야할 것들</h2>
+
+<ol>
+  <li>Chrome Extension 설치(Debugging)</li>
+  <li>Design Architecture에 대한 서치 및 질의</li>
+  <li>Docker Study(튜토리얼 위주로 하고, 개인 시간 활용)</li>
+  <li>React Study</li>
+  <li>Redux Toolkit + Redux Sage Study</li>
+</ol>
+:ET

@@ -280,4 +280,10 @@ var store = [{
         "tags": [],
         "url": "https://kavoom2.github.io/algorithm/algorithm-image-matching/",
         "teaser": null
+      },{
+        "title": "TIL - 2021. 05. 24.",
+        "excerpt":"노션으로 개인 일정 관리 테이블을 별도로 작성해야될 것 같은데 평일은 힘들지 싶다. 주말을 활용해서 정리하는 것으로 하고, 일단 남겨두어야할 것들은 임시로 블로그에 게시하도록 하자. 저번 주에 합격 소식을 듣고 오늘부터 바로 근무한다고 했다. 살짝만 더 놀았으면 하는 아쉬움이 있지만, 며칠 지나면 별 감흥이 없을 것 같다. 별거 아닌 일에 마음...","categories": ["TIL"],
+        "tags": [],
+        "url": "https://kavoom2.github.io/til/TIL-01/",
+        "teaser": null
       }]
